@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
+<!-- ================= HEADER (nado) ================= -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,96 +8,102 @@
 
 <body>
 
-<!-- ================= HEADER (same as dodo-Girl 1) ================= -->
+<!-- ================= HEADER (dodo) ================= -->
 <header>
 
-    
+    <!-- شعار الموقع -->
     <h1>SkillSwap</h1>
 
-  
+    <!-- شريط التنقل -->
     <nav>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="how-it-works.html">How It Works</a>
         <a href="browse-requests.html">Browse Requests</a>
         <a href="contact.html">Contact</a>
-        <a href="login.html">Login</a>
-        <a href="register.html">Sign Up</a>
+        <a href="profile.html">Profile</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="post-request.html">Post Request</a>
+        <a href="login.html">Logout</a>
+
     </nav>
+
 </header>
 
-<!-- ================= MAIN CONTENT (Profile Page-nado) ================= -->
+<!-- ================= MAIN CONTENT (Profile Page) ================= -->
 <main>
 
-    <!-- Profile page title -->
-    <section>
-        <h2>User Profile</h2>
-        <p>View and manage your SkillSwap account.</p>
-    </section>
+    <!-- عنوان الصفحة -->
+    <h2>My Profile</h2>
+    <p>Manage your account information and preferences.</p>
 
-    <!-- Basic user information section -->
+    <!-- قسم المعلومات الأساسية -->
     <section>
         <h3>Basic Information</h3>
 
-        <!-- Static user info (placeholder for now) -->
-        <p><strong>Name:</strong> Nada Ahmed</p>
+        <!-- صورة المستخدم -->
+        <img src="profile-photo.jpg" alt="User Photo">
+
+        <!-- معلومات المستخدم -->
+        <p><strong>Full Name:</strong> Emma Johnson</p>
         <p><strong>Role:</strong> Student</p>
-        <p><strong>University Email:</strong> nada@university.edu</p>
+        <p><strong>University Email:</strong> emma@university.edu</p>
+        <p><strong>Volunteer Hours:</strong> 24</p>
+        <p><strong>Skills:</strong> 3</p>
+        <p><strong>Member Since:</strong> Jan 2026</p>
+
+        <!-- زر تعديل الصورة -->
+        <button>Change Photo</button>
     </section>
 
-    <!-- User skills section -->
+    <!-- قسم السيرة الذاتية -->
     <section>
-        <h3>Skills</h3>
+        <h3>Bio / About Me</h3>
+        <p>Senior Computer Science student passionate about design and web development.</p>
+    </section>
 
-        <!-- List of user skills -->
+    <!-- قسم المهارات -->
+    <section>
+        <h3>My Skills</h3>
         <ul>
-            <li>Java Programming</li>
             <li>UI Design</li>
-            <li>English Speaking</li>
+            <li>Figma</li>
+            <li>JavaScript</li>
         </ul>
     </section>
 
-    <!-- Volunteer hours and activity section -->
+    <!-- قسم تفضيلات الجلسات -->
     <section>
-        <h3>Volunteer & Activity</h3>
+        <h3>Session Preferences</h3>
 
-        <!-- Static activity info -->
-        <p><strong>Volunteer Hours:</strong> 10 hours</p>
-        <p><strong>Completed Sessions:</strong> 5</p>
+        <!-- التوفر -->
+        <p><strong>Availability:</strong> Weekday evenings, Weekend mornings</p>
+
+        <!-- نوع الجلسات -->
+        <p><strong>Session Type Preference:</strong> Both one-on-one and group sessions</p>
     </section>
 
-    <!-- Edit profile form (structure only) -->
+    <!-- قسم الأمان والإعدادات -->
     <section>
-        <h3>Edit Profile</h3>
+        <h3>Security & Settings</h3>
 
-        <!-- Form for editing profile -->
-        <form>
-
-            <!-- Bio textarea -->
-            <label for="bio">Short Bio</label>
-            <textarea id="bio" placeholder="Write a short bio about yourself"></textarea>
-
-            <!-- Skills update input -->
-            <label for="skills">Update Skills</label>
-            <input id="skills" type="text" placeholder="e.g. Python, Public Speaking">
-
-            <!-- Save button -->
-            <button type="submit">Save Changes</button>
-        </form>
+        <!-- إعدادات الأمان -->
+        <button>Change Password</button>
+        <button>Email Notifications</button>
     </section>
 
 </main>
 
-<!-- ================= FOOTER (same as dodo-Girl 1) ================= -->
+<!-- ================= FOOTER (dodo) ================= -->
 <footer>
 
-    
+    <!-- قسم شعار الموقع -->
     <div>
         <h3>SkillSwap</h3>
         <p>Learn. Teach. Earn. Empowering university students through peer mentoring.</p>
     </div>
 
-  
+    <!-- روابط سريعة -->
     <div>
         <h3>Quick Links</h3>
         <p>About</p>
@@ -105,7 +112,7 @@
         <p>Contact</p>
     </div>
 
-   
+    <!-- قسم الطلاب -->
     <div>
         <h3>For Students</h3>
         <p>Become a Mentor</p>
@@ -114,14 +121,14 @@
         <p>Admin Panel</p>
     </div>
 
-    
+    <!-- قسم التواصل -->
     <div>
         <h3>Contact</h3>
         <p>University Campus</p>
         <p>support@skillswap.edu</p>
     </div>
 
-
+    <!-- حقوق النشر -->
     <p>© 2026 SkillSwap</p>
 
 </footer>

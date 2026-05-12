@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>  <!-- =================nado ================= -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,12 +7,9 @@
 
 <body>
 
-<!-- ================= HEADER (dodo-Girl 1) ================= -->
+<!-- ================= HEADER (same dodo 1) ================= -->
 <header>
-
-  
     <h1>SkillSwap</h1>
-
 
     <nav>
         <a href="index.html">Home</a>
@@ -25,89 +22,109 @@
     </nav>
 </header>
 
-<!-- ================= MAIN CONTENT (Register Page-nado) ================= -->
+<!-- ================= MAIN CONTENT (Register Page) ================= -->
 <main>
 
-    <!-- Page title and short description -->
-    <section>
-        <h2>Create an Account</h2>
-        <p>Sign up to start learning, teaching, and tracking your volunteer hours.</p>
-    </section>
+    <!-- عنوان الصفحة والنص الفرعي -->
+    <h2>Join SkillSwap</h2>
+    <p>Start learning and teaching today</p>
 
-    <!-- Registration form section -->
+    <!-- قسم إنشاء الحساب -->
     <section>
+        <h3>Create Your Account</h3>
 
-        <!-- Registration form -->
+        <!-- نموذج التسجيل -->
         <form>
 
-            <!-- Full name input -->
+            <!-- الاسم الكامل -->
             <label for="full-name">Full Name</label>
-            <input id="full-name" type="text" placeholder="Enter your full name">
+            <input id="full-name" type="text" placeholder="John Doe">
 
-            <!-- University email input -->
+            <!-- البريد الجامعي -->
             <label for="email">University Email</label>
-            <input id="email" type="email" placeholder="example@university.edu">
+            <input id="email" type="email" placeholder="you@university.edu">
 
-            <!-- Password input -->
+            <!-- كلمة المرور -->
             <label for="password">Password</label>
-            <input id="password" type="password" placeholder="Enter a strong password">
+            <input id="password" type="password" placeholder="Min. 6 characters">
 
-            <!-- Confirm password input -->
+            <!-- تأكيد كلمة المرور -->
             <label for="confirm-password">Confirm Password</label>
-            <input id="confirm-password" type="password" placeholder="Re-enter your password">
+            <input id="confirm-password" type="password" placeholder="Repeat password">
 
-            <!-- Account type selection -->
-            <label for="role">Account Type</label>
+            <!-- القسم: ما الذي يجلبك إلى SkillSwap -->
+            <h4>What brings you to SkillSwap?</h4>
+
+            <!-- خيار التعلم -->
+            <input type="radio" id="learn" name="purpose" value="learn">
+            <label for="learn">I Want to Learn - Request skills, connect with mentors, and grow your knowledge.</label>
+
+            <!-- خيار التعليم -->
+            <input type="radio" id="teach" name="purpose" value="teach">
+            <label for="teach">I Want to Teach - Help others, share your expertise, and earn volunteer hours.</label>
+
+            <!-- الدور الجامعي -->
+            <label for="role">University Role</label>
             <select id="role">
                 <option value="student">Student</option>
-                <option value="mentor">Mentor</option>
+                <option value="professor">Professor</option>
             </select>
 
-            <!-- Submit button -->
-            <button type="submit">Register</button>
+            <!-- المهارات -->
+            <label for="skills">Your Skills</label>
+            <input id="skills" type="text" placeholder="e.g., Java, UI Design, English (comma-separated)">
+
+            <!-- السيرة الذاتية -->
+            <label for="bio">Bio</label>
+            <textarea id="bio" placeholder="Tell others about yourself and your expertise..."></textarea>
+
+            <!-- زر إنشاء الحساب -->
+            <button type="submit">Create Account</button>
+
         </form>
 
-        <!-- Link to login page -->
-        <p>Already have an account? <a href="login.html">Login here</a>.</p>
+        <!-- رابط تسجيل الدخول -->
+        <p>Already have an account? <a href="login.html">Log in</a></p>
     </section>
 
 </main>
 
-<!-- ================= FOOTER (copied from dodo-Girl 1) ================= -->
-<footer>
 
+<footer>
 
     <div>
         <h3>SkillSwap</h3>
-        <p>Learn. Teach. Earn. Empowering university students through peer mentoring.</p>
+        <p>
+            Learn. Teach. Earn. Empowering university students
+            through peer mentoring.
+        </p>
     </div>
-
 
     <div>
         <h3>Quick Links</h3>
-        <p>About</p>
-        <p>How It Works</p>
-        <p>Browse Requests</p>
-        <p>Contact</p>
+
+        <a href="about.html">About</a><br>
+        <a href="how-it-works.html">How It Works</a><br>
+        <a href="browse-requests.html">Browse Requests</a><br>
+        <a href="contact.html">Contact</a>
     </div>
 
- 
     <div>
         <h3>For Students</h3>
-        <p>Become a Mentor</p>
-        <p>Request Help</p>
-        <p>Track Hours</p>
-        <p>Admin Panel</p>
+
+        <a href="profile.html">Become a Mentor</a><br>
+        <a href="post-request.html">Request Help</a><br>
+        <a href="volunteer-hours.html">Track Hours</a><br>
+        <a href="admin.html">Admin Panel</a>
     </div>
 
-   
     <div>
         <h3>Contact</h3>
+
         <p>University Campus</p>
         <p>support@skillswap.edu</p>
     </div>
 
-  
     <p>© 2026 SkillSwap</p>
 
 </footer>

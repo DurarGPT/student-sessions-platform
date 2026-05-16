@@ -24,7 +24,7 @@
 
     <input type="text" placeholder="Search skills..."> <!--input field for searching-->
 
-    <hr> <!--made it as a horizontal line-->
+    <hr> <!--line-->
 
     <div> <!--container box-->
 

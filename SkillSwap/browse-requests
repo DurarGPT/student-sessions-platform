@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Browse Requests</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
 <!-- ================= (browse request page -balqees) ================= -->
 <header>
     <h1>SkillSwap</h1>
@@ -13,48 +23,94 @@
         <a href="register.html">Sign Up</a>
     </nav>
 </header>
-<html>
-<head>
-    <title>Browse Requests</title>
-</head>
 
-<body>
+<main>
 
-    <h1>Browse Learning Requests</h1>
+    <h1 class="page-title">Browse Learning Requests</h1>
 
-    <input type="text" placeholder="Search skills..."> <!--input field for searching-->
+    <!-- Search + Filter -->
+    <div class="search-filter">
 
-    <hr> <!--line-->
+        <input type="text" placeholder="Search skills...">
 
-    <div> <!--container box-->
-
-        <h2>Java Programming Help</h2> <!--this is the title for the request-->
-
-        <p>
-            Looking for help understanding Java OOP concepts.
-        </p>
-
-        <p>Level: Beginner</p>
-
-        <button>View Details</button>
+        <select>
+            <option>All Categories</option>
+            <option>Programming</option>
+            <option>Design</option>
+            <option>Languages</option>
+        </select>
 
     </div>
 
-    <hr>
+    <!-- Request Cards -->
+    <div class="request-container">
 
-    <div>
+        <!-- Card 1 -->
+        <div class="request-card">
 
-        <h2>UI/UX Design Basics</h2>
+            <span class="status-open">Open</span>
 
-        <p>
-            Need help learning Figma and wireframes.
-        </p>
+            <h2>Java Programming Help</h2>
 
-        <p>Level: Intermediate</p>
+            <p>
+                Looking for help understanding Java OOP concepts and inheritance.
+            </p>
 
-        <button>View Details</button>
+            <span class="skill-tag">Programming</span>
+
+            <br>
+
+            <button class="request-btn">
+                View Details
+            </button>
+
+        </div>
+
+        <!-- Card 2 -->
+        <div class="request-card">
+
+            <span class="status-open">Open</span>
+
+            <h2>UI/UX Design Basics</h2>
+
+            <p>
+                Need help learning Figma wireframes and prototyping basics.
+            </p>
+
+            <span class="skill-tag">Design</span>
+
+            <br>
+
+            <button class="request-btn">
+                View Details
+            </button>
+
+        </div>
+
+        <!-- Card 3 -->
+        <div class="request-card">
+
+            <span class="status-closed">Closed</span>
+
+            <h2>English Conversation Practice</h2>
+
+            <p>
+                Looking for someone to practice speaking and presentation skills with.
+            </p>
+
+            <span class="skill-tag">Languages</span>
+
+            <br>
+
+            <button class="request-btn">
+                View Details
+            </button>
+
+        </div>
 
     </div>
+
+</main>
 
 <!-- footer -->
 <footer>

@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Post Request</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
 <!-- ================= (post request page -balqees) ================= -->
 <header>
     <h1>SkillSwap</h1>
@@ -16,37 +26,44 @@
         <a href="login.html">Logout</a>
     </nav>
 </header>
+
 <main>
-<html>
-<head>
-    <title>Post Request</title>
-</head>
 
-<body>
+    <h1 class="page-title">Post a Learning Request</h1>
 
-    <h1>Post a Learning Request</h1>
+    <form class="request-form">
 
-    <form> <!--so this is here where user type inputs -->
+        <label>Skill Needed</label>
+        <input type="text" placeholder="Enter skill">
 
-        <label>Skill Needed:</label><br> <!--label for like describing the input-->
-        <input type="text" placeholder="Enter skill"><br><br>
+        <label>Description</label>
+        <textarea placeholder="Describe your learning request"></textarea>
 
-        <label>Description:</label><br>
-        <textarea placeholder="Describe your request"></textarea><br><br>
+        <label>Category</label>
+        <select>
+            <option>Programming</option>
+            <option>Design</option>
+            <option>Languages</option>
+            <option>Business</option>
+        </select>
 
-        <label>Level:</label><br>
-        <select> <!--dropdown menu-->
+        <label>Level</label>
+        <select>
             <option>Beginner</option>
             <option>Intermediate</option>
             <option>Advanced</option>
-        </select><br><br>
+        </select>
 
-        <label>Preferred Time:</label><br> <!--!br is line break-->
-        <input type="date"><br><br>
+        <label>Preferred Date</label>
+        <input type="date">
 
-        <button type="submit">Post Request</button> <!--this is a button to send the form-->
+        <button class="post-btn" type="submit">
+            Post Request
+        </button>
 
     </form>
+
+</main>
 
 <!-- footer -->
 <footer>

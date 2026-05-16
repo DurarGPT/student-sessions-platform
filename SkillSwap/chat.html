@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>SkillSwap | Chat</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+
 <header>
     <h1>SkillSwap</h1>
 
@@ -26,71 +28,71 @@
 <main>
 
     <!-- قسم المحادثة -->
-    <section>
+    <section class="chat-card">
+
         <h2>Chat</h2>
+
         <p>Communicate with your learner</p>
-    </section>
 
-    <!-- معلومات الطالب والمحادثة -->
-    <section>
-        <h3>James Wilson</h3>
-        <p>Public Speaking Session</p>
-        <p>Active</p>
-
-        <hr>
-
-        <h3>No messages yet</h3>
-        <p>Start the conversation!</p>
-
-        <form>
-            <input type="text" placeholder="Type your message...">
-            <button type="submit">Send</button>
-        </form>
     </section>
 
     <!-- معلومات الجلسة -->
-    <section>
+    <section class="chat-card">
+
+        <h3>James Wilson</h3>
+
+        <p>Public Speaking Session</p>
+
+        <p>Active</p>
+
+    </section>
+
+    <!-- الرسائل -->
+    <section class="chat-card">
+
+        <h3>No messages yet</h3>
+
+        <p>Start the conversation!</p>
+
+    </section>
+
+    <!-- كتابة الرسالة -->
+    <section class="chat-card">
+
+        <input class="message-input"
+               type="text"
+               placeholder="Type your message...">
+
+        <button class="blue-button">
+            Send
+        </button>
+
+    </section>
+
+    <!-- معلومات الجلسة -->
+    <section class="chat-card">
+
         <h3>Session Info</h3>
 
-        <p>Skill</p>
-        <p><strong>Public Speaking</strong></p>
+        <p>Skill: Public Speaking</p>
 
-        <p>Type</p>
-        <p>one-on-one</p>
+        <p>Type: one-on-one</p>
 
-        <p>Status</p>
-        <p><strong>Accepted</strong></p>
+        <p>Status: Accepted</p>
+
     </section>
 
     <!-- الجدولة -->
-    <section>
+    <section class="chat-card">
+
         <h3>Scheduling</h3>
 
         <p>No session scheduled</p>
 
-        <button>Schedule Session</button>
-    </section>
+        <button class="blue-button">
+            Schedule Session
+        </button>
 
-    <!-- التقويم -->
-    <section>
-        <h3>Quick Calendar</h3>
-
-        <h2>10</h2>
-        <p>May 2026</p>
-
-        <button>View Full Schedule</button>
-    </section>
-
-    <!-- نصائح -->
-    <section>
-        <h3>Tips for Great Sessions</h3>
-
-        <ul>
-            <li>Be respectful and professional</li>
-            <li>Prepare questions in advance</li>
-            <li>Test your setup before sessions</li>
-            <li>Share resources via chat</li>
-        </ul>
     </section>
 
 </main>
@@ -99,6 +101,7 @@
 
     <div>
         <h3>SkillSwap</h3>
+
         <p>
             Learn. Teach. Earn. Empowering university students
             through peer mentoring.
@@ -127,6 +130,7 @@
         <h3>Contact</h3>
 
         <p>University Campus</p>
+
         <p>support@skillswap.edu</p>
     </div>
 

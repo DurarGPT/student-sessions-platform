@@ -390,3 +390,53 @@ body {
 .post-btn:hover {
     background-color: #4338ca;
 }
+/* ================= GIRL 4: CHAT / INBOX / SCHEDULE ================= */
+
+/* inbox cards */
+.notification-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 1px solid #ddd;
+}
+
+/* chat sections */
+.chat-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 1px solid #ddd;
+}
+
+/* message input */
+.message-input {
+    width: 80%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* blue buttons */
+.blue-button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+}
+
+/* schedule table */
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.schedule-table th,
+.schedule-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}

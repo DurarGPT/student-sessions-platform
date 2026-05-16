@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>SkillSwap | Register</title>
+       <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -20,72 +21,86 @@
         <a href="login.html">Login</a>
         <a href="register.html">Sign Up</a>
     </nav>
+ 
+
 </header>
 
 <!-- ================= MAIN CONTENT (Register Page) ================= -->
-<main>
+<main class="auth-page register-page">
+
 
     <!-- عنوان الصفحة والنص الفرعي -->
     <h2>Join SkillSwap</h2>
     <p>Start learning and teaching today</p>
 
     <!-- قسم إنشاء الحساب -->
-    <section>
+<section>
+    <div class="auth-card">
         <h3>Create Your Account</h3>
 
-        <!-- نموذج التسجيل -->
-        <form>
+        <form class="auth-form">
 
-            <!-- الاسم الكامل -->
-            <label for="full-name">Full Name</label>
-            <input id="full-name" type="text" placeholder="John Doe">
+            <div class="form-group">
+                <label for="full-name">Full Name</label>
+                <input id="full-name" type="text" placeholder="John Doe">
+            </div>
 
-            <!-- البريد الجامعي -->
-            <label for="email">University Email</label>
-            <input id="email" type="email" placeholder="you@university.edu">
+            <div class="form-group">
+                <label for="email">University Email</label>
+                <input id="email" type="email" placeholder="you@university.edu">
+            </div>
 
-            <!-- كلمة المرور -->
-            <label for="password">Password</label>
-            <input id="password" type="password" placeholder="Min. 6 characters">
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" placeholder="Min. 6 characters">
+            </div>
 
-            <!-- تأكيد كلمة المرور -->
-            <label for="confirm-password">Confirm Password</label>
-            <input id="confirm-password" type="password" placeholder="Repeat password">
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input id="confirm-password" type="password" placeholder="Repeat password">
+            </div>
 
-            <!-- القسم: ما الذي يجلبك إلى SkillSwap -->
-            <h4>What brings you to SkillSwap?</h4>
+            <h4 class="section-label">What brings you to SkillSwap?</h4>
 
-            <!-- خيار التعلم -->
-            <input type="radio" id="learn" name="purpose" value="learn">
-            <label for="learn">I Want to Learn - Request skills, connect with mentors, and grow your knowledge.</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" id="learn" name="purpose" value="learn">
+                    <span>I Want to Learn - Request skills, connect with mentors, and grow your knowledge.</span>
+                </label>
 
-            <!-- خيار التعليم -->
-            <input type="radio" id="teach" name="purpose" value="teach">
-            <label for="teach">I Want to Teach - Help others, share your expertise, and earn volunteer hours.</label>
+                <label class="radio-option">
+                    <input type="radio" id="teach" name="purpose" value="teach">
+                    <span>I Want to Teach - Help others, share your expertise, and earn volunteer hours.</span>
+                </label>
+            </div>
 
-            <!-- الدور الجامعي -->
-            <label for="role">University Role</label>
-            <select id="role">
-                <option value="student">Student</option>
-                <option value="professor">Professor</option>
-            </select>
+            <div class="form-group">
+                <label for="role">University Role</label>
+                <select id="role">
+                    <option value="student">Student</option>
+                    <option value="professor">Professor</option>
+                </select>
+            </div>
 
-            <!-- المهارات -->
-            <label for="skills">Your Skills</label>
-            <input id="skills" type="text" placeholder="e.g., Java, UI Design, English (comma-separated)">
+            <div class="form-group">
+                <label for="skills">Your Skills</label>
+                <input id="skills" type="text" placeholder="e.g., Java, UI Design, English (comma-separated)">
+            </div>
 
-            <!-- السيرة الذاتية -->
-            <label for="bio">Bio</label>
-            <textarea id="bio" placeholder="Tell others about yourself and your expertise..."></textarea>
+            <div class="form-group">
+                <label for="bio">Bio</label>
+                <textarea id="bio" placeholder="Tell others about yourself and your expertise..."></textarea>
+            </div>
 
-            <!-- زر إنشاء الحساب -->
-            <button type="submit">Create Account</button>
-
+            <button type="submit" class="primary-btn">Create Account</button>
         </form>
 
-        <!-- رابط تسجيل الدخول -->
-        <p>Already have an account? <a href="login.html">Log in</a></p>
-    </section>
+        <p class="auth-switch">
+            Already have an account? <a href="login.html">Log in</a>
+        </p>
+    </div>
+</section>
+
 
 </main>
 

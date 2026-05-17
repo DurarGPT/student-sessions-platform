@@ -1232,6 +1232,7 @@ footer a:hover {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 25px;
+    align-items: start;
     margin-bottom: 30px;
 }
 
@@ -1305,4 +1306,255 @@ footer a:hover {
     background-color: #2563eb;
     color: white;
     cursor: pointer;
+}
+/*  ================= dashboard PAGE =================  */
+
+.dashboard-page {
+    background-color: #f5f7fb;
+}
+
+/* welcome section */
+
+.dashboard-hero {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+    padding: 45px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+/* stats section */
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.stat-card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+/* dashboard layout */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 25px;
+    margin-bottom: 30px;
+    align-items: start;
+}
+
+/* cards */
+
+.dashboard-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+/* buttons */
+
+.dashboard-page button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.dashboard-page button:hover {
+    background-color: #1d4ed8;
+}
+
+/* quick actions */
+
+.quick-actions {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.quick-actions h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.quick-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.quick-buttons button {
+    background-color: white;
+    color: #2563eb;
+    font-weight: bold;
+}
+/* ================= ADMIN PAGE ================= */
+.admin-page {
+    background-color: #f5f7fb;
+}
+
+/* hero section */
+.admin-hero {
+    padding: 40px;
+}
+
+.admin-hero h1 {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.admin-hero p {
+    font-size: 18px;
+    color: #666;
+}
+
+/* stats cards */
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 0 30px;
+    margin-bottom: 30px;
+}
+
+.admin-stat-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.admin-stat-card h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.admin-stat-card p {
+    font-size: 35px;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+/* content layout */
+.admin-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    padding: 0 30px;
+    margin-bottom: 30px;
+}
+
+/* cards */
+.admin-card,
+.history-section {
+    background-color: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.admin-card h2,
+.history-section h2 {
+    font-size: 28px;
+    color: #111827;
+    margin-bottom: 25px;
+}
+
+/* mentor card */
+.mentor-card {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.mentor-card h3 {
+    margin-bottom: 10px;
+}
+
+.mentor-card p {
+    margin-bottom: 10px;
+    color: #444;
+}
+
+/* skills */
+.mentor-skills {
+    margin: 15px 0;
+}
+
+.mentor-skills span {
+    display: inline-block;
+    background-color: #eef2ff;
+    color: #2563eb;
+    padding: 8px 14px;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* buttons */
+.admin-card button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.admin-card button:hover {
+    background-color: #1d4ed8;
+}
+
+/* history */
+.history-section {
+    margin: 0 30px 30px;
+}
+
+/* responsibilities */
+.admin-responsibilities {
+    margin: 0 30px 40px;
+    padding: 35px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+}
+
+.admin-responsibilities h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.admin-responsibilities ul {
+    padding-left: 20px;
+}
+
+.admin-responsibilities li {
+    margin-bottom: 14px;
+    line-height: 1.7;
 }

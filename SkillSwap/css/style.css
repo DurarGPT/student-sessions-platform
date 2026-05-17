@@ -121,7 +121,7 @@ button {
     padding: 11px 14px;
     border-radius: 999px;
     border: none;
-    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    background: linear-gradient(135deg, #150f78, #06b6d4);
     color: #ffffff;
     font-size: 15px;
     font-weight: 600;
@@ -243,10 +243,114 @@ button {
     color: #0369a1;
     font-size: 12px;
 }
+/* ================= FIX ALIGNMENT & SPACING ================= */
 
-body {
-    background-color: pink;
+/* الصفحة كاملة */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #f7f9fc 0%, #f1f5f9 100%);
 }
+
+/* الكرت */
+.auth-card {
+    background-color: #ffffff;
+    padding: 40px 48px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* العناوين */
+.auth-page h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.auth-page > p {
+    font-size: 15px;
+    color: #6b7280;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* الفورم */
+.auth-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    margin-bottom: 14px;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
+}
+
+/* الزر */
+.primary-btn {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+/* النص تحت الزر */
+.auth-switch {
+    margin-top: 16px;
+    font-size: 13px;
+    text-align: center;
+    color: #6b7280;
+}
+
+.auth-switch a {
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+/* الفوتر */
+footer {
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+footer h3 {
+    margin-top: 0;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+footer a {
+    color: #93c5fd;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+
 /* ================= MY PART(BALQEES)POST REQUEST / BROWSE REQUESTS ================= */
 
 /* Page Titles */

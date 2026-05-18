@@ -700,258 +700,105 @@ button {
     }
 }
 /* ================= Nado: LOGIN / REGISTER / PROFILE ================= */
-
-
-/* خلفية عامة لصفحات الدخول والتسجيل */
-.auth-page {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 16px;
-    background: #f5f7fb;
-}
-
-/* الكرت الأبيض للفورم */
-.auth-card {
-    background-color: #ffffff;
-    padding: 32px 36px;
-    border-radius: 16px;
-    max-width: 460px;
-    width: 100%;
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
-}
-
-/* العناوين في صفحات auth */
-.auth-page h2 {
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 8px;
-    font-size: 26px;
-    color: #111827;
-}
-
-.auth-page > p {
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 24px;
-    color: #6b7280;
-    font-size: 14px;
-}
-
-.auth-card h3 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 20px;
-    color: #111827;
-}
-
-/* نموذج الفورم */
-.auth-form .form-group {
-    margin-bottom: 14px;
-}
-
-.auth-form label {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 13px;
-    color: #374151;
-}
-
-.auth-form input[type="text"],
-.auth-form input[type="email"],
-.auth-form input[type="password"],
-.auth-form select,
-.auth-form textarea {
-    width: 100%;
-    padding: 10px 12px;
-    border-radius: 10px;
-    border: 1px solid #d1d5db;
-    font-size: 14px;
-    color: #111827;
-    background-color: #ffffff;
-}
-
-.auth-form textarea {
-    min-height: 90px;
-    resize: vertical;
-}
-
-.auth-form input:focus,
-.auth-form select:focus,
-.auth-form textarea:focus {
-    outline: none;
-    border-color: #4f46e5;
-    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
-}
-
-/* زر أساسي */
-.primary-btn {
-    width: 100%;
-    padding: 11px 14px;
-    border-radius: 999px;
-    border: none;
-    background: linear-gradient(135deg, #150f78, #06b6d4);
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 600;
-    margin-top: 10px;
-}
-
-/* النص تحت الفورم (تبديل بين login/register) */
-.auth-switch {
-    margin-top: 16px;
-    font-size: 13px;
-    text-align: center;
-    color: #6b7280;
-}
-
-.auth-switch a {
-    color: #4f46e5;
-    font-weight: 600;
-}
-
-/* عنوان فرعي في صفحة التسجيل */
-.section-label {
-    margin-top: 18px;
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #111827;
-}
-
-/* خيارات الراديو */
-.radio-group {
-    margin-bottom: 16px;
-}
-
-.radio-option {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin-bottom: 8px;
-    font-size: 13px;
-    color: #4b5563;
-}
-
-.radio-option input[type="radio"] {
-    margin-top: 3px;
-}
-
-/* صفحة البروفايل */
-.profile-page {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 40px 20px 60px;
-    background-color: #f5f7fb;
-}
-
-.profile-page h2 {
-    margin-top: 0;
-    margin-bottom: 6px;
-    font-size: 26px;
-    color: #111827;
-}
-
-.profile-page > p {
-    margin-top: 0;
-    margin-bottom: 24px;
-    color: #6b7280;
-    font-size: 14px;
-}
-
-/* كل سيكشن في البروفايل كأنه كرت */
-.profile-page section {
-    background-color: #ffffff;
-    padding: 20px 22px;
-    border-radius: 14px;
-    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
-}
-
-.profile-page section h3 {
-    margin-top: 0;
-    margin-bottom: 12px;
-    font-size: 18px;
-    color: #111827;
-}
-
-/* صورة البروفايل */
-.profile-page img {
-    width: 96px;
-    height: 96px;
-    border-radius: 999px;
-    object-fit: cover;
-    display: block;
-    margin-bottom: 12px;
-}
-
-/* أزرار البروفايل */
-.profile-page button {
-    padding: 8px 14px;
-    border-radius: 999px;
-    border: none;
-    background-color: #4f46e5;
-    color: #ffffff;
-    font-size: 13px;
-    margin-right: 8px;
-    margin-top: 8px;
-}
-
-/* قائمة المهارات */
-.profile-page ul {
-    list-style: none;
-    padding-left: 0;
+/* ================= RESET LOGIN PAGE ================= */
+.login-page * {
+    box-sizing: border-box;
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-.profile-page li {
-    padding: 6px 10px;
-    border-radius: 999px;
-    background-color: #e0f2fe;
-    color: #0369a1;
-    font-size: 12px;
-}
-/* ================= FIX ALIGNMENT & SPACING ================= */
-
-/* الصفحة كاملة */
-.auth-page {
+/* ================= PAGE BACKGROUND ================= */
+.login-page {
     min-height: 100vh;
+    background: linear-gradient(180deg, #f7f9fc 0%, #f1f5f9 100%);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background: linear-gradient(180deg, #f7f9fc 0%, #f1f5f9 100%);
 }
 
-/* الكرت */
+/* ================= HEADER (LOGIN ONLY) ================= */
+.login-page header {
+    all: unset; /* يلغي تأثير الهيدر العام */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 18px 60px;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.login-page .logo-img {
+    height: 40px;
+    width: auto;
+}
+
+.login-page nav {
+    display: flex;
+    gap: 28px;
+}
+
+.login-page nav a {
+    text-decoration: none;
+    color: #374151;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.login-page nav a:hover {
+    color: #007B7B;
+}
+
+/* ================= MAIN CONTENT ================= */
+.login-page h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 50px;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.login-page > p {
+    font-size: 15px;
+    color: #6b7280;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* ================= LOGIN CARD ================= */
+.login-page section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .auth-card {
     background-color: #ffffff;
     padding: 40px 48px;
     border-radius: 16px;
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
 }
 
-/* العناوين */
-.auth-page h2 {
-    font-size: 28px;
-    font-weight: 700;
+.auth-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
     color: #111827;
+    text-align: center;
+}
+
+/* ================= FORM ================= */
+.auth-form label {
+    display: block;
     margin-bottom: 6px;
-    text-align: center;
+    font-size: 14px;
+    color: #374151;
 }
 
-.auth-page > p {
-    font-size: 15px;
-    color: #6b7280;
-    margin-bottom: 24px;
-    text-align: center;
-}
-
-/* الفورم */
 .auth-form input {
     width: 100%;
     padding: 12px 14px;
@@ -959,28 +806,37 @@ button {
     border: 1px solid #d1d5db;
     font-size: 14px;
     margin-bottom: 14px;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .auth-form input:focus {
     outline: none;
-    border-color: #4f46e5;
-    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
+    border-color: #007BFF;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.15);
 }
 
-/* الزر */
+/* ================= BUTTON ================= */
 .primary-btn {
     width: 100%;
     padding: 12px 14px;
     border-radius: 999px;
     border: none;
-    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    background: linear-gradient(135deg, #007BFF, #00B5C0);
     color: #ffffff;
     font-size: 15px;
     font-weight: 600;
     margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-/* النص تحت الزر */
+.primary-btn:hover {
+    background: linear-gradient(135deg, #0066D6, #0099A8);
+}
+
+/* ================= SWITCH TEXT ================= */
 .auth-switch {
     margin-top: 16px;
     font-size: 13px;
@@ -989,34 +845,58 @@ button {
 }
 
 .auth-switch a {
-    color: #4f46e5;
+    color: #007BFF;
     font-weight: 600;
+    text-decoration: none;
 }
 
-/* الفوتر */
-footer {
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+/* ================= FOOTER ================= */
+.login-page footer {
+    all: unset;
     background-color: #0f172a;
     color: #ffffff;
-    padding: 40px 60px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    padding: 60px 8%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
 }
 
-footer h3 {
-    margin-top: 0;
-    font-size: 16px;
+.login-page footer h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
     color: #ffffff;
 }
 
-footer a {
+.login-page footer p {
+    font-size: 14px;
+    color: #cbd5e1;
+    line-height: 1.6;
+}
+
+.login-page footer a {
+    display: block;
     color: #93c5fd;
     text-decoration: none;
     font-size: 14px;
+    margin-bottom: 8px;
 }
 
-footer a:hover {
+.login-page footer a:hover {
     text-decoration: underline;
+}
+
+.login-page footer > p:last-child {
+    grid-column: 1 / -1;
+    text-align: center;
+    border-top: 1px solid #1e293b;
+    padding-top: 20px;
+    font-size: 13px;
+    color: #94a3b8;
 }
 
 

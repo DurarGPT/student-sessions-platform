@@ -1,5 +1,5 @@
 /* ================= GLOBAL STYLES ================= */
-* {
+/** {
     box-sizing: border-box;
 }
 body {
@@ -47,7 +47,7 @@ button {
 }
 /* =========================================================
    DURARS PART - INDEX PAGE
-   ========================================================= */
+   ========================================================= *
 
 .home-page main section {
     padding: 70px 8%;
@@ -147,7 +147,7 @@ button {
 
 /* =========================================================
    DURARS PART - ABOUT PAGE
-   ========================================================= */
+   ========================================================= *
 
 .about-page {
     background-color: #f8fafc;
@@ -277,7 +277,7 @@ button {
 
 /* =========================================================
    DURARS PART - HOW IT WORKS PAGE
-   ========================================================= */
+   ========================================================= *
 
 .how-page {
     background-color: #f8fafc;
@@ -514,7 +514,7 @@ button {
 
 /* =========================================================
    DURARS PART - VOLUNTEER HOURS PAGE
-   ========================================================= */
+   ========================================================= *
 
 .volunteer-page {
     background-color: #f8fafc;
@@ -646,7 +646,7 @@ button {
 
 /* =========================================================
    DURARS PART - RESPONSIVE DESIGN
-   ========================================================= */
+   ========================================================= *
 
 @media (max-width: 900px) {
 
@@ -699,8 +699,8 @@ button {
         margin-top: 10px;
     }
 }
-/* ================= Nado: LOGIN / REGISTER / PROFILE ================= */
-/* ================= RESET LOGIN PAGE ================= */
+/* ================= Nado: LOGIN / REGISTER / PROFILE ================= *
+/* ================= RESET LOGIN PAGE ================= *
 .login-page * {
     box-sizing: border-box;
     margin: 0;
@@ -708,7 +708,7 @@ button {
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-/* ================= PAGE BACKGROUND ================= */
+/* ================= PAGE BACKGROUND ================= *
 .login-page {
     min-height: 100vh;
     background: linear-gradient(180deg, #f7f9fc 0%, #f1f5f9 100%);
@@ -717,9 +717,9 @@ button {
     align-items: center;
 }
 
-/* ================= HEADER (LOGIN ONLY) ================= */
+/* ================= HEADER (LOGIN ONLY) ================= *
 .login-page header {
-    all: unset; /* يلغي تأثير الهيدر العام */
+    all: unset; /* يلغي تأثير الهيدر العام *
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -750,7 +750,7 @@ button {
     color: #007B7B;
 }
 
-/* ================= MAIN CONTENT ================= */
+/* ================= MAIN CONTENT ================= *
 .login-page h2 {
     font-size: 28px;
     font-weight: 700;
@@ -767,7 +767,7 @@ button {
     text-align: center;
 }
 
-/* ================= LOGIN CARD ================= */
+/* ================= LOGIN CARD ================= *
 .login-page section {
     width: 100%;
     display: flex;
@@ -791,7 +791,7 @@ button {
     text-align: center;
 }
 
-/* ================= FORM ================= */
+/* ================= FORM ================= *
 .auth-form label {
     display: block;
     margin-bottom: 6px;
@@ -817,7 +817,7 @@ button {
     box-shadow: 0 0 0 3px rgba(0,123,255,0.15);
 }
 
-/* ================= BUTTON ================= */
+/* ================= BUTTON ================= *
 .primary-btn {
     width: 100%;
     padding: 12px 14px;
@@ -836,7 +836,7 @@ button {
     background: linear-gradient(135deg, #0066D6, #0099A8);
 }
 
-/* ================= SWITCH TEXT ================= */
+/* ================= SWITCH TEXT ================= *
 .auth-switch {
     margin-top: 16px;
     font-size: 13px;
@@ -854,7 +854,7 @@ button {
     text-decoration: underline;
 }
 
-/* ================= FOOTER ================= */
+/* ================= FOOTER ================= *
 .login-page footer {
     all: unset;
     background-color: #0f172a;
@@ -901,16 +901,16 @@ button {
 
 
 
-/* ================= MY PART(BALQEES)POST REQUEST / BROWSE REQUESTS ================= */
+/* ================= MY PART(BALQEES)POST REQUEST / BROWSE REQUESTS ================= *
 
-/* Page Titles */
+/* Page Titles *
 .page-title {
     font-size: 36px;
     margin-bottom: 25px;
     color: #1e1e1e;
 }
 
-/* Search + Filter Area */
+/* Search + Filter Area *
 .search-filter {
     display: flex;
     gap: 15px;
@@ -927,7 +927,7 @@ button {
     font-size: 15px;
 }
 
-/* Browse Request Cards */
+/* Browse Request Cards *
 .request-container {
     display: flex;
     flex-wrap: wrap;
@@ -957,7 +957,7 @@ button {
     line-height: 1.5;
 }
 
-/* Skill Labels */
+/* Skill Labels *
 .skill-tag {
     display: inline-block;
     background-color: #eef2ff;
@@ -968,7 +968,7 @@ button {
     margin-top: 10px;
 }
 
-/* Status Badges */
+/* Status Badges *
 .status-open {
     background-color: #dcfce7;
     color: #166534;
@@ -985,7 +985,7 @@ button {
     font-size: 12px;
 }
 
-/* Buttons */
+/* Buttons *
 .request-btn {
     background-color: #4f46e5;
     color: white;
@@ -1000,7 +1000,7 @@ button {
     background-color: #4338ca;
 }
 
-/* Post Request Form */
+/* Post Request Form *
 .request-form {
     background-color: white;
     padding: 30px;
@@ -1046,7 +1046,7 @@ button {
 }
 /* ================= GIRL 4: CHAT / INBOX / SCHEDULE ================= */
 
-/* inbox cards */
+/* inbox cards *
 .notification-card {
     background-color: white;
     padding: 25px;
@@ -1055,7 +1055,7 @@ button {
     border: 1px solid #ddd;
 }
 
-/* chat sections */
+/* chat sections *
 .chat-card {
     background-color: white;
     padding: 25px;
@@ -1064,7 +1064,7 @@ button {
     border: 1px solid #ddd;
 }
 
-/* message input */
+/* message input *
 .message-input {
     width: 80%;
     padding: 12px;
@@ -1072,7 +1072,7 @@ button {
     border-radius: 8px;
 }
 
-/* blue buttons */
+/* blue buttons *
 .blue-button {
     background-color: #2563eb;
     color: white;
@@ -1081,7 +1081,7 @@ button {
     border-radius: 8px;
 }
 
-/* schedule table */
+/* schedule table *
 .schedule-table {
     width: 100%;
     border-collapse: collapse;
@@ -1098,7 +1098,7 @@ button {
 /* ================= GIRL 5: DASHBOARD / CONTACT / ADMIN ================= */
 /* ================= CONTACT PAGE ================= */
 
-/* contact hero section */
+/* contact hero section *
 .contact-hero {
     background: linear-gradient(135deg, #2563eb, #4f46e5);
     color: white;
@@ -1107,7 +1107,7 @@ button {
     margin-bottom: 30px;
 }
 
-/* contact section layout */
+/* contact section layout *
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -1116,7 +1116,7 @@ button {
     margin-bottom: 30px;
 }
 
-/* contact cards */
+/* contact cards *
 .contact-card {
     background-color: white;
     padding: 22px;
@@ -1125,7 +1125,7 @@ button {
     margin-bottom: 20px;
 }
 
-/* contact form card */
+/* contact form card *
 .contact-form {
     background-color: white;
     padding: 28px;
@@ -1133,7 +1133,7 @@ button {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* form inputs */
+/* form inputs *
 .contact-form input,
 .contact-form textarea {
     width: 100%;
@@ -1145,13 +1145,13 @@ button {
     font-size: 14px;
 }
 
-/* textarea */
+/* textarea *
 .contact-form textarea {
     resize: vertical;
     min-height: 120px;
 }
 
-/* send button */
+/* send button *
 .contact-form button {
     background-color: #2563eb;
     color: white;
@@ -1162,7 +1162,7 @@ button {
     font-size: 14px;
 }
 
-/* office hours section */
+/* office hours section *
 .office-hours {
     background: linear-gradient(135deg, #2563eb, #4f46e5);
     color: white;
@@ -1171,13 +1171,13 @@ button {
     margin-bottom: 30px;
 }
 
-/* help section */
+/* help section *
 .help-section {
     text-align: center;
     padding: 40px 20px;
 }
 
-/* help buttons */
+/* help buttons *
 .help-section button {
     padding: 12px 18px;
     margin: 10px;
@@ -1187,13 +1187,13 @@ button {
     color: white;
     cursor: pointer;
 }
-/*  ================= dashboard PAGE =================  */
+/*  ================= dashboard PAGE =================  *
 
 .dashboard-page {
     background-color: #f5f7fb;
 }
 
-/* welcome section */
+/* welcome section *
 
 .dashboard-hero {
     background: linear-gradient(135deg, #2563eb, #4f46e5);
@@ -1203,7 +1203,7 @@ button {
     margin-bottom: 30px;
 }
 
-/* stats section */
+/* stats section *
 
 .dashboard-stats {
     display: grid;
@@ -1230,7 +1230,7 @@ button {
     color: #2563eb;
 }
 
-/* dashboard layout */
+/* dashboard layout *
 
 .dashboard-grid {
     display: grid;
@@ -1240,7 +1240,7 @@ button {
     align-items: start;
 }
 
-/* cards */
+/* cards *
 
 .dashboard-card {
     background-color: white;
@@ -1250,7 +1250,7 @@ button {
     margin-bottom: 20px;
 }
 
-/* buttons */
+/* buttons *
 
 .dashboard-page button {
     background-color: #2563eb;
@@ -1266,7 +1266,7 @@ button {
     background-color: #1d4ed8;
 }
 
-/* quick actions */
+/* quick actions *
 
 .quick-actions {
     background: linear-gradient(135deg, #2563eb, #4f46e5);
@@ -1291,12 +1291,12 @@ button {
     color: #2563eb;
     font-weight: bold;
 }
-/* ================= ADMIN PAGE ================= */
+/* ================= ADMIN PAGE ================= *
 .admin-page {
     background-color: #f5f7fb;
 }
 
-/* hero section */
+/* hero section *
 .admin-hero {
     padding: 40px;
 }
@@ -1311,7 +1311,7 @@ button {
     color: #666;
 }
 
-/* stats cards */
+/* stats cards *
 .admin-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1338,7 +1338,7 @@ button {
     font-weight: bold;
 }
 
-/* content layout */
+/* content layout *
 .admin-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1347,7 +1347,7 @@ button {
     margin-bottom: 30px;
 }
 
-/* cards */
+/* cards *
 .admin-card,
 .history-section {
     background-color: white;
@@ -1363,7 +1363,7 @@ button {
     margin-bottom: 25px;
 }
 
-/* mentor card */
+/* mentor card *
 .mentor-card {
     background-color: #f9fafb;
     border: 1px solid #e5e7eb;
@@ -1380,7 +1380,7 @@ button {
     color: #444;
 }
 
-/* skills */
+/* skills *
 .mentor-skills {
     margin: 15px 0;
 }
@@ -1396,7 +1396,7 @@ button {
     font-size: 14px;
 }
 
-/* buttons */
+/* buttons *
 .admin-card button {
     background-color: #2563eb;
     color: white;
@@ -1411,12 +1411,12 @@ button {
     background-color: #1d4ed8;
 }
 
-/* history */
+/* history *
 .history-section {
     margin: 0 30px 30px;
 }
 
-/* responsibilities */
+/* responsibilities *
 .admin-responsibilities {
     margin: 0 30px 40px;
     padding: 35px;
@@ -1437,4 +1437,5 @@ button {
 .admin-responsibilities li {
     margin-bottom: 14px;
     line-height: 1.7;
-}
+} 
+*/

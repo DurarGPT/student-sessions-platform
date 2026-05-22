@@ -1,0 +1,163 @@
+/* ================= Nado: LOGIN / REGISTER / PROFILE ================= */
+
+/* ================= RESET LOGIN PAGE ================= */
+
+.login-page * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* ================= PAGE BACKGROUND ================= */
+
+.login-page {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #f7f9fc 0%, #f1f5f9 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ================= HEADER (LOGIN ONLY) ================= */
+
+.login-page header {
+    all: unset;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 18px 60px;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.login-page .logo-img {
+    height: 40px;
+    width: auto;
+}
+
+.login-page nav {
+    display: flex;
+    gap: 28px;
+}
+
+.login-page nav a {
+    text-decoration: none;
+    color: #374151;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.login-page nav a:hover {
+    color: #007B7B;
+}
+
+/* ================= MAIN CONTENT ================= */
+
+.login-page h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 50px;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.login-page > p {
+    font-size: 15px;
+    color: #6b7280;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* ================= LOGIN CARD ================= */
+
+.login-page section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.auth-card {
+    background-color: #ffffff;
+    padding: 40px 48px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+    width: 100%;
+    max-width: 420px;
+}
+
+.auth-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #111827;
+    text-align: center;
+}
+
+/* ================= FORM ================= */
+
+.auth-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #374151;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    margin-bottom: 14px;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.15);
+}
+
+/* ================= BUTTON ================= */
+
+.primary-btn {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, #007BFF, #00B5C0);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.primary-btn:hover {
+    background: linear-gradient(135deg, #0066D6, #0099A8);
+}
+
+/* ================= SWITCH TEXT ================= */
+
+.auth-switch {
+    margin-top: 16px;
+    font-size: 13px;
+    text-align: center;
+    color: #6b7280;
+}
+
+.auth-switch a {
+    color: #007BFF;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,90 @@
+/* ================= GLOBAL CLIENT STYLES ================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    padding: 20px 8%;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #0f172a;
+}
+
+nav a {
+    margin-left: 18px;
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #00b140;
+}
+
+main {
+    padding: 30px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+footer {
+    padding: 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* ================= DURARS PART - INDEX PAGE ================= */
+
+
+
+/* ================= DURARS PART - ABOUT PAGE ================= */
+
+
+
+/* ================= DURARS PART - HOW IT WORKS PAGE ================= */
+
+
+
+/* ================= DURARS PART - VOLUNTEER HOURS PAGE ================= */
+
+
+
+/* ================= MY PART(BALQEES)POST REQUEST / BROWSE REQUESTS ================= */
+
+
+
+/* ================= GIRL 4: CHAT / INBOX / SCHEDULE ================= */
+
+
+
+/* ================= CONTACT PAGE ================= */
+
+
+
+/* ================= dashboard PAGE ================= */
+
+
+
+/* ================= RESPONSIVE DESIGN ================= */
+

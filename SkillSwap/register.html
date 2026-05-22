@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>SkillSwap | Register</title>
-       <link rel="stylesheet" href="css/style.css">
+      <!-- ========== NADA: LOGIN PAGE STYLES ========== -->
+<link rel="stylesheet" href="css/Nada.css">
+
 </head>
 
 <body>
@@ -26,81 +28,62 @@
 </header>
 
 <!-- ================= MAIN CONTENT (Register Page) ================= -->
-<main class="auth-page register-page">
+<main class="register-page">
 
+    <!-- 🔹 العنوان خارج الكرت -->
+    <div class="register-header">
+        <h1>Join SkillSwap</h1>
+        <p>Start learning and teaching today</p>
+    </div>
 
-    <!-- عنوان الصفحة والنص الفرعي -->
-    <h2>Join SkillSwap</h2>
-    <p>Start learning and teaching today</p>
+    <!-- 🔹 الكرت الأبيض -->
+    <div class="register-card">
+        <h2>Create Your Account</h2>
 
-    <!-- قسم إنشاء الحساب -->
-<section>
-    <div class="auth-card">
-        <h3>Create Your Account</h3>
+        <form class="register-form">
+            <label for="name">Full Name</label>
+            <input id="name" type="text" placeholder="John Doe">
 
-        <form class="auth-form">
+            <label for="email">University Email</label>
+            <input id="email" type="email" placeholder="you@university.edu">
 
-            <div class="form-group">
-                <label for="full-name">Full Name</label>
-                <input id="full-name" type="text" placeholder="John Doe">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Min. 6 characters">
+
+            <label for="confirm">Confirm Password</label>
+            <input id="confirm" type="password" placeholder="Repeat password">
+
+            <label>What brings you to SkillSwap?</label>
+            <div class="option-boxes">
+                <div class="option-box active">
+                    <p><strong>I Want to Learn</strong></p>
+                    <p>Request skills, connect with mentors, and grow your knowledge.</p>
+                </div>
+                <div class="option-box">
+                    <p><strong>I Want to Teach</strong></p>
+                    <p>Help others, share your expertise, and earn volunteer hours.</p>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="email">University Email</label>
-                <input id="email" type="email" placeholder="you@university.edu">
-            </div>
+            <label for="role">University Role</label>
+            <select id="role">
+                <option>Student</option>
+                <option>Professor</option>
+            </select>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input id="password" type="password" placeholder="Min. 6 characters">
-            </div>
+            <label for="skills">Your Skills</label>
+            <input id="skills" type="text" placeholder="e.g., Java, UI Design, English (comma-separated)">
 
-            <div class="form-group">
-                <label for="confirm-password">Confirm Password</label>
-                <input id="confirm-password" type="password" placeholder="Repeat password">
-            </div>
+            <label for="bio">Bio</label>
+            <textarea id="bio" placeholder="Tell others about yourself and your expertise..."></textarea>
 
-            <h4 class="section-label">What brings you to SkillSwap?</h4>
-
-            <div class="radio-group">
-                <label class="radio-option">
-                    <input type="radio" id="learn" name="purpose" value="learn">
-                    <span>I Want to Learn - Request skills, connect with mentors, and grow your knowledge.</span>
-                </label>
-
-                <label class="radio-option">
-                    <input type="radio" id="teach" name="purpose" value="teach">
-                    <span>I Want to Teach - Help others, share your expertise, and earn volunteer hours.</span>
-                </label>
-            </div>
-
-            <div class="form-group">
-                <label for="role">University Role</label>
-                <select id="role">
-                    <option value="student">Student</option>
-                    <option value="professor">Professor</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="skills">Your Skills</label>
-                <input id="skills" type="text" placeholder="e.g., Java, UI Design, English (comma-separated)">
-            </div>
-
-            <div class="form-group">
-                <label for="bio">Bio</label>
-                <textarea id="bio" placeholder="Tell others about yourself and your expertise..."></textarea>
-            </div>
-
-            <button type="submit" class="primary-btn">Create Account</button>
+            <button type="submit" class="register-btn">Create Account</button>
         </form>
 
         <p class="auth-switch">
             Already have an account? <a href="login.html">Log in</a>
         </p>
     </div>
-</section>
-
 
 </main>
 
@@ -128,7 +111,7 @@
         <h3>For Students</h3>
 
         <a href="profile.html">Become a Mentor</a><br>
-        <a href="post-request.html">Request Help</a><br>
+        <a href="post-request.php">Request Help</a><br>
         <a href="volunteer-hours.html">Track Hours</a><br>
         <a href="admin.html">Admin Panel</a>
     </div>

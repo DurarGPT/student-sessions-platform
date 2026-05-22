@@ -6,10 +6,10 @@
 
 <head>
     <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
-
+<body class="admin-page">
 
 <header>
     <h1>SkillSwap</h1>
@@ -23,130 +23,126 @@
         <a href="inbox.html">Inbox</a>
         <a href="profile.html">Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="post-request.html">Post Request</a>
+        <a href="post-request.php">Post Request</a>
         <a href="login.html">Logout</a>
     </nav>
 </header>
 
+<!--admin hero section-->
+<section class="admin-hero">
+
+    <h1>Admin Panel</h1>
+
+    <p>Manage volunteer hours and mentor verification.</p>
+
+</section>
 
 
-    <hr>
 
-    <!--admin title section-->
-    <section>
+<!--admin stats section-->
+<section class="admin-stats">
 
-        <!--page title-->
-        <h1>Admin Panel</h1>
-
-        <!--page description-->
-        <p>Manage volunteer hours and mentor verification.</p>
-
-    </section>
-
-    <hr>
-
-    <!--admin statistics section-->
-    <section>
-
-        <!--pending approvals-->
+    <div class="admin-stat-card">
         <h2>Pending Approvals</h2>
         <p>0</p>
+    </div>
 
-        <!--pending verification-->
+    <div class="admin-stat-card">
         <h2>Pending Verification</h2>
         <p>1</p>
+    </div>
 
-        <!--verified mentors-->
+    <div class="admin-stat-card">
         <h2>Verified Mentors</h2>
         <p>4</p>
+    </div>
 
-    </section>
+</section>
 
-    <hr>
 
-    <!--pending session approvals section-->
-    <section>
 
-        <!--section title-->
+<!--admin content section-->
+<section class="admin-content">
+
+    <!--pending approvals-->
+    <div class="admin-card">
+
         <h2>Pending Session Approvals</h2>
 
-        <!--empty approvals message-->
         <p>No pending approvals</p>
 
-    </section>
+    </div>
 
-    <hr>
 
-    <!--mentor verification section-->
-    <section>
 
-        <!--section title-->
+    <!--mentor verification-->
+    <div class="admin-card">
+
         <h2>Mentor Verification Requests</h2>
 
-        <!--mentor information-->
-        <h3>Lisa Anderson</h3>
+        <div class="mentor-card">
 
-        <p>lisa.a@university.edu</p>
+            <h3>Lisa Anderson</h3>
 
-        <p>
-            Media Arts student passionate about visual storytelling.
-        </p>
+            <p>lisa.a@university.edu</p>
 
-        <!--mentor skills-->
-        <p>Photography</p>
-        <p>Video Editing</p>
-        <p>Adobe Suite</p>
+            <p>
+                Media Arts student passionate about visual storytelling.
+            </p>
 
-        <!--verification button-->
-        <button>Verify as Mentor</button>
+            <div class="mentor-skills">
+                <span>Photography</span>
+                <span>Video Editing</span>
+                <span>Adobe Suite</span>
+            </div>
 
-    </section>
+            <button>Verify as Mentor</button>
 
-    <hr>
+        </div>
 
-    <!--recent sessions section-->
-    <section>
+    </div>
 
-        <!--section title-->
-        <h2>Recent Session History</h2>
+</section>
 
-        <!--empty sessions message-->
-        <p>No sessions yet</p>
 
-    </section>
 
-    <hr>
+<!--recent sessions section-->
+<section class="admin-card">
 
-    <!--admin responsibilities section-->
-    <section>
+    <h2>Recent Session History</h2>
 
-        <!--section title-->
-        <h2>Admin Responsibilities</h2>
+    <p>No sessions yet</p>
 
-        <!--responsibilities list-->
-        <ul>
+</section>
 
-            <li>
-                Review and verify mentor applications based on skills and qualifications
-            </li>
 
-            <li>
-                Approve or reject volunteer hour submissions from completed sessions
-            </li>
 
-            <li>
-                Monitor platform activity and ensure quality mentoring experiences
-            </li>
+<!--admin responsibilities section-->
+<section class="admin-responsibilities">
 
-            <li>
-                Approved hours are officially added to student/professor records
-            </li>
+    <h2>Admin Responsibilities</h2>
 
-        </ul>
+    <ul>
 
-    </section>
+        <li>
+            Review and verify mentor applications based on skills and qualifications
+        </li>
 
-    <hr>
+        <li>
+            Approve or reject volunteer hour submissions from completed sessions
+        </li>
+
+        <li>
+            Monitor platform activity and ensure quality mentoring experiences
+        </li>
+
+        <li>
+            Approved hours are officially added to student/professor records
+        </li>
+
+    </ul>
+
+</section>
 
 <footer>
 
@@ -171,7 +167,7 @@
         <h3>For Students</h3>
 
         <a href="profile.html">Become a Mentor</a><br>
-        <a href="post-request.html">Request Help</a><br>
+        <a href="post-request.php">Request Help</a><br>
         <a href="volunteer-hours.html">Track Hours</a><br>
         <a href="admin.html">Admin Panel</a>
     </div>

@@ -1,0 +1,247 @@
+/* ================= GLOBAL CLIENT STYLES ================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    padding: 20px 8%;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #0f172a;
+}
+
+nav a {
+    margin-left: 18px;
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #00b140;
+}
+
+main {
+    padding: 30px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+footer {
+    padding: 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* ================= DURARS PART - INDEX PAGE ================= */
+
+
+
+/* ================= DURARS PART - ABOUT PAGE ================= */
+
+
+
+/* ================= DURARS PART - HOW IT WORKS PAGE ================= */
+
+
+
+/* ================= DURARS PART - VOLUNTEER HOURS PAGE ================= */
+
+
+
+/* ================= MY PART(BALQEES)POST REQUEST / BROWSE REQUESTS ================= */
+
+/* ================= PAGE TITLES ================= */
+
+.page-title {
+    font-size: 36px;
+    margin-bottom: 25px;
+    color: #1e1e1e;
+}
+
+
+/* ================= SEARCH + FILTER AREA ================= */
+
+.search-filter {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.search-filter input,
+.search-filter select {
+    padding: 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    width: 250px;
+    font-size: 15px;
+}
+
+
+/* ================= BROWSE REQUEST CARDS ================= */
+
+.request-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.request-card {
+    background-color: white;
+    width: 320px;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.request-card:hover {
+    transform: translateY(-5px);
+}
+
+.request-card h2 {
+    margin-top: 0;
+    color: #222;
+}
+
+.request-card p {
+    color: #666;
+    line-height: 1.5;
+}
+
+
+/* ================= SKILL LABELS ================= */
+
+.skill-tag {
+    display: inline-block;
+    background-color: #eef2ff;
+    color: #4f46e5;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+
+/* ================= STATUS BADGES ================= */
+
+.status-open {
+    background-color: #dcfce7;
+    color: #166534;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.status-closed {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.request-btn {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.request-btn:hover {
+    background-color: #4338ca;
+}
+
+
+/* ================= POST REQUEST FORM ================= */
+
+.request-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    max-width: 700px;
+}
+
+.request-form label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.request-form input,
+.request-form textarea,
+.request-form select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.request-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+
+/* ================= POST BUTTON ================= */
+
+.post-btn {
+    margin-top: 25px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.post-btn:hover {
+    background-color: #4338ca;
+}
+/* ================= GIRL 4: CHAT / INBOX / SCHEDULE ================= */
+
+
+
+/* ================= CONTACT PAGE ================= */
+
+
+
+/* ================= dashboard PAGE ================= */
+
+
+
+/* ================= RESPONSIVE DESIGN ================= */
+

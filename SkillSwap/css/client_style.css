@@ -68,12 +68,246 @@ button {
 
 /* ================= DURARS PART - VOLUNTEER HOURS PAGE ================= */
 
+/* =========================================================
+    NADA — PROFILE PAGE
+   ========================================================= */
+.profile-page {
+    background-color: #f8faff;
+    padding: 40px 8%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 25px;
+}
+
+/* =========================================================
+    PROFILE CARD (الصورة + المعلومات)
+   ========================================================= */
+.profile-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+    padding: 25px 30px;
+    margin-bottom: 25px;
+}
+
+.profile-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 999px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.profile-card h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #111827;
+}
+
+.profile-card p {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+/* PROFILE SECTIONS (Bio, Skills, Settings…)
+   ========================================================= */
+.profile-section {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+    padding: 25px 30px;
+    margin-bottom: 25px;
+}
+
+.profile-section h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #111827;
+}
+
+.profile-section p {
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.6;
+}
+
+/* =========================================================
+    SKILL TAGS
+   ========================================================= */
+.skill-tag {
+    display: inline-block;
+    background-color: #e0f2fe;
+    color: #0369a1;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
 
 
 /* ================= MY PART(BALQEES)POST REQUEST / BROWSE REQUESTS ================= */
 
+/* ================= PAGE TITLES ================= */
+
+.page-title {
+    font-size: 36px;
+    margin-bottom: 25px;
+    color: #1e1e1e;
+}
 
 
+/* ================= SEARCH + FILTER AREA ================= */
+
+.search-filter {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.search-filter input,
+.search-filter select {
+    padding: 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    width: 250px;
+    font-size: 15px;
+}
+
+
+/* ================= BROWSE REQUEST CARDS ================= */
+
+.request-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.request-card {
+    background-color: white;
+    width: 320px;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.request-card:hover {
+    transform: translateY(-5px);
+}
+
+.request-card h2 {
+    margin-top: 0;
+    color: #222;
+}
+
+.request-card p {
+    color: #666;
+    line-height: 1.5;
+}
+
+
+/* ================= SKILL LABELS ================= */
+
+.skill-tag {
+    display: inline-block;
+    background-color: #eef2ff;
+    color: #4f46e5;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+
+/* ================= STATUS BADGES ================= */
+
+.status-open {
+    background-color: #dcfce7;
+    color: #166534;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.status-closed {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.request-btn {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.request-btn:hover {
+    background-color: #4338ca;
+}
+
+
+/* ================= POST REQUEST FORM ================= */
+
+.request-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    max-width: 700px;
+}
+
+.request-form label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.request-form input,
+.request-form textarea,
+.request-form select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.request-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+
+/* ================= POST BUTTON ================= */
+
+.post-btn {
+    margin-top: 25px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.post-btn:hover {
+    background-color: #4338ca;
+}
 /* ================= GIRL 4: CHAT / INBOX / SCHEDULE ================= */
 
 

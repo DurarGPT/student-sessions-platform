@@ -1,57 +1,65 @@
-<!DOCTYPE html>  <!-- =================nado ================= -->
+<?php
+// ================= PHP REGISTER LOGIC =================
+// هنا لاحقًا نضيف كود إدخال المستخدم في قاعدة البيانات
+// مثال:
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//     $name = $_POST["name"];
+//     $email = $_POST["email"];
+//     $password = $_POST["password"];
+// }
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>SkillSwap | Register</title>
-      <!-- ========== NADA: LOGIN PAGE STYLES ========== -->
-<link rel="stylesheet" href="css/Nada.css">
+    <link rel="stylesheet" href="auth.css">
 
 </head>
 
 <body>
 
-<!-- ================= HEADER (same dodo 1) ================= -->
+<!-- ================= HEADER ================= -->
 <header>
     <h1>SkillSwap</h1>
 
     <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="browse-requests.html">Browse Requests</a>
-        <a href="contact.html">Contact</a>
-        <a href="login.html">Login</a>
-        <a href="register.html">Sign Up</a>
+        <a href="index.php">Home</a>
+        <a href="about.php">About</a>
+        <a href="how-it-works.php">How It Works</a>
+        <a href="browse-requests.php">Browse Requests</a>
+        <a href="contact.php">Contact</a>
+        <a href="login.php">Login</a>
+        <a href="register.php">Sign Up</a>
     </nav>
- 
-
 </header>
 
-<!-- ================= MAIN CONTENT (Register Page) ================= -->
+<!-- ================= MAIN CONTENT ================= -->
 <main class="register-page">
 
-    <!-- 🔹 العنوان خارج الكرت -->
     <div class="register-header">
         <h1>Join SkillSwap</h1>
         <p>Start learning and teaching today</p>
     </div>
 
-    <!-- 🔹 الكرت الأبيض -->
     <div class="register-card">
         <h2>Create Your Account</h2>
 
-        <form class="register-form">
+        <!-- IMPORTANT: form now uses POST and has name attributes -->
+        <form class="register-form" method="POST" action="">
+
             <label for="name">Full Name</label>
-            <input id="name" type="text" placeholder="John Doe">
+            <input id="name" name="name" type="text" placeholder="John Doe" required>
 
             <label for="email">University Email</label>
-            <input id="email" type="email" placeholder="you@university.edu">
+            <input id="email" name="email" type="email" placeholder="you@university.edu" required>
 
             <label for="password">Password</label>
-            <input id="password" type="password" placeholder="Min. 6 characters">
+            <input id="password" name="password" type="password" placeholder="Min. 6 characters" required>
 
             <label for="confirm">Confirm Password</label>
-            <input id="confirm" type="password" placeholder="Repeat password">
+            <input id="confirm" name="confirm" type="password" placeholder="Repeat password" required>
 
             <label>What brings you to SkillSwap?</label>
             <div class="option-boxes">
@@ -66,28 +74,28 @@
             </div>
 
             <label for="role">University Role</label>
-            <select id="role">
+            <select id="role" name="role">
                 <option>Student</option>
                 <option>Professor</option>
             </select>
 
             <label for="skills">Your Skills</label>
-            <input id="skills" type="text" placeholder="e.g., Java, UI Design, English (comma-separated)">
+            <input id="skills" name="skills" type="text" placeholder="e.g., Java, UI Design, English (comma-separated)">
 
             <label for="bio">Bio</label>
-            <textarea id="bio" placeholder="Tell others about yourself and your expertise..."></textarea>
+            <textarea id="bio" name="bio" placeholder="Tell others about yourself and your expertise..."></textarea>
 
             <button type="submit" class="register-btn">Create Account</button>
         </form>
 
         <p class="auth-switch">
-            Already have an account? <a href="login.html">Log in</a>
+            Already have an account? <a href="login.php">Log in</a>
         </p>
     </div>
 
 </main>
 
-
+<!-- ================= FOOTER ================= -->
 <footer>
 
     <div>
@@ -101,19 +109,19 @@
     <div>
         <h3>Quick Links</h3>
 
-        <a href="about.html">About</a><br>
-        <a href="how-it-works.html">How It Works</a><br>
-        <a href="browse-requests.html">Browse Requests</a><br>
-        <a href="contact.html">Contact</a>
+        <a href="about.php">About</a><br>
+        <a href="how-it-works.php">How It Works</a><br>
+        <a href="browse-requests.php">Browse Requests</a><br>
+        <a href="contact.php">Contact</a>
     </div>
 
     <div>
         <h3>For Students</h3>
 
-        <a href="profile.html">Become a Mentor</a><br>
+        <a href="profile.php">Become a Mentor</a><br>
         <a href="post-request.php">Request Help</a><br>
-        <a href="volunteer-hours.html">Track Hours</a><br>
-        <a href="admin.html">Admin Panel</a>
+        <a href="volunteer-hours.php">Track Hours</a><br>
+        <a href="admin.php">Admin Panel</a>
     </div>
 
     <div>

@@ -1,0 +1,198 @@
+/* ================= GLOBAL ADMIN STYLES ================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fb;
+}
+
+header {
+    padding: 20px 8%;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #0f172a;
+}
+
+nav a {
+    margin-left: 18px;
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #00b140;
+}
+
+main {
+    padding: 30px;
+}
+
+/* ================= ADMIN PAGE ================= */
+
+.admin-page {
+    background-color: #f5f7fb;
+}
+
+/* hero section */
+
+.admin-hero {
+    padding: 40px;
+}
+
+.admin-hero h1 {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.admin-hero p {
+    font-size: 18px;
+    color: #666;
+}
+
+/* stats cards */
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 0 30px;
+    margin-bottom: 30px;
+}
+
+.admin-stat-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.admin-stat-card h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.admin-stat-card p {
+    font-size: 35px;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+/* content layout */
+
+.admin-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    padding: 0 30px;
+    margin-bottom: 30px;
+}
+
+/* cards */
+
+.admin-card,
+.history-section {
+    background-color: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.admin-card h2,
+.history-section h2 {
+    font-size: 28px;
+    color: #111827;
+    margin-bottom: 25px;
+}
+
+/* mentor card */
+
+.mentor-card {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.mentor-card h3 {
+    margin-bottom: 10px;
+}
+
+.mentor-card p {
+    margin-bottom: 10px;
+    color: #444;
+}
+
+/* skills */
+
+.mentor-skills {
+    margin: 15px 0;
+}
+
+.mentor-skills span {
+    display: inline-block;
+    background-color: #eef2ff;
+    color: #2563eb;
+    padding: 8px 14px;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* buttons */
+
+.admin-card button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.admin-card button:hover {
+    background-color: #1d4ed8;
+}
+
+/* history */
+
+.history-section {
+    margin: 0 30px 30px;
+}
+
+/* responsibilities */
+
+.admin-responsibilities {
+    margin: 0 30px 40px;
+    padding: 35px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+}
+
+.admin-responsibilities h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.admin-responsibilities ul {
+    padding-left: 20px;
+}
+
+.admin-responsibilities li {
+    margin-bottom: 14px;
+    line-height: 1.7;
+}

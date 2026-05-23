@@ -108,6 +108,8 @@
     <p>© 2026 SkillSwap</p>
 
 </footer>
-
+<?php
+echo "working";
+?>
 </body>
 </html>

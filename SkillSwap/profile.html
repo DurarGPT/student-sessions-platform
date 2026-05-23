@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>SkillSwap | Profile</title>
- <link rel="stylesheet" href="css/style.css">
+<!-- ========== NADA: LOGIN PAGE STYLES ========== -->
+<link rel="stylesheet" href="css/Nada.css">
+
 </head>
 
 <body>
@@ -22,7 +24,7 @@
         <a href="inbox.html">Inbox</a>
         <a href="profile.html">Profile</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="post-request.html">Post Request</a>
+        <a href="post-request.php">Post Request</a>
         <a href="login.html">Logout</a>
     </nav>
     
@@ -32,67 +34,48 @@
 <!-- ================= MAIN CONTENT (Profile Page) ================= -->
 <main class="profile-page">
 
-
-    <!-- عنوان الصفحة -->
-    <h2>My Profile</h2>
-    <p>Manage your account information and preferences.</p>
-
-    <!-- قسم المعلومات الأساسية -->
-    <section>
+    <!-- الكرت الأول: الصورة والمعلومات -->
+    <div class="profile-card">
+        <img src="images/user-photo.png" alt="User Photo">
         <h3>Basic Information</h3>
-
-        <!-- صورة المستخدم -->
-        <img src="profile-photo.jpg" alt="User Photo">
-
-        <!-- معلومات المستخدم -->
         <p><strong>Full Name:</strong> Emma Johnson</p>
         <p><strong>Role:</strong> Student</p>
         <p><strong>University Email:</strong> emma@university.edu</p>
         <p><strong>Volunteer Hours:</strong> 24</p>
         <p><strong>Skills:</strong> 3</p>
         <p><strong>Member Since:</strong> Jan 2026</p>
-
-        <!-- زر تعديل الصورة -->
         <button>Change Photo</button>
-    </section>
+    </div>
 
-    <!-- قسم السيرة الذاتية -->
-    <section>
-        <h3>Bio / About Me</h3>
-        <p>Senior Computer Science student passionate about design and web development.</p>
-    </section>
+    <!-- الكرت الثاني: باقي الأقسام -->
+    <div>
+        <div class="profile-section">
+            <h3>Bio / About Me</h3>
+            <p>Senior Computer Science student passionate about design and web development.</p>
+        </div>
 
-    <!-- قسم المهارات -->
-    <section>
-        <h3>My Skills</h3>
-        <ul>
-            <li>UI Design</li>
-            <li>Figma</li>
-            <li>JavaScript</li>
-        </ul>
-    </section>
+        <div class="profile-section">
+            <h3>My Skills</h3>
+            <span class="skill-tag">UI Design</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">JavaScript</span>
+        </div>
 
-    <!-- قسم تفضيلات الجلسات -->
-    <section>
-        <h3>Session Preferences</h3>
+        <div class="profile-section">
+            <h3>Session Preferences</h3>
+            <p><strong>Availability:</strong> Weekday evenings, Weekend mornings</p>
+            <p><strong>Session Type Preference:</strong> Both one-on-one and group sessions</p>
+        </div>
 
-        <!-- التوفر -->
-        <p><strong>Availability:</strong> Weekday evenings, Weekend mornings</p>
-
-        <!-- نوع الجلسات -->
-        <p><strong>Session Type Preference:</strong> Both one-on-one and group sessions</p>
-    </section>
-
-    <!-- قسم الأمان والإعدادات -->
-    <section>
-        <h3>Security & Settings</h3>
-
-        <!-- إعدادات الأمان -->
-        <button>Change Password</button>
-        <button>Email Notifications</button>
-    </section>
+        <div class="profile-section">
+            <h3>Security & Settings</h3>
+            <button>Change Password</button>
+            <button>Email Notifications</button>
+        </div>
+    </div>
 
 </main>
+
 
 <!-- ================= FOOTER (dodo) ================= -->
 <footer>
@@ -118,7 +101,7 @@
         <h3>For Students</h3>
 
         <a href="profile.html">Become a Mentor</a><br>
-        <a href="post-request.html">Request Help</a><br>
+        <a href="post-request.php">Request Help</a><br>
         <a href="volunteer-hours.html">Track Hours</a><br>
         <a href="admin.html">Admin Panel</a>
     </div>

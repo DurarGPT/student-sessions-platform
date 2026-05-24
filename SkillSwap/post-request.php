@@ -18,7 +18,7 @@
         <a href="about.html">About</a>
         <a href="how-it-works.html">How It Works</a>
         <a href="browse-requests.html">Browse Requests</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.php">Contact</a>
         <a href="inbox.html">Inbox</a>
         <a href="profile.html">Profile</a>
         <a href="dashboard.html">Dashboard</a>
@@ -83,7 +83,7 @@
         <a href="about.html">About</a><br>
         <a href="how-it-works.html">How It Works</a><br>
         <a href="browse-requests.html">Browse Requests</a><br>
-        <a href="contact.html">Contact</a>
+        <a href="contact.php">Contact</a>
 
     </div>
 
@@ -93,7 +93,7 @@
         <a href="profile.html">Become a Mentor</a><br>
         <a href="post-request.html">Request Help</a><br>
         <a href="volunteer-hours.html">Track Hours</a><br>
-        <a href="admin.html">Admin Panel</a>
+        <a href="admin.php">Admin Panel</a>
 
     </div>
 

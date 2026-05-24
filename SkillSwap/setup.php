@@ -244,7 +244,7 @@ try {
 
 
 
-    echo "<h2>SkillSwap setup completed successfully 🎉</h2>";
+    echo "<h2>SkillSwap setup completed successfully </h2>";
 
 } catch(PDOException $e) {
     echo "Error: " . $e->getMessage();

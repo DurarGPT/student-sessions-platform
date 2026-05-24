@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/student-sessions-platform.iml" filepath="$PROJECT_DIR$/.idea/student-sessions-platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SkillSwaper.iml" filepath="$PROJECT_DIR$/.idea/SkillSwaper.iml" />
     </modules>
   </component>
 </project>

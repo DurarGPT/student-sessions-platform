@@ -4,7 +4,7 @@
 <head>
     <title>Post Request</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 
 <body>
@@ -20,10 +20,10 @@
         <a href="browse-requests.html">Browse Requests</a>
         <a href="contact.php">Contact</a>
         <a href="inbox.html">Inbox</a>
-        <a href="profile.html">Profile</a>
+        <a href="profile.php">Profile</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="post-request.html">Post Request</a>
-        <a href="login.html">Logout</a>
+        <a href="../login.php">Logout</a>
     </nav>
 </header>
 
@@ -90,10 +90,10 @@
     <div>
         <h3>For Students</h3>
 
-        <a href="profile.html">Become a Mentor</a><br>
+        <a href="profile.php">Become a Mentor</a><br>
         <a href="post-request.html">Request Help</a><br>
         <a href="volunteer-hours.html">Track Hours</a><br>
-        <a href="admin.php">Admin Panel</a>
+        <a href="../admin/admin.php">Admin Panel</a>
 
     </div>
 

@@ -9,7 +9,7 @@
     <title>SkillSwap | How It Works</title>
 
     <!-- Durar's CSS file -->
-    <link rel="stylesheet" href="css/Durar.css">
+    <link rel="stylesheet" href="../../assets/css/Durar.css">
 </head>
 
 <body class="how-page">
@@ -20,7 +20,7 @@
 
             <!-- Website logo -->
             <a href="index.html" class="logo">
-                <img src="images/skillswap-logo.png" alt="SkillSwap logo" class="logo-img">
+                <img src="../../assets/images/skillswap-logo.png" alt="SkillSwap logo" class="logo-img">
                 <span>SkillSwap</span>
             </a>
 
@@ -220,7 +220,7 @@
 
             <div class="footer-column footer-brand">
                 <h3>
-                    <img src="images/skillswap-logo.png" alt="SkillSwap logo" class="footer-logo-img">
+                    <img src="../../assets/images/skillswap-logo.png" alt="SkillSwap logo" class="footer-logo-img">
                     SkillSwap
                 </h3>
                 <p>

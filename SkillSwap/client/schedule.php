@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>SkillSwap | Schedule</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
         <a href="profile.php">Profile</a>
         <a href="dashboard.php">Dashboard</a>
         <a href="post-request.php">Post Request</a>
-        <a href="login.php">Logout</a>
+        <a href="../login.php">Logout</a>
     </nav>
 </header>
 
@@ -223,7 +223,7 @@
         <a href="profile.php">Become a Mentor</a><br>
         <a href="post-request.php">Request Help</a><br>
         <a href="volunteer-hours.php">Track Hours</a><br>
-        <a href="admin.php">Admin Panel</a>
+        <a href="../admin/admin.php">Admin Panel</a>
     </div>
 
     <div>

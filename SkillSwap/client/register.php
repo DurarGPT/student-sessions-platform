@@ -121,7 +121,7 @@
         <a href="profile.php">Become a Mentor</a><br>
         <a href="post-request.php">Request Help</a><br>
         <a href="volunteer-hours.php">Track Hours</a><br>
-        <a href="admin.php">Admin Panel</a>
+        <a href="admin/admin.php">Admin Panel</a>
     </div>
 
     <div>

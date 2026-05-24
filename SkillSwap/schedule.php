@@ -12,16 +12,16 @@
     <h1>SkillSwap</h1>
 
     <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="browse-requests.html">Browse Requests</a>
+        <a href="index.php">Home</a>
+        <a href="about.php">About</a>
+        <a href="how-it-works.php">How It Works</a>
+        <a href="browse-requests.php">Browse Requests</a>
         <a href="contact.php">Contact</a>
-        <a href="inbox.html">Inbox</a>
-        <a href="profile.html">Profile</a>
-        <a href="dashboard.html">Dashboard</a>
+        <a href="inbox.php">Inbox</a>
+        <a href="profile.php">Profile</a>
+        <a href="dashboard.php">Dashboard</a>
         <a href="post-request.php">Post Request</a>
-        <a href="login.html">Logout</a>
+        <a href="login.php">Logout</a>
     </nav>
 </header>
 
@@ -198,7 +198,6 @@
 
 </main>
 
-
 <footer>
 
     <div>
@@ -212,18 +211,18 @@
     <div>
         <h3>Quick Links</h3>
 
-        <a href="about.html">About</a><br>
-        <a href="how-it-works.html">How It Works</a><br>
-        <a href="browse-requests.html">Browse Requests</a><br>
+        <a href="about.php">About</a><br>
+        <a href="how-it-works.php">How It Works</a><br>
+        <a href="browse-requests.php">Browse Requests</a><br>
         <a href="contact.php">Contact</a>
     </div>
 
     <div>
         <h3>For Students</h3>
 
-        <a href="profile.html">Become a Mentor</a><br>
+        <a href="profile.php">Become a Mentor</a><br>
         <a href="post-request.php">Request Help</a><br>
-        <a href="volunteer-hours.html">Track Hours</a><br>
+        <a href="volunteer-hours.php">Track Hours</a><br>
         <a href="admin.php">Admin Panel</a>
     </div>
 
@@ -236,7 +235,7 @@
 
     <p>©️ 2026 SkillSwap</p>
 
-</footer >
+</footer>
 
 </body>
 </html>

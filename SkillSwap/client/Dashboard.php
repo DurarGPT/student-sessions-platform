@@ -6,7 +6,7 @@
 
 <head>
     <title>Dashboard</title>
-    <link rel="stylesheet" href="css/client_style.css">
+    <link rel="stylesheet" href="../../assets/css/client_style.css">
 </head>
 
 <body class="dashboard-page">
@@ -140,7 +140,7 @@
         <a href="profile.html">Become a Mentor</a><br>
         <a href="post-request.php">Request Help</a><br>
         <a href="volunteer-hours.html">Track Hours</a><br>
-        <a href="admin.php">Admin Panel</a>
+        <a href="../admin/admin.php">Admin Panel</a>
     </div>
 
     <div>

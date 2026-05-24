@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SkillSwap | Chat</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>SkillSwap | Inbox</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 
 <body>
@@ -21,77 +21,42 @@
         <a href="profile.php">Profile</a>
         <a href="dashboard.php">Dashboard</a>
         <a href="post-request.php">Post Request</a>
-        <a href="login.php">Logout</a>
+        <a href="../login.php">Logout</a>
     </nav>
 </header>
 
+<!-- قسم الاشعارات -->
 <main>
 
-    <!-- قسم المحادثة -->
-    <section class="chat-card">
+    <section class="notification-card">
+        <h2>Notifications</h2>
+        <p>Requests matching your skills</p>
+    </section>
 
-        <h2>Chat</h2>
+    <!-- مافي اشعارات -->
+    <section class="notification-card">
 
-        <p>Communicate with your learner</p>
+        <h1>Notification</h1>
+
+        <h3>No notifications</h3>
+
+        <p>
+            You'll receive notifications when students request help
+            with skills you have
+        </p>
 
     </section>
 
-    <!-- معلومات الجلسة -->
-    <section class="chat-card">
+    <!-- معلومات الاشعارات -->
+    <section class="notification-card">
 
-        <h3>James Wilson</h3>
+        <h3>About Notifications</h3>
 
-        <p>Public Speaking Session</p>
-
-        <p>Active</p>
-
-    </section>
-
-    <!-- الرسائل -->
-    <section class="chat-card">
-
-        <h3>No messages yet</h3>
-
-        <p>Start the conversation!</p>
-
-    </section>
-
-    <!-- كتابة الرسالة -->
-    <section class="chat-card">
-
-        <input class="message-input"
-               type="text"
-               placeholder="Type your message...">
-
-        <button class="blue-button">
-            Send
-        </button>
-
-    </section>
-
-    <!-- معلومات الجلسة -->
-    <section class="chat-card">
-
-        <h3>Session Info</h3>
-
-        <p>Skill: Public Speaking</p>
-
-        <p>Type: one-on-one</p>
-
-        <p>Status: Accepted</p>
-
-    </section>
-
-    <!-- الجدولة -->
-    <section class="chat-card">
-
-        <h3>Scheduling</h3>
-
-        <p>No session scheduled</p>
-
-        <button class="blue-button">
-            Schedule Session
-        </button>
+        <p>
+            You receive notifications when students post requests for skills
+            you have listed in your profile. Only one mentor can accept
+            each request, so respond quickly to help students learn!
+        </p>
 
     </section>
 
@@ -101,7 +66,6 @@
 
     <div>
         <h3>SkillSwap</h3>
-
         <p>
             Learn. Teach. Earn. Empowering university students
             through peer mentoring.
@@ -123,14 +87,13 @@
         <a href="profile.php">Become a Mentor</a><br>
         <a href="post-request.php">Request Help</a><br>
         <a href="volunteer-hours.php">Track Hours</a><br>
-        <a href="admin.php">Admin Panel</a>
+        <a href="../admin/admin.php">Admin Panel</a>
     </div>
 
     <div>
         <h3>Contact</h3>
 
         <p>University Campus</p>
-
         <p>support@skillswap.edu</p>
     </div>
 

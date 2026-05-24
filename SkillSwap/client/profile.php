@@ -32,15 +32,15 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     <h1>SkillSwap</h1>
 
     <nav>
-        <a href="index.php">Home</a>
+        <a href="client/index.php">Home</a>
         <a href="about.php">About</a>
-        <a href="how-it-works.php">How It Works</a>
+        <a href="client/how-it-works.php">How It Works</a>
         <a href="browse-requests.php">Browse Requests</a>
-        <a href="contact.php">Contact</a>
-        <a href="inbox.php">Inbox</a>
+        <a href="client/contact.php">Contact</a>
+        <a href="client/inbox.php">Inbox</a>
         <a href="profile.php">Profile</a>
         <a href="dashboard.php">Dashboard</a>
-        <a href="post-request.php">Post Request</a>
+        <a href="client/post-request.php">Post Request</a>
         <a href="login.php">Logout</a>
     </nav>
 </header>
@@ -138,18 +138,18 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         <h3>Quick Links</h3>
 
         <a href="about.php">About</a><br>
-        <a href="how-it-works.php">How It Works</a><br>
+        <a href="client/how-it-works.php">How It Works</a><br>
         <a href="browse-requests.php">Browse Requests</a><br>
-        <a href="contact.php">Contact</a>
+        <a href="client/contact.php">Contact</a>
     </div>
 
     <div>
         <h3>For Students</h3>
 
         <a href="profile.php">Become a Mentor</a><br>
-        <a href="post-request.php">Request Help</a><br>
-        <a href="volunteer-hours.php">Track Hours</a><br>
-        <a href="admin.php">Admin Panel</a>
+        <a href="client/post-request.php">Request Help</a><br>
+        <a href="client/volunteer-hours.php">Track Hours</a><br>
+        <a href="admin/admin.php">Admin Panel</a>
     </div>
 
     <div>

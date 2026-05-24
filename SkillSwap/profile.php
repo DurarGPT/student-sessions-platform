@@ -1,8 +1,18 @@
 <?php
 // ================= PHP PROFILE LOGIC =================
-// هنا لاحقًا نضيف كود جلب بيانات المستخدم من قاعدة البيانات
-// مثال:
-// $user = getUserFromDatabase($_SESSION["user_id"]);
+
+// ⭐ EDIT ⭐ Start session + include DB
+global $pdo;
+session_start();
+include 'includes/db.php';
+
+// ⭐ EDIT ⭐ Get logged-in user ID
+$userId = $_SESSION['user_id'];
+
+// ⭐ EDIT ⭐ Fetch user data from database
+$stmt = $pdo->prepare("SELECT * FROM users WHERE user_id=?");
+$stmt->execute([$userId]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -40,14 +50,23 @@
 
     <!-- الكرت الأول: الصورة والمعلومات -->
     <div class="profile-card">
-        <img src="images/user-photo.png" alt="User Photo">
+
+        <!-- ⭐ EDIT ⭐ Display user profile image -->
+        <img src="uploads/profile/<?php echo $user['profile_image']; ?>" alt="User Photo">
+
         <h3>Basic Information</h3>
-        <p><strong>Full Name:</strong> Emma Johnson</p>
-        <p><strong>Role:</strong> Student</p>
-        <p><strong>University Email:</strong> emma@university.edu</p>
-        <p><strong>Volunteer Hours:</strong> 24</p>
-        <p><strong>Skills:</strong> 3</p>
-        <p><strong>Member Since:</strong> Jan 2026</p>
+
+        <!-- ⭐ EDIT ⭐ Replace static text with real DB data -->
+        <p><strong>Full Name:</strong> <?php echo $user['full_name']; ?></p>
+        <p><strong>Role:</strong> <?php echo $user['role']; ?></p>
+        <p><strong>University Email:</strong> <?php echo $user['email']; ?></p>
+
+        <!-- ⭐ EDIT ⭐ Optional: volunteer hours if you add it later -->
+        <p><strong>Volunteer Hours:</strong> 0</p>
+
+        <p><strong>Skills:</strong> <?php echo $user['skills']; ?></p>
+        <p><strong>Member Since:</strong> <?php echo date("M Y", strtotime($user['created_at'])); ?></p>
+
         <button>Change Photo</button>
     </div>
 
@@ -55,14 +74,21 @@
     <div>
         <div class="profile-section">
             <h3>Bio / About Me</h3>
-            <p>Senior Computer Science student passionate about design and web development.</p>
+
+            <!-- ⭐ EDIT ⭐ Show real bio -->
+            <p><?php echo $user['bio']; ?></p>
         </div>
 
         <div class="profile-section">
             <h3>My Skills</h3>
-            <span class="skill-tag">UI Design</span>
-            <span class="skill-tag">Figma</span>
-            <span class="skill-tag">JavaScript</span>
+
+            <!-- ⭐ EDIT ⭐ Convert skills text into tags -->
+            <?php
+            $skills = explode(",", $user['skills']);
+            foreach ($skills as $skill) {
+                echo "<span class='skill-tag'>" . trim($skill) . "</span>";
+            }
+            ?>
         </div>
 
         <div class="profile-section">
@@ -73,8 +99,25 @@
 
         <div class="profile-section">
             <h3>Security & Settings</h3>
-            <button>Change Password</button>
-            <button>Email Notifications</button>
+
+            <!-- ⭐ EDIT ⭐ Update form -->
+            <form action="update_profile.php" method="POST" enctype="multipart/form-data">
+
+                <label>Full Name:</label><br>
+                <input type="text" name="full_name" value="<?php echo $user['full_name']; ?>">
+                <br><br>
+
+                <label>New Password:</label><br>
+                <input type="password" name="password">
+                <br><br>
+
+                <label>Profile Image:</label><br>
+                <input type="file" name="profile_image">
+                <br><br>
+
+                <button type="submit">Save Changes</button>
+            </form>
+
         </div>
     </div>
 

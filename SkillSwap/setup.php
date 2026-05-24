@@ -35,6 +35,7 @@ try {
 
 
     // ================= USERS TABLE =================
+    //  تعديل: إضافة عمود profile_image مع قيمة افتراضية default.png
     $pdo->exec("
         CREATE TABLE IF NOT EXISTS users (
             user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -44,6 +45,7 @@ try {
             role VARCHAR(50) DEFAULT 'student',
             bio TEXT,
             skills TEXT,
+            profile_image VARCHAR(255) DEFAULT 'default.png', -- تمت الإضافة هنا 
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ");

@@ -1,33 +1,28 @@
-
-<!-- Footer -->
-<footer class="site-footer">
+<!-- Footer --><footer class="site-footer">
     <div class="footer-container">
 
         <div class="footer-column footer-brand">
-            <h3>
-                <img src="../../assets/images/skillswap-logo.png" alt="SkillSwap logo" class="footer-logo-img">
-                SkillSwap
-            </h3>
+            <h3>🎓 SkillSwap</h3>
             <p>
-                Learn. Teach. Earn. Empowering university
-                students and professors through peer mentoring.
+                Learn. Teach. Earn. Empowering university students
+                and professors through peer mentoring.
             </p>
         </div>
 
         <div class="footer-column">
             <h3>Quick Links</h3>
-            <a href="about.html">About Us</a>
-            <a href="how-it-works.html">How It Works</a>
-            <a href="browse-requests.html">Browse Requests</a>
-            <a href="contact.html">Contact</a>
+            <a href="../client/about.php">About Us</a>
+            <a href="../client/how-it-works.php">How It Works</a>
+            <a href="../client/browse-requests.html">Browse Requests</a>
+            <a href="../client/contact.php">Contact</a>
         </div>
 
         <div class="footer-column">
             <h3>For Students</h3>
-            <a href="profile.html">Become a Mentor</a>
-            <a href="post-request.php">Request Help</a>
-            <a href="volunteer-hours.html">Track Hours</a>
-            <a href="admin.html">Admin Panel</a>
+            <a href="../client/profile.php">Become a Mentor</a>
+            <a href="../client/post-request.php">Request Help</a>
+            <a href="../client/volunteer-hours.php">Track Hours</a>
+            <a href="../admin/admin.php">Admin Panel</a>
         </div>
 
         <div class="footer-column">

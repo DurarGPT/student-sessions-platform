@@ -11,22 +11,7 @@
 
 <body class="admin-page">
 
-<header>
-    <h1>SkillSwap</h1>
-
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="../client/browse-requests.html">Browse Requests</a>
-        <a href="contact.html">Contact</a>
-        <a href="inbox.html">Inbox</a>
-        <a href="profile.html">Profile</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="../client/post-request.php">Post Request</a>
-        <a href="login.html">Logout</a>
-    </nav>
-</header>
+<?php include '../includes/header.php'; ?>
 
 <!--admin hero section-->
 <section class="admin-hero">
@@ -143,45 +128,7 @@
     </ul>
 
 </section>
-
-<footer>
-
-    <div>
-        <h3>SkillSwap</h3>
-        <p>
-            Learn. Teach. Earn. Empowering university students
-            through peer mentoring.
-        </p>
-    </div>
-
-    <div>
-        <h3>Quick Links</h3>
-
-        <a href="about.html">About</a><br>
-        <a href="how-it-works.html">How It Works</a><br>
-        <a href="../client/browse-requests.html">Browse Requests</a><br>
-        <a href="contact.html">Contact</a>
-    </div>
-
-    <div>
-        <h3>For Students</h3>
-
-        <a href="profile.html">Become a Mentor</a><br>
-        <a href="../client/post-request.php">Request Help</a><br>
-        <a href="volunteer-hours.html">Track Hours</a><br>
-        <a href="admin.html">Admin Panel</a>
-    </div>
-
-    <div>
-        <h3>Contact</h3>
-
-        <p>University Campus</p>
-        <p>support@skillswap.edu</p>
-    </div>
-
-    <p>©️ 2026 SkillSwap</p>
-
-</footer>
+<?php include '../includes/footer.php'; ?>
 
 </body>
 

@@ -1,5 +1,13 @@
 <header>
-    <h1>SkillSwap</h1>
+    <h1 class="header-logo">
+
+        <img src="../../assets/images/skillswap-logo.png"
+             alt="SkillSwap Logo"
+             class="header-logo-img">
+
+        SkillSwap
+
+    </h1>
 
     <nav>
         <a href="index.php">Home</a>

@@ -2,7 +2,15 @@
     <div class="footer-container">
 
         <div class="footer-column footer-brand">
-            <h3>🎓 SkillSwap</h3>
+            <h3 class="footer-logo">
+
+                <img src="../../assets/images/skillswap-logo.png"
+                     alt="SkillSwap Logo"
+                     class="footer-logo-img">
+
+                SkillSwap
+
+            </h3>
             <p>
                 Learn. Teach. Earn. Empowering university students
                 and professors through peer mentoring.
@@ -37,4 +45,5 @@
     <div class="footer-bottom">
         <p>&copy; 2026 SkillSwap. All rights reserved. University Mentoring Platform.</p>
     </div>
+
 </footer>

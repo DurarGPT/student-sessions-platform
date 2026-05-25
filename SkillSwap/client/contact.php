@@ -11,21 +11,8 @@
 
 <body class="contact-page">
 
-  
-<header>
-    <h1>SkillSwap</h1>
+<?php include '../includes/header.php'; ?>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="browse-requests.html">Browse Requests</a>
-        <a href="contact.html">Contact</a>
-        <a href="login.html">Login</a>
-        <a href="register.html">Sign Up</a>
-    </nav>
-</header>
-    <hr>
 
 
 <section class="contact-hero">
@@ -105,47 +92,7 @@
     </section>
 
     <hr>
-
-
-
-<footer>
-
-    <div>
-        <h3>SkillSwap</h3>
-        <p>
-            Learn. Teach. Earn. Empowering university students
-            through peer mentoring.
-        </p>
-    </div>
-
-    <div>
-        <h3>Quick Links</h3>
-
-        <a href="about.html">About</a><br>
-        <a href="how-it-works.html">How It Works</a><br>
-        <a href="browse-requests.html">Browse Requests</a><br>
-        <a href="contact.html">Contact</a>
-    </div>
-
-    <div>
-        <h3>For Students</h3>
-
-        <a href="profile.html">Become a Mentor</a><br>
-        <a href="post-request.php">Request Help</a><br>
-        <a href="volunteer-hours.html">Track Hours</a><br>
-        <a href="../admin/admin.php">Admin Panel</a>
-    </div>
-
-    <div>
-        <h3>Contact</h3>
-
-        <p>University Campus</p>
-        <p>support@skillswap.edu</p>
-    </div>
-
-    <p>©️ 2026 SkillSwap</p>
-
-</footer>
+<?php include '../includes/footer.php'; ?>
 </body>
 
 </html>

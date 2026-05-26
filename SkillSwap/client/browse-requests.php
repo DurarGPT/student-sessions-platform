@@ -13,7 +13,7 @@ include 'includes/db.php';
 
     <title>Browse Requests</title>
 
-    <link rel="stylesheet" href="../../assets/css/client_style.css">
+    <link rel="stylesheet" href="../assets/css/client_style.css">
 
 </head>
 

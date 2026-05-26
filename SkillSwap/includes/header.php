@@ -1,24 +1,58 @@
-<header>
-    <h1 class="header-logo">
+<header class="site-header">
 
-        <img src="../../assets/images/skillswap-logo.png"
-             alt="SkillSwap Logo"
-             class="header-logo-img">
+    <!-- LEFT SIDE -->
+    <div class="header-left">
 
-        SkillSwap
+        <!-- LOGO -->
+        <h1 class="header-logo">
 
-    </h1>
+            <img src="../assets/images/skillswap-logo.png"
+                 alt="SkillSwap Logo"
+                 class="header-logo-img">
 
-    <nav>
-        <a href="index.php">Home</a>
-        <a href="about.php">About</a>
-        <a href="how-it-works.php">How It Works</a>
-        <a href="browse-requests.php">Browse Requests</a>
-        <a href="contact.php">Contact</a>
-        <a href="inbox.php">Inbox</a>
-        <a href="profile.php">Profile</a>
-        <a href="dashboard.php">Dashboard</a>
-        <a href="post-request.php">Post Request</a>
-        <a href="../login.php">Logout</a>
-    </nav>
+            SkillSwap
+
+        </h1>
+
+        <!-- NAVIGATION -->
+        <nav>
+
+            <a href="index.php">Home</a>
+
+            <a href="about.php">About</a>
+
+            <a href="how-it-works.php">How It Works</a>
+
+            <a href="browse-requests.php">Browse Requests</a>
+
+            <a href="contact.php">Contact</a>
+
+        </nav>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="header-right">
+
+        <?php if(isset($_SESSION['user_id'])): ?>
+
+            <a href="profile.php">Profile</a>
+
+            <a href="dashboard.php">Dashboard</a>
+
+            <a href="post-request.php">Post Request</a>
+
+            <a href="../auth/logout.php">Logout</a>
+
+        <?php else: ?>
+
+            <a href="../auth/login.php">Login</a>
+
+            <a href="../auth/register.php">Sign Up</a>
+
+        <?php endif; ?>
+
+    </div>
+
 </header>

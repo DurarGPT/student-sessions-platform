@@ -1,263 +1,389 @@
-<!-- Durar's part - How it works page -->
+<!-- Durar's Part  -->
+
+<?php
+// Start session so PHP can track logged-in users
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Basic page setup -->
+
+    <!-- Character encoding -->
     <meta charset="UTF-8">
+
+    <!-- Makes website responsive on phones -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Browser tab title -->
     <title>SkillSwap | How It Works</title>
 
-    <!-- Durar's CSS file -->
-    <link rel="stylesheet" href="../../assets/css/Durar.css">
+    <!-- Connect CSS file -->
+    <link rel="stylesheet" href="../assets/css/client_style.css">
 </head>
 
+<!-- Body class used for page-specific CSS -->
 <body class="how-page">
 
-    <!-- Header and navigation bar -->
-    <header class="site-header">
-        <div class="nav-container">
 
-            <!-- Website logo -->
-            <a href="index.html" class="logo">
-                <img src="../../assets/images/skillswap-logo.png" alt="SkillSwap logo" class="logo-img">
-                <span>SkillSwap</span>
-            </a>
+<!-- Include reusable shared header -->
+<?php include '../includes/header.php'; ?>
 
-            <!-- Main page links -->
-            <nav class="main-nav">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="how-it-works.html" class="active">How It Works</a>
-                <a href="browse-requests.html">Browse Requests</a>
-                <a href="contact.html">Contact</a>
-            </nav>
 
-            <!-- User action links -->
-            <div class="nav-actions">
-                <a href="inbox.html" class="icon-link" aria-label="Notifications">🔔</a>
-                <a href="profile.html" class="nav-button">Profile</a>
-                <a href="Dashboard.html" class="nav-button">Dashboard</a>
-                <a href="post-request.php" class="post-button">Post Request</a>
-                <a href="login.html" class="logout-link">Logout</a>
-            </div>
+<main>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="how-hero">
+
+        <div class="wide-container">
+
+            <!-- Main page title -->
+            <h1>How It Works</h1>
+
+            <!-- Short page description -->
+            <p>
+                Five simple steps to start learning, teaching, and earning volunteer hours
+            </p>
 
         </div>
-    </header>
 
-    <main>
+    </section>
 
-        <!-- Hero section -->
-        <section class="how-hero">
-            <div class="wide-container">
-                <h1>How It Works</h1>
-                <p>Five simple steps to start learning, teaching, and earning volunteer hours</p>
-            </div>
-        </section>
 
-        <!-- Five step timeline -->
-        <section class="steps-section">
-            <div class="steps-timeline">
+    <!-- ================= FIVE STEP TIMELINE ================= -->
+    <section class="steps-section">
 
-                <article class="work-step">
-                    <div class="step-icon step-blue">👤</div>
-                    <div class="step-content">
-                        <div class="step-title-row">
-                            <span class="step-label step-blue">Step 1</span>
-                            <h2>Create Your Profile</h2>
-                        </div>
-                        <p>Sign up as a student or professor. List your skills and what you want to learn.</p>
-                        <ul class="step-details">
-                            <li>Add your university email</li>
-                            <li>Select your role (student/professor)</li>
-                            <li>List your expertise and interests</li>
-                            <li>Upload a profile photo</li>
-                        </ul>
+        <div class="steps-timeline">
+
+
+            <!-- ===== STEP 1 ===== -->
+            <article class="work-step">
+
+                <!-- Step icon -->
+                <div class="step-icon step-blue">👤</div>
+
+                <div class="step-content">
+
+                    <!-- Step title row -->
+                    <div class="step-title-row">
+
+                        <!-- Step number label -->
+                        <span class="step-label step-blue">Step 1</span>
+
+                        <!-- Step title -->
+                        <h2>Create Your Profile</h2>
+
                     </div>
-                </article>
 
-                <article class="work-step">
-                    <div class="step-icon step-green">📄</div>
-                    <div class="step-content">
-                        <div class="step-title-row">
-                            <span class="step-label step-green">Step 2</span>
-                            <h2>Post or Browse Requests</h2>
-                        </div>
-                        <p>Post a request to learn a skill, or browse existing requests to help others.</p>
-                        <ul class="step-details">
-                            <li>Describe what you want to learn</li>
-                            <li>Specify preferred times</li>
-                            <li>Choose one-on-one or group sessions</li>
-                            <li>Browse requests matching your skills</li>
-                        </ul>
-                    </div>
-                </article>
+                    <!-- Step description -->
+                    <p>
+                        Sign up as a student or professor. List your skills and what you want to learn.
+                    </p>
 
-                <article class="work-step">
-                    <div class="step-icon step-purple">🔔</div>
-                    <div class="step-content">
-                        <div class="step-title-row">
-                            <span class="step-label step-purple">Step 3</span>
-                            <h2>Get Matched</h2>
-                        </div>
-                        <p>Receive notifications when your skills match a request, or when someone accepts yours.</p>
-                        <ul class="step-details">
-                            <li>Automatic notifications for skill matches</li>
-                            <li>Review request details in your inbox</li>
-                            <li>Accept requests that fit your schedule</li>
-                            <li>Only one mentor per request</li>
-                        </ul>
-                    </div>
-                </article>
+                    <!-- Step details -->
+                    <ul class="step-details">
 
-                <article class="work-step">
-                    <div class="step-icon step-orange">✅</div>
-                    <div class="step-content">
-                        <div class="step-title-row">
-                            <span class="step-label step-orange">Step 4</span>
-                            <h2>Conduct Session</h2>
-                        </div>
-                        <p>Meet via Microsoft Teams or in person. Share knowledge and learn together.</p>
-                        <ul class="step-details">
-                            <li>Schedule at your convenience</li>
-                            <li>Use Teams, Zoom, or meet in person</li>
-                            <li>Flexible session duration</li>
-                            <li>Interactive learning experience</li>
-                        </ul>
-                    </div>
-                </article>
+                        <li>Add your university email</li>
 
-                <article class="work-step">
-                    <div class="step-icon step-indigo">🏅</div>
-                    <div class="step-content">
-                        <div class="step-title-row">
-                            <span class="step-label step-indigo">Step 5</span>
-                            <h2>Earn Recognition</h2>
-                        </div>
-                        <p>After completion, learners confirm and admins approve volunteer hours.</p>
-                        <ul class="step-details">
-                            <li>Learner confirms session completion</li>
-                            <li>Mentor submits hours for approval</li>
-                            <li>Admin verifies and approves</li>
-                            <li>Hours added to your profile</li>
-                        </ul>
-                    </div>
-                </article>
+                        <li>Select your role (student/professor)</li>
 
-            </div>
-        </section>
+                        <li>List your expertise and interests</li>
 
-        <!-- Session type cards -->
-        <section class="session-types-section">
-            <h2>Session Types</h2>
+                        <li>Upload a profile photo</li>
 
-            <div class="session-grid">
-                <article class="session-card">
-                    <h3>One-on-One Sessions</h3>
-                    <p>Personalized mentoring with focused attention and customized learning pace.</p>
-                    <ul>
-                        <li>Tailored to your specific needs</li>
-                        <li>Flexible scheduling</li>
-                        <li>Direct feedback and guidance</li>
                     </ul>
-                </article>
 
-                <article class="session-card">
-                    <h3>Group Sessions</h3>
-                    <p>Learn alongside peers with shared interests and collaborative problem-solving.</p>
-                    <ul>
-                        <li>Peer learning opportunities</li>
-                        <li>Build study groups</li>
-                        <li>Network with classmates</li>
+                </div>
+
+            </article>
+
+
+            <!-- ===== STEP 2 ===== -->
+            <article class="work-step">
+
+                <div class="step-icon step-green">📄</div>
+
+                <div class="step-content">
+
+                    <div class="step-title-row">
+
+                        <span class="step-label step-green">Step 2</span>
+
+                        <h2>Post or Browse Requests</h2>
+
+                    </div>
+
+                    <p>
+                        Post a request to learn a skill, or browse existing requests to help others.
+                    </p>
+
+                    <ul class="step-details">
+
+                        <li>Describe what you want to learn</li>
+
+                        <li>Specify preferred times</li>
+
+                        <li>Choose one-on-one or group sessions</li>
+
+                        <li>Browse requests matching your skills</li>
+
                     </ul>
-                </article>
-            </div>
-        </section>
 
-        <!-- Common questions -->
-        <section class="questions-section">
-            <h2>Common Questions</h2>
+                </div>
 
-            <div class="question-list">
-                <article class="question-card">
-                    <h3>How do I become a verified mentor?</h3>
+            </article>
+
+
+            <!-- ===== STEP 3 ===== -->
+            <article class="work-step">
+
+                <div class="step-icon step-purple">🔔</div>
+
+                <div class="step-content">
+
+                    <div class="step-title-row">
+
+                        <span class="step-label step-purple">Step 3</span>
+
+                        <h2>Get Matched</h2>
+
+                    </div>
+
                     <p>
-                        After registering, you can apply for mentor verification through your dashboard.
-                        An admin will review your skills and approve your mentor status.
+                        Receive notifications when your skills match a request,
+                        or when someone accepts yours.
                     </p>
-                </article>
 
-                <article class="question-card">
-                    <h3>Are volunteer hours officially recognized?</h3>
+                    <ul class="step-details">
+
+                        <li>Automatic notifications for skill matches</li>
+
+                        <li>Review request details in your inbox</li>
+
+                        <li>Accept requests that fit your schedule</li>
+
+                        <li>Only one mentor per request</li>
+
+                    </ul>
+
+                </div>
+
+            </article>
+
+
+            <!-- ===== STEP 4 ===== -->
+            <article class="work-step">
+
+                <div class="step-icon step-orange">✅</div>
+
+                <div class="step-content">
+
+                    <div class="step-title-row">
+
+                        <span class="step-label step-orange">Step 4</span>
+
+                        <h2>Conduct Session</h2>
+
+                    </div>
+
                     <p>
-                        Yes! All hours are approved by university administrators and can be used for
-                        scholarships, resumes, and graduation requirements.
+                        Meet via Microsoft Teams or in person.
+                        Share knowledge and learn together.
                     </p>
-                </article>
 
-                <article class="question-card">
-                    <h3>Can I request multiple skills at once?</h3>
+                    <ul class="step-details">
+
+                        <li>Schedule at your convenience</li>
+
+                        <li>Use Teams, Zoom, or meet in person</li>
+
+                        <li>Flexible session duration</li>
+
+                        <li>Interactive learning experience</li>
+
+                    </ul>
+
+                </div>
+
+            </article>
+
+
+            <!-- ===== STEP 5 ===== -->
+            <article class="work-step">
+
+                <div class="step-icon step-indigo">🏅</div>
+
+                <div class="step-content">
+
+                    <div class="step-title-row">
+
+                        <span class="step-label step-indigo">Step 5</span>
+
+                        <h2>Earn Recognition</h2>
+
+                    </div>
+
                     <p>
-                        Yes, you can post separate requests for different skills. Each request can be
-                        accepted by one mentor.
+                        After completion, learners confirm and admins approve volunteer hours.
                     </p>
-                </article>
-            </div>
-        </section>
 
-        <!-- Call to action -->
-        <section class="blue-cta">
-            <h2>Ready to Get Started?</h2>
-            <p>Join SkillSwap today and start your learning journey</p>
-            <a href="register.html">Create Your Account</a>
-        </section>
+                    <ul class="step-details">
 
-    </main>
+                        <li>Learner confirms session completion</li>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-container">
+                        <li>Mentor submits hours for approval</li>
 
-            <div class="footer-column footer-brand">
-                <h3>
-                    <img src="../../assets/images/skillswap-logo.png" alt="SkillSwap logo" class="footer-logo-img">
-                    SkillSwap
-                </h3>
+                        <li>Admin verifies and approves</li>
+
+                        <li>Hours added to your profile</li>
+
+                    </ul>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SESSION TYPES SECTION ================= -->
+    <section class="session-types-section">
+
+        <!-- Section title -->
+        <h2>Session Types</h2>
+
+        <div class="session-grid">
+
+
+            <!-- One-on-one session card -->
+            <article class="session-card">
+
+                <h3>One-on-One Sessions</h3>
+
                 <p>
-                    Learn. Teach. Earn. Empowering university
-                    students and professors through peer mentoring.
+                    Personalized mentoring with focused attention
+                    and customized learning pace.
                 </p>
-            </div>
 
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <a href="about.html">About Us</a>
-                <a href="how-it-works.html">How It Works</a>
-                <a href="browse-requests.html">Browse Requests</a>
-                <a href="contact.html">Contact</a>
-            </div>
+                <ul>
 
-            <div class="footer-column">
-                <h3>For Students</h3>
-                <a href="profile.html">Become a Mentor</a>
-                <a href="post-request.php">Request Help</a>
-                <a href="volunteer-hours.html">Track Hours</a>
-                <a href="admin.html">Admin Panel</a>
-            </div>
+                    <li>Tailored to your specific needs</li>
 
-            <div class="footer-column">
-                <h3>Contact Us</h3>
-                <p>📍 University Campus, Building A</p>
-                <p>✉️ support@skillswap.edu</p>
-                <p>📞 (555) 123-4567</p>
-            </div>
+                    <li>Flexible scheduling</li>
+
+                    <li>Direct feedback and guidance</li>
+
+                </ul>
+
+            </article>
+
+
+            <!-- Group session card -->
+            <article class="session-card">
+
+                <h3>Group Sessions</h3>
+
+                <p>
+                    Learn alongside peers with shared interests
+                    and collaborative problem-solving.
+                </p>
+
+                <ul>
+
+                    <li>Peer learning opportunities</li>
+
+                    <li>Build study groups</li>
+
+                    <li>Network with classmates</li>
+
+                </ul>
+
+            </article>
 
         </div>
 
-        <div class="footer-bottom">
-            <p>&copy; 2026 SkillSwap. All rights reserved. University Mentoring Platform.</p>
+    </section>
+
+
+    <!-- ================= COMMON QUESTIONS SECTION ================= -->
+    <section class="questions-section">
+
+        <!-- Section title -->
+        <h2>Common Questions</h2>
+
+        <div class="question-list">
+
+
+            <!-- Question card -->
+            <article class="question-card">
+
+                <h3>How do I become a verified mentor?</h3>
+
+                <p>
+                    After registering, you can apply for mentor verification
+                    through your dashboard. An admin will review your skills
+                    and approve your mentor status.
+                </p>
+
+            </article>
+
+
+            <!-- Question card -->
+            <article class="question-card">
+
+                <h3>Are volunteer hours officially recognized?</h3>
+
+                <p>
+                    Yes! All hours are approved by university administrators
+                    and can be used for scholarships, resumes,
+                    and graduation requirements.
+                </p>
+
+            </article>
+
+
+            <!-- Question card -->
+            <article class="question-card">
+
+                <h3>Can I request multiple skills at once?</h3>
+
+                <p>
+                    Yes, you can post separate requests for different skills.
+                    Each request can be accepted by one mentor.
+                </p>
+
+            </article>
+
         </div>
-    </footer>
+
+    </section>
+
+
+    <!-- ================= CALL TO ACTION SECTION ================= -->
+    <section class="blue-cta">
+
+        <!-- CTA title -->
+        <h2>Ready to Get Started?</h2>
+
+        <!-- CTA description -->
+        <p>
+            Join SkillSwap today and start your learning journey
+        </p>
+
+        <!-- CTA button -->
+        <a href="register.php">Create Your Account</a>
+
+    </section>
+
+</main>
+
+
+<!-- Include reusable shared footer -->
+<?php include '../includes/footer.php'; ?>
+
 
 </body>
 

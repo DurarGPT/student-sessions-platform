@@ -43,13 +43,13 @@
 
             <a href="post-request.php">Post Request</a>
 
-            <a href="../auth/logout.php">Logout</a>
+            <a href="logout.php">Logout</a>
 
         <?php else: ?>
 
-            <a href="../auth/login.php">Login</a>
+            <a href="login.php">Login</a>
 
-            <a href="../auth/register.php">Sign Up</a>
+            <a href="register.php">Sign Up</a>
 
         <?php endif; ?>
 

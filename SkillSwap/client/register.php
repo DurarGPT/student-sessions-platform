@@ -1,139 +1,267 @@
 <?php
-// ================= PHP REGISTER LOGIC =================
-// هنا لاحقًا نضيف كود إدخال المستخدم في قاعدة البيانات
-// مثال:
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     $name = $_POST["name"];
-//     $email = $_POST["email"];
-//     $password = $_POST["password"];
-// }
+session_start();
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>SkillSwap | Register</title>
-    <link rel="stylesheet" href="auth.css">
 
+    <!-- CLIENT CSS -->
+    <link rel="stylesheet" href="../assets/css/client_style.css">
+
+    <!-- AUTH CSS -->
+    <link rel="stylesheet" href="../assets/css/auth.css">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
 
-<!-- ================= HEADERn ================= -->
-<header>
-    <h1>SkillSwap</h1>
+<!-- ================= HEADER ================= -->
 
-    <nav>
-        <a href="index.php">Home</a>
-        <a href="about.php">About</a>
-        <a href="how-it-works.php">How It Works</a>
-        <a href="browse-requests.php">Browse Requests</a>
-        <a href="contact.php">Contact</a>
-        <a href="login.php">Login</a>
-        <a href="register.php">Sign Up</a>
-    </nav>
-</header>
-
+<?php include '../includes/header.php'; ?>
 <!-- ================= MAIN CONTENT ================= -->
 <main class="register-page">
 
+    <!-- HEADER -->
     <div class="register-header">
         <h1>Join SkillSwap</h1>
         <p>Start learning and teaching today</p>
     </div>
 
+    <!-- CARD -->
     <div class="register-card">
+
         <h2>Create Your Account</h2>
 
-        <!-- IMPORTANT: form now uses POST and has name attributes -->
         <form class="register-form" method="POST" action="">
 
-            <label for="name">Full Name</label>
-            <input id="name" name="name" type="text" placeholder="John Doe" required>
+            <!-- ================= FIRST ROW ================= -->
+            <div class="form-row">
 
-            <label for="email">University Email</label>
-            <input id="email" name="email" type="email" placeholder="you@university.edu" required>
+                <!-- FULL NAME -->
+                <div class="form-group">
 
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" placeholder="Min. 6 characters" required>
+                    <label for="name">Full Name *</label>
 
-            <label for="confirm">Confirm Password</label>
-            <input id="confirm" name="confirm" type="password" placeholder="Repeat password" required>
+                    <div class="input-wrapper">
 
-            <label>What brings you to SkillSwap?</label>
-            <div class="option-boxes">
-                <div class="option-box active">
-                    <p><strong>I Want to Learn</strong></p>
-                    <p>Request skills, connect with mentors, and grow your knowledge.</p>
+                        <i class="fa-regular fa-user"></i>
+
+                        <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                placeholder="John Doe"
+                                required>
+
+                    </div>
+
                 </div>
-                <div class="option-box">
-                    <p><strong>I Want to Teach</strong></p>
-                    <p>Help others, share your expertise, and earn volunteer hours.</p>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+
+                    <label for="email">University Email *</label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                placeholder="you@university.edu"
+                                required>
+
+                    </div>
+
                 </div>
+
             </div>
 
-            <label for="role">University Role</label>
-            <select id="role" name="role">
-                <option>Student</option>
-                <option>Professor</option>
-            </select>
+            <!-- ================= SECOND ROW ================= -->
+            <div class="form-row">
 
-            <label for="skills">Your Skills</label>
-            <input id="skills" name="skills" type="text" placeholder="e.g., Java, UI Design, English (comma-separated)">
+                <!-- PASSWORD -->
+                <div class="form-group">
 
-            <label for="bio">Bio</label>
-            <textarea id="bio" name="bio" placeholder="Tell others about yourself and your expertise..."></textarea>
+                    <label for="password">Password *</label>
 
-            <button type="submit" class="register-btn">Create Account</button>
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                                id="password"
+                                name="password"
+                                type="password"
+                                placeholder="Min. 6 characters"
+                                required>
+
+                    </div>
+
+                </div>
+
+                <!-- CONFIRM PASSWORD -->
+                <div class="form-group">
+
+                    <label for="confirm">Confirm Password *</label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                                id="confirm"
+                                name="confirm"
+                                type="password"
+                                placeholder="Repeat password"
+                                required>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ================= OPTION BOXES ================= -->
+            <label>What brings you to SkillSwap? *</label>
+
+            <div class="option-boxes">
+
+                <!-- LEARN -->
+                <div class="option-box active">
+
+                    <div class="option-icon learn-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <p><strong>I Want to Learn</strong></p>
+
+                    <p>
+                        Request skills, connect with mentors,
+                        and grow your knowledge.
+                    </p>
+
+                </div>
+
+                <!-- TEACH -->
+                <div class="option-box">
+
+                    <div class="option-icon teach-icon">
+                        <i class="fa-regular fa-lightbulb"></i>
+                    </div>
+
+                    <p><strong>I Want to Teach</strong></p>
+
+                    <p>
+                        Help others, share your expertise,
+                        and earn volunteer hours.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- ================= ROLE ================= -->
+            <div class="form-group full-width">
+
+                <label for="role">University Role</label>
+
+                <select id="role" name="role">
+                    <option>Student</option>
+                    <option>Professor</option>
+                </select>
+
+            </div>
+
+            <!-- ================= SKILLS ================= -->
+            <div class="form-group full-width">
+
+                <label for="skills">Your Skills *</label>
+
+                <div class="input-wrapper">
+
+                    <i class="fa-regular fa-bookmark"></i>
+
+                    <input
+                            id="skills"
+                            name="skills"
+                            type="text"
+                            placeholder="e.g., Java, UI Design, English (comma-separated)">
+
+                </div>
+
+                <small class="helper-text">
+                    Separate multiple skills with commas
+                </small>
+
+            </div>
+
+            <!-- ================= BIO ================= -->
+            <div class="form-group full-width">
+
+                <label for="bio">Bio</label>
+
+                <textarea
+                        id="bio"
+                        name="bio"
+                        placeholder="Tell others about yourself and your expertise..."></textarea>
+
+            </div>
+
+            <!-- ================= BUTTON ================= -->
+            <button type="submit" class="register-btn">
+
+                <i class="fa-solid fa-user-plus"></i>
+                Create Account
+
+            </button>
+
         </form>
 
+        <!-- ================= LOGIN ================= -->
         <p class="auth-switch">
-            Already have an account? <a href="login.php">Log in</a>
+            Already have an account?
+            <a href="../login.php">Log in</a>
         </p>
+
     </div>
 
 </main>
 
 <!-- ================= FOOTER ================= -->
-<footer>
+<?php include '../includes/footer.php'; ?>
 
-    <div>
-        <h3>SkillSwap</h3>
-        <p>
-            Learn. Teach. Earn. Empowering university students
-            through peer mentoring.
-        </p>
-    </div>
+<!-- ================= JS ================= -->
+<script>
 
-    <div>
-        <h3>Quick Links</h3>
+    const boxes = document.querySelectorAll('.option-box');
 
-        <a href="about.php">About</a><br>
-        <a href="how-it-works.php">How It Works</a><br>
-        <a href="browse-requests.php">Browse Requests</a><br>
-        <a href="contact.php">Contact</a>
-    </div>
+    boxes.forEach(box => {
 
-    <div>
-        <h3>For Students</h3>
+        box.addEventListener('click', () => {
 
-        <a href="profile.php">Become a Mentor</a><br>
-        <a href="post-request.php">Request Help</a><br>
-        <a href="volunteer-hours.php">Track Hours</a><br>
-        <a href="admin/admin.php">Admin Panel</a>
-    </div>
+            boxes.forEach(b => {
+                b.classList.remove('active');
+            });
 
-    <div>
-        <h3>Contact</h3>
+            box.classList.add('active');
 
-        <p>University Campus</p>
-        <p>support@skillswap.edu</p>
-    </div>
+        });
 
-    <p>© 2026 SkillSwap</p>
+    });
 
-</footer>
+</script>
 
 </body>
 </html>

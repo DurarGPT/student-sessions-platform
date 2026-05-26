@@ -11,6 +11,7 @@ session_start();
 <head>
     <title>Admin Panel</title>
     <link rel="stylesheet" href="../assets/css/admin_style.css">
+    <link rel="stylesheet" href="../assets/css/client_style.css">
 </head>
 
 <body class="admin-page">
@@ -131,7 +132,8 @@ session_start();
 
 </section>
 <?php include '../includes/footer.php'; ?>
-<script src="../../assets/js/script.js"></script>
+<script src="../assets/js/script.js"></script>
 </body>
+
 
 </html>

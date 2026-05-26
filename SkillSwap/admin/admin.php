@@ -81,7 +81,7 @@
                 <span>Adobe Suite</span>
             </div>
 
-            <button>Verify as Mentor</button>
+            <button class="approve-btn">Verify as Mentor</button>
 
         </div>
 
@@ -99,8 +99,6 @@
     <p>No sessions yet</p>
 
 </section>
-
-
 
 <!--admin responsibilities section-->
 <section class="admin-responsibilities">
@@ -129,7 +127,7 @@
 
 </section>
 <?php include '../includes/footer.php'; ?>
-
+<script src="../../assets/js/script.js"></script>
 </body>
 
 </html>

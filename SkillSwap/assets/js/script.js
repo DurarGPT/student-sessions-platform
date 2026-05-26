@@ -70,3 +70,48 @@ function showNotification() {
 function scheduleSession() {
     alert("Session scheduled!");
 }
+
+// ================= Rimas part =================
+
+// contact form
+
+const contactForm = document.querySelector(".contact-form form");
+
+if (contactForm) {
+
+    contactForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        alert("Message sent successfully!");
+
+    });
+
+}
+// admin approve button
+
+const approveButtons = document.querySelectorAll(".approve-btn");
+
+approveButtons.forEach(button => {
+
+    button.addEventListener("click", function () {
+
+        alert("Student approved successfully!");
+
+    });
+
+});
+
+// dashboard quick action
+
+const dashboardButton = document.querySelector(".dashboard-btn");
+
+if (dashboardButton) {
+
+    dashboardButton.addEventListener("click", function () {
+
+        alert("Dashboard action completed!");
+
+    });
+
+}

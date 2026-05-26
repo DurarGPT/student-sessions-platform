@@ -10,118 +10,141 @@ include '../includes/db.php';
 <html>
 
 <head>
-
     <title>Browse Requests</title>
-
     <link rel="stylesheet" href="../assets/css/client_style.css">
-
 </head>
 
 <body>
 
 <?php include '../includes/header.php'; ?>
 
-<!-- ================= (browse request page -balqees) ================= -->
+<main class="browse-page">
 
-<main>
+    <section class="browse-hero">
 
-    <h1 class="page-title">Browse Learning Requests</h1>
+        <h1>Browse Requests</h1>
 
-    <!-- Search + Filter -->
+        <p>
+            Find requests matching your skills and help fellow students
+        </p>
 
-    <div class="search-filter">
+    </section>
 
-        <input type="text" placeholder="Search skills...">
+    <section class="browse-content">
 
-        <select>
+        <div class="browse-filter-row">
 
-            <option>All Categories</option>
-            <option>Programming</option>
-            <option>Design</option>
-            <option>Languages</option>
+            <div class="search-box">
+                <span>🔍</span>
 
-        </select>
+                <input
+                        type="text"
+                        placeholder="Search by skill, description, or learner..."
+                >
+            </div>
 
-    </div>
+            <div class="filter-buttons">
 
-    <!-- Request Cards -->
+                <button class="filter-btn active" data-filter="all">
+                    All
+                </button>
 
-    <div class="request-container">
+                <button class="filter-btn" data-filter="one-on-one">
+                    👥 One-on-One
+                </button>
 
-        <!-- Card 1 -->
+                <button class="filter-btn" data-filter="group">
+                    👥 Group
+                </button>
 
-        <div class="request-card">
-
-            <span class="status-open">Open</span>
-
-            <h2>Java Programming Help</h2>
-
-            <p>
-                Looking for help understanding Java OOP concepts
-                and inheritance.
-            </p>
-
-            <span class="skill-tag">Programming</span>
-
-            <br>
-
-            <button class="request-btn">
-                View Details
-            </button>
+            </div>
 
         </div>
 
-        <!-- Card 2 -->
+        <p class="request-count">
+            Showing 3 of 3 requests
+        </p>
 
-        <div class="request-card">
+        <div class="request-container">
 
-            <span class="status-open">Open</span>
+            <div class="request-card" data-type="one-on-one">
 
-            <h2>UI/UX Design Basics</h2>
+                <div class="card-top">
+                    <span class="skill-badge">UI Design</span>
+                    <span class="session-type">one-on-one</span>
+                </div>
 
-            <p>
-                Need help learning Figma wireframes
-                and prototyping basics.
-            </p>
+                <h2>Reem Ali</h2>
 
-            <span class="skill-tag">Design</span>
+                <p>
+                    Looking to learn the basics of UI/UX design for my final project.
+                    Need help with wireframing and prototyping.
+                </p>
 
-            <br>
+                <div class="request-info">
+                    <p>🕒 Weekday evenings</p>
+                    <p>🗓️ 5/2/2026</p>
+                </div>
 
-            <button class="request-btn">
-                View Details
-            </button>
+                <button class="accept-btn">Accept Request</button>
+
+            </div>
+
+            <div class="request-card" data-type="one-on-one">
+
+                <div class="card-top">
+                    <span class="skill-badge">Java</span>
+                    <span class="session-type">one-on-one</span>
+                </div>
+
+                <h2>Ashwag Alghamdi</h2>
+
+                <p>
+                    Struggling with object-oriented programming concepts.
+                    Need help understanding inheritance and polymorphism.
+                </p>
+
+                <div class="request-info">
+                    <p>🕒 Weekend mornings</p>
+                    <p>🗓️ 5/3/2026</p>
+                </div>
+
+                <button class="accept-btn">Accept Request</button>
+
+            </div>
+
+            <div class="request-card" data-type="one-on-one">
+
+                <div class="card-top">
+                    <span class="skill-badge">Public Speaking</span>
+                    <span class="session-type">one-on-one</span>
+                </div>
+
+                <h2>Salwa Alzahrani</h2>
+
+                <p>
+                    Preparing for a conference presentation. Need guidance on
+                    delivery and confidence building.
+                </p>
+
+                <div class="request-info">
+                    <p>🕒 Flexible</p>
+                    <p>🗓️ 5/1/2026</p>
+                </div>
+
+                <button class="accept-btn">Accept Request</button>
+
+            </div>
 
         </div>
 
-        <!-- Card 3 -->
-
-        <div class="request-card">
-
-            <span class="status-closed">Closed</span>
-
-            <h2>English Conversation Practice</h2>
-
-            <p>
-                Looking for someone to practice speaking
-                and presentation skills with.
-            </p>
-
-            <span class="skill-tag">Languages</span>
-
-            <br>
-
-            <button class="request-btn">
-                View Details
-            </button>
-
-        </div>
-
-    </div>
+    </section>
 
 </main>
 
 <?php include '../includes/footer.php'; ?>
+
+<script src="../assets/js/client.js"></script>
 
 </body>
 

@@ -1,115 +1,89 @@
+<?php
+
+session_start();
+
+include 'includes/db.php';
+
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
+
     <title>Post Request</title>
 
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/client_style.css">
+
 </head>
 
 <body>
 
-<!-- ================= (post request page -balqees) ================= -->
-<header>
-    <h1>SkillSwap</h1>
+<?php include 'includes/header.php'; ?>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="browse-requests.html">Browse Requests</a>
-        <a href="contact.php">Contact</a>
-        <a href="inbox.html">Inbox</a>
-        <a href="profile.php">Profile</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="post-request.html">Post Request</a>
-        <a href="../login.php">Logout</a>
-    </nav>
-</header>
+<!-- ================= (post request page -balqees) ================= -->
 
 <main>
 
     <h1 class="page-title">Post a Learning Request</h1>
 
-    <form class="request-form">
+    <form class="request-form" method="POST">
 
         <label>Skill Needed</label>
-        <input type="text" placeholder="Enter skill">
+
+        <input
+                type="text"
+                name="title"
+                placeholder="Enter skill"
+        >
 
         <label>Description</label>
-        <textarea placeholder="Describe your learning request"></textarea>
+
+        <textarea
+                name="description"
+                placeholder="Describe your learning request"
+        ></textarea>
 
         <label>Category</label>
-        <select>
+
+        <select name="category">
+
             <option>Programming</option>
             <option>Design</option>
             <option>Languages</option>
             <option>Business</option>
+
         </select>
 
         <label>Level</label>
-        <select>
+
+        <select name="level">
+
             <option>Beginner</option>
             <option>Intermediate</option>
             <option>Advanced</option>
+
         </select>
 
         <label>Preferred Date</label>
-        <input type="date">
+
+        <input
+                type="date"
+                name="preferred_date"
+        >
 
         <button class="post-btn" type="submit">
+
             Post Request
+
         </button>
 
     </form>
 
 </main>
 
-<!-- footer -->
-<footer>
+<?php include 'includes/footer.php'; ?>
 
-    <div>
-        <h3>SkillSwap</h3>
-
-        <p>
-            Learn. Teach. Earn. Empowering university students
-            through peer mentoring.
-        </p>
-    </div>
-
-    <div>
-        <h3>Quick Links</h3>
-
-        <a href="about.html">About</a><br>
-        <a href="how-it-works.html">How It Works</a><br>
-        <a href="browse-requests.html">Browse Requests</a><br>
-        <a href="contact.php">Contact</a>
-
-    </div>
-
-    <div>
-        <h3>For Students</h3>
-
-        <a href="profile.php">Become a Mentor</a><br>
-        <a href="post-request.html">Request Help</a><br>
-        <a href="volunteer-hours.html">Track Hours</a><br>
-        <a href="../admin/admin.php">Admin Panel</a>
-
-    </div>
-
-    <div>
-        <h3>Contact</h3>
-
-        <p>University Campus</p>
-        <p>support@skillswap.edu</p>
-
-    </div>
-
-    <p>© 2026 SkillSwap</p>
-
-</footer>
-<?php
-echo "working";
-?>
 </body>
+
 </html>

@@ -1,3 +1,7 @@
+<?php
+// Start session so PHP can remember logged-in users
+session_start();
+?>
 <!DOCTYPE html>
 
 <!--==================== admin panel page - RIMASS====================-->
@@ -6,7 +10,7 @@
 
 <head>
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin_style.css">
 </head>
 
 <body class="admin-page">

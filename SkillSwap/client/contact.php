@@ -1,13 +1,8 @@
 <?php
-// ================= PHP REGISTER LOGIC =================
-// هنا لاحقًا نضيف كود إدخال المستخدم في قاعدة البيانات
-// مثال:
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     $name = $_POST["name"];
-//     $email = $_POST["email"];
-//     $password = $_POST["password"];
-// }
+// Start session so PHP can remember logged-in users
+session_start();
 ?>
+
 
 <!DOCTYPE html>
 
@@ -17,7 +12,7 @@
 
 <head>
     <title>Contact</title>
-    <link rel="stylesheet" href="../../assets/css/client_style.css">
+    <link rel="stylesheet" href="../assets/css/client_style.css">
 </head>
 
 <body class="contact-page">

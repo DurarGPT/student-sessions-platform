@@ -32,9 +32,11 @@
                 you have listed in your profile. Only one mentor can accept
                 each request, so respond quickly to help students learn!
             </p>
-
+            <button class="blue-button" onclick="showNotification()">
+                Check Notifications
+            </button>
         </section>
 
     </main>
-
+    <script src="../../assets/js/script.js"></script>
 <?php include '../includes/footer.php'; ?>

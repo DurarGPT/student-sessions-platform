@@ -170,8 +170,11 @@
             <h3>Session Status</h3>
 
             <p>No sessions scheduled yet</p>
+            <button class="blue-button" onclick="scheduleSession()">
+                Schedule Session
+            </button>
         </section>
 
     </main>
-
+    <script src="../../assets/js/script.js"></script>
 <?php include '../includes/footer.php'; ?>

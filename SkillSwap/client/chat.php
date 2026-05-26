@@ -39,7 +39,7 @@
                    type="text"
                    placeholder="Type your message...">
 
-            <button class="blue-button">
+            <button class="blue-button" onclick="sendMessage()">
                 Send
             </button>
 
@@ -72,5 +72,5 @@
         </section>
 
     </main>
-
+    <script src="../../assets/js/script.js"></script>
 <?php include '../includes/footer.php'; ?>

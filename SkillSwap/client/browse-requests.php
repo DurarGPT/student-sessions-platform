@@ -19,7 +19,7 @@ include 'includes/db.php';
 
 <body>
 
-<?php include 'includes/header.php'; ?>
+<?php include '../includes/header.php'; ?>
 
 <!-- ================= (browse request page -balqees) ================= -->
 
@@ -121,7 +121,7 @@ include 'includes/db.php';
 
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>
 
 </body>
 

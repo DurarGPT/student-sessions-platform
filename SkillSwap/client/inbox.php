@@ -1,105 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>SkillSwap | Inbox</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
-</head>
+<?php include '../includes/db.php'; ?>
+<?php include '../includes/header.php'; ?>
 
-<body>
+    <main>
 
-<header>
-    <h1>SkillSwap</h1>
+        <section class="notification-card">
+            <h2>Notifications</h2>
+            <p>Requests matching your skills</p>
+        </section>
 
-    <nav>
-        <a href="index.php">Home</a>
-        <a href="about.php">About</a>
-        <a href="how-it-works.php">How It Works</a>
-        <a href="browse-requests.php">Browse Requests</a>
-        <a href="contact.php">Contact</a>
-        <a href="inbox.php">Inbox</a>
-        <a href="profile.php">Profile</a>
-        <a href="dashboard.php">Dashboard</a>
-        <a href="post-request.php">Post Request</a>
-        <a href="../login.php">Logout</a>
-    </nav>
-</header>
+        <!-- مافي اشعارات -->
+        <section class="notification-card">
 
-<!-- قسم الاشعارات -->
-<main>
+            <h1>Notification</h1>
 
-    <section class="notification-card">
-        <h2>Notifications</h2>
-        <p>Requests matching your skills</p>
-    </section>
+            <h3>No notifications</h3>
 
-    <!-- مافي اشعارات -->
-    <section class="notification-card">
+            <p>
+                You'll receive notifications when students request help
+                with skills you have
+            </p>
 
-        <h1>Notification</h1>
+        </section>
 
-        <h3>No notifications</h3>
+        <!-- معلومات الاشعارات -->
+        <section class="notification-card">
 
-        <p>
-            You'll receive notifications when students request help
-            with skills you have
-        </p>
+            <h3>About Notifications</h3>
 
-    </section>
+            <p>
+                You receive notifications when students post requests for skills
+                you have listed in your profile. Only one mentor can accept
+                each request, so respond quickly to help students learn!
+            </p>
 
-    <!-- معلومات الاشعارات -->
-    <section class="notification-card">
+        </section>
 
-        <h3>About Notifications</h3>
+    </main>
 
-        <p>
-            You receive notifications when students post requests for skills
-            you have listed in your profile. Only one mentor can accept
-            each request, so respond quickly to help students learn!
-        </p>
-
-    </section>
-
-</main>
-
-<footer>
-
-    <div>
-        <h3>SkillSwap</h3>
-        <p>
-            Learn. Teach. Earn. Empowering university students
-            through peer mentoring.
-        </p>
-    </div>
-
-    <div>
-        <h3>Quick Links</h3>
-
-        <a href="about.php">About</a><br>
-        <a href="how-it-works.php">How It Works</a><br>
-        <a href="browse-requests.php">Browse Requests</a><br>
-        <a href="contact.php">Contact</a>
-    </div>
-
-    <div>
-        <h3>For Students</h3>
-
-        <a href="profile.php">Become a Mentor</a><br>
-        <a href="post-request.php">Request Help</a><br>
-        <a href="volunteer-hours.php">Track Hours</a><br>
-        <a href="../admin/admin.php">Admin Panel</a>
-    </div>
-
-    <div>
-        <h3>Contact</h3>
-
-        <p>University Campus</p>
-        <p>support@skillswap.edu</p>
-    </div>
-
-    <p>©️ 2026 SkillSwap</p>
-
-</footer>
-
-</body>
-</html>
+<?php include '../includes/footer.php'; ?>

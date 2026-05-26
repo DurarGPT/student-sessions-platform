@@ -1,241 +1,177 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>SkillSwap | Schedule</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
-</head>
+<?php include '../includes/db.php'; ?>
+<?php include '../includes/header.php'; ?>
 
-<body>
+    <main>
 
-<header>
-    <h1>SkillSwap</h1>
+        <!-- قسم الجدولة -->
+        <section class="chat-card">
+            <h2>Schedule Session</h2>
+            <p>Coordinate a time for your Public Speaking session</p>
+        </section>
 
-    <nav>
-        <a href="index.php">Home</a>
-        <a href="about.php">About</a>
-        <a href="how-it-works.php">How It Works</a>
-        <a href="browse-requests.php">Browse Requests</a>
-        <a href="contact.php">Contact</a>
-        <a href="inbox.php">Inbox</a>
-        <a href="profile.php">Profile</a>
-        <a href="dashboard.php">Dashboard</a>
-        <a href="post-request.php">Post Request</a>
-        <a href="../login.php">Logout</a>
-    </nav>
-</header>
+        <!-- اختيار التاريخ والوقت -->
+        <section class="chat-card">
+            <h3>Select Date & Time</h3>
 
-<main>
+            <p>May 10 - May 16, 2026</p>
 
-    <!-- قسم الجدولة -->
-    <section class="chat-card">
-        <h2>Schedule Session</h2>
-        <p>Coordinate a time for your Public Speaking session</p>
-    </section>
+            <table class="schedule-table">
+                <tr>
+                    <th>Sun<br>10</th>
+                    <th>Mon<br>11</th>
+                    <th>Tue<br>12</th>
+                    <th>Wed<br>13</th>
+                    <th>Thu<br>14</th>
+                    <th>Fri<br>15</th>
+                    <th>Sat<br>16</th>
+                </tr>
 
-    <!-- اختيار التاريخ والوقت -->
-    <section class="chat-card">
-        <h3>Select Date & Time</h3>
+                <tr>
+                    <td>09:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-        <p>May 10 - May 16, 2026</p>
+                <tr>
+                    <td>10:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-        <table class="schedule-table">
-            <tr>
-                <th>Sun<br>10</th>
-                <th>Mon<br>11</th>
-                <th>Tue<br>12</th>
-                <th>Wed<br>13</th>
-                <th>Thu<br>14</th>
-                <th>Fri<br>15</th>
-                <th>Sat<br>16</th>
-            </tr>
+                <tr>
+                    <td>11:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-            <tr>
-                <td>09:00 AM</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <tr>
+                    <td>12:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-            <tr>
-                <td>10:00 AM</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <tr>
+                    <td>01:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-            <tr>
-                <td>11:00 AM</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <tr>
+                    <td>02:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-            <tr>
-                <td>12:00 PM</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <tr>
+                    <td>03:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-            <tr>
-                <td>01:00 PM</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <tr>
+                    <td>04:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-            <tr>
-                <td>02:00 PM</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <tr>
+                    <td>05:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-            <tr>
-                <td>03:00 PM</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <tr>
+                    <td>06:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-            <tr>
-                <td>04:00 PM</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <tr>
+                    <td>07:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-            <tr>
-                <td>05:00 PM</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <tr>
+                    <td>08:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
 
-            <tr>
-                <td>06:00 PM</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+        <!-- تفاصيل الجلسة -->
+        <section class="chat-card">
+            <h3>Session Details</h3>
 
-            <tr>
-                <td>07:00 PM</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <p>Skill</p>
+            <p><strong>Public Speaking</strong></p>
 
-            <tr>
-                <td>08:00 PM</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-    </section>
+            <p>Learner</p>
+            <p><strong>James Wilson</strong></p>
 
-    <!-- تفاصيل الجلسة -->
-    <section class="chat-card">
-        <h3>Session Details</h3>
+            <p>Mentor</p>
+            <p><strong>Emma Johnson</strong></p>
 
-        <p>Skill</p>
-        <p><strong>Public Speaking</strong></p>
+            <p>Session Type</p>
+            <p>one-on-one</p>
+        </section>
 
-        <p>Learner</p>
-        <p><strong>James Wilson</strong></p>
+        <!-- حالة الجلسة -->
+        <section class="chat-card">
+            <h3>Session Status</h3>
 
-        <p>Mentor</p>
-        <p><strong>Emma Johnson</strong></p>
+            <p>No sessions scheduled yet</p>
+        </section>
 
-        <p>Session Type</p>
-        <p>one-on-one</p>
-    </section>
+    </main>
 
-    <!-- حالة الجلسة -->
-    <section class="chat-card">
-        <h3>Session Status</h3>
-
-        <p>No sessions scheduled yet</p>
-    </section>
-
-</main>
-
-<footer>
-
-    <div>
-        <h3>SkillSwap</h3>
-        <p>
-            Learn. Teach. Earn. Empowering university students
-            through peer mentoring.
-        </p>
-    </div>
-
-    <div>
-        <h3>Quick Links</h3>
-
-        <a href="about.php">About</a><br>
-        <a href="how-it-works.php">How It Works</a><br>
-        <a href="browse-requests.php">Browse Requests</a><br>
-        <a href="contact.php">Contact</a>
-    </div>
-
-    <div>
-        <h3>For Students</h3>
-
-        <a href="profile.php">Become a Mentor</a><br>
-        <a href="post-request.php">Request Help</a><br>
-        <a href="volunteer-hours.php">Track Hours</a><br>
-        <a href="../admin/admin.php">Admin Panel</a>
-    </div>
-
-    <div>
-        <h3>Contact</h3>
-
-        <p>University Campus</p>
-        <p>support@skillswap.edu</p>
-    </div>
-
-    <p>©️ 2026 SkillSwap</p>
-
-</footer>
-
-</body>
-</html>
+<?php include '../includes/footer.php'; ?>

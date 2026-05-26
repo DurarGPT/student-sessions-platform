@@ -4,10 +4,9 @@
         <div class="footer-column footer-brand">
             <h3 class="footer-logo">
 
-                <img src="../../assets/images/skillswap-logo.png"
+                <img src="../assets/images/skillswap-logo.png"
                      alt="SkillSwap Logo"
                      class="footer-logo-img">
-
                 SkillSwap
 
             </h3>
@@ -21,7 +20,7 @@
             <h3>Quick Links</h3>
             <a href="../client/about.php">About Us</a>
             <a href="../client/how-it-works.php">How It Works</a>
-            <a href="../client/browse-requests.html">Browse Requests</a>
+            <a href="../client/browse-requests.php">Browse Requests</a>
             <a href="../client/contact.php">Contact</a>
         </div>
 

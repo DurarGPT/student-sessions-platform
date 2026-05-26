@@ -1,7 +1,7 @@
 <?php
-// ================= ADMIN DASHBOARD PAGE =================
+// Start session so PHP can remember logged-in users
+session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +14,8 @@
 
     <!-- ================= connect to  CSS ================= -->
 
-    <link rel="stylesheet" href="admin_style.css">
+    <link rel="stylesheet" href="../assets/css/admin_style.css">
+    <link rel="stylesheet" href="../assets/css/client_style.css">
 
 </head>
 

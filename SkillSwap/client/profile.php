@@ -1,13 +1,19 @@
 <?php
 global $pdo;
+
 session_start();
+
+$_SESSION['user_id'] = 1;
+
 require_once __DIR__ . '/../includes/db.php';
 
 /* التحقق من تسجيل الدخول */
 
 if (!isset($_SESSION['user_id'])) {
+
     header("Location: login.php");
     exit;
+
 }
 
 $userId = $_SESSION['user_id'];
@@ -17,7 +23,7 @@ $userId = $_SESSION['user_id'];
 $stmt = $pdo->prepare("
 SELECT *
 FROM users
-WHERE user_id=?
+WHERE user_id = ?
 ");
 
 $stmt->execute([$userId]);
@@ -25,7 +31,7 @@ $stmt->execute([$userId]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-/* صورة افتراضية */
+/* صورة البروفايل */
 
 $profileImage =
         !empty($user['profile_image'])
@@ -36,7 +42,6 @@ $profileImage =
 
 ?>
 
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -44,6 +49,9 @@ $profileImage =
 <head>
 
     <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>SkillSwap | Profile</title>
 
@@ -53,190 +61,372 @@ $profileImage =
 
 </head>
 
-<body>
+<body class="profile-page">
 
 <?php include '../includes/header.php'; ?>
 
 
-<main class="profile-page">
+<main>
 
+    <!-- HERO -->
 
-    <!-- LEFT -->
+    <section class="profile-hero">
 
-    <div class="profile-card">
-
-        <img
-                src="<?php echo $profileImage; ?>"
-                alt="Profile Photo">
-
-
-        <h3>
-            <?php echo $user['full_name']; ?>
-        </h3>
-
+        <h1>My Profile</h1>
 
         <p>
-            <?php echo $user['role']; ?>
+            Manage your account information and preferences
         </p>
 
+    </section>
 
-        <p>
-            📧
-            <?php echo $user['email']; ?>
-        </p>
 
 
-        <p>
-            ⏱ Volunteer Hours: 0
-        </p>
+    <!-- MAIN LAYOUT -->
 
+    <section class="profile-layout">
 
-        <button>
 
-            📷 Change Photo
+        <!-- LEFT SIDEBAR -->
 
-        </button>
+        <aside class="profile-sidebar">
 
-    </div>
+            <div class="profile-sidebar-top">
+                <img
+                  class="profile-image"
+                  src="../assets/images/<?php echo !empty($user['profile_image']) ? $user['profile_image'] : 'default.png'; ?>"
+                  alt="Profile Photo">
 
 
+                <span class="verified-badge">
 
-    <!-- RIGHT -->
+                    ✔ Verified Mentor
 
-    <div>
+                </span>
 
 
-        <div class="profile-section">
+                <h2>
 
-            <h3>
+                    <?php echo htmlspecialchars($user['full_name']); ?>
 
-                📝 About Me
+                </h2>
 
-            </h3>
 
+                <p class="profile-role">
 
-            <p>
+                    <?php echo htmlspecialchars($user['role']); ?>
 
-                <?php
+                </p>
 
-                echo !empty($user['bio'])
 
-                        ?
+                <!-- CHANGE PHOTO -->
 
-                        $user['bio']
+                <form
+                        action="update_profile.php"
+                        method="POST"
+                        enctype="multipart/form-data">
 
-                        :
+                    <label class="change-photo-button">
 
-                        "No bio added yet.";
+                        📷 Change Photo
 
-                ?>
+                        <input
+                                type="file"
+                                name="profile_image"
+                                hidden>
 
-            </p>
+                    </label>
 
-        </div>
+                </form>
 
+            </div>
 
 
-        <div class="profile-section">
 
-            <h3>
+            <!-- STATS -->
 
-                💡 My Skills
+            <div class="profile-stats">
 
-            </h3>
+                <div class="profile-stat">
 
+                    <span>Volunteer Hours</span>
 
-            <?php
+                    <strong>24</strong>
 
-            if (!empty($user['skills'])) {
+                </div>
 
-                $skills =
-                        explode(
-                                ",",
-                                $user['skills']
-                        );
 
-                foreach ($skills as $skill) {
+                <div class="profile-stat">
 
-                    echo
-                            "<span class='skill-tag'>"
-                            .
-                            trim($skill)
-                            .
-                            "</span>";
+                    <span>Skills</span>
 
-                }
+                    <strong>
 
-            }
+                        <?php
 
-            ?>
+                        echo !empty($user['skills'])
+                                ?
+                                count(explode(",", $user['skills']))
+                                :
+                                0;
 
-        </div>
+                        ?>
 
+                    </strong>
 
+                </div>
 
-        <div class="profile-section">
 
-            <h3>
+                <div class="profile-stat">
 
-                ⚙️ Settings
+                    <span>Member Since</span>
 
-            </h3>
+                    <strong>2026</strong>
 
+                </div>
 
-            <form
-                    action="update_profile.php"
-                    method="POST"
-                    enctype="multipart/form-data">
+            </div>
 
+        </aside>
 
-                <label>
 
-                    Full Name
 
-                </label>
 
-                <input
-                        type="text"
-                        name="full_name"
-                        value="<?php echo $user['full_name']; ?>">
 
+        <!-- RIGHT SIDE -->
 
-                <label>
+        <section class="profile-right">
 
-                    New Password
 
-                </label>
+            <!-- BASIC INFO -->
 
-                <input
-                        type="password"
-                        name="password">
+            <div class="profile-card">
 
+                <div class="profile-card-header">
 
-                <label>
+                    <h3>
 
-                    Upload New Photo
+                        👤 Basic Information
 
-                </label>
+                    </h3>
 
-                <input
-                        type="file"
-                        name="profile_image">
 
+                    <button class="edit-profile-btn">
 
-                <button
-                        type="submit">
+                        ✏ Edit Profile
 
-                    Save Changes
+                    </button>
+
+                </div>
+
+
+
+                <div class="profile-field">
+
+                    <label>
+
+                        Full Name
+
+                    </label>
+
+                    <p>
+
+                        <?php echo htmlspecialchars($user['full_name']); ?>
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="profile-field">
+
+                    <label>
+
+                        University Email
+
+                    </label>
+
+                    <input
+                            type="text"
+                            value="<?php echo htmlspecialchars($user['email']); ?>"
+                            disabled>
+
+                    <small>
+
+                        Email cannot be changed
+
+                    </small>
+
+                </div>
+
+
+
+                <div class="profile-field">
+
+                    <label>
+
+                        Role
+
+                    </label>
+
+                    <span class="role-badge">
+
+                        <?php echo htmlspecialchars($user['role']); ?>
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="profile-field">
+
+                    <label>
+
+                        Bio / About Me
+
+                    </label>
+
+                    <textarea disabled><?php
+
+                        echo !empty($user['bio'])
+                                ?
+                                htmlspecialchars($user['bio'])
+                                :
+                                "No bio added yet.";
+
+                        ?></textarea>
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <!-- SKILLS -->
+
+            <div class="profile-card">
+
+                <h3>
+
+                    📘 My Skills
+
+                </h3>
+
+
+                <div class="skills-wrapper">
+
+                    <?php
+
+                    if (!empty($user['skills'])) {
+
+                        $skills = explode(",", $user['skills']);
+
+                        foreach ($skills as $skill) {
+
+                            echo
+                                    "<span class='profile-skill'>"
+                                    .
+                                    trim($skill)
+                                    .
+                                    "</span>";
+
+                        }
+
+                    }
+
+                    ?>
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <!-- SESSION -->
+
+            <div class="profile-card">
+
+                <h3>
+
+                    📅 Session Preferences
+
+                </h3>
+
+
+
+                <div class="profile-field">
+
+                    <label>
+
+                        Availability
+
+                    </label>
+
+                    <input
+                            type="text"
+                            value="Weekday evenings, Weekend mornings"
+                            disabled>
+
+                </div>
+
+
+
+                <div class="profile-field">
+
+                    <label>
+
+                        Session Type Preference
+
+                    </label>
+
+                    <input
+                            type="text"
+                            value="Both one-on-one and group sessions"
+                            disabled>
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <!-- SETTINGS -->
+
+            <div class="profile-card">
+
+                <h3>
+
+                    🔒 Security & Settings
+
+                </h3>
+
+
+                <button class="settings-button">
+
+                    🔑 Change Password
 
                 </button>
 
-            </form>
 
-        </div>
+                <button class="settings-button">
 
+                    ✉ Email Notifications
 
-    </div>
+                </button>
+
+            </div>
+
+        </section>
+
+    </section>
 
 </main>
 

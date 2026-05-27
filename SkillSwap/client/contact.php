@@ -1,11 +1,15 @@
 <?php
 // Start session so PHP can remember logged-in users
 session_start();
+include '../includes/db.php';
+
 ?>
+
+
 
 <!DOCTYPE html>
 
-<!--==================== contact page -RIMASS ====================-->
+<!--==================== RIMASSS ALMUNTI Contact page ====================-->
 <html lang="en">
 
 <head>

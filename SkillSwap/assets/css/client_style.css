@@ -1995,8 +1995,8 @@ p {
 
 
 
-/* ================= CONTACT PAGE rimas ================= */
-/* ================= CONTACT PAGE rimas ================= */
+
+/* =================RIMASSS ALMUNTI CONTACT PAGE  ================= */
 
 .contact-page {
     background-color: #f8fafc;
@@ -2181,16 +2181,18 @@ p {
     margin: 0 8px;
     cursor: pointer;
 }
-
-/* ================= TALA PART - ADMIN DASHBOARD CSS ================= */
-
+/* =================RIMASSS ALMUNTI DASHBOARD PAGE  ================= */
 .dashboard-page {
     background-color: #f8fafc;
     color: #0f172a;
 }
 
+.dashboard-page main {
+    padding: 35px 8%;
+}
+
 .dashboard-hero {
-    padding: 30px 8%;
+    margin-bottom: 28px;
 }
 
 .dashboard-hero h1 {
@@ -2200,56 +2202,46 @@ p {
 
 .dashboard-hero p {
     color: #64748b;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 .dashboard-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 22px;
-    padding: 0 8% 30px;
+    margin-bottom: 34px;
 }
 
 .stat-card {
+    background: white;
     padding: 26px;
     border-radius: 18px;
-    color: white;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
-}
-
-.stat-card:nth-child(1) {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-}
-
-.stat-card:nth-child(2) {
-    background: linear-gradient(135deg, #16a34a, #00b140);
-}
-
-.stat-card:nth-child(3) {
-    background: linear-gradient(135deg, #f97316, #ef4444);
-}
-
-.stat-card:nth-child(4) {
-    background: linear-gradient(135deg, #7c3aed, #9333ea);
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 }
 
 .stat-card h2 {
     font-size: 15px;
+    color: #64748b;
     margin: 0 0 12px;
-    font-weight: 600;
 }
 
 .stat-card p {
     font-size: 36px;
     font-weight: bold;
+    color: #0f172a;
     margin: 0;
 }
 
 .dashboard-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    padding: 0 8% 28px;
+    grid-template-columns: 1fr 2fr;
+    gap: 28px;
+    margin-bottom: 34px;
+}
+
+.dashboard-grid:nth-of-type(4) {
+    grid-template-columns: 1fr 1fr;
 }
 
 .dashboard-card {
@@ -2257,16 +2249,16 @@ p {
     padding: 28px;
     border-radius: 18px;
     border: 1px solid #e5e7eb;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 }
 
 .dashboard-card h2 {
     margin-top: 0;
-    color: #0f172a;
+    color: #111827;
 }
 
 .dashboard-card h3 {
-    color: #475569;
+    color: #64748b;
     margin-bottom: 6px;
 }
 
@@ -2274,41 +2266,150 @@ p {
     color: #64748b;
 }
 
-.dashboard-card button,
-.quick-buttons button {
+.dashboard-page button,
+.dashboard-btn {
+    display: inline-block;
     background-color: #2563eb;
     color: white;
     border: none;
-    padding: 11px 18px;
+    text-decoration: none;
+    padding: 12px 20px;
     border-radius: 10px;
-    font-weight: bold;
+    cursor: pointer;
     margin-top: 10px;
+    font-weight: bold;
 }
 
-.dashboard-card button:hover,
-.quick-buttons button:hover {
+.dashboard-page button:hover,
+.dashboard-btn:hover {
     background-color: #1d4ed8;
 }
 
 .quick-actions {
-    background-color: white;
-    margin: 0 8% 40px;
-    padding: 28px;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    padding: 30px;
     border-radius: 18px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    margin-bottom: 40px;
+}
+
+.quick-actions h2 {
+    color: white;
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
 .quick-buttons {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.quick-buttons button,
+.quick-buttons .dashboard-btn {
+    background-color: white;
+    color: #2563eb;
+    text-align: center;
 }
 
 @media (max-width: 900px) {
     .dashboard-stats,
-    .dashboard-grid {
+    .dashboard-grid,
+    .quick-buttons {
         grid-template-columns: 1fr;
     }
+}
+
+.stat-card {
+    position: relative;
+}
+
+.dashboard-icon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+
+    font-size: 26px;
+    color: #2563eb;
+
+    background-color: #dbeafe;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.stat-card {
+    position: relative;
+}
+
+.stat-icon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.hours-icon {
+    background-color: #fef3c7;
+}
+
+.requests-icon {
+    background-color: #dbeafe;
+}
+
+.mentoring-icon {
+    background-color: #dcfce7;
+}
+
+.notifications-icon {
+    background-color: #f3e8ff;
+}
+.upcoming-card {
+    min-height: 360px;
+}
+
+.upcoming-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 260px;
+    text-align: center;
+}
+
+.upcoming-icon {
+    font-size: 70px;
+    opacity: 0.25;
+    margin-bottom: 15px;
+}
+
+.upcoming-empty p {
+    color: #64748b;
+    margin-bottom: 18px;
+}
+.secondary-btn {
+    display: inline-block;
+    background-color: #2563eb;
+    color: white !important;
+    padding: 12px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.secondary-btn:hover {
+    background-color: #1d4ed8;
+    color: white;
 }
 

@@ -43,7 +43,7 @@
 
             <a href="post-request.php">Post Request</a>
 
-            <a href="logout.php">Logout</a>
+            <a href="../auth/logout.php">Logout</a>
 
         <?php else: ?>
 

@@ -5,7 +5,7 @@ session_start();
 
 <!DOCTYPE html>
 
-<!--==================== contact page -RIMASS ====================-->
+<!--==================== RIMASSS ALMUNTI Contact page ====================-->
 <html lang="en">
 
 <head>

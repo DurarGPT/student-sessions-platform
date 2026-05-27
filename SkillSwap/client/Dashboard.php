@@ -4,9 +4,7 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-
-<!--==================== dashboard page -RIMAS ====================-->
-
+<!--==================== RIMASSS ALMUNTI DASHBOARD PAGE  ====================-->
 <html lang="en">
 
 <head>
@@ -14,96 +12,143 @@ session_start();
     <link rel="stylesheet" href="../assets/css/client_style.css">
 </head>
 
+
 <body class="dashboard-page">
-
-
 <?php include '../includes/header.php'; ?>
-
 
 <main>
 
-<section class="dashboard-hero">
-    <h1>Welcome back, Emma!</h1>
-    <p>Here's your SkillSwap activity overview.</p>
-</section>
+    <section class="dashboard-hero">
+        <h1>Welcome back,    </h1>
+        <p>Here's your SkillSwap activity overview.</p>
+    </section>
 
-<section class="dashboard-stats">
+    <section class="dashboard-stats">
 
-    <div class="stat-card">
-        <h2>Total Hours</h2>
-        <p>24</p>
-    </div>
+        <div class="stat-card">
+            <div class="stat-info">
+                <h2>Total Hours</h2>
+                <p>24</p>
+            </div>
+            <span class="stat-icon hours-icon">🏅</span>
+        </div>
 
-    <div class="stat-card">
-        <h2>Active Requests</h2>
-        <p>0</p>
-    </div>
+        <div class="stat-card">
+            <div class="stat-info">
+                <h2>Active Requests</h2>
+                <p>0</p>
+            </div>
+            <span class="stat-icon requests-icon">📖</span>
+        </div>
 
-    <div class="stat-card">
-        <h2>Mentoring</h2>
-        <p>0</p>
-    </div>
+        <div class="stat-card">
+            <div class="stat-info">
+                <h2>Mentoring</h2>
+                <p>0</p>
+            </div>
+            <span class="stat-icon mentoring-icon">📈</span>
+        </div>
 
-    <div class="stat-card">
-        <h2>Notifications</h2>
-        <p>0</p>
-    </div>
+        <div class="stat-card">
+            <div class="stat-info">
+                <h2>Notifications</h2>
+                <p>0</p>
+            </div>
+            <span class="stat-icon notifications-icon">🔔</span>
+        </div>
 
-</section>
+    </section>
 
-<section class="dashboard-grid">
+    <section class="dashboard-grid">
 
-    <div class="dashboard-card">
-        <h2>Volunteer Hours</h2>
-        <h3>Approved Hours</h3>
-        <p>0</p>
-        <h3>Pending</h3>
-        <p>0</p>
-        <h3>Completed</h3>
-        <p>0</p>
-        <button>View Full Volunteer Hours</button>
-    </div>
+        <div class="dashboard-card volunteer-card">
+            <h2>🏅 Volunteer Hours</h2>
 
-    <div class="dashboard-card">
-        <h2>Upcoming Sessions</h2>
-        <p>No upcoming sessions</p>
-        <button>Browse Requests</button>
-    </div>
+            <div class="hours-main-box">
+                <h3>Approved Hours</h3>
+                <p>0</p>
+            </div>
 
-</section>
+            <div class="hours-small-grid">
+                <div>
+                    <h3>Pending</h3>
+                    <p>0</p>
+                </div>
 
-<section class="dashboard-grid">
+                <div>
+                    <h3>Completed</h3>
+                    <p>0</p>
+                </div>
+            </div>
 
-    <div class="dashboard-card">
-        <h2>My Recent Requests</h2>
-        <p>No requests yet</p>
-        <button>Post a Request</button>
-    </div>
+            <a href="volunteer-hours.php" class="dashboard-btn">
+                View Full Volunteer Hours →
+            </a>
+        </div>
+        <div class="dashboard-card upcoming-card">
 
-    <div class="dashboard-card">
-        <h2>Recent Notifications</h2>
-        <p>No new notifications</p>
-    </div>
+            <h2>📅 Upcoming Sessions</h2>
 
-</section>
+            <div class="upcoming-empty">
 
-<section class="quick-actions">
-    <h2>Quick Actions</h2>
+                <div class="upcoming-icon">📅</div>
 
-    <div class="quick-buttons">
-        <button>Post Request</button>
-        <button>Browse Requests</button>
-        <button>Edit Profile</button>
-        <button>Track Hours</button>
-    </div>
-</section>
+                <p>No upcoming sessions</p>
+
+                <a href="browse-requests.php" class="secondary-btn">
+                    Browse Requests
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="dashboard-grid">
+        <div class="dashboard-card upcoming-card">
+
+            <h2>📖 My Recent Requests</h2>
+
+            <div class="upcoming-empty">
+
+                <div class="upcoming-icon">📖</div>
+
+                <p>No requests yet</p>
+
+                <a href="post-request.php" class="secondary-btn">
+                    Post a Request
+                </a>
+
+            </div>
+
+        </div>
+        <div class="dashboard-card notifications-card">
+            <h2>🔔 Recent Notifications</h2>
+
+            <div class="empty-state">
+                <div class="empty-icon">🔔</div>
+                <p>No new notifications</p>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="quick-actions">
+        <h2>Quick Actions</h2>
+
+        <div class="quick-buttons">
+            <a href="post-request.php" class="dashboard-btn">Post Request</a>
+            <a href="browse-requests.php" class="dashboard-btn">Browse Requests</a>
+            <a href="profile.php" class="dashboard-btn">Edit Profile</a>
+            <a href="volunteer-hours.php" class="dashboard-btn">Track Hours</a>
+        </div>
+    </section>
 
 </main>
 
-<hr>
-
 <?php include '../includes/footer.php'; ?>
+<script src="../assets/js/script.js"></script>
 
 </body>
-
 </html>

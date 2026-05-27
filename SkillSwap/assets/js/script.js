@@ -214,7 +214,7 @@ function scheduleSession() {
     alert("Session scheduled!");
 }
 
-// ================= Rimas part =================
+// =================  RIMASSS ALMUNTI  Part  =================
 
 // contact form
 

@@ -1995,8 +1995,8 @@ p {
 
 
 
-/* ================= CONTACT PAGE rimas ================= */
-/* ================= CONTACT PAGE rimas ================= */
+
+/* =================RIMASSS ALMUNTI CONTACT PAGE  ================= */
 
 .contact-page {
     background-color: #f8fafc;
@@ -2181,8 +2181,238 @@ p {
     margin: 0 8px;
     cursor: pointer;
 }
+/* =================RIMASSS ALMUNTI DASHBOARD PAGE  ================= */
+.dashboard-page {
+    background-color: #f8fafc;
+    color: #0f172a;
+}
 
-/* ================= TALA PART - ADMIN DASHBOARD CSS ================= */
+.dashboard-page main {
+    padding: 35px 8%;
+}
+
+.dashboard-hero {
+    margin-bottom: 28px;
+}
+
+.dashboard-hero h1 {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.dashboard-hero p {
+    color: #64748b;
+    font-size: 17px;
+}
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    margin-bottom: 34px;
+}
+
+.stat-card {
+    background: white;
+    padding: 26px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.stat-card h2 {
+    font-size: 15px;
+    color: #64748b;
+    margin: 0 0 12px;
+}
+
+.stat-card p {
+    font-size: 36px;
+    font-weight: bold;
+    color: #0f172a;
+    margin: 0;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 28px;
+    margin-bottom: 34px;
+}
+
+.dashboard-grid:nth-of-type(4) {
+    grid-template-columns: 1fr 1fr;
+}
+
+.dashboard-card {
+    background-color: white;
+    padding: 28px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.dashboard-card h2 {
+    margin-top: 0;
+    color: #111827;
+}
+
+.dashboard-card h3 {
+    color: #64748b;
+    margin-bottom: 6px;
+}
+
+.dashboard-card p {
+    color: #64748b;
+}
+
+.dashboard-page button,
+.dashboard-btn {
+    display: inline-block;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.dashboard-page button:hover,
+.dashboard-btn:hover {
+    background-color: #1d4ed8;
+}
+
+.quick-actions {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    padding: 30px;
+    border-radius: 18px;
+    margin-bottom: 40px;
+}
+
+.quick-actions h2 {
+    color: white;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.quick-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.quick-buttons button,
+.quick-buttons .dashboard-btn {
+    background-color: white;
+    color: #2563eb;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .dashboard-stats,
+    .dashboard-grid,
+    .quick-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+.stat-card {
+    position: relative;
+}
+
+.dashboard-icon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+
+    font-size: 26px;
+    color: #2563eb;
+
+    background-color: #dbeafe;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.stat-card {
+    position: relative;
+}
+
+.stat-icon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.hours-icon {
+    background-color: #fef3c7;
+}
+
+.requests-icon {
+    background-color: #dbeafe;
+}
+
+.mentoring-icon {
+    background-color: #dcfce7;
+}
+
+.notifications-icon {
+    background-color: #f3e8ff;
+}
+.upcoming-card {
+    min-height: 360px;
+}
+
+.upcoming-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 260px;
+    text-align: center;
+}
+
+.upcoming-icon {
+    font-size: 70px;
+    opacity: 0.25;
+    margin-bottom: 15px;
+}
+
+.upcoming-empty p {
+    color: #64748b;
+    margin-bottom: 18px;
+}
+.secondary-btn {
+    display: inline-block;
+    background-color: #2563eb;
+    color: white !important;
+    padding: 12px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.secondary-btn:hover {
+    background-color: #1d4ed8;
+    color: white;
+}
+/* ================= TALA PART - ADMIN DASHBOARD CSS ================= *
 
 .dashboard-page {
     background-color: #f8fafc;

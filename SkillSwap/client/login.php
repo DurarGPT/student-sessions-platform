@@ -1,4 +1,5 @@
 <?php
+global $pdo;
 session_start();
 include '../includes/db.php';
 
@@ -134,6 +135,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </main>
 
 <?php include '../includes/footer.php'; ?>
+<!-- ================= JS ================= -->
+
+<script src="../assets/js/main.js"></script>
 
 </body>
 

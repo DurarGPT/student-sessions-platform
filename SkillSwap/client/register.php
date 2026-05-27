@@ -1,4 +1,5 @@
 <?php
+global $pdo;
 session_start();
 include '../includes/db.php';
 
@@ -160,6 +161,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     </div>
 
+                    <small class="password-error"></small>
+
                 </div>
 
             </div>
@@ -274,25 +277,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php include '../includes/footer.php'; ?>
 
 <!-- ================= JS ================= -->
-<script>
 
-    const boxes = document.querySelectorAll('.option-box');
-
-    boxes.forEach(box => {
-
-        box.addEventListener('click', () => {
-
-            boxes.forEach(b => {
-                b.classList.remove('active');
-            });
-
-            box.classList.add('active');
-
-        });
-
-    });
-
-</script>
-
+<script src="../assets/js/main.js"></script>
 </body>
 </html>

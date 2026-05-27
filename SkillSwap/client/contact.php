@@ -1,30 +1,21 @@
 <?php
-// ================= PHP REGISTER LOGIC =================
-// هنا لاحقًا نضيف كود إدخال المستخدم في قاعدة البيانات
-// مثال:
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     $name = $_POST["name"];
-//     $email = $_POST["email"];
-//     $password = $_POST["password"];
-// }
+// Start session so PHP can remember logged-in users
+session_start();
 ?>
 
 <!DOCTYPE html>
 
 <!--==================== contact page -RIMASS ====================-->
-
 <html lang="en">
 
 <head>
     <title>Contact</title>
-    <link rel="stylesheet" href="../../assets/css/client_style.css">
+    <link rel="stylesheet" href="../assets/css/client_style.css">
 </head>
 
 <body class="contact-page">
 
 <?php include '../includes/header.php'; ?>
-
-
 
 <section class="contact-hero">
     <h1>Contact Us</h1>
@@ -35,29 +26,53 @@
 
         <!--left side contact information-->
         <section>
-
             <!--email card-->
             <div class="contact-card">
-                <h2>Email</h2>
-                <p>support@skillswap.edu</p>
-                <p>info@skillswap.edu</p>
+
+                <div class="contact-icon email-icon">
+                    📧
+                </div>
+
+                <div>
+                    <h2>Email</h2>
+                    <p>support@skillswap.edu</p>
+                    <p>info@skillswap.edu</p>
+                </div>
+
             </div>
 
             <!--phone card-->
             <div class="contact-card">
-                <h2>Phone</h2>
-                <p>(555) 123-4567</p>
-                <p>Mon-Fri 9am-5pm</p>
+
+                <div class="contact-icon phone-icon">
+                    ☎️
+                </div>
+
+                <div>
+                    <h2>Phone</h2>
+                    <p>(555) 123-4567</p>
+                    <p>Mon-Fri 9am-5pm</p>
+                </div>
+
             </div>
+
+
 
             <!--office card-->
             <div class="contact-card">
-                <h2>Office</h2>
-                <p>University Campus</p>
-                <p>Student Center, Building A</p>
-                <p>Room 203</p>
-            </div>
 
+                <div class="contact-icon office-icon">
+                    📌
+                </div>
+
+                <div>
+                    <h2>Office</h2>
+                    <p>University Campus</p>
+                    <p>Student Center, Building A</p>
+                    <p>Room 203</p>
+                </div>
+
+            </div>
             <!--office hours section-->
             <section class="office-hours">
                 <h2>Office Hours</h2>
@@ -74,17 +89,17 @@
 
             <form>
 
-                <label for="name">Name *</label><br>
-                <input type="text" id="name" name="name" placeholder="Your name"><br><br>
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" placeholder="Your name">
 
-                <label for="email">Email *</label><br>
-                <input type="email" id="email" name="email" placeholder="your.email@university.edu"><br><br>
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" placeholder="your.email@university.edu">
 
-                <label for="subject">Subject</label><br>
-                <input type="text" id="subject" name="subject" placeholder="What's this about?"><br><br>
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="What's this about?">
 
-                <label for="message">Message *</label><br>
-                <textarea id="message" name="message" rows="5" placeholder="Tell us more..."></textarea><br><br>
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell us more..."></textarea>
 
                 <button type="submit">Send Message</button>
 
@@ -104,6 +119,7 @@
 
     <hr>
 <?php include '../includes/footer.php'; ?>
+<script src="../assets/js/script.js"></script>
 </body>
 
 </html>

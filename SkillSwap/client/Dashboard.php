@@ -1,3 +1,8 @@
+<?php
+// Start session so PHP can remember logged-in users
+session_start();
+?>
+
 <!DOCTYPE html>
 
 <!--==================== dashboard page -RIMAS ====================-->
@@ -6,7 +11,7 @@
 
 <head>
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../../assets/css/client_style.css">
+    <link rel="stylesheet" href="../assets/css/client_style.css">
 </head>
 
 <body class="dashboard-page">

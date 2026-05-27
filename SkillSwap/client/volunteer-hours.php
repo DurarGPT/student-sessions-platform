@@ -1,231 +1,365 @@
-<!-- Durar's part - Volunteer hours page -->
+<!-- Durar's Part  -->
+
+<?php
+// Start session so PHP can track logged-in users
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Basic page setup -->
+
+    <!-- Character encoding -->
     <meta charset="UTF-8">
+
+    <!-- Makes website responsive on phones -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Browser tab title -->
     <title>SkillSwap | Volunteer Hours</title>
 
-    <!-- Durar's CSS file -->
-    <link rel="stylesheet" href="../../assets/css/Durar.css">
+    <!-- Connect CSS file -->
+    <link rel="stylesheet" href="../assets/css/client_style.css">
 </head>
 
+<!-- Body class used for page-specific styling -->
 <body class="volunteer-page">
 
-    <!-- Header and navigation bar -->
-    <header class="site-header">
-        <div class="nav-container">
 
-            <!-- Website logo -->
-            <a href="index.html" class="logo">
-                <img src="../../assets/images/skillswap-logo.png" alt="SkillSwap logo" class="logo-img">
-                <span>SkillSwap</span>
-            </a>
+<!-- Include reusable shared header -->
+<?php include '../includes/header.php'; ?>
 
-            <!-- Main page links -->
-            <nav class="main-nav">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="how-it-works.html">How It Works</a>
-                <a href="browse-requests.html">Browse Requests</a>
-                <a href="contact.html">Contact</a>
-            </nav>
 
-            <!-- User action links -->
-            <div class="nav-actions">
-                <a href="inbox.html" class="icon-link" aria-label="Notifications">🔔</a>
-                <a href="profile.html" class="nav-button">Profile</a>
-                <a href="Dashboard.html" class="nav-button">Dashboard</a>
-                <a href="post-request.php" class="post-button">Post Request</a>
-                <a href="login.html" class="logout-link">Logout</a>
-            </div>
+<main class="volunteer-main">
+
+    <!-- ================= PAGE TOP SECTION ================= -->
+    <section class="volunteer-top">
+
+        <!-- Left side title area -->
+        <div>
+
+            <!-- Main page title -->
+            <h1>Volunteer Hours Tracking</h1>
+
+            <!-- Short description -->
+            <p>
+                Official university volunteer hour tracking for SkillSwap
+            </p>
 
         </div>
-    </header>
 
-    <main class="volunteer-main">
 
-        <!-- Page title and report button -->
-        <section class="volunteer-top">
-            <div>
-                <h1>Volunteer Hours Tracking</h1>
-                <p>Official university volunteer hour tracking for SkillSwap</p>
+        <!-- Download report button -->
+        <a href="#" class="download-report">
+            ⬇️ Download Report
+        </a>
+
+    </section>
+
+
+    <!-- ================= SUMMARY CARDS SECTION ================= -->
+    <section class="volunteer-summary-grid">
+
+
+        <!-- Approved hours card -->
+        <div class="hours-card approved-card">
+
+            <div class="card-top-line">
+
+                <span class="hours-icon">🏅</span>
+
+                <span class="status-mark">✓</span>
+
             </div>
 
-            <a href="#" class="download-report">⬇️ Download Report</a>
-        </section>
+            <h2>0</h2>
 
-        <!-- Summary statistic cards -->
-        <section class="volunteer-summary-grid">
+            <p>Approved Hours</p>
 
-            <div class="hours-card approved-card">
-                <div class="card-top-line">
-                    <span class="hours-icon">🏅</span>
-                    <span class="status-mark">✓</span>
-                </div>
-                <h2>0</h2>
-                <p>Approved Hours</p>
+        </div>
+
+
+        <!-- Pending approval card -->
+        <div class="hours-card pending-card">
+
+            <div class="card-top-line">
+
+                <span class="hours-icon">🕒</span>
+
+                <span class="status-pill">Pending</span>
+
             </div>
 
-            <div class="hours-card pending-card">
-                <div class="card-top-line">
-                    <span class="hours-icon">🕒</span>
-                    <span class="status-pill">Pending</span>
-                </div>
-                <h2>0</h2>
-                <p>Pending Approval</p>
+            <h2>0</h2>
+
+            <p>Pending Approval</p>
+
+        </div>
+
+
+        <!-- Completed sessions card -->
+        <div class="hours-card completed-card">
+
+            <span class="hours-icon">📈</span>
+
+            <h2>0</h2>
+
+            <p>Completed Sessions</p>
+
+        </div>
+
+
+        <!-- Active sessions card -->
+        <div class="hours-card active-card">
+
+            <span class="hours-icon">📅</span>
+
+            <h2>0</h2>
+
+            <p>Active Sessions</p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= GOAL PROGRESS SECTION ================= -->
+    <section class="volunteer-panel progress-panel">
+
+        <!-- Section title -->
+        <h2>
+
+            <span class="panel-icon gold-text">🏅</span>
+
+            Progress Towards Goal
+
+        </h2>
+
+
+        <!-- Goal progress row -->
+        <div class="goal-row">
+
+            <p>Volunteer Hours Goal: 100 hours</p>
+
+            <strong>0 / 100</strong>
+
+        </div>
+
+
+        <!-- Progress bar -->
+        <div class="progress-bar">
+
+            <!-- Filled part of progress bar -->
+            <div class="progress-fill"></div>
+
+        </div>
+
+
+        <!-- Progress note -->
+        <p class="progress-note">
+            0% complete • 100 hours remaining
+        </p>
+
+    </section>
+
+
+    <!-- ================= MONTHLY HOURS SECTION ================= -->
+    <section class="volunteer-panel month-panel">
+
+        <!-- Section title -->
+        <h2>
+
+            <span class="panel-icon blue-text">📅</span>
+
+            Hours Earned by Month
+
+        </h2>
+
+
+        <!-- Monthly statistics grid -->
+        <div class="month-grid">
+
+
+            <!-- January -->
+            <div class="month-item">
+
+                <strong>4</strong>
+
+                <span>Jan</span>
+
             </div>
 
-            <div class="hours-card completed-card">
-                <span class="hours-icon">📈</span>
-                <h2>0</h2>
-                <p>Completed Sessions</p>
+
+            <!-- February -->
+            <div class="month-item">
+
+                <strong>8</strong>
+
+                <span>Feb</span>
+
             </div>
 
-            <div class="hours-card active-card">
-                <span class="hours-icon">📅</span>
-                <h2>0</h2>
-                <p>Active Sessions</p>
+
+            <!-- March -->
+            <div class="month-item">
+
+                <strong>12</strong>
+
+                <span>Mar</span>
+
             </div>
 
-        </section>
 
-        <!-- Progress toward volunteer hour goal -->
-        <section class="volunteer-panel progress-panel">
-            <h2><span class="panel-icon gold-text">🏅</span> Progress Towards Goal</h2>
+            <!-- April -->
+            <div class="month-item">
 
-            <div class="goal-row">
-                <p>Volunteer Hours Goal: 100 hours</p>
-                <strong>0 / 100</strong>
+                <strong>6</strong>
+
+                <span>Apr</span>
+
             </div>
 
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
-            </div>
 
-            <p class="progress-note">0% complete • 100 hours remaining</p>
-        </section>
+            <!-- May -->
+            <div class="month-item">
 
-        <!-- Monthly hours overview -->
-        <section class="volunteer-panel month-panel">
-            <h2><span class="panel-icon blue-text">📅</span> Hours Earned by Month</h2>
+                <strong>0</strong>
 
-            <div class="month-grid">
-                <div class="month-item">
-                    <strong>4</strong>
-                    <span>Jan</span>
-                </div>
+                <span>May</span>
 
-                <div class="month-item">
-                    <strong>8</strong>
-                    <span>Feb</span>
-                </div>
-
-                <div class="month-item">
-                    <strong>12</strong>
-                    <span>Mar</span>
-                </div>
-
-                <div class="month-item">
-                    <strong>6</strong>
-                    <span>Apr</span>
-                </div>
-
-                <div class="month-item">
-                    <strong>0</strong>
-                    <span>May</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pending and approved session boxes -->
-        <section class="approval-grid">
-
-            <div class="small-panel">
-                <h2><span class="panel-icon orange-text">🕒</span> Pending Approval (0)</h2>
-                <p>No pending sessions</p>
-            </div>
-
-            <div class="small-panel">
-                <h2><span class="panel-icon green-text">✅</span> Approved Sessions (0)</h2>
-                <p>No approved sessions yet</p>
-            </div>
-
-        </section>
-
-        <!-- Session history area -->
-        <section class="volunteer-panel history-panel">
-            <div class="history-top">
-                <h2><span class="panel-icon blue-text">📈</span> Session History</h2>
-                <button type="button" class="filter-button">🔎 Filter</button>
-            </div>
-
-            <div class="empty-history">
-                <div class="empty-icon">🕒</div>
-                <h3>No session history yet</h3>
-                <p>Complete mentoring sessions to start earning volunteer hours</p>
-            </div>
-        </section>
-
-        <!-- Information about volunteer hours -->
-        <section class="about-hours-card">
-            <h2><span>🏅</span> About Volunteer Hours</h2>
-            <ul>
-                <li>All volunteer hours are officially tracked and verified by university administrators</li>
-                <li>Approved hours can be used for scholarships, resumes, and graduation requirements</li>
-                <li>Sessions must be confirmed by learners and approved by admins to count</li>
-                <li>Download your official volunteer hours report anytime for your records</li>
-            </ul>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-container">
-
-            <div class="footer-column footer-brand">
-                <h3>
-                    <img src="../../assets/images/skillswap-logo.png" alt="SkillSwap logo" class="footer-logo-img">
-                    SkillSwap
-                </h3>
-                <p>
-                    Learn. Teach. Earn. Empowering university
-                    students and professors through peer mentoring.
-                </p>
-            </div>
-
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <a href="about.html">About Us</a>
-                <a href="how-it-works.html">How It Works</a>
-                <a href="browse-requests.html">Browse Requests</a>
-                <a href="contact.html">Contact</a>
-            </div>
-
-            <div class="footer-column">
-                <h3>For Students</h3>
-                <a href="profile.html">Become a Mentor</a>
-                <a href="post-request.php">Request Help</a>
-                <a href="volunteer-hours.html">Track Hours</a>
-                <a href="admin.html">Admin Panel</a>
-            </div>
-
-            <div class="footer-column">
-                <h3>Contact Us</h3>
-                <p>📍 University Campus, Building A</p>
-                <p>✉️ support@skillswap.edu</p>
-                <p>📞 (555) 123-4567</p>
             </div>
 
         </div>
 
-        <div class="footer-bottom">
-            <p>&copy; 2026 SkillSwap. All rights reserved. University Mentoring Platform.</p>
+    </section>
+
+
+    <!-- ================= APPROVAL STATUS SECTION ================= -->
+    <section class="approval-grid">
+
+
+        <!-- Pending approval box -->
+        <div class="small-panel">
+
+            <h2>
+
+                <span class="panel-icon orange-text">🕒</span>
+
+                Pending Approval (0)
+
+            </h2>
+
+            <p>No pending sessions</p>
+
         </div>
-    </footer>
+
+
+        <!-- Approved sessions box -->
+        <div class="small-panel">
+
+            <h2>
+
+                <span class="panel-icon green-text">✅</span>
+
+                Approved Sessions (0)
+
+            </h2>
+
+            <p>No approved sessions yet</p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SESSION HISTORY SECTION ================= -->
+    <section class="volunteer-panel history-panel">
+
+
+        <!-- Top row -->
+        <div class="history-top">
+
+            <!-- Section title -->
+            <h2>
+
+                <span class="panel-icon blue-text">📈</span>
+
+                Session History
+
+            </h2>
+
+
+            <!-- Filter button -->
+            <button type="button" class="filter-button">
+                🔎 Filter
+            </button>
+
+        </div>
+
+
+        <!-- Empty history state -->
+        <div class="empty-history">
+
+            <div class="empty-icon">🕒</div>
+
+            <h3>No session history yet</h3>
+
+            <p>
+                Complete mentoring sessions to start earning volunteer hours
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT VOLUNTEER HOURS SECTION ================= -->
+    <section class="about-hours-card">
+
+        <!-- Section title -->
+        <h2>
+
+            <span>🏅</span>
+
+            About Volunteer Hours
+
+        </h2>
+
+
+        <!-- Information list -->
+        <ul>
+
+            <li>
+                All volunteer hours are officially tracked
+                and verified by university administrators
+            </li>
+
+            <li>
+                Approved hours can be used for scholarships,
+                resumes, and graduation requirements
+            </li>
+
+            <li>
+                Sessions must be confirmed by learners
+                and approved by admins to count
+            </li>
+
+            <li>
+                Download your official volunteer hours report
+                anytime for your records
+            </li>
+
+        </ul>
+
+    </section>
+
+</main>
+
+
+<!-- Include reusable shared footer -->
+<?php include '../includes/footer.php'; ?>
+
 
 </body>
 

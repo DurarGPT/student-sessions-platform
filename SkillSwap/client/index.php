@@ -1,295 +1,422 @@
-<!-- Durar's part - Home page -->
+<!-- Durar's Part  -->
+
+<?php
+// Start session so PHP can track logged-in users
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Basic page setup -->
+
+    <!-- Character encoding -->
     <meta charset="UTF-8">
+
+    <!-- Makes website responsive on phones -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Browser tab title -->
     <title>SkillSwap | Home</title>
 
-    <!-- Durar's CSS file -->
-    <link rel="stylesheet" href="../../assets/css/Durar.css">
+    <!-- Connect CSS file -->
+    <link rel="stylesheet" href="../assets/css/client_style.css">
 </head>
 
+<!-- Body class used for page-specific styling -->
 <body class="home-page">
 
-    <!-- Header and navigation bar -->
-    <header class="site-header">
-        <div class="nav-container">
 
-            <!-- Website logo -->
-            <a href="index.html" class="logo">
-                <img src="../../assets/images/skillswap-logo.png" alt="SkillSwap logo" class="logo-img">
-                <span>SkillSwap</span>
-            </a>
+<!-- Include reusable shared header -->
+<?php include '../includes/header.php'; ?>
 
-            <!-- Main page links -->
-            <nav class="main-nav">
-                <a href="index.html" class="active">Home</a>
-                <a href="about.html">About</a>
-                <a href="how-it-works.html">How It Works</a>
-                <a href="browse-requests.html">Browse Requests</a>
-                <a href="contact.html">Contact</a>
-            </nav>
 
-            <!-- User action links -->
-            <div class="nav-actions">
-                <a href="inbox.html" class="icon-link" aria-label="Notifications">🔔</a>
-                <a href="profile.html" class="nav-button">Profile</a>
-                <a href="Dashboard.html" class="nav-button">Dashboard</a>
-                <a href="post-request.php" class="post-button">Post Request</a>
-                <a href="login.html" class="logout-link">Logout</a>
-            </div>
+<main>
 
-        </div>
-    </header>
+    <!-- ================= HERO SECTION ================= -->
+    <section class="home-hero">
 
-    <main>
+        <div class="home-hero-content">
 
-        <!-- Hero section -->
-        <section class="home-hero">
-            <div class="home-hero-content">
-                <h1>Learn. Teach. Earn.</h1>
-                <p>
-                    Connect with mentors and learners across your university.
-                    Exchange skills, earn volunteer hours, and grow together.
-                </p>
+            <!-- Main hero title -->
+            <h1>Learn. Teach. Earn.</h1>
 
-                <!-- Hero buttons -->
-                <div class="hero-buttons">
-                    <a href="register.html" class="primary-button">Get Started <span>&rarr;</span></a>
-                    <a href="browse-requests.html" class="secondary-button">Browse Requests</a>
-                </div>
-            </div>
-        </section>
+            <!-- Hero description -->
+            <p>
+                Connect with mentors and learners across your university.
+                Exchange skills, earn volunteer hours, and grow together.
+            </p>
 
-        <!-- Statistics cards -->
-        <section class="stats-section">
-            <div class="stats-grid">
 
-                <div class="stat-card">
-                    <div class="stat-icon blue-text">📖</div>
-                    <h2>45</h2>
-                    <p>Sessions Completed</p>
-                </div>
+            <!-- ===== HERO BUTTONS ===== -->
+            <div class="hero-buttons">
 
-                <div class="stat-card">
-                    <div class="stat-icon green-text">🕒</div>
-                    <h2>147</h2>
-                    <p>Volunteer Hours</p>
-                </div>
+                <!-- Main CTA button -->
+                <a href="register.php" class="primary-button">
+                    Get Started
+                    <span>&rarr;</span>
+                </a>
 
-                <div class="stat-card">
-                    <div class="stat-icon purple-text">👥</div>
-                    <h2>4</h2>
-                    <p>Active Mentors</p>
-                </div>
+                <!-- Browse requests button -->
+                <a href="browse-requests.php" class="secondary-button">
+                    Browse Requests
+                </a>
 
-                <div class="stat-card">
-                    <div class="stat-icon orange-text">🏅</div>
-                    <h2>98%</h2>
-                    <p>Satisfaction Rate</p>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Top requested skills -->
-        <section class="requested-skills-section">
-            <div class="section-heading">
-                <h2>Top Requested Skills</h2>
-                <p>Most in-demand skills students are learning</p>
-            </div>
-
-            <div class="skills-grid">
-
-                <div class="skill-card">
-                    <div class="skill-info">
-                        <span class="skill-icon lavender-bg">🎨</span>
-                        <div>
-                            <h3>UI Design</h3>
-                            <p>24 requests</p>
-                        </div>
-                    </div>
-                    <span class="trend-arrow">↗</span>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-info">
-                        <span class="skill-icon cream-bg">☕</span>
-                        <div>
-                            <h3>Java</h3>
-                            <p>19 requests</p>
-                        </div>
-                    </div>
-                    <span class="trend-arrow">↗</span>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-info">
-                        <span class="skill-icon sky-bg">💬</span>
-                        <div>
-                            <h3>English Speaking</h3>
-                            <p>16 requests</p>
-                        </div>
-                    </div>
-                    <span class="trend-arrow">↗</span>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-info">
-                        <span class="skill-icon mint-bg">🐍</span>
-                        <div>
-                            <h3>Python</h3>
-                            <p>14 requests</p>
-                        </div>
-                    </div>
-                    <span class="trend-arrow">↗</span>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-info">
-                        <span class="skill-icon indigo-bg">📊</span>
-                        <div>
-                            <h3>Data Structures</h3>
-                            <p>12 requests</p>
-                        </div>
-                    </div>
-                    <span class="trend-arrow">↗</span>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-info">
-                        <span class="skill-icon aqua-bg">⚛</span>
-                        <div>
-                            <h3>React</h3>
-                            <p>11 requests</p>
-                        </div>
-                    </div>
-                    <span class="trend-arrow">↗</span>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Top mentors leaderboard -->
-        <section class="top-mentors-section">
-            <div class="section-heading">
-                <h2>Top Mentors This Month</h2>
-                <p>Recognizing our most active community members</p>
-            </div>
-
-            <div class="mentor-list">
-
-                <div class="mentor-row">
-                    <span class="mentor-rank">1</span>
-                    <span class="mentor-avatar">MC</span>
-                    <div class="mentor-info">
-                        <h3>Dr. Michael Chen</h3>
-                        <p>Professor</p>
-                    </div>
-                    <div class="mentor-hours">
-                        <h4>58 hrs</h4>
-                        <p>4 skills</p>
-                    </div>
-                </div>
-
-                <div class="mentor-row">
-                    <span class="mentor-rank">2</span>
-                    <span class="mentor-avatar">SM</span>
-                    <div class="mentor-info">
-                        <h3>Sarah Martinez</h3>
-                        <p>Student</p>
-                    </div>
-                    <div class="mentor-hours">
-                        <h4>32 hrs</h4>
-                        <p>3 skills</p>
-                    </div>
-                </div>
-
-                <div class="mentor-row">
-                    <span class="mentor-rank">3</span>
-                    <span class="mentor-avatar">EJ</span>
-                    <div class="mentor-info">
-                        <h3>Emma Johnson</h3>
-                        <p>Student</p>
-                    </div>
-                    <div class="mentor-hours">
-                        <h4>24 hrs</h4>
-                        <p>3 skills</p>
-                    </div>
-                </div>
-
-                <div class="mentor-row">
-                    <span class="mentor-rank">4</span>
-                    <span class="mentor-avatar">JW</span>
-                    <div class="mentor-info">
-                        <h3>James Wilson</h3>
-                        <p>Student</p>
-                    </div>
-                    <div class="mentor-hours">
-                        <h4>18 hrs</h4>
-                        <p>3 skills</p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Call to action -->
-        <section class="green-cta">
-            <h2>Ready to Start Your Journey?</h2>
-            <p>Join hundreds of students and professors building skills together</p>
-            <a href="register.html">Join SkillSwap Today</a>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-container">
-
-            <div class="footer-column footer-brand">
-                <h3>
-                    <img src="../../assets/images/skillswap-logo.png" alt="SkillSwap logo" class="footer-logo-img">
-                    SkillSwap
-                </h3>
-                <p>
-                    Learn. Teach. Earn. Empowering university
-                    students and professors through peer mentoring.
-                </p>
-            </div>
-
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <a href="about.html">About Us</a>
-                <a href="how-it-works.html">How It Works</a>
-                <a href="browse-requests.html">Browse Requests</a>
-                <a href="contact.html">Contact</a>
-            </div>
-
-            <div class="footer-column">
-                <h3>For Students</h3>
-                <a href="profile.html">Become a Mentor</a>
-                <a href="post-request.php">Request Help</a>
-                <a href="volunteer-hours.html">Track Hours</a>
-                <a href="admin.html">Admin Panel</a>
-            </div>
-
-            <div class="footer-column">
-                <h3>Contact Us</h3>
-                <p>📍 University Campus, Building A</p>
-                <p>✉️ support@skillswap.edu</p>
-                <p>📞 (555) 123-4567</p>
             </div>
 
         </div>
 
-        <div class="footer-bottom">
-            <p>&copy; 2026 SkillSwap. All rights reserved. University Mentoring Platform.</p>
+    </section>
+
+
+    <!-- ================= STATISTICS SECTION ================= -->
+    <section class="home-stats-section">
+
+        <div class="home-stats-grid">
+
+
+            <!-- Sessions completed card -->
+            <div class="home-stat-card">
+                <div class="home-stat-icon">📖</div>
+                <h2>45</h2>
+                <p>Sessions Completed</p>
+            </div>
+
+
+            <!-- Volunteer hours card -->
+            <div class="home-stat-card">
+                <div class="home-stat-icon">🕒</div>
+                <h2>147</h2>
+                <p>Volunteer Hours</p>
+            </div>
+
+
+            <!-- Active mentors card -->
+            <div class="home-stat-card">
+                <div class="home-stat-icon">👥</div>
+                <h2>4</h2>
+                <p>Active Mentors</p>
+            </div>
+
+
+            <!-- Satisfaction rate card -->
+            <div class="home-stat-card">
+                <div class="home-stat-icon">🏅</div>
+                <h2>98%</h2>
+                <p>Satisfaction Rate</p>
+            </div>
+
         </div>
-    </footer>
+
+    </section>
+
+
+    <!-- ================= TOP REQUESTED SKILLS SECTION ================= -->
+    <section class="requested-skills-section">
+
+        <!-- Section heading -->
+        <div class="section-heading">
+
+            <h2>Top Requested Skills</h2>
+
+            <p>
+                Most in-demand skills students are learning
+            </p>
+
+        </div>
+
+
+        <!-- Skills grid -->
+        <div class="skills-grid">
+
+
+            <!-- UI Design card -->
+            <div class="skill-card">
+
+                <div class="skill-info">
+
+                    <span class="skill-icon lavender-bg">🎨</span>
+
+                    <div>
+
+                        <h3>UI Design</h3>
+
+                        <p>24 requests</p>
+
+                    </div>
+
+                </div>
+
+                <span class="trend-arrow">↗</span>
+
+            </div>
+
+
+            <!-- Java card -->
+            <div class="skill-card">
+
+                <div class="skill-info">
+
+                    <span class="skill-icon cream-bg">☕</span>
+
+                    <div>
+
+                        <h3>Java</h3>
+
+                        <p>19 requests</p>
+
+                    </div>
+
+                </div>
+
+                <span class="trend-arrow">↗</span>
+
+            </div>
+
+
+            <!-- English speaking card -->
+            <div class="skill-card">
+
+                <div class="skill-info">
+
+                    <span class="skill-icon sky-bg">💬</span>
+
+                    <div>
+
+                        <h3>English Speaking</h3>
+
+                        <p>16 requests</p>
+
+                    </div>
+
+                </div>
+
+                <span class="trend-arrow">↗</span>
+
+            </div>
+
+
+            <!-- Python card -->
+            <div class="skill-card">
+
+                <div class="skill-info">
+
+                    <span class="skill-icon mint-bg">🐍</span>
+
+                    <div>
+
+                        <h3>Python</h3>
+
+                        <p>14 requests</p>
+
+                    </div>
+
+                </div>
+
+                <span class="trend-arrow">↗</span>
+
+            </div>
+
+
+            <!-- Data structures card -->
+            <div class="skill-card">
+
+                <div class="skill-info">
+
+                    <span class="skill-icon indigo-bg">📊</span>
+
+                    <div>
+
+                        <h3>Data Structures</h3>
+
+                        <p>12 requests</p>
+
+                    </div>
+
+                </div>
+
+                <span class="trend-arrow">↗</span>
+
+            </div>
+
+
+            <!-- React card -->
+            <div class="skill-card">
+
+                <div class="skill-info">
+
+                    <span class="skill-icon aqua-bg">⚛</span>
+
+                    <div>
+
+                        <h3>React</h3>
+
+                        <p>11 requests</p>
+
+                    </div>
+
+                </div>
+
+                <span class="trend-arrow">↗</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TOP MENTORS SECTION ================= -->
+    <section class="top-mentors-section">
+
+        <!-- Section heading -->
+        <div class="section-heading">
+
+            <h2>Top Mentors This Month</h2>
+
+            <p>
+                Recognizing our most active community members
+            </p>
+
+        </div>
+
+
+        <!-- Mentor leaderboard -->
+        <div class="mentor-list">
+
+
+            <!-- Mentor row -->
+            <div class="mentor-row">
+
+                <span class="mentor-rank">1</span>
+
+                <span class="mentor-avatar">MC</span>
+
+                <div class="mentor-info">
+
+                    <h3>Dr. Michael Chen</h3>
+
+                    <p>Professor</p>
+
+                </div>
+
+                <div class="mentor-hours">
+
+                    <h4>58 hrs</h4>
+
+                    <p>4 skills</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Mentor row -->
+            <div class="mentor-row">
+
+                <span class="mentor-rank">2</span>
+
+                <span class="mentor-avatar">SM</span>
+
+                <div class="mentor-info">
+
+                    <h3>Sarah Martinez</h3>
+
+                    <p>Student</p>
+
+                </div>
+
+                <div class="mentor-hours">
+
+                    <h4>32 hrs</h4>
+
+                    <p>3 skills</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Mentor row -->
+            <div class="mentor-row">
+
+                <span class="mentor-rank">3</span>
+
+                <span class="mentor-avatar">EJ</span>
+
+                <div class="mentor-info">
+
+                    <h3>Emma Johnson</h3>
+
+                    <p>Student</p>
+
+                </div>
+
+                <div class="mentor-hours">
+
+                    <h4>24 hrs</h4>
+
+                    <p>3 skills</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Mentor row -->
+            <div class="mentor-row">
+
+                <span class="mentor-rank">4</span>
+
+                <span class="mentor-avatar">JW</span>
+
+                <div class="mentor-info">
+
+                    <h3>James Wilson</h3>
+
+                    <p>Student</p>
+
+                </div>
+
+                <div class="mentor-hours">
+
+                    <h4>18 hrs</h4>
+
+                    <p>3 skills</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CALL TO ACTION SECTION ================= -->
+    <section class="green-cta">
+
+        <!-- CTA title -->
+        <h2>Ready to Start Your Journey?</h2>
+
+        <!-- CTA description -->
+        <p>
+            Join hundreds of students and professors building skills together
+        </p>
+
+        <!-- CTA button -->
+        <a href="register.php">
+            Join SkillSwap Today
+        </a>
+
+    </section>
+
+</main>
+
+
+<!-- Include reusable shared footer -->
+<?php include '../includes/footer.php'; ?>
+
 
 </body>
 

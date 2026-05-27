@@ -1,115 +1,276 @@
+<?php
+
+session_start();
+
+include '../includes/db.php';
+
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
+
     <title>Post Request</title>
 
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/client_style.css">
+
 </head>
 
 <body>
 
-<!-- ================= (post request page -balqees) ================= -->
-<header>
-    <h1>SkillSwap</h1>
+<?php include '../includes/header.php'; ?>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="browse-requests.html">Browse Requests</a>
-        <a href="contact.php">Contact</a>
-        <a href="inbox.html">Inbox</a>
-        <a href="profile.php">Profile</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="post-request.html">Post Request</a>
-        <a href="../login.php">Logout</a>
-    </nav>
-</header>
+<!-- ================= POST REQUEST PAGE ================= -->
 
 <main>
 
-    <h1 class="page-title">Post a Learning Request</h1>
+    <!-- HERO SECTION -->
 
-    <form class="request-form">
+    <section class="post-hero">
 
-        <label>Skill Needed</label>
-        <input type="text" placeholder="Enter skill">
+        <h1 class="page-title">
+            Post a Learning Request
+        </h1>
 
-        <label>Description</label>
-        <textarea placeholder="Describe your learning request"></textarea>
+        <p>
+            Tell us what skill you want to learn
+        </p>
 
-        <label>Category</label>
-        <select>
-            <option>Programming</option>
-            <option>Design</option>
-            <option>Languages</option>
-            <option>Business</option>
-        </select>
+    </section>
 
-        <label>Level</label>
-        <select>
-            <option>Beginner</option>
-            <option>Intermediate</option>
-            <option>Advanced</option>
-        </select>
 
-        <label>Preferred Date</label>
-        <input type="date">
 
-        <button class="post-btn" type="submit">
-            Post Request
-        </button>
+    <!-- FORM SECTION -->
 
-    </form>
+    <section class="post-wrapper">
+
+        <form class="request-form" method="POST">
+
+            <h2>
+                Request Details
+            </h2>
+
+
+
+            <!-- SKILL INPUT -->
+
+            <label>
+                Skill You Want to Learn *
+            </label>
+
+            <input
+                    type="text"
+                    name="title"
+                    placeholder="e.g. UI Design, Java, Public Speaking"
+            >
+
+
+
+            <!-- POPULAR TAGS -->
+
+            <div class="popular-tags">
+
+                <span>UI Design</span>
+                <span>Java</span>
+                <span>Python</span>
+                <span>React</span>
+                <span>English Speaking</span>
+                <span>Data Structures</span>
+                <span>Photography</span>
+                <span>Public Speaking</span>
+
+            </div>
+
+
+
+            <!-- DESCRIPTION -->
+
+            <label>
+                Description *
+            </label>
+
+            <textarea
+                    name="description"
+                    placeholder="Describe what you want to learn and any specific topics you need help with..."
+            ></textarea>
+
+            <small>
+                Be specific about your learning goals and current skill level
+            </small>
+
+
+
+            <!-- PREFERRED TIME -->
+
+            <label>
+                Preferred Time *
+            </label>
+
+            <input
+                    type="text"
+                    name="preferred_time"
+                    placeholder="e.g. Weekday evenings, Weekend mornings, Flexible"
+            >
+
+
+
+            <!-- CATEGORY -->
+
+            <label>
+                Category
+            </label>
+
+            <select name="category">
+
+                <option>Programming</option>
+                <option>Design</option>
+                <option>Languages</option>
+                <option>Business</option>
+                <option>Public Speaking</option>
+
+            </select>
+
+
+
+            <!-- LEVEL -->
+
+            <label>
+                Level
+            </label>
+
+            <select name="level">
+
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+
+            </select>
+
+
+
+            <!-- DATE -->
+
+            <label>
+                Preferred Date
+            </label>
+
+            <input
+                    type="date"
+                    name="preferred_date"
+            >
+
+
+
+            <!-- SESSION TYPE -->
+
+            <label>
+                Session Type *
+            </label>
+
+            <div class="session-options">
+
+                <!-- ONE ON ONE -->
+
+                <label class="session-card active">
+
+                    <input
+                            type="radio"
+                            name="session_type"
+                            value="one-on-one"
+                            checked
+                    >
+
+                    <div>
+
+                        <h3>
+                            One-on-One
+                        </h3>
+
+                        <p>
+                            Personalized mentoring with individual attention
+                        </p>
+
+                    </div>
+
+                </label>
+
+
+
+                <!-- GROUP -->
+
+                <label class="session-card">
+
+                    <input
+                            type="radio"
+                            name="session_type"
+                            value="group"
+                    >
+
+                    <div>
+
+                        <h3>
+                            Group Session
+                        </h3>
+
+                        <p>
+                            Learn together with others who share your goals
+                        </p>
+
+                    </div>
+
+                </label>
+
+            </div>
+
+
+
+            <!-- INFO BOX -->
+
+            <div class="info-box">
+
+                <h3>
+                    What happens next?
+                </h3>
+
+                <p>
+                    ✓ Verified mentors with this skill will be notified
+                </p>
+
+                <p>
+                    ✓ They can review your request and accept it
+                </p>
+
+                <p>
+                    ✓ Once accepted, you'll coordinate the session details
+                </p>
+
+                <p>
+                    ✓ Sessions are conducted via Teams or in person
+                </p>
+
+            </div>
+
+
+
+            <!-- BUTTON -->
+
+            <button class="post-btn" type="submit">
+
+                Post Request
+
+            </button>
+
+        </form>
+
+    </section>
 
 </main>
 
-<!-- footer -->
-<footer>
+<?php include '../includes/footer.php'; ?>
 
-    <div>
-        <h3>SkillSwap</h3>
+<script src="../assets/js/client.js"></script>
 
-        <p>
-            Learn. Teach. Earn. Empowering university students
-            through peer mentoring.
-        </p>
-    </div>
-
-    <div>
-        <h3>Quick Links</h3>
-
-        <a href="about.html">About</a><br>
-        <a href="how-it-works.html">How It Works</a><br>
-        <a href="browse-requests.html">Browse Requests</a><br>
-        <a href="contact.php">Contact</a>
-
-    </div>
-
-    <div>
-        <h3>For Students</h3>
-
-        <a href="profile.php">Become a Mentor</a><br>
-        <a href="post-request.html">Request Help</a><br>
-        <a href="volunteer-hours.html">Track Hours</a><br>
-        <a href="../admin/admin.php">Admin Panel</a>
-
-    </div>
-
-    <div>
-        <h3>Contact</h3>
-
-        <p>University Campus</p>
-        <p>support@skillswap.edu</p>
-
-    </div>
-
-    <p>© 2026 SkillSwap</p>
-
-</footer>
-<?php
-echo "working";
-?>
 </body>
+
 </html>

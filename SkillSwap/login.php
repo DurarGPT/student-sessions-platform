@@ -14,32 +14,16 @@
     <title>SkillSwap | Login</title>
 
     <!-- ========== AUTH PAGE STYLES ========== -->
-
-    <link rel="stylesheet" href="auth.css">
-
-
+    <link rel="stylesheet" href="./assets/css/auth.css">
 </head>
 
 <body>
 
 <!-- ================= HEADER ================= -->
-<header>
-    <img src="/SkillSwap/images/logo.png" alt="SkillSwap Logo" class="logo-img">
+<?php include './includes/header.php'; ?>
 
-    <nav>
-        <a href="/SkillSwap/index.php">Home</a>
-        <a href="/SkillSwap/about.php">About</a>
-        <a href="/SkillSwap/how-it-works.php">How It Works</a>
-        <a href="/SkillSwap/browse-requests.php">Browse Requests</a>
-        <a href="/SkillSwap/contact.php">Contact</a>
-        <a href="/SkillSwap/login.php">Login</a>
-        <a href="/SkillSwap/register.php">Sign Up</a>
-    </nav>
-</header>
-
-<!-- ================= LOGIN CONTENT n================= -->
+<!-- ================= LOGIN CONTENT ================= -->
 <main class="login-page">
-
     <h2>Welcome Back</h2>
     <p>Log in to your SkillSwap account</p>
 
@@ -62,44 +46,15 @@
             </form>
 
             <p class="auth-switch">
-                Don't have an account? <a href="/SkillSwap/register.php">Sign up</a>
+                Don't have an account?
+                <a href="./client/register.php">Sign up</a>
             </p>
         </div>
     </section>
-
 </main>
 
 <!-- ================= FOOTER ================= -->
-<footer>
-    <div>
-        <h3>SkillSwap</h3>
-        <p>Learn. Teach. Earn. Empowering university students through peer mentoring.</p>
-    </div>
-
-    <div>
-        <h3>Quick Links</h3>
-        <a href="/SkillSwap/about.php">About</a><br>
-        <a href="/SkillSwap/how-it-works.php">How It Works</a><br>
-        <a href="/SkillSwap/browse-requests.php">Browse Requests</a><br>
-        <a href="/SkillSwap/contact.php">Contact</a>
-    </div>
-
-    <div>
-        <h3>For Students</h3>
-        <a href="/SkillSwap/profile.php">Become a Mentor</a><br>
-        <a href="/SkillSwap/post-request.php">Request Help</a><br>
-        <a href="/SkillSwap/volunteer-hours.php">Track Hours</a><br>
-        <a href="/SkillSwap/admin.php">Admin Panel</a>
-    </div>
-
-    <div>
-        <h3>Contact</h3>
-        <p>University Campus</p>
-        <p>support@skillswap.edu</p>
-    </div>
-
-    <p>© 2026 SkillSwap</p>
-</footer>
+<?php include './includes/footer.php'; ?>
 
 </body>
 </html>

@@ -1,3 +1,7 @@
+<?php
+// Start session so PHP can remember logged-in users
+session_start();
+?>
 <!DOCTYPE html>
 
 <!--==================== admin panel page - RIMASS====================-->
@@ -6,7 +10,8 @@
 
 <head>
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin_style.css">
+    <link rel="stylesheet" href="../assets/css/client_style.css">
 </head>
 
 <body class="admin-page">
@@ -81,7 +86,7 @@
                 <span>Adobe Suite</span>
             </div>
 
-            <button>Verify as Mentor</button>
+            <button class="approve-btn">Verify as Mentor</button>
 
         </div>
 
@@ -99,8 +104,6 @@
     <p>No sessions yet</p>
 
 </section>
-
-
 
 <!--admin responsibilities section-->
 <section class="admin-responsibilities">
@@ -129,7 +132,8 @@
 
 </section>
 <?php include '../includes/footer.php'; ?>
-
+<script src="../assets/js/script.js"></script>
 </body>
+
 
 </html>

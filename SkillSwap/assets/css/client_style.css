@@ -671,336 +671,569 @@ p {
 }
 /* ================= DURARS PART - ABOUT PAGE ================= */
 
-.about-page {
-    background-color: #f8fafc;
-    color: #0f172a;
+
+/* Remove default spacing for about page */
+.about-page main {
+    padding: 0;
+    background-color: #ffffff;
 }
 
-.about-page main section:first-child {
-    background: linear-gradient(to right, #2563eb, #4338ca);
+/* ================= ABOUT HERO SECTION ================= */
+
+/* Blue/purple hero banner */
+.about-hero {
+    background: linear-gradient(135deg, #155dfc, #4c1dca);
+    padding: 72px 8%;
     color: white;
-    padding: 90px 8%;
 }
 
-.about-page main section:first-child h2 {
+/* Hero content width */
+.about-hero .wide-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Hero title */
+.about-hero h1 {
     font-size: 48px;
-    margin-bottom: 15px;
+    font-weight: 800;
+    margin-bottom: 18px;
 }
 
-.about-page main section:first-child p {
-    font-size: 20px;
+/* Hero subtitle */
+.about-hero p {
+    font-size: 21px;
+    line-height: 1.5;
+    margin: 0;
 }
 
-.about-page main section {
-    padding: 60px 8%;
+/* ================= MISSION SECTION ================= */
+
+/* Mission + value cards area */
+.mission-section {
+    background-color: #f8fafc;
+    padding: 70px 8%;
 }
 
-.about-page main section:nth-child(2) {
+/* Center mission text */
+.mission-content {
+    max-width: 850px;
+    margin: 0 auto 64px;
     text-align: center;
-    max-width: 900px;
-    margin: auto;
 }
 
-.about-page main section:nth-child(2) h2 {
+/* Mission title */
+.mission-content h2 {
     font-size: 34px;
-    margin-bottom: 20px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 24px;
 }
 
-.about-page main section:nth-child(2) p {
+/* Mission paragraph */
+.mission-content p {
     font-size: 18px;
-    line-height: 1.8;
+    line-height: 1.7;
     color: #334155;
+    margin: 0;
 }
 
-.about-page main section:nth-child(3) {
+/* Value cards row */
+.values-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
+    gap: 28px;
 }
 
-.about-page main section:nth-child(3) h2 {
-    grid-column: 1 / -1;
+/* Single value card */
+.value-card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 34px 24px;
+    text-align: center;
+}
+
+/* Icon circle */
+.value-icon {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    margin: 0 auto 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+}
+
+/* Icon backgrounds */
+.blue-value {
+    background-color: #dbeafe;
+}
+
+.green-value {
+    background-color: #dcfce7;
+}
+
+.purple-value {
+    background-color: #f3e8ff;
+}
+
+.orange-value {
+    background-color: #ffedd5;
+}
+
+/* Value title */
+.value-card h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 14px;
+}
+
+/* Value text */
+.value-card p {
+    font-size: 16px;
+    line-height: 1.45;
+    color: #475569;
+    margin: 0;
+}
+
+/* ================= UNIVERSITY INTEGRATION SECTION ================= */
+
+/* Integration section */
+.integration-section {
+    background-color: white;
+    padding: 76px 8%;
+}
+
+/* Integration title */
+.integration-section > h2 {
     text-align: center;
     font-size: 34px;
-    margin-bottom: 20px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 42px;
 }
 
-.about-page main section:nth-child(3) div {
+/* Card list wrapper */
+.info-card-list {
+    max-width: 930px;
+    margin: 0 auto;
+}
+
+/* Individual info card */
+.info-card {
     background-color: white;
     border: 1px solid #e5e7eb;
-    border-radius: 18px;
-    padding: 35px 25px;
-    text-align: center;
+    border-radius: 14px;
+    padding: 34px;
+    margin-bottom: 26px;
 }
 
-.about-page main section:nth-child(3) h3 {
+/* Info card title */
+.info-card h3 {
     font-size: 22px;
-    margin-bottom: 12px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 18px;
 }
 
-.about-page main section:nth-child(3) p {
-    color: #475569;
-    line-height: 1.6;
-}
-
-.about-page main section:nth-child(4),
-.about-page main section:nth-child(5),
-.about-page main section:nth-child(6),
-.about-page main section:nth-child(7) {
-    background-color: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 18px;
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 35px;
-}
-
-.about-page main section:nth-child(4) h2,
-.about-page main section:nth-child(5) h2,
-.about-page main section:nth-child(6) h2,
-.about-page main section:nth-child(7) h2 {
-    font-size: 26px;
-    margin-bottom: 15px;
-}
-
-.about-page main section:nth-child(4) p,
-.about-page main section:nth-child(5) p,
-.about-page main section:nth-child(6) p,
-.about-page main section:nth-child(7) p {
-    color: #334155;
+/* Info card paragraph */
+.info-card p {
     font-size: 17px;
-    line-height: 1.8;
+    line-height: 1.65;
+    color: #334155;
+    margin-bottom: 18px;
 }
 
-.about-page main section:nth-child(8) {
-    background: linear-gradient(to right, #2563eb, #4338ca);
+/* Info card list */
+.info-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Info card list item */
+.info-card li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 14px;
+    font-size: 16px;
+    color: #334155;
+}
+
+/* Green check mark */
+.info-card li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #00b140;
+    font-weight: 800;
+}
+
+/* ================= IMPACT SECTION ================= */
+
+/* Impact gradient section */
+.impact-section {
+    background: linear-gradient(135deg, #155dfc, #4c1dca);
+    padding: 68px 8%;
+    text-align: center;
     color: white;
+}
+
+/* Impact title */
+.impact-section h2 {
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 50px;
+}
+
+/* Impact numbers row */
+.impact-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    text-align: center;
-    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.about-page main section:nth-child(8) h2 {
-    grid-column: 1 / -1;
-    font-size: 34px;
-    margin-bottom: 20px;
-}
-
-.about-page main section:nth-child(8) h3 {
-    font-size: 48px;
+/* Impact number */
+.impact-grid h3 {
+    font-size: 50px;
+    font-weight: 800;
     margin-bottom: 10px;
 }
 
-.about-page main section:nth-child(8) p {
+/* Impact label */
+.impact-grid p {
     font-size: 18px;
+    margin: 0;
 }
-
 
 /* ================= DURARS PART - HOW IT WORKS PAGE ================= */
 
-.how-page {
+
+/* Main background */
+.how-page main {
+    padding: 0;
     background-color: #f8fafc;
-    color: #0f172a;
 }
 
-.how-page .hero {
-    background: #059669;
+/* ================= HERO SECTION ================= */
+
+.how-hero {
+    background: linear-gradient(135deg, #00b140, #059669);
+    padding: 72px 8%;
     color: white;
-    padding: 90px 8%;
 }
 
-.how-page .hero h2 {
-    font-size: 56px;
-    margin-bottom: 15px;
-    font-weight: bold;
+.how-hero .wide-container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.how-page .hero p {
+.how-hero h1 {
+    font-size: 52px;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+.how-hero p {
     font-size: 22px;
+    line-height: 1.5;
+    margin: 0;
 }
 
-.steps-container {
+/* ================= TIMELINE SECTION ================= */
+
+.steps-section {
+    padding: 70px 8%;
+}
+
+.steps-timeline {
     max-width: 1000px;
-    margin: 70px auto;
-    position: relative;
-    padding: 0 20px;
+    margin: 0 auto;
 }
 
-.steps-container::before {
-    content: "";
-    position: absolute;
-    left: 72px;
-    top: 0;
-    width: 3px;
-    height: 100%;
-    background-color: #d1d5db;
-}
-
-.step-card {
+/* Single step card */
+.work-step {
     background-color: white;
     border: 1px solid #e5e7eb;
-    border-radius: 20px;
-    padding: 35px;
-    margin-bottom: 50px;
-    margin-left: 70px;
-    position: relative;
+    border-radius: 18px;
+    padding: 34px;
+    margin-bottom: 36px;
+
+    display: flex;
+    gap: 26px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
+/* Step icon box */
 .step-icon {
     width: 68px;
     height: 68px;
-    border-radius: 18px;
-    position: absolute;
-    left: -80px;
-    top: 30px;
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 32px;
+    flex-shrink: 0;
+    color: white;
 }
 
-.icon-blue { background-color: #2563eb; }
-.icon-green { background-color: #22c55e; }
-.icon-purple { background-color: #a855f7; }
-.icon-orange { background-color: #f97316; }
-.icon-indigo { background-color: #6366f1; }
+/* Step icon colors */
+.step-blue {
+    background-color: #3b82f6;
+}
 
+.step-green {
+    background-color: #00c950;
+}
+
+.step-purple {
+    background-color: #a855f7;
+}
+
+.step-orange {
+    background-color: #ff6900;
+}
+
+.step-indigo {
+    background-color: #6366f1;
+}
+
+/* Step content area */
+.step-content {
+    flex: 1;
+}
+
+/* Top row */
+.step-title-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+/* Step number badge */
 .step-label {
-    display: inline-block;
-    padding: 8px 18px;
+    padding: 7px 14px;
     border-radius: 999px;
     color: white;
     font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 15px;
+    font-weight: 700;
 }
 
-.label-blue { background-color: #2563eb; }
-.label-green { background-color: #22c55e; }
-.label-purple { background-color: #a855f7; }
-.label-orange { background-color: #f97316; }
-.label-indigo { background-color: #6366f1; }
-
-.step-card h3 {
-    font-size: 38px;
-    margin-bottom: 18px;
-    display: inline-block;
-    margin-left: 15px;
+/* Title */
+.step-title-row h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
 }
 
-.step-card p {
+/* Step description */
+.step-content p {
     font-size: 18px;
+    line-height: 1.6;
     color: #475569;
-    margin-bottom: 25px;
-    line-height: 1.7;
+    margin-bottom: 24px;
 }
 
-.step-features {
+/* Details grid */
+.step-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    gap: 16px 40px;
 }
 
-.step-features li {
-    list-style: none;
-    color: #334155;
+/* Detail item */
+.step-details li {
+    position: relative;
+    padding-left: 24px;
     font-size: 17px;
+    color: #475569;
 }
 
-.session-types {
+/* Green arrow/check */
+.step-details li::before {
+    content: "➜";
+    position: absolute;
+    left: 0;
+    color: #00b140;
+    font-weight: 700;
+}
+
+/* ================= SESSION TYPES ================= */
+
+.session-types-section {
+    background-color: white;
     padding: 80px 8%;
 }
 
-.session-types h2 {
+.session-types-section h2 {
     text-align: center;
-    font-size: 46px;
+    font-size: 42px;
+    font-weight: 800;
+    color: #0f172a;
     margin-bottom: 50px;
 }
 
+/* Session cards row */
 .session-grid {
+    max-width: 950px;
+    margin: 0 auto;
+
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 35px;
-    max-width: 1000px;
-    margin: auto;
+    gap: 34px;
 }
 
+/* Session card */
 .session-card {
     background-color: white;
     border: 1px solid #e5e7eb;
     border-radius: 18px;
-    padding: 35px;
+    padding: 36px;
 }
 
+/* Session title */
 .session-card h3 {
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 18px;
 }
 
+/* Session paragraph */
 .session-card p {
+    font-size: 18px;
+    line-height: 1.6;
     color: #475569;
-    line-height: 1.8;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
-.session-card li {
+/* Session list */
+.session-card ul {
     list-style: none;
-    margin-bottom: 12px;
-    color: #334155;
+    padding: 0;
+    margin: 0;
 }
 
-.faq-section {
+/* Session item */
+.session-card li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 14px;
+    font-size: 17px;
+    color: #475569;
+}
+
+/* Green check */
+.session-card li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #00b140;
+    font-weight: 700;
+}
+
+/* ================= QUESTIONS SECTION ================= */
+
+.questions-section {
+    background-color: #f8fafc;
     padding: 80px 8%;
 }
 
-.faq-section h2 {
+.questions-section h2 {
     text-align: center;
-    font-size: 46px;
+    font-size: 42px;
+    font-weight: 800;
+    color: #0f172a;
     margin-bottom: 50px;
 }
 
-.faq-card {
+/* Questions wrapper */
+.question-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Question card */
+.question-card {
     background-color: white;
     border: 1px solid #e5e7eb;
     border-radius: 18px;
-    padding: 35px;
-    max-width: 900px;
-    margin: 0 auto 25px;
+    padding: 34px;
+    margin-bottom: 24px;
 }
 
-.faq-card h3 {
-    font-size: 28px;
-    margin-bottom: 15px;
+/* Question title */
+.question-card h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 18px;
 }
 
-.faq-card p {
+/* Question text */
+.question-card p {
+    font-size: 18px;
+    line-height: 1.7;
     color: #475569;
-    line-height: 1.8;
+    margin: 0;
 }
 
-.how-cta {
-    background: linear-gradient(to right, #2563eb, #4338ca);
-    color: white;
-    text-align: center;
+/* ================= CTA SECTION ================= */
+
+.blue-cta {
+    background: linear-gradient(135deg, #155dfc, #4c1dca);
     padding: 90px 8%;
+    text-align: center;
+    color: white;
 }
 
-.how-cta h2 {
-    font-size: 52px;
-    margin-bottom: 20px;
+.blue-cta h2 {
+    font-size: 50px;
+    font-weight: 800;
+    margin-bottom: 18px;
 }
 
-.how-cta p {
+.blue-cta p {
     font-size: 22px;
-    margin-bottom: 35px;
+    margin-bottom: 34px;
 }
 
-.how-cta a {
+/* CTA button */
+.blue-cta a {
+    display: inline-block;
     background-color: white;
-    color: #2563eb;
+    color: #155dfc;
     padding: 18px 38px;
     border-radius: 14px;
-    font-weight: bold;
-    font-size: 18px;
-    display: inline-block;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition: 0.3s;
 }
+
+/* Hover */
+.blue-cta a:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
 
 
 /* ================= DURARS PART - VOLUNTEER HOURS PAGE ================= */

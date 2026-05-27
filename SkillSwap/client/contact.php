@@ -1,7 +1,11 @@
 <?php
 // Start session so PHP can remember logged-in users
 session_start();
+include '../includes/db.php';
+
 ?>
+
+
 
 <!DOCTYPE html>
 

@@ -1417,84 +1417,206 @@ p {
 }
 
 /* =========================================================
-    NADA — PROFILE PAGE
-   ========================================================= */
-.profile-page {
-    background-color: #f8faff;
-    padding: 40px 8%;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 25px;
-}
-
+   NADA — PROFILE PAGE
+========================================================= */
 /* =========================================================
-    PROFILE CARD
-   ========================================================= */
-.profile-card {
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
-    padding: 25px 30px;
-    margin-bottom: 25px;
-}
+   NADA PROFILE
+========================================================= */
 
-.profile-card img {
-    width: 120px;
-    height: 120px;
-    border-radius: 999px;
-    object-fit: cover;
-    margin-bottom: 15px;
-}
+.profile-page{
 
-.profile-card h3 {
-    font-size: 18px;
-    margin-bottom: 12px;
-    color: #111827;
-}
+    background:#f7f9fc;
 
-.profile-card p {
-    font-size: 14px;
-    color: #6b7280;
-    line-height: 1.6;
-}
+    padding:40px 8%;
 
-/* PROFILE SECTIONS (Bio, Skills, Settings…)
-   ========================================================= */
-.profile-section {
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
-    padding: 25px 30px;
-    margin-bottom: 25px;
-}
+    display:grid;
 
-.profile-section h3 {
-    font-size: 18px;
-    margin-bottom: 12px;
-    color: #111827;
-}
+    grid-template-columns:320px 1fr;
 
-.profile-section p {
-    font-size: 14px;
-    color: #475569;
-    line-height: 1.6;
-}
+    gap:24px;
 
-/* =========================================================
-    SKILL TAGS
-   ========================================================= */
-.skill-tag {
-    display: inline-block;
-    background-color: #e0f2fe;
-    color: #0369a1;
-    padding: 6px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-    margin-right: 6px;
-    margin-bottom: 6px;
 }
 
 
+/* LEFT */
+
+.profile-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:
+            0 10px 30px
+            rgba(0,0,0,.06);
+
+}
+
+
+/* الصورة */
+
+.profile-card img{
+
+    width:150px;
+
+    height:150px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    display:block;
+
+    margin:0 auto 22px;
+
+    background:#d1d5db;
+
+    border:6px solid #eef2ff;
+
+}
+
+
+/* الاسم */
+
+.profile-card h3{
+
+    font-size:24px;
+
+    margin-bottom:8px;
+
+    color:#111827;
+
+}
+
+
+/* النص */
+
+.profile-card p{
+
+    color:#64748b;
+
+    line-height:1.8;
+
+}
+
+
+/* زر */
+
+.profile-card button{
+
+    width:100%;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#315efb;
+
+    color:white;
+
+    font-weight:700;
+
+    margin-top:18px;
+
+}
+
+
+/* RIGHT */
+
+.profile-section{
+
+    background:white;
+
+    padding:28px;
+
+    border-radius:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:
+            0 8px 22px
+            rgba(0,0,0,.05);
+
+}
+
+
+.profile-section h3{
+
+    font-size:20px;
+
+    margin-bottom:20px;
+
+}
+
+
+.profile-section input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-bottom:16px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:12px;
+
+}
+
+
+.profile-section button{
+
+    width:100%;
+
+    height:48px;
+
+    background:#16a34a;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+}
+
+
+/* Skills */
+
+.skill-tag{
+
+    display:inline-block;
+
+    padding:8px 14px;
+
+    background:#eef2ff;
+
+    color:#315efb;
+
+    border-radius:999px;
+
+    margin:6px;
+
+}
+
+
+/* Responsive */
+
+@media(max-width:900px){
+
+    .profile-page{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
 /* ================= MY PART(BALQEES)POST REQUEST / BROWSE REQUESTS ================= */
 .browse-page {
     background: #f8fafc;

@@ -1,3 +1,7 @@
+<link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
 <header class="site-header">
 
     <!-- LEFT SIDE -->
@@ -34,7 +38,9 @@
 
     <!-- RIGHT SIDE -->
     <div class="header-right">
-
+        <a href="inbox.php" class="notification-link">
+            <i class="fa-regular fa-bell"></i>
+        </a>
         <?php if(isset($_SESSION['user_id'])): ?>
 
             <a href="profile.php">Profile</a>

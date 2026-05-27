@@ -4,8 +4,10 @@
     <main>
 
         <section class="notification-card">
-            <h2>Notifications</h2>
-            <p>Requests matching your skills</p>
+            <h2>
+                <i class="fa-regular fa-bell"></i>
+                Notifications
+            </h2>            <p>Requests matching your skills</p>
         </section>
 
         <!-- مافي اشعارات -->

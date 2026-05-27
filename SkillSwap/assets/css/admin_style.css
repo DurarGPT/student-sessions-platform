@@ -195,4 +195,250 @@ main {
 .admin-responsibilities li {
     margin-bottom: 14px;
     line-height: 1.7;
+}/* ================= TALA PART - ADMIN DASHBOARD CSS ================= */
+
+.admin-dashboard-page .admin-container {
+    padding: 40px 8%;
+}
+
+.admin-dashboard-page .dashboard-title {
+    margin-bottom: 30px;
+}
+
+.admin-dashboard-page .dashboard-title h2 {
+    font-size: 38px;
+    color: #0f172a;
+}
+
+.admin-dashboard-page .admin-label {
+    background-color: #dbeafe;
+    color: #2563eb;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.admin-dashboard-page .stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    margin-bottom: 30px;
+}
+
+.admin-dashboard-page .stat-card {
+    color: white;
+    padding: 26px;
+    border-radius: 18px;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-dashboard-page .users-card {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.admin-dashboard-page .sessions-card {
+    background: linear-gradient(135deg, #16a34a, #00b140);
+}
+
+.admin-dashboard-page .approvals-card {
+    background: linear-gradient(135deg, #f97316, #ef4444);
+}
+
+.admin-dashboard-page .hours-card {
+    background: linear-gradient(135deg, #7c3aed, #9333ea);
+}
+
+.admin-dashboard-page .stat-card p {
+    margin: 0 0 10px;
+    font-size: 15px;
+}
+
+.admin-dashboard-page .stat-card h3 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.admin-dashboard-page .card-icon {
+    font-size: 34px;
+}
+
+.admin-dashboard-page .dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.admin-dashboard-page .bottom-grid {
+    grid-template-columns: 1.5fr 1fr;
+}
+
+.admin-dashboard-page .dashboard-box {
+    background-color: white;
+    padding: 28px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.admin-dashboard-page .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-dashboard-page .section-header h3 {
+    margin: 0;
+    color: #0f172a;
+}
+
+.admin-dashboard-page .pending-tag {
+    background-color: #fef3c7;
+    color: #92400e;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+}
+
+.admin-dashboard-page .mentor-request {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+}
+
+.admin-dashboard-page .mentor-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 999px;
+    background-color: #2563eb;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.admin-dashboard-page .mentor-info h4 {
+    margin: 0 0 6px;
+}
+
+.admin-dashboard-page .mentor-info p {
+    color: #64748b;
+    margin: 0 0 12px;
+}
+
+.admin-dashboard-page .skills-list span {
+    display: inline-block;
+    background-color: #eef2ff;
+    color: #2563eb;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.admin-dashboard-page button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.admin-dashboard-page button:hover {
+    background-color: #1d4ed8;
+}
+
+.admin-dashboard-page .overview-card,
+.admin-dashboard-page .activity-item {
+    background-color: #f8fafc;
+    padding: 18px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-dashboard-page .overview-card p,
+.admin-dashboard-page .activity-item p {
+    color: #64748b;
+    margin: 0;
+}
+
+.admin-dashboard-page .overview-card h4 {
+    font-size: 28px;
+    margin: 6px 0 0;
+}
+
+.admin-dashboard-page .empty-approvals {
+    text-align: center;
+    color: #64748b;
+    padding: 30px;
+}
+
+.admin-dashboard-page .approval-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    background-color: #dcfce7;
+    color: #16a34a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-weight: bold;
+}
+
+.admin-dashboard-page .activity-left {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.admin-dashboard-page .green-dot,
+.admin-dashboard-page .blue-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    display: inline-block;
+}
+
+.admin-dashboard-page .green-dot {
+    background-color: #16a34a;
+}
+
+.admin-dashboard-page .blue-dot {
+    background-color: #2563eb;
+}
+
+.admin-dashboard-page .activity-time {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.admin-dashboard-page .reports-text {
+    color: #64748b;
+    line-height: 1.7;
+}
+
+.admin-dashboard-page .report-button {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+    .admin-dashboard-page .stats-container,
+    .admin-dashboard-page .dashboard-grid,
+    .admin-dashboard-page .bottom-grid {
+        grid-template-columns: 1fr;
+    }
 }

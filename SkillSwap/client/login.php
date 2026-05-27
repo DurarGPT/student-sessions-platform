@@ -1,7 +1,27 @@
 <?php
 session_start();
-?>
+include '../includes/db.php';
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['user_id'] = $user['user_id'];
+        $_SESSION['name'] = $user['full_name'];
+        $_SESSION['role'] = $user['role'];
+
+        header("Location: index.php");
+        exit;
+    } else {
+        $error = "Invalid email or password.";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +57,12 @@ session_start();
 
         <h3>Login</h3>
 
+        <?php if (!empty($error)): ?>
+            <p style="color:red;"><?php echo $error; ?></p>
+        <?php endif; ?>
+
         <form class="login-form" method="POST">
+
 
             <div class="form-group">
 

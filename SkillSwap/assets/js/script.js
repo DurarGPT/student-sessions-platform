@@ -1,3 +1,4 @@
+
 // ========= balqeess part==============
 // ================= BROWSE REQUESTS =================
 
@@ -263,3 +264,120 @@ if (dashboardButton) {
 
 // ==========Durar's part ==========
 
+/* =========================================================
+   ACTIVE NAVBAR LINK
+   Highlights current page in navbar
+   ========================================================= */
+
+const currentPage = window.location.pathname.split("/").pop();
+
+const navLinks = document.querySelectorAll(".site-header nav a");
+
+navLinks.forEach(link => {
+
+    const linkPage = link.getAttribute("href");
+
+    if (linkPage === currentPage) {
+
+        link.style.color = "#2563eb";
+        link.style.fontWeight = "700";
+
+    }
+
+});
+
+
+/* =========================================================
+   SMOOTH SCROLLING
+   ========================================================= */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+    anchor.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        const target = document.querySelector(this.getAttribute("href"));
+
+        if (target) {
+
+            target.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+    });
+
+});
+
+
+/* =========================================================
+   SIMPLE BUTTON ANIMATION
+   ========================================================= */
+
+const buttons = document.querySelectorAll("button, .primary-button, .secondary-button");
+
+buttons.forEach(button => {
+
+    button.addEventListener("mouseenter", () => {
+
+        button.style.transform = "translateY(-2px)";
+        button.style.transition = "0.2s";
+
+    });
+
+    button.addEventListener("mouseleave", () => {
+
+        button.style.transform = "translateY(0px)";
+
+    });
+
+});
+
+
+/* =========================================================
+   GUEST ALERT FOR PROTECTED ACTIONS
+   ========================================================= */
+
+const protectedButtons = document.querySelectorAll(".login-required");
+
+protectedButtons.forEach(button => {
+
+    button.addEventListener("click", (e) => {
+
+        alert("Please log in first to continue.");
+
+    });
+
+});
+/* ================= BLUR TO CLEAR SCROLL EFFECT ================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const revealElements = document.querySelectorAll(
+        ".home-stat-card, .skill-card, .mentor-row, .value-card, .info-card, .work-step, .session-card, .question-card"
+    );
+
+    revealElements.forEach(function (element) {
+        element.classList.add("scroll-reveal");
+    });
+
+    function revealOnScroll() {
+        revealElements.forEach(function (element) {
+
+            const elementTop = element.getBoundingClientRect().top;
+            const screenHeight = window.innerHeight;
+
+            if (elementTop < screenHeight - 80) {
+                element.classList.add("show");
+            }
+
+        });
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+
+    revealOnScroll();
+
+});

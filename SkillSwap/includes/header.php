@@ -36,28 +36,31 @@
     </div>
 
 
-    <!-- RIGHT SIDE -->
     <div class="header-right">
-        <a href="inbox.php" class="notification-link">
-            <i class="fa-regular fa-bell"></i>
-        </a>
+
         <?php if(isset($_SESSION['user_id'])): ?>
+
+            <a href="inbox.php" class="notification-link">
+                <i class="fa-regular fa-bell"></i>
+            </a>
 
             <a href="profile.php">Profile</a>
 
-            <a href="dashboard.php">Dashboard</a>
+            <a href="Dashboard.php">Dashboard</a>
 
             <a href="post-request.php">Post Request</a>
 
-            <a href="login.php">Logout</a>
+            <a href="logout.php">Logout</a>
 
         <?php else: ?>
 
             <a href="login.php">Login</a>
+
             <a href="register.php">Sign Up</a>
 
         <?php endif; ?>
 
+    </div>
     </div>
 
 </header>

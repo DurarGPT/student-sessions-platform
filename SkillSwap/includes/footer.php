@@ -29,7 +29,6 @@
             <a href="../client/profile.php">Become a Mentor</a>
             <a href="../client/post-request.php">Request Help</a>
             <a href="../client/volunteer-hours.php">Track Hours</a>
-            <a href="../admin/admin.php">Admin Panel</a>
         </div>
 
         <div class="footer-column">

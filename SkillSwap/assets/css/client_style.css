@@ -3080,3 +3080,32 @@ p {
     background-color: #1d4ed8;
     color: white;
 }
+
+/* ================= NADA PROFILE SETTINGS INTERACTIONS ================= */
+
+.change-password-form {
+    display: none;
+    margin-bottom: 15px;
+}
+
+.change-password-form input {
+    width: 100%;
+    border: 1px solid #dbe2ea;
+    border-radius: 14px;
+    background-color: #f8fafc;
+    padding: 15px;
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+.save-password-button {
+    background-color: #16a34a;
+    color: white;
+    text-align: center;
+}
+
+.email-toggle-btn.is-off {
+    color: #64748b;
+    background-color: #f8fafc;
+}

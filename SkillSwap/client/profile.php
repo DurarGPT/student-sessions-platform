@@ -3,17 +3,11 @@ global $pdo;
 
 session_start();
 
-$_SESSION['user_id'] = 1;
-
 require_once __DIR__ . '/../includes/db.php';
 
-/* التحقق من تسجيل الدخول */
-
 if (!isset($_SESSION['user_id'])) {
-
     header("Location: login.php");
     exit;
-
 }
 
 $userId = $_SESSION['user_id'];
@@ -93,9 +87,15 @@ $profileImage =
 
             <div class="profile-sidebar-top">
                 <img
-                  class="profile-image"
-                  src="../assets/images/<?php echo !empty($user['profile_image']) ? $user['profile_image'] : 'default.png'; ?>"
-                  alt="Profile Photo">
+                        class="profile-image"
+                        src="<?php
+                        if (empty($user['profile_image']) || $user['profile_image'] === 'default.png') {
+                            echo '../assets/images/default.png';
+                        } else {
+                            echo '../uploads/profile/' . htmlspecialchars($user['profile_image']);
+                        }
+                        ?>"
+                        alt="Profile Photo">
 
 
                 <span class="verified-badge">
@@ -122,7 +122,8 @@ $profileImage =
                 <!-- CHANGE PHOTO -->
 
                 <form
-                        action="update_profile.php"
+                        id="profile-photo-form"
+                        action="../includes/update_profile.php"
                         method="POST"
                         enctype="multipart/form-data">
 
@@ -131,8 +132,10 @@ $profileImage =
                         📷 Change Photo
 
                         <input
+                                id="profile-photo-input"
                                 type="file"
                                 name="profile_image"
+                                accept="image/*"
                                 hidden>
 
                     </label>
@@ -151,7 +154,9 @@ $profileImage =
 
                     <span>Volunteer Hours</span>
 
-                    <strong>24</strong>
+                    <strong>
+                        <?php echo htmlspecialchars($user['volunteer_hours'] ?? 0); ?>
+                    </strong>
 
                 </div>
 
@@ -166,7 +171,7 @@ $profileImage =
 
                         echo !empty($user['skills'])
                                 ?
-                                count(explode(",", $user['skills']))
+                                count(array_filter(array_map('trim', explode(",", $user['skills']))))
                                 :
                                 0;
 
@@ -181,7 +186,9 @@ $profileImage =
 
                     <span>Member Since</span>
 
-                    <strong>2026</strong>
+                    <strong>
+                        <?php echo !empty($user['created_at']) ? date("Y", strtotime($user['created_at'])) : date("Y"); ?>
+                    </strong>
 
                 </div>
 
@@ -408,17 +415,41 @@ $profileImage =
 
                 </h3>
 
-
-                <button class="settings-button">
+                <button
+                        type="button"
+                        class="settings-button change-password-toggle">
 
                     🔑 Change Password
 
                 </button>
 
+                <form
+                        class="change-password-form"
+                        action="../includes/update_profile.php"
+                        method="POST">
 
-                <button class="settings-button">
+                    <input
+                            type="password"
+                            name="password"
+                            placeholder="Enter new password"
+                            minlength="6"
+                            required>
 
-                    ✉ Email Notifications
+                    <button
+                            type="submit"
+                            class="settings-button save-password-button">
+
+                        ✓ Save Password
+
+                    </button>
+
+                </form>
+
+                <button
+                        type="button"
+                        class="settings-button email-toggle-btn">
+
+                    ✉ Email Notifications: ON
 
                 </button>
 
@@ -435,7 +466,7 @@ $profileImage =
 
 <!-- ================= JS ================= -->
 
-<script src="../assets/js/main.js"></script>
+<script src="../assets/js/script.js"></script>
 
 </body>
 

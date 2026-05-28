@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php include '../includes/footer.php'; ?>
 <!-- ================= JS ================= -->
 
-<script src="../assets/js/main.js"></script>
+<script src="../assets/js/script.js"></script>
 
 </body>
 

@@ -482,13 +482,33 @@ if (registerForm) {
     });
 
 
+    const password = document.querySelector("#password");
+    const confirm = document.querySelector("#confirm");
+    const errorText = document.querySelector(".password-error");
+
+    confirm.addEventListener("input", function () {
+
+        if (password.value !== confirm.value) {
+
+            errorText.textContent = "Passwords do not match";
+            errorText.style.color = "red";
+
+        }
+
+        else {
+
+            errorText.textContent = "Passwords match";
+            errorText.style.color = "green";
+
+        }
+
+    });
+
+
     registerForm.addEventListener("submit", function (event) {
 
         const name = document.querySelector("#name");
         const email = document.querySelector("#email");
-        const password = document.querySelector("#password");
-        const confirm = document.querySelector("#confirm");
-        const errorText = document.querySelector(".password-error");
 
         if (name.value.trim() === "") {
             alert("Please enter your full name.");
@@ -513,29 +533,10 @@ if (registerForm) {
             event.preventDefault();
             return;
         }
-        confirm.addEventListener("input", function () {
-
-            if (password.value !== confirm.value) {
-
-                errorText.textContent = "Passwords do not match";
-                errorText.style.color = "red";
-
-            }
-
-            else {
-
-                errorText.textContent = "Passwords match";
-                errorText.style.color = "green";
-
-            }
-
-        });
 
     });
 
 }
-
-
 /* ================= PROFILE PAGE ================= */
 
 const profilePage = document.querySelector(".profile-page");
@@ -544,7 +545,8 @@ if (profilePage) {
 
     const editButton = document.querySelector(".edit-profile-btn");
     const profileInputs = document.querySelectorAll(".profile-field input, .profile-field textarea");
-    const photoInput = document.querySelector('input[name="profile_image"]');
+    const photoInput = document.querySelector("#profile-photo-input");
+    const photoForm = document.querySelector("#profile-photo-form");
     const profileImage = document.querySelector(".profile-image");
     const bioTextarea = document.querySelector(".profile-field textarea");
 
@@ -564,14 +566,18 @@ if (profilePage) {
     }
 
 
-    if (photoInput && profileImage) {
+    if (photoInput && profileImage && photoForm) {
 
         photoInput.addEventListener("change", function () {
 
             const file = photoInput.files[0];
 
             if (file) {
+
                 profileImage.src = URL.createObjectURL(file);
+
+                photoForm.submit();
+
             }
 
         });
@@ -595,6 +601,43 @@ if (profilePage) {
                 counter.style.color = "red";
             } else {
                 counter.style.color = "#94a3b8";
+            }
+
+        });
+
+    }
+
+
+    const passwordToggle = document.querySelector(".change-password-toggle");
+    const passwordForm = document.querySelector(".change-password-form");
+
+    if (passwordToggle && passwordForm) {
+
+        passwordToggle.addEventListener("click", function () {
+
+            if (passwordForm.style.display === "block") {
+                passwordForm.style.display = "none";
+            } else {
+                passwordForm.style.display = "block";
+            }
+
+        });
+
+    }
+
+
+    const emailButton = document.querySelector(".email-toggle-btn");
+
+    if (emailButton) {
+
+        emailButton.addEventListener("click", function () {
+
+            if (emailButton.textContent.includes("ON")) {
+                emailButton.textContent = "✉ Email Notifications: OFF";
+                emailButton.classList.add("is-off");
+            } else {
+                emailButton.textContent = "✉ Email Notifications: ON";
+                emailButton.classList.remove("is-off");
             }
 
         });

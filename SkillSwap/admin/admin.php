@@ -1,6 +1,23 @@
 <?php
-// Start session so PHP can remember logged-in users
 session_start();
+include '../includes/db.php';
+
+$pendingApprovals = 0;
+$pendingVerification = 0;
+$verifiedMentors = 0;
+$recentSessions = 0;
+
+try {
+    $pendingApprovals = $pdo->query("SELECT COUNT(*) FROM volunteer_hours")->fetchColumn();
+    $pendingVerification = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
+    $verifiedMentors = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
+    $recentSessions = $pdo->query("SELECT COUNT(*) FROM sessions")->fetchColumn();
+} catch (PDOException $e) {
+    $pendingApprovals = 0;
+    $pendingVerification = 0;
+    $verifiedMentors = 0;
+    $recentSessions = 0;
+}
 ?>
 <!DOCTYPE html>
 
@@ -34,17 +51,17 @@ session_start();
 
     <div class="admin-stat-card">
         <h2>Pending Approvals</h2>
-        <p>0</p>
+        <p><?php echo $pendingApprovals; ?></p>
     </div>
 
     <div class="admin-stat-card">
         <h2>Pending Verification</h2>
-        <p>1</p>
+        <p><?php echo $pendingVerification; ?></p>
     </div>
 
     <div class="admin-stat-card">
         <h2>Verified Mentors</h2>
-        <p>4</p>
+        <p><?php echo $verifiedMentors; ?></p>
     </div>
 
 </section>
@@ -59,7 +76,15 @@ session_start();
 
         <h2>Pending Session Approvals</h2>
 
-        <p>No pending approvals</p>
+        <?php if ($pendingApprovals > 0): ?>
+
+            <p><?php echo $pendingApprovals; ?> pending approvals</p>
+
+        <?php else: ?>
+
+            <p>No pending approvals</p>
+
+        <?php endif; ?>
 
     </div>
 
@@ -111,7 +136,7 @@ session_start();
 
     <h2>Recent Session History</h2>
 
-    <p>No sessions yet</p>
+    <p><?php echo $recentSessions; ?> sessions found</p>
 
 </section>
 

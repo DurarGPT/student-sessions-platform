@@ -1,76 +1,206 @@
-<?php include '../includes/db.php'; ?>
-<?php include '../includes/header.php'; ?>
+<?php
+include '../includes/db.php';
 
-    <main>
+$message = "";
 
-        <!-- قسم المحادثة -->
-        <section class="chat-card">
+/* حفظ الرسالة */
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-            <h2>Chat</h2>
+    $messageText = $_POST['message_text'];
 
-            <p>Communicate with your learner</p>
+    if(!empty($messageText)) {
 
-        </section>
+        $stmt = $pdo->prepare("
 
-        <!-- معلومات الجلسة -->
-        <section class="chat-card">
+            INSERT INTO messages
+            (sender_id, receiver_id, message_text)
 
-            <h3>James Wilson</h3>
+            VALUES
+            (2, 3, ?)
 
-            <p>Public Speaking Session</p>
+        ");
 
-            <p>Active</p>
+        $stmt->execute([$messageText]);
 
-        </section>
+        $message = "Message sent successfully!";
 
-        <!-- الرسائل -->
-        <section class="chat-card">
+    }
 
-            <h3>No messages yet</h3>
+}
 
-            <p>Start the conversation!</p>
+include '../includes/header.php';
+?>
 
-        </section>
+<main class="chat-page">
 
-        <!-- كتابة الرسالة -->
-        <section class="chat-card">
+    <!-- عنوان المحادثة -->
 
-            <input class="message-input"
-                   type="text"
-                   placeholder="Type your message...">
+    <section class="chat-hero">
 
-            <button class="blue-button" onclick="sendMessage()">
+        <h2>Chat Session</h2>
+
+        <p>
+            Communicate with your learner in real time
+        </p>
+
+    </section>
+
+    <!-- معلومات الجلسة -->
+
+    <section class="chat-info-card">
+
+        <div class="chat-user">
+
+            <div class="chat-avatar">
+                JW
+            </div>
+
+            <div>
+
+                <h3>James Wilson</h3>
+
+                <p>Public Speaking Session</p>
+
+            </div>
+
+        </div>
+
+        <span class="chat-status">
+            Active
+        </span>
+
+    </section>
+
+    <!-- الرسائل -->
+
+    <section class="messages-card">
+
+        <h3>Messages</h3>
+
+        <?php
+
+        $stmt = $pdo->query("
+
+            SELECT *
+
+            FROM messages
+
+            ORDER BY message_id DESC
+
+        ");
+
+        $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        ?>
+
+        <?php if(count($messages) > 0) { ?>
+
+            <?php foreach($messages as $msg) { ?>
+
+                <div class="message-box">
+
+                    <?php echo $msg['message_text']; ?>
+
+                </div>
+
+            <?php } ?>
+
+        <?php } else { ?>
+
+            <p class="empty-message">
+
+                No messages yet
+
+            </p>
+
+        <?php } ?>
+
+    </section>
+
+    <!-- كتابة الرسالة -->
+
+    <section class="send-message-card">
+
+        <?php if($message != "") { ?>
+
+            <div class="success-message">
+
+                <?php echo $message; ?>
+
+            </div>
+
+        <?php } ?>
+
+        <form method="POST" class="message-form">
+
+            <input
+                    class="message-input"
+                    type="text"
+                    name="message_text"
+                    placeholder="Type your message..."
+            >
+
+            <button
+                    class="blue-button"
+                    type="submit"
+            >
+
                 Send
+
             </button>
 
-        </section>
+        </form>
 
-        <!-- معلومات الجلسة -->
-        <section class="chat-card">
+    </section>
 
-            <h3>Session Info</h3>
+    <!-- تفاصيل الجلسة -->
 
-            <p>Skill: Public Speaking</p>
+    <section class="session-info-card">
 
-            <p>Type: one-on-one</p>
+        <h3>Session Info</h3>
 
-            <p>Status: Accepted</p>
+        <div class="session-grid">
 
-        </section>
+            <div>
+                <p>Skill</p>
+                <strong>Public Speaking</strong>
+            </div>
 
-        <!-- الجدولة -->
-        <section class="chat-card">
+            <div>
+                <p>Type</p>
+                <strong>One-on-One</strong>
+            </div>
 
-            <h3>Scheduling</h3>
+            <div>
+                <p>Status</p>
+                <strong>Accepted</strong>
+            </div>
 
-            <p>No session scheduled</p>
+        </div>
 
-            <button class="blue-button">
-                Schedule Session
-            </button>
+    </section>
 
-        </section>
+    <!-- الانتقال للجدولة -->
 
-    </main>
-    <script src="../../assets/js/script.js"></script>
+    <section class="schedule-link-card">
+
+        <h3>Scheduling</h3>
+
+        <p>
+            Choose a session time with your learner
+        </p>
+
+        <a href="schedule.php" class="schedule-btn">
+
+            Schedule Session
+
+        </a>
+
+    </section>
+
+</main>
+
+<script src="../../assets/js/script.js"></script>
+
 <?php include '../includes/footer.php'; ?>
+```

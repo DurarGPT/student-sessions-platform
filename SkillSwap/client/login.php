@@ -2,7 +2,6 @@
 global $pdo;
 session_start();
 include '../includes/db.php';
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -16,13 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['name'] = $user['full_name'];
         $_SESSION['role'] = $user['role'];
 
-        if ($user['role'] === 'admin') {
-            header("Location: ../admin/admin.php");
-            exit;
-        } else {
-            header("Location: index.php");
-            exit;
-        }
+        header("Location: index.php");
+        exit;
     } else {
         $error = "Invalid email or password.";
     }
@@ -47,7 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <?php include '../includes/header.php'; ?>
-
 <main class="login-page">
 
     <div class="login-header">
@@ -140,10 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </main>
 
 <?php include '../includes/footer.php'; ?>
-<!-- ================= JS ================= -->
-
 <script src="../assets/js/script.js"></script>
-
 </body>
 
 </html>

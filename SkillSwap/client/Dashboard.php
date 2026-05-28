@@ -1,8 +1,39 @@
-<?php
-// Start session so PHP can remember logged-in users
-session_start();
-?>
 
+<?php
+session_start();
+include '../includes/db.php';
+$userName = $_SESSION['user_name'] ?? "User";
+
+
+$totalHours = 0;
+$activeRequests = 0;
+$mentoring = 0;
+$notifications = 0;
+
+try {
+    $stmt = $pdo->query("SELECT COUNT(*) FROM requests");
+    $activeRequests = $stmt->fetchColumn();
+
+    $stmt = $pdo->query("SELECT COUNT(*) FROM sessions");
+    $mentoring = $stmt->fetchColumn();
+    $stmt = $pdo->query("SELECT COUNT(*) FROM sessions");
+    $mentoring = $stmt->fetchColumn();
+
+    $stmt = $pdo->query("SELECT * FROM sessions LIMIT 3");
+    $upcomingSessions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = $pdo->query("SELECT COALESCE(SUM(hours), 0) FROM volunteer_hours");
+    $totalHours = $stmt->fetchColumn();
+
+    $stmt = $pdo->query("SELECT COUNT(*) FROM messages");
+    $notifications = $stmt->fetchColumn();
+
+} catch (PDOException $e) {
+    $totalHours = 0;
+    $activeRequests = 0;
+    $mentoring = 0;
+    $notifications = 0;
+}
+?>
 <!DOCTYPE html>
 <!--==================== RIMASSS ALMUNTI DASHBOARD PAGE  ====================-->
 <html lang="en">
@@ -19,7 +50,7 @@ session_start();
 <main>
 
     <section class="dashboard-hero">
-        <h1>Welcome back,    </h1>
+        <h1>Welcome back, <?php echo $userName; ?>!</h1>
         <p>Here's your SkillSwap activity overview.</p>
     </section>
 
@@ -28,7 +59,7 @@ session_start();
         <div class="stat-card">
             <div class="stat-info">
                 <h2>Total Hours</h2>
-                <p>24</p>
+                <p><?php echo $totalHours; ?></p>
             </div>
             <span class="stat-icon hours-icon">🏅</span>
         </div>
@@ -36,7 +67,7 @@ session_start();
         <div class="stat-card">
             <div class="stat-info">
                 <h2>Active Requests</h2>
-                <p>0</p>
+                <p><?php echo $activeRequests; ?></p>
             </div>
             <span class="stat-icon requests-icon">📖</span>
         </div>
@@ -44,7 +75,7 @@ session_start();
         <div class="stat-card">
             <div class="stat-info">
                 <h2>Mentoring</h2>
-                <p>0</p>
+                <p><?php echo $mentoring; ?></p>
             </div>
             <span class="stat-icon mentoring-icon">📈</span>
         </div>
@@ -52,7 +83,7 @@ session_start();
         <div class="stat-card">
             <div class="stat-info">
                 <h2>Notifications</h2>
-                <p>0</p>
+                <p><?php echo $notifications; ?></p>
             </div>
             <span class="stat-icon notifications-icon">🔔</span>
         </div>

@@ -187,7 +187,7 @@ if (contactForm) {
 
     contactForm.addEventListener("submit", function (event) {
 
-        event.preventDefault();
+        //event.preventDefault();
 
         alert("Message sent successfully!");
 

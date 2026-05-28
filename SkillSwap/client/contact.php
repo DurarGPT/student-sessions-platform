@@ -1,10 +1,25 @@
+
 <?php
-// Start session so PHP can remember logged-in users
 session_start();
 include '../includes/db.php';
 
-?>
+$successMessage = "";
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $subject = $_POST["subject"];
+    $message = $_POST["message"];
+
+    $stmt = $pdo->prepare("INSERT INTO contact_messages (name, email, subject, message)
+    VALUES (?, ?, ?, ?)");
+
+    $stmt->execute([$name, $email, $subject, $message]);
+
+    $successMessage = "Message sent successfully!";
+}
+?>
 
 
 <!DOCTYPE html>
@@ -88,10 +103,16 @@ include '../includes/db.php';
         </section>
 
         <!--right side message form-->
+
         <section class="contact-form">
             <h2>Send Us a Message</h2>
+            <?php if ($successMessage != ""): ?>
+                <p style="color: green; font-weight: bold;">
+                    <?php echo $successMessage; ?>
+                </p>
+            <?php endif; ?>
 
-            <form>
+            <form method="POST" action="contact.php">
 
                 <label for="name">Name *</label>
                 <input type="text" id="name" name="name" placeholder="Your name">

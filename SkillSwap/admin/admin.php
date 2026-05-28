@@ -4,7 +4,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 
-<!--==================== admin panel page - RIMASS====================-->
+<!--==================== RIMASSS ALMUNTI  admin panel page ====================-->
 
 <html lang="en">
 
@@ -72,9 +72,19 @@ session_start();
 
         <div class="mentor-card">
 
-            <h3>Lisa Anderson</h3>
+            <div class="mentor-header">
 
-            <p>lisa.a@university.edu</p>
+                <div class="mentor-avatar">
+                    LA
+                </div>
+
+                <div>
+                    <h3>Lisa Anderson</h3>
+                    <p>lisa.a@university.edu</p>
+                </div>
+
+            </div>
+
 
             <p>
                 Media Arts student passionate about visual storytelling.

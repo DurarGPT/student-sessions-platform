@@ -1,5 +1,33 @@
 <?php
+global $pdo;
 session_start();
+include '../includes/db.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirm = $_POST['confirm'];
+    $role = strtolower($_POST['role']);
+    $skills = $_POST['skills'];
+    $bio = $_POST['bio'];
+
+    if ($password !== $confirm) {
+        $error = "Passwords do not match.";
+    } else {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $pdo->prepare("
+            INSERT INTO users (full_name, email, password, role, bio, skills, profile_image)
+            VALUES (?, ?, ?, ?, ?, ?, 'default.png')
+        ");
+
+        $stmt->execute([$name, $email, $hashedPassword, $role, $bio, $skills]);
+
+        header("Location: login.php");
+        exit;
+    }
+}
 ?>
 
 
@@ -40,6 +68,10 @@ session_start();
     <div class="register-card">
 
         <h2>Create Your Account</h2>
+
+        <?php if (!empty($error)): ?>
+            <p style="color:red;"><?php echo $error; ?></p>
+        <?php endif; ?>
 
         <form class="register-form" method="POST" action="">
 
@@ -128,6 +160,8 @@ session_start();
                                 required>
 
                     </div>
+
+                    <small class="password-error"></small>
 
                 </div>
 
@@ -232,7 +266,7 @@ session_start();
         <!-- ================= LOGIN ================= -->
         <p class="auth-switch">
             Already have an account?
-            <a href="../login.php">Log in</a>
+            <a href="login.php">Log in</a>
         </p>
 
     </div>
@@ -243,25 +277,7 @@ session_start();
 <?php include '../includes/footer.php'; ?>
 
 <!-- ================= JS ================= -->
-<script>
 
-    const boxes = document.querySelectorAll('.option-box');
-
-    boxes.forEach(box => {
-
-        box.addEventListener('click', () => {
-
-            boxes.forEach(b => {
-                b.classList.remove('active');
-            });
-
-            box.classList.add('active');
-
-        });
-
-    });
-
-</script>
-
+<script src="../assets/js/main.js"></script>
 </body>
 </html>

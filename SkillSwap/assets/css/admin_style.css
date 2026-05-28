@@ -39,7 +39,8 @@ main {
     padding: 30px;
 }
 
-/* ================= ADMIN PAGE ================= */
+/* ================= RIMAS ALMUNTI ADMIN PAGE ================= */
+
 
 .admin-page {
     background-color: #f5f7fb;
@@ -48,45 +49,51 @@ main {
 /* hero section */
 
 .admin-hero {
-    padding: 40px;
+    padding: 40px 8% 20px;
 }
 
 .admin-hero h1 {
-    font-size: 60px;
+    font-size: 38px;
+    color: #0f172a;
     margin-bottom: 10px;
 }
 
 .admin-hero p {
-    font-size: 18px;
-    color: #666;
+    color: #64748b;
+    font-size: 17px;
 }
 
-/* stats cards */
+/* stats section */
 
 .admin-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    padding: 0 30px;
-    margin-bottom: 30px;
+    gap: 22px;
+    padding: 0 8% 30px;
 }
 
 .admin-stat-card {
     background-color: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border-radius: 22px;
+    padding: 35px 25px;
+    text-align: center;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .admin-stat-card h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: #0f172a;
 }
 
 .admin-stat-card p {
-    font-size: 35px;
-    color: #2563eb;
+    font-size: 42px;
     font-weight: bold;
+    color: #2563eb;
+    margin: 0;
 }
 
 /* content layout */
@@ -94,105 +101,412 @@ main {
 .admin-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    padding: 0 30px;
-    margin-bottom: 30px;
+    gap: 24px;
+
+    padding: 0 8% 30px;
 }
 
 /* cards */
 
-.admin-card,
-.history-section {
+.admin-card {
     background-color: white;
-    padding: 35px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.admin-card h2,
-.history-section h2 {
-    font-size: 28px;
+.admin-card h2 {
+    margin-top: 0;
+    margin-bottom: 22px;
+
     color: #111827;
-    margin-bottom: 25px;
 }
 
 /* mentor card */
 
 .mentor-card {
-    background-color: #f9fafb;
     border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    padding: 25px;
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    background-color: #fafafa;
 }
 
 .mentor-card h3 {
-    margin-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 8px;
+
+    color: #0f172a;
 }
 
 .mentor-card p {
-    margin-bottom: 10px;
-    color: #444;
+    color: #64748b;
+    line-height: 1.6;
 }
 
-/* skills */
+/* mentor skills */
 
 .mentor-skills {
-    margin: 15px 0;
+    margin: 18px 0;
 }
 
 .mentor-skills span {
     display: inline-block;
-    background-color: #eef2ff;
-    color: #2563eb;
+
+    background-color: #f1f5f9;
+
     padding: 8px 14px;
-    border-radius: 20px;
-    margin-right: 10px;
-    margin-bottom: 10px;
+
+    border-radius: 999px;
+
+    margin-right: 8px;
+    margin-bottom: 8px;
+
     font-size: 14px;
+
+    color: #334155;
 }
 
-/* buttons */
+/* button */
 
-.admin-card button {
+.approve-btn {
     background-color: #2563eb;
+
     color: white;
+
     border: none;
-    padding: 12px 22px;
-    border-radius: 10px;
+
+    padding: 13px 22px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
     cursor: pointer;
-    margin-top: 10px;
+
+    transition: 0.2s;
 }
 
-.admin-card button:hover {
+.approve-btn:hover {
     background-color: #1d4ed8;
 }
 
-/* history */
+/* recent sessions */
 
-.history-section {
-    margin: 0 30px 30px;
+.admin-page > .admin-card {
+    margin: 0 8% 30px;
 }
 
-/* responsibilities */
-
+/* responsibilities section */
 .admin-responsibilities {
-    margin: 0 30px 40px;
-    padding: 35px;
-    border-radius: 20px;
+    margin: 0 8% 35px;
+    padding: 28px 32px;
+    border-radius: 22px;
     background: linear-gradient(135deg, #2563eb, #4f46e5);
     color: white;
 }
 
 .admin-responsibilities h2 {
-    font-size: 30px;
-    margin-bottom: 20px;
+    margin-top: 0;
+    margin-bottom: 14px;
+    font-size: 24px;
 }
 
 .admin-responsibilities ul {
-    padding-left: 20px;
+    margin: 0;
+    padding-left: 18px;
+}
+
+.admin-responsibilities {
+    padding: 30px;
 }
 
 .admin-responsibilities li {
+    font-size: 15px;
+    line-height: 1.8;
+}
+/* responsive */
+
+@media (max-width: 900px) {
+
+    .admin-stats,
+    .admin-content {
+        grid-template-columns: 1fr;
+    }
+
+}
+.mentor-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.mentor-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background-color: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #374151;
+    font-size: 20px;
+}
+
+
+/* ================= TALA PART - ADMIN DASHBOARD CSS ================= */
+
+.admin-dashboard-page .admin-container {
+    padding: 40px 8%;
+}
+
+.admin-dashboard-page .dashboard-title {
+    margin-bottom: 30px;
+}
+
+.admin-dashboard-page .dashboard-title h2 {
+    font-size: 38px;
+    color: #0f172a;
+}
+
+.admin-dashboard-page .admin-label {
+    background-color: #dbeafe;
+    color: #2563eb;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.admin-dashboard-page .stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    margin-bottom: 30px;
+}
+
+.admin-dashboard-page .stat-card {
+    color: white;
+    padding: 26px;
+    border-radius: 18px;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-dashboard-page .users-card {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.admin-dashboard-page .sessions-card {
+    background: linear-gradient(135deg, #16a34a, #00b140);
+}
+
+.admin-dashboard-page .approvals-card {
+    background: linear-gradient(135deg, #f97316, #ef4444);
+}
+
+.admin-dashboard-page .hours-card {
+    background: linear-gradient(135deg, #7c3aed, #9333ea);
+}
+
+.admin-dashboard-page .stat-card p {
+    margin: 0 0 10px;
+    font-size: 15px;
+}
+
+.admin-dashboard-page .stat-card h3 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.admin-dashboard-page .card-icon {
+    font-size: 34px;
+}
+
+.admin-dashboard-page .dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.admin-dashboard-page .bottom-grid {
+    grid-template-columns: 1.5fr 1fr;
+}
+
+.admin-dashboard-page .dashboard-box {
+    background-color: white;
+    padding: 28px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.admin-dashboard-page .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-dashboard-page .section-header h3 {
+    margin: 0;
+    color: #0f172a;
+}
+
+.admin-dashboard-page .pending-tag {
+    background-color: #fef3c7;
+    color: #92400e;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+}
+
+.admin-dashboard-page .mentor-request {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+}
+
+.admin-dashboard-page .mentor-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 999px;
+    background-color: #2563eb;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.admin-dashboard-page .mentor-info h4 {
+    margin: 0 0 6px;
+}
+
+.admin-dashboard-page .mentor-info p {
+    color: #64748b;
+    margin: 0 0 12px;
+}
+
+.admin-dashboard-page .skills-list span {
+    display: inline-block;
+    background-color: #eef2ff;
+    color: #2563eb;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.admin-dashboard-page button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.admin-dashboard-page button:hover {
+    background-color: #1d4ed8;
+}
+
+.admin-dashboard-page .overview-card,
+.admin-dashboard-page .activity-item {
+    background-color: #f8fafc;
+    padding: 18px;
+    border-radius: 14px;
     margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-dashboard-page .overview-card p,
+.admin-dashboard-page .activity-item p {
+    color: #64748b;
+    margin: 0;
+}
+
+.admin-dashboard-page .overview-card h4 {
+    font-size: 28px;
+    margin: 6px 0 0;
+}
+
+.admin-dashboard-page .empty-approvals {
+    text-align: center;
+    color: #64748b;
+    padding: 30px;
+}
+
+.admin-dashboard-page .approval-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    background-color: #dcfce7;
+    color: #16a34a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-weight: bold;
+}
+
+.admin-dashboard-page .activity-left {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.admin-dashboard-page .green-dot,
+.admin-dashboard-page .blue-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    display: inline-block;
+}
+
+.admin-dashboard-page .green-dot {
+    background-color: #16a34a;
+}
+
+.admin-dashboard-page .blue-dot {
+    background-color: #2563eb;
+}
+
+.admin-dashboard-page .activity-time {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.admin-dashboard-page .reports-text {
+    color: #64748b;
     line-height: 1.7;
+}
+
+.admin-dashboard-page .report-button {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+    .admin-dashboard-page .stats-container,
+    .admin-dashboard-page .dashboard-grid,
+    .admin-dashboard-page .bottom-grid {
+        grid-template-columns: 1fr;
+    }
 }

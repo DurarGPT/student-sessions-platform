@@ -22,7 +22,6 @@ session_start();
     <!-- Connect CSS file -->
     <link rel="stylesheet" href="../assets/css/client_style.css">
 </head>
-
 <!-- Body class used for page-specific styling -->
 <body class="home-page">
 
@@ -417,6 +416,7 @@ session_start();
 <!-- Include reusable shared footer -->
 <?php include '../includes/footer.php'; ?>
 
+<script src="../assets/js/script.js"></script>
 
 </body>
 

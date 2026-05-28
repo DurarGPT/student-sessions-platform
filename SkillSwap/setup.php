@@ -125,6 +125,8 @@ try {
             preferred_date DATE,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(user_id)
+            preferred_time VARCHAR(100),
+            session_type VARCHAR(50)
         )
     ");
 

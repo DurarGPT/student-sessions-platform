@@ -104,9 +104,17 @@ $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <?php foreach ($requests as $request) { ?>
 
+                <?php
+                $sessionType = $request['session_type'] ?? 'one-on-one';
+
+                if ($sessionType == "") {
+                    $sessionType = "one-on-one";
+                }
+                ?>
+
                 <div
                         class="request-card"
-                        data-type="<?php echo $request['session_type']; ?>"
+                        data-type="<?php echo htmlspecialchars($sessionType); ?>"
                 >
 
                     <div class="card-top">
@@ -119,7 +127,7 @@ $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         <span class="session-type">
 
-                            <?php echo htmlspecialchars($request['session_type']); ?>
+                            <?php echo htmlspecialchars($sessionType); ?>
 
                         </span>
 
@@ -152,7 +160,7 @@ $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             🕒
                             <?php
                             echo htmlspecialchars(
-                                    $request['preferred_time']
+                                    $request['preferred_time'] ?? ''
                             );
                             ?>
 
@@ -163,7 +171,7 @@ $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             🗓️
                             <?php
                             echo htmlspecialchars(
-                                    $request['preferred_date']
+                                    $request['preferred_date'] ?? ''
                             );
                             ?>
 

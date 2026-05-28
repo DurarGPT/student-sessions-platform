@@ -1,5 +1,5 @@
-
 // ========= balqeess part==============
+
 document.addEventListener("DOMContentLoaded", function () {
 
     // ================= BROWSE REQUESTS PAGE =================
@@ -163,6 +163,89 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+
+    // ================= POST REQUEST PAGE =================
+
+    const requestForm = document.querySelector(".request-form");
+
+    if (requestForm) {
+
+        requestForm.addEventListener("submit", function (event) {
+
+            const title = document.querySelector('input[name="title"]');
+            const description = document.querySelector('textarea[name="description"]');
+            const preferredTime = document.querySelector('input[name="preferred_time"]');
+
+            if (title && title.value.trim() === "") {
+                alert("Please enter a skill title.");
+                event.preventDefault();
+                return;
+            }
+
+            if (description && description.value.trim().length < 10) {
+                alert("Description must be at least 10 characters.");
+                event.preventDefault();
+                return;
+            }
+
+            if (preferredTime && preferredTime.value.trim() === "") {
+                alert("Please enter your preferred time.");
+                event.preventDefault();
+                return;
+            }
+
+            alert("Request posted successfully!");
+
+        });
+
+    }
+
+
+
+    // ================= SESSION TYPE CARDS =================
+
+    const sessionCards = document.querySelectorAll(".session-card");
+
+    sessionCards.forEach(function (card) {
+
+        card.addEventListener("click", function () {
+
+            sessionCards.forEach(function (item) {
+                item.classList.remove("active");
+            });
+
+            card.classList.add("active");
+
+            const radio = card.querySelector('input[type="radio"]');
+
+            if (radio) {
+                radio.checked = true;
+            }
+
+        });
+
+    });
+
+
+
+    // ================= POPULAR TAGS =================
+
+    const tags = document.querySelectorAll(".popular-tags span");
+    const titleInput = document.querySelector('input[name="title"]');
+
+    tags.forEach(function (tag) {
+
+        tag.addEventListener("click", function () {
+
+            if (titleInput) {
+                titleInput.value = tag.innerText;
+            }
+
+        });
+
+    });
+
 // ================= TALA PART =================
 
 function sendMessage() {

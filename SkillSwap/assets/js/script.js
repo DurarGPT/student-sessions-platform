@@ -1,204 +1,166 @@
 // ========= balqeess part==============
-// ================= BROWSE REQUESTS =================
+document.addEventListener("DOMContentLoaded", function () {
 
-const searchInput = document.querySelector(".search-box input");
+    // ================= BROWSE REQUESTS PAGE =================
 
-const requestCards = document.querySelectorAll(".request-card");
+    const searchInput = document.querySelector(".search-box input");
+    const requestCards = document.querySelectorAll(".request-card");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const requestCount = document.querySelector(".request-count");
+    const noResults = document.querySelector(".no-results");
 
-const filterButtons = document.querySelectorAll(".filter-btn");
+    let selectedFilter = "all";
 
-let selectedFilter = "all";
+    function filterRequests() {
 
-function filterRequests() {
-
-    const searchValue =
-        searchInput.value.toLowerCase();
-
-    requestCards.forEach(card => {
-
-        const text =
-            card.innerText.toLowerCase();
-
-        const cardType =
-            card.dataset.type;
-
-        const matchesSearch =
-            text.includes(searchValue);
-
-        const matchesType =
-            selectedFilter === "all" ||
-            cardType === selectedFilter;
-
-        if(matchesSearch && matchesType) {
-
-            card.style.display = "flex";
-
+        if (!searchInput || requestCards.length === 0) {
+            return;
         }
 
-        else {
+        const searchValue = searchInput.value.toLowerCase();
+        let visibleCount = 0;
 
-            card.style.display = "none";
+        requestCards.forEach(function (card) {
 
-        }
+            const cardText = card.innerText.toLowerCase();
+            const cardType = card.getAttribute("data-type");
 
-    });
+            const matchesSearch = cardText.includes(searchValue);
 
-}
+            const matchesFilter =
+                selectedFilter === "all" ||
+                cardType === selectedFilter;
 
-if(searchInput) {
-
-    searchInput.addEventListener(
-        "keyup",
-        filterRequests
-    );
-
-}
-
-filterButtons.forEach(button => {
-
-    button.addEventListener("click", function () {
-
-        filterButtons.forEach(btn => {
-
-            btn.classList.remove("active");
+            if (matchesSearch && matchesFilter) {
+                card.style.display = "flex";
+                visibleCount++;
+            } else {
+                card.style.display = "none";
+            }
 
         });
 
-        button.classList.add("active");
-
-        selectedFilter =
-            button.dataset.filter;
-
-        filterRequests();
-
-    });
-
-});
-
-
-
-// ================= POST REQUEST =================
-
-const requestForm =
-    document.querySelector(".request-form");
-
-if(requestForm) {
-
-    requestForm.addEventListener(
-        "submit",
-        function (event) {
-
-            const title =
-                document.querySelector(
-                    'input[name="title"]'
-                ).value;
-
-            const description =
-                document.querySelector(
-                    'textarea[name="description"]'
-                ).value;
-
-            const preferredTime =
-                document.querySelector(
-                    'input[name="preferred_time"]'
-                ).value;
-
-            if(title.trim() === "") {
-
-                alert(
-                    "Please enter a skill title."
-                );
-
-                event.preventDefault();
-
-                return;
-
-            }
-
-            if(description.trim().length < 10) {
-
-                alert(
-                    "Description must be at least 10 characters."
-                );
-
-                event.preventDefault();
-
-                return;
-
-            }
-
-            if(preferredTime.trim() === "") {
-
-                alert(
-                    "Please enter your preferred time."
-                );
-
-                event.preventDefault();
-
-                return;
-
-            }
-
-            alert(
-                "Request posted successfully!"
-            );
-
+        if (requestCount) {
+            requestCount.innerText =
+                "Showing " + visibleCount + " of " + requestCards.length + " requests";
         }
-    );
 
-}
-// ================= SESSION TYPE =================
+        if (noResults) {
+            if (visibleCount === 0) {
+                noResults.style.display = "block";
+            } else {
+                noResults.style.display = "none";
+            }
+        }
+    }
 
-const sessionCards =
-    document.querySelectorAll(".session-card");
+    if (searchInput) {
+        searchInput.addEventListener("keyup", filterRequests);
+    }
 
-sessionCards.forEach(card => {
+    filterButtons.forEach(function (button) {
 
-    card.addEventListener("click", function () {
+        button.addEventListener("click", function () {
 
-        sessionCards.forEach(item => {
+            filterButtons.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
 
-            item.classList.remove("active");
+            button.classList.add("active");
+
+            selectedFilter = button.getAttribute("data-filter");
+
+            filterRequests();
 
         });
 
-        card.classList.add("active");
+    });
 
-        const radio =
-            card.querySelector(
-                'input[type="radio"]'
-            );
+    filterRequests();
 
-        if(radio) {
 
-            radio.checked = true;
 
-        }
+    // ================= POST REQUEST PAGE =================
+
+    const requestForm = document.querySelector(".request-form");
+
+    if (requestForm) {
+
+        requestForm.addEventListener("submit", function (event) {
+
+            const title = document.querySelector('input[name="title"]');
+            const description = document.querySelector('textarea[name="description"]');
+            const preferredTime = document.querySelector('input[name="preferred_time"]');
+
+            if (title && title.value.trim() === "") {
+                alert("Please enter a skill title.");
+                event.preventDefault();
+                return;
+            }
+
+            if (description && description.value.trim().length < 10) {
+                alert("Description must be at least 10 characters.");
+                event.preventDefault();
+                return;
+            }
+
+            if (preferredTime && preferredTime.value.trim() === "") {
+                alert("Please enter your preferred time.");
+                event.preventDefault();
+                return;
+            }
+
+            alert("Request posted successfully!");
+
+        });
+
+    }
+
+
+
+    // ================= SESSION TYPE CARDS =================
+
+    const sessionCards = document.querySelectorAll(".session-card");
+
+    sessionCards.forEach(function (card) {
+
+        card.addEventListener("click", function () {
+
+            sessionCards.forEach(function (item) {
+                item.classList.remove("active");
+            });
+
+            card.classList.add("active");
+
+            const radio = card.querySelector('input[type="radio"]');
+
+            if (radio) {
+                radio.checked = true;
+            }
+
+        });
 
     });
 
-});
-// ================= POPULAR TAGS =================
 
-const tags =
-    document.querySelectorAll(".popular-tags span");
 
-const titleInput =
-    document.querySelector(
-        'input[name="title"]'
-    );
+    // ================= POPULAR TAGS =================
 
-tags.forEach(tag => {
+    const tags = document.querySelectorAll(".popular-tags span");
+    const titleInput = document.querySelector('input[name="title"]');
 
-    tag.addEventListener("click", function () {
+    tags.forEach(function (tag) {
 
-        if(titleInput) {
+        tag.addEventListener("click", function () {
 
-            titleInput.value =
-                tag.innerText;
+            if (titleInput) {
+                titleInput.value = tag.innerText;
+            }
 
-        }
+        });
+
     });
+
 });
 // ================= TALA PART =================
 

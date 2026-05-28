@@ -4,6 +4,45 @@ session_start();
 
 include '../includes/db.php';
 
+$message = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $user_id = $_SESSION['user_id'] ?? null;
+
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $category = $_POST['category'];
+    $level = $_POST['level'];
+    $preferred_date = $_POST['preferred_date'];
+    $preferred_time = $_POST['preferred_time'];
+    $session_type = $_POST['session_type'];
+
+    $sql = "INSERT INTO requests
+            (user_id, title, description, category, level,
+             preferred_date, preferred_time, session_type, status)
+            VALUES
+            (:user_id, :title, :description, :category, :level,
+             :preferred_date, :preferred_time, :session_type, 'open')";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([
+
+            ':user_id' => $user_id,
+            ':title' => $title,
+            ':description' => $description,
+            ':category' => $category,
+            ':level' => $level,
+            ':preferred_date' => $preferred_date,
+            ':preferred_time' => $preferred_time,
+            ':session_type' => $session_type
+
+    ]);
+
+    $message = "Request posted successfully!";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -21,11 +60,7 @@ include '../includes/db.php';
 
 <?php include '../includes/header.php'; ?>
 
-<!-- ================= POST REQUEST PAGE ================= -->
-
 <main>
-
-    <!-- HERO SECTION -->
 
     <section class="post-hero">
 
@@ -39,10 +74,6 @@ include '../includes/db.php';
 
     </section>
 
-
-
-    <!-- FORM SECTION -->
-
     <section class="post-wrapper">
 
         <form class="request-form" method="POST">
@@ -51,9 +82,13 @@ include '../includes/db.php';
                 Request Details
             </h2>
 
+            <?php if ($message != "") { ?>
 
+                <p class="success-message">
+                    <?php echo $message; ?>
+                </p>
 
-            <!-- SKILL INPUT -->
+            <?php } ?>
 
             <label>
                 Skill You Want to Learn *
@@ -65,10 +100,6 @@ include '../includes/db.php';
                     placeholder="e.g. UI Design, Java, Public Speaking"
             >
 
-
-
-            <!-- POPULAR TAGS -->
-
             <div class="popular-tags">
 
                 <span>UI Design</span>
@@ -77,14 +108,8 @@ include '../includes/db.php';
                 <span>React</span>
                 <span>English Speaking</span>
                 <span>Data Structures</span>
-                <span>Photography</span>
-                <span>Public Speaking</span>
 
             </div>
-
-
-
-            <!-- DESCRIPTION -->
 
             <label>
                 Description *
@@ -92,16 +117,8 @@ include '../includes/db.php';
 
             <textarea
                     name="description"
-                    placeholder="Describe what you want to learn and any specific topics you need help with..."
+                    placeholder="Describe what you want to learn..."
             ></textarea>
-
-            <small>
-                Be specific about your learning goals and current skill level
-            </small>
-
-
-
-            <!-- PREFERRED TIME -->
 
             <label>
                 Preferred Time *
@@ -110,12 +127,8 @@ include '../includes/db.php';
             <input
                     type="text"
                     name="preferred_time"
-                    placeholder="e.g. Weekday evenings, Weekend mornings, Flexible"
+                    placeholder="e.g. Weekday evenings"
             >
-
-
-
-            <!-- CATEGORY -->
 
             <label>
                 Category
@@ -131,10 +144,6 @@ include '../includes/db.php';
 
             </select>
 
-
-
-            <!-- LEVEL -->
-
             <label>
                 Level
             </label>
@@ -147,10 +156,6 @@ include '../includes/db.php';
 
             </select>
 
-
-
-            <!-- DATE -->
-
             <label>
                 Preferred Date
             </label>
@@ -160,17 +165,11 @@ include '../includes/db.php';
                     name="preferred_date"
             >
 
-
-
-            <!-- SESSION TYPE -->
-
             <label>
                 Session Type *
             </label>
 
             <div class="session-options">
-
-                <!-- ONE ON ONE -->
 
                 <label class="session-card active">
 
@@ -188,16 +187,12 @@ include '../includes/db.php';
                         </h3>
 
                         <p>
-                            Personalized mentoring with individual attention
+                            Personalized mentoring
                         </p>
 
                     </div>
 
                 </label>
-
-
-
-                <!-- GROUP -->
 
                 <label class="session-card">
 
@@ -214,7 +209,7 @@ include '../includes/db.php';
                         </h3>
 
                         <p>
-                            Learn together with others who share your goals
+                            Learn with others
                         </p>
 
                     </div>
@@ -223,10 +218,6 @@ include '../includes/db.php';
 
             </div>
 
-
-
-            <!-- INFO BOX -->
-
             <div class="info-box">
 
                 <h3>
@@ -234,26 +225,18 @@ include '../includes/db.php';
                 </h3>
 
                 <p>
-                    ✓ Verified mentors with this skill will be notified
+                    ✓ Mentors will receive your request
                 </p>
 
                 <p>
-                    ✓ They can review your request and accept it
+                    ✓ They can accept the request
                 </p>
 
                 <p>
-                    ✓ Once accepted, you'll coordinate the session details
-                </p>
-
-                <p>
-                    ✓ Sessions are conducted via Teams or in person
+                    ✓ Then you can start chatting
                 </p>
 
             </div>
-
-
-
-            <!-- BUTTON -->
 
             <button class="post-btn" type="submit">
 
@@ -269,7 +252,7 @@ include '../includes/db.php';
 
 <?php include '../includes/footer.php'; ?>
 
-<script src="../assets/js/client.js"></script>
+<script src="../assets/js/script.js"></script>
 
 </body>
 

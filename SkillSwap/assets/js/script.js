@@ -272,7 +272,6 @@ if (contactForm) {
 
         //event.preventDefault();
 
-        alert("Message sent successfully!");
 
     });
 

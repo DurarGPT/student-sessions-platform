@@ -50,8 +50,10 @@ try {
 <main>
 
     <section class="dashboard-hero">
-        <h1>Welcome back, <?php echo $userName; ?>!</h1>
-        <p>Here's your SkillSwap activity overview.</p>
+        <h1>
+            Welcome back,
+            <?php echo htmlspecialchars($_SESSION['name'] ?? 'User'); ?>
+        </h1>        <p>Here's your SkillSwap activity overview.</p>
     </section>
 
     <section class="dashboard-stats">

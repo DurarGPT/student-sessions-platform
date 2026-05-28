@@ -37,36 +37,36 @@ p {
 
 
 /* =========================================================
-   SHARED HEADER
-   Used from includes/header.php
-   ========================================================= */
+   HEADER
+========================================================= */
 
-/* Full navbar/header bar */
 .site-header {
     width: 100%;
     height: 78px;
 
-    padding: 0 8%;
+    padding: 0 7%;
 
-    background-color: #ffffff;
+    background: #ffffff;
     border-bottom: 1px solid #e5e7eb;
 
     display: flex;
     align-items: center;
-}
+    justify-content: space-between;
 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
 /* ================= LEFT SIDE ================= */
 
-/* Left side container */
 .header-left {
     display: flex;
     align-items: center;
-    gap: 42px;
+    gap: 55px;
 }
 
-
-/* Logo + SkillSwap text */
+/* Logo */
 .header-logo {
     display: flex;
     align-items: center;
@@ -76,149 +76,131 @@ p {
 
     color: #0f172a;
 
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 800;
+
+    white-space: nowrap;
 }
 
-
-/* Bigger logo image */
 .header-logo-img {
-    width: 85px;
-    height: 85px;
+    width: 38px;
+    height: 38px;
 
     object-fit: contain;
 }
 
+/* ================= NAVIGATION ================= */
 
-/* ================= NAVBAR ================= */
-
-/* Navbar container */
 .site-header nav {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 34px;
 }
 
-
-/* Normal navbar links */
 .site-header nav a {
     color: #334155;
 
     font-size: 17px;
     font-weight: 500;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+
+    white-space: nowrap;
 }
 
-
-/* Navbar hover */
 .site-header nav a:hover {
     color: #2563eb;
 }
 
-
 /* ================= RIGHT SIDE ================= */
 
-/* Right side buttons container */
 .header-right {
-    margin-left: auto;
-
     display: flex;
     align-items: center;
     gap: 14px;
 }
 
-/* Normal right-side links */
+/* ALL BUTTONS */
 .header-right a {
-    color: #334155;
-
-    font-size: 16px;
-    font-weight: 500;
-}
-
-/* Login button */
-.header-right a[href*="login"] {
-    border: 1px solid #e5e7eb;
-
-    padding: 10px 16px;
-    border-radius: 8px;
-
-    color: #111827;
-    background-color: white;
-
-    font-weight: 700;
-}
-
-/* Sign Up button */
-.header-right a[href*="register"],
-.header-right a[href*="signup"] {
-    background-color: #2563eb;
-
-    color: white;
-
-    padding: 10px 18px;
-    border-radius: 8px;
-
-    font-weight: 700;
-}
-
-/* Sign Up hover */
-.header-right a[href*="register"]:hover,
-.header-right a[href*="signup"]:hover {
-    background-color: #1d4ed8;
-    color: white;
-}
-
-/* Profile + Dashboard buttons */
-.header-right a[href*="profile"],
-.header-right a[href*="dashboard"] {
-    border: 1px solid #e5e7eb;
-
-    padding: 10px 16px;
-    border-radius: 8px;
-
-    color: #111827;
-    background-color: white;
-
-    font-weight: 700;
-}
-
-/* Post Request button */
-.header-right a[href*="post-request"] {
-    background-color: #00b140;
-
-    color: white;
-
-    padding: 12px 18px;
-    border-radius: 8px;
-
-    font-weight: 700;
-}
-/* ================= HEADER NOTIFICATION ICON ================= */
-
-.notification-link {
-    width: 44px;
     height: 44px;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
+
+    padding: 0 18px;
+
+    border-radius: 10px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #0f172a;
+
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    transition: 0.25s ease;
+
+    white-space: nowrap;
+}
+
+/* Notification */
+.notification-link {
+    width: 44px;
+    padding: 0 !important;
+
+    border: 1px solid #e5e7eb;
+
     background: white;
-    transition: all 0.3s ease;
+    color: #111827;
 }
 
 .notification-link i {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .notification-link:hover {
+    background: #f8fafc;
+}
+
+/* Profile + Dashboard + Logout + Login */
+.header-right a[href*="profile"],
+.header-right a[href*="dashboard"],
+.header-right a[href*="logout"],
+.header-right a[href*="login"] {
+    border: 1px solid #e5e7eb;
+
+    background: white;
+    color: #111827;
+}
+
+.header-right a[href*="profile"]:hover,
+.header-right a[href*="dashboard"]:hover,
+.header-right a[href*="logout"]:hover,
+.header-right a[href*="login"]:hover {
+    background: #f8fafc;
+}
+
+/* Post Request */
+.header-right a[href*="post-request"] {
+    background: #00b140;
+    color: white;
+
+    padding: 0 20px;
+}
+
+.header-right a[href*="post-request"]:hover {
+    background: #009537;
+}
+
+/* Register */
+.header-right a[href*="register"] {
     background: #2563eb;
     color: white;
-    transform: translateY(-2px);
 }
-.notification-card h2 i {
-    color: #2563eb;
-    margin-right: 10px;
+
+.header-right a[href*="register"]:hover {
+    background: #1d4ed8;
 }
 /* =========================================================
    SHARED FOOTER

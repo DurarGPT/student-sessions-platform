@@ -1,27 +1,40 @@
 <?php
 include '../includes/db.php';
 include '../includes/header.php';
+?>
+
+    <link rel="stylesheet" href="../assets/css/client_style.css">
+
+<?php
 
 /* جلب الجلسات المقبولة */
 $stmt = $pdo->prepare("
+
     SELECT
         sessions.*,
         requests.title
+
     FROM sessions
+
     JOIN requests
     ON sessions.request_id = requests.request_id
+
     WHERE sessions.status = 'scheduled'
+
     ORDER BY sessions.session_id DESC
+
 ");
 
 $stmt->execute();
 
 $notifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
     <main class="notification-page">
 
         <!-- عنوان الصفحة -->
+
         <section class="notification-hero">
 
             <h2>
@@ -36,6 +49,7 @@ $notifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </section>
 
         <!-- الإشعارات -->
+
         <section class="notification-card">
 
             <?php if(count($notifications) > 0) { ?>
@@ -70,7 +84,9 @@ $notifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </p>
 
                         <span class="notification-badge">
+
                         <?php echo $notification['status']; ?>
+
                     </span>
 
                     </div>
@@ -94,6 +110,7 @@ $notifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </section>
 
         <!-- معلومات -->
+
         <section class="notification-info">
 
             <h3>About Notifications</h3>

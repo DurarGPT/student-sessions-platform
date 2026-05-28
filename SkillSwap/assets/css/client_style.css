@@ -2380,8 +2380,304 @@ p {
         font-size: 34px;
     }
 }
-/* ================= GIRL 4: CHAT / INBOX / SCHEDULE ================= */
+/* ================= TALA CHAT / INBOX / SCHEDULE ================= */
+/* ================= TALA SCHEDULE PAGE ================= */
 
+.schedule-page {
+    padding: 40px 8%;
+    background-color: #f8fafc;
+}
+
+.schedule-hero h2 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.schedule-hero p {
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.schedule-card,
+.session-details-card,
+.session-status-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 25px;
+}
+
+.schedule-header {
+    margin-bottom: 20px;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule-table th,
+.schedule-table td {
+    border: 1px solid #e5e7eb;
+    padding: 10px;
+    text-align: center;
+}
+
+.time-slot-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #eff6ff;
+    color: #2563eb;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.time-slot-btn:hover {
+    background-color: #2563eb;
+    color: white;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.success-message {
+    background-color: #dcfce7;
+    color: #166534;
+    padding: 14px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.session-badge {
+    display: inline-block;
+    background-color: #dcfce7;
+    color: #166534;
+    padding: 8px 14px;
+    border-radius: 999px;
+    margin-top: 10px;
+}
+
+.no-session {
+    color: #64748b;
+}
+
+/* ================= TALA CHAT PAGE ================= */
+
+.chat-page {
+    padding: 40px 8%;
+    background-color: #f8fafc;
+}
+
+.chat-hero {
+    margin-bottom: 25px;
+}
+
+.chat-hero h2 {
+    font-size: 38px;
+    margin-bottom: 10px;
+    color: #0f172a;
+}
+
+.chat-hero p {
+    color: #64748b;
+}
+
+.chat-info-card,
+.messages-card,
+.send-message-card,
+.session-info-card,
+.schedule-link-card {
+    background-color: white;
+    padding: 28px;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 25px;
+}
+
+.chat-info-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.chat-avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 999px;
+    background-color: #2563eb;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.chat-status {
+    background-color: #dcfce7;
+    color: #166534;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+}
+
+.messages-card h3,
+.session-info-card h3,
+.schedule-link-card h3 {
+    margin-bottom: 20px;
+    color: #0f172a;
+}
+
+.message-box {
+    background-color: #eff6ff;
+    color: #0f172a;
+    padding: 14px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    width: fit-content;
+    max-width: 70%;
+}
+
+.empty-message {
+    color: #64748b;
+}
+
+.message-form {
+    display: flex;
+    gap: 15px;
+}
+
+.message-input {
+    flex: 1;
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 15px;
+}
+
+.blue-button,
+.schedule-btn {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.blue-button:hover,
+.schedule-btn:hover {
+    background-color: #1d4ed8;
+}
+
+.session-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.session-grid p {
+    color: #64748b;
+    margin-bottom: 6px;
+}
+
+.success-message {
+    background-color: #dcfce7;
+    color: #166534;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+}
+
+@media (max-width: 900px) {
+
+    .chat-info-card,
+    .message-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .session-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .message-box {
+        max-width: 100%;
+    }
+}
+/* ================= TALA NOTIFICATION PAGE ================= */
+
+.notification-page {
+    padding: 40px 8%;
+    background-color: #f8fafc;
+}
+
+.notification-hero h2 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.notification-hero p {
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.notification-card,
+.notification-info {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 25px;
+}
+
+.notification-item {
+    border: 1px solid #dbeafe;
+    background-color: #eff6ff;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.notification-item h3 {
+    margin-bottom: 10px;
+}
+
+.notification-item p {
+    margin-bottom: 8px;
+    color: #475569;
+}
+
+.notification-badge {
+    display: inline-block;
+    background-color: #dcfce7;
+    color: #166534;
+    padding: 8px 14px;
+    border-radius: 999px;
+    margin-top: 10px;
+}
+
+.empty-notification {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.empty-notification h3 {
+    margin-bottom: 10px;
+}
 
 
 

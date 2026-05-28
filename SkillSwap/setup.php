@@ -35,7 +35,7 @@ try {
 
 
     // ================= USERS TABLE =================
-    //  تعديل: إضافة عمود profile_image مع قيمة افتراضية default.png
+    // تعديل: إضافة عمود profile_image مع قيمة افتراضية default.png
     $pdo->exec("
         CREATE TABLE IF NOT EXISTS users (
             user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -45,7 +45,7 @@ try {
             role VARCHAR(50) DEFAULT 'student',
             bio TEXT,
             skills TEXT,
-            profile_image VARCHAR(255) DEFAULT 'default.png', -- تمت الإضافة هنا 
+            profile_image VARCHAR(255) DEFAULT 'default.png',
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ");
@@ -78,40 +78,6 @@ try {
 
 
 
-    // ================= SAMPLE USERS =================
-    $checkUsers = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
-
-    if ($checkUsers < 3) {
-
-        $pdo->prepare("
-            INSERT INTO users (full_name, email, password, role, bio, skills)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ")->execute([
-            "Sara Ali",
-            "sara@student.com",
-            password_hash("123456", PASSWORD_DEFAULT),
-            "student",
-            "Computer Science student",
-            "HTML, CSS"
-        ]);
-
-        $pdo->prepare("
-            INSERT INTO users (full_name, email, password, role, bio, skills)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ")->execute([
-            "Omar Khalid",
-            "omar@mentor.com",
-            password_hash("123456", PASSWORD_DEFAULT),
-            "mentor",
-            "Software Engineer mentor",
-            "PHP, MySQL, Java"
-        ]);
-
-        echo "Sample users added <br><br>";
-    }
-
-
-
     // ================= REQUESTS TABLE =================
     $pdo->exec("
         CREATE TABLE IF NOT EXISTS requests (
@@ -123,31 +89,14 @@ try {
             level VARCHAR(50),
             status VARCHAR(50) DEFAULT 'open',
             preferred_date DATE,
+            preferred_time VARCHAR(100),
+            session_type VARCHAR(50),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(user_id)
-            preferred_time VARCHAR(100),
-            session_type VARCHAR(50)
         )
     ");
 
     echo "Requests table created <br><br>";
-
-
-
-    // ================= SAMPLE REQUESTS =================
-    $countRequests = $pdo->query("SELECT COUNT(*) FROM requests")->fetchColumn();
-
-    if ($countRequests == 0) {
-
-        $pdo->exec("
-            INSERT INTO requests (user_id, title, description, category, level)
-            VALUES 
-            (2, 'Learn HTML Basics', 'Need help understanding HTML structure', 'Web Development', 'Beginner'),
-            (2, 'CSS Flexbox Help', 'Confused about flexbox layout', 'Web Development', 'Beginner')
-        ");
-
-        echo "Sample requests added <br><br>";
-    }
 
 
 
@@ -168,21 +117,6 @@ try {
 
 
 
-    // ================= SAMPLE MESSAGE =================
-    $countMessages = $pdo->query("SELECT COUNT(*) FROM messages")->fetchColumn();
-
-    if ($countMessages == 0) {
-
-        $pdo->exec("
-            INSERT INTO messages (sender_id, receiver_id, message_text)
-            VALUES (2, 3, 'Hi, can you help me with HTML?')
-        ");
-
-        echo "Sample message added <br><br>";
-    }
-
-
-
     // ================= SESSIONS TABLE =================
     $pdo->exec("
         CREATE TABLE IF NOT EXISTS sessions (
@@ -199,21 +133,6 @@ try {
     ");
 
     echo "Sessions table created <br><br>";
-
-
-
-    // ================= SAMPLE SESSION =================
-    $countSessions = $pdo->query("SELECT COUNT(*) FROM sessions")->fetchColumn();
-
-    if ($countSessions == 0) {
-
-        $pdo->exec("
-            INSERT INTO sessions (mentor_id, student_id, request_id, session_date, status)
-            VALUES (3, 2, 1, '2026-06-01', 'pending')
-        ");
-
-        echo "Sample session added <br><br>";
-    }
 
 
 
@@ -255,4 +174,3 @@ try {
 }
 
 ?>
-

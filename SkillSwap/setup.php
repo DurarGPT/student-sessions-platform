@@ -37,18 +37,20 @@ try {
     // ================= USERS TABLE =================
     // تعديل: إضافة عمود profile_image مع قيمة افتراضية default.png
     $pdo->exec("
-        CREATE TABLE IF NOT EXISTS users (
-            user_id INT AUTO_INCREMENT PRIMARY KEY,
-            full_name VARCHAR(100) NOT NULL,
-            email VARCHAR(100) UNIQUE NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            role VARCHAR(50) DEFAULT 'student',
-            bio TEXT,
-            skills TEXT,
-            profile_image VARCHAR(255) DEFAULT 'default.png',
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ");
+    CREATE TABLE IF NOT EXISTS users (
+        user_id INT AUTO_INCREMENT PRIMARY KEY,
+        full_name VARCHAR(100) NOT NULL,
+        email VARCHAR(100) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        role VARCHAR(50) DEFAULT 'student',
+        bio TEXT,
+        skills TEXT,
+        profile_image VARCHAR(255) DEFAULT 'default.png',
+        volunteer_hours INT DEFAULT 0,
+        email_notifications TINYINT DEFAULT 1,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+");
 
     echo "Users table created <br><br>";
 
@@ -158,6 +160,7 @@ try {
             contact_id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(100),
             email VARCHAR(100),
+            subject VARCHAR(255),
             message TEXT,
             sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )

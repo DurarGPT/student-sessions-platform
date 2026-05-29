@@ -172,8 +172,8 @@ body {
     border-color: #315efb;
     background-color: #eff6ff;
     box-shadow: 0 0 0 4px rgba(49, 94, 251, 0.12);
+    transform: translateY(-3px);
 }
-
 /* ================= OPTION ICONS ================= */
 .option-icon {
     width: 56px;

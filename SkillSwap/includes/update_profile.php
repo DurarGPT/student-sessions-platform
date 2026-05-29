@@ -2,38 +2,57 @@
 global $pdo;
 session_start();
 
-// الاتصال بقاعدة البيانات //
-include 'includes/db.php'; // ✅ تم تعديل المسار الصحيح
+include 'db.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../client/login.php");
+    exit;
+}
 
 $userId = $_SESSION['user_id'];
 
-// ================= تحديث الاسم ================= //
-if (!empty($_POST['full_name'])) {
-    $newName = $_POST['full_name'];
-    $stmt = $pdo->prepare("UPDATE users SET full_name=? WHERE user_id=?");
-    $stmt->execute([$newName, $userId]);
-}
-
-// ================= تحديث الباسورد ================= //
+/* ================= UPDATE PASSWORD ================= */
 if (!empty($_POST['password'])) {
+
     $newPass = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $stmt = $pdo->prepare("UPDATE users SET password=? WHERE user_id=?");
+
+    $stmt = $pdo->prepare("
+        UPDATE users
+        SET password = ?
+        WHERE user_id = ?
+    ");
+
     $stmt->execute([$newPass, $userId]);
 }
 
-// ================= تحديث الصورة ================= //
-if (!empty($_FILES['profile_image']['name'])) {
-    $imageName = time() . "_" . $_FILES['profile_image']['name'];
+/* ================= UPDATE PROFILE IMAGE ================= */
+if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
+
+    $originalName = basename($_FILES['profile_image']['name']);
+    $safeName = preg_replace('/[^A-Za-z0-9._-]/', '_', $originalName);
+    $imageName = time() . "_" . $safeName;
+
     $imageTmp = $_FILES['profile_image']['tmp_name'];
-    $uploadPath = "uploads/profile/" . $imageName;
+    $uploadDir = __DIR__ . "/../uploads/profile/";
 
-    move_uploaded_file($imageTmp, $uploadPath);
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
 
-    $stmt = $pdo->prepare("UPDATE users SET profile_image=? WHERE user_id=?");
-    $stmt->execute([$imageName, $userId]);
+    $uploadPath = $uploadDir . $imageName;
+
+    if (move_uploaded_file($imageTmp, $uploadPath)) {
+
+        $stmt = $pdo->prepare("
+            UPDATE users
+            SET profile_image = ?
+            WHERE user_id = ?
+        ");
+
+        $stmt->execute([$imageName, $userId]);
+    }
 }
 
-// Redirect back to profile page after update //
-header("Location: profile.php");
+header("Location: ../client/profile.php");
 exit;
 ?>

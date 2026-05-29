@@ -39,14 +39,13 @@ main {
     padding: 30px;
 }
 
-/* ================= RIMAS ALMUNTI ADMIN PAGE ================= */
+/* ================= RIMAS ALMUNTI ADMIN PAGE =================*/
 
 
 .admin-page {
     background-color: #f5f7fb;
 }
 
-/* hero section */
 
 .admin-hero {
     padding: 40px 8% 20px;
@@ -63,7 +62,6 @@ main {
     font-size: 17px;
 }
 
-/* stats section */
 
 .admin-stats {
     display: grid;
@@ -96,7 +94,6 @@ main {
     margin: 0;
 }
 
-/* content layout */
 
 .admin-content {
     display: grid;
@@ -106,7 +103,6 @@ main {
     padding: 0 8% 30px;
 }
 
-/* cards */
 
 .admin-card {
     background-color: white;
@@ -127,7 +123,6 @@ main {
     color: #111827;
 }
 
-/* mentor card */
 
 .mentor-card {
     border: 1px solid #e5e7eb;
@@ -151,7 +146,6 @@ main {
     line-height: 1.6;
 }
 
-/* mentor skills */
 
 .mentor-skills {
     margin: 18px 0;
@@ -174,7 +168,6 @@ main {
     color: #334155;
 }
 
-/* button */
 
 .approve-btn {
     background-color: #2563eb;
@@ -198,13 +191,11 @@ main {
     background-color: #1d4ed8;
 }
 
-/* recent sessions */
 
 .admin-page > .admin-card {
     margin: 0 8% 30px;
 }
 
-/* responsibilities section */
 .admin-responsibilities {
     margin: 0 8% 35px;
     padding: 28px 32px;
@@ -232,7 +223,6 @@ main {
     font-size: 15px;
     line-height: 1.8;
 }
-/* responsive */
 
 @media (max-width: 900px) {
 
@@ -263,7 +253,8 @@ main {
 }
 
 
-/* ================= TALA PART - ADMIN DASHBOARD CSS ================= */
+
+/* ================= TALA PART - ADMIN DASHBOARD CSS =================*
 
 .admin-dashboard-page .admin-container {
     padding: 40px 8%;

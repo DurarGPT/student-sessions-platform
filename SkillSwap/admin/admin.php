@@ -1,7 +1,15 @@
 <?php
 session_start();
 include '../includes/db.php';
+if (isset($_POST['verify_mentor'])) {
+    $userId = $_POST['user_id'];
 
+    $stmt = $pdo->prepare("UPDATE users SET role = 'mentor' WHERE user_id = ?");
+    $stmt->execute([$userId]);
+
+    header("Location: admin.php");
+    exit;
+}
 $pendingApprovals = 0;
 $pendingVerification = 0;
 $verifiedMentors = 0;
@@ -9,14 +17,16 @@ $recentSessions = 0;
 
 try {
     $pendingApprovals = $pdo->query("SELECT COUNT(*) FROM volunteer_hours")->fetchColumn();
-    $pendingVerification = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
-    $verifiedMentors = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
+    $pendingVerification = $pdo->query("SELECT COUNT(*) FROM users WHERE role = 'mentor_pending'")->fetchColumn();
+    $verifiedMentors = $pdo->query("SELECT COUNT(*) FROM users WHERE role = 'mentor'")->fetchColumn();
     $recentSessions = $pdo->query("SELECT COUNT(*) FROM sessions")->fetchColumn();
+    $pendingMentors = $pdo->query("SELECT * FROM users WHERE role = 'mentor_pending'")->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $pendingApprovals = 0;
     $pendingVerification = 0;
     $verifiedMentors = 0;
     $recentSessions = 0;
+    $pendingMentors = [];
 }
 ?>
 <!DOCTYPE html>
@@ -92,41 +102,47 @@ try {
 
     <!--mentor verification-->
     <div class="admin-card">
-
         <h2>Mentor Verification Requests</h2>
+    <?php if (count($pendingMentors) > 0): ?>
 
-        <div class="mentor-card">
+        <?php foreach ($pendingMentors as $mentor): ?>
+            <div class="mentor-card">
 
-            <div class="mentor-header">
+                <div class="mentor-header">
+                    <div class="mentor-avatar">
+                        <?php echo strtoupper(substr($mentor['full_name'], 0, 2)); ?>
+                    </div>
 
-                <div class="mentor-avatar">
-                    LA
+                    <div>
+                        <h3><?php echo htmlspecialchars($mentor['full_name']); ?></h3>
+                        <p><?php echo htmlspecialchars($mentor['email']); ?></p>
+                    </div>
                 </div>
 
-                <div>
-                    <h3>Lisa Anderson</h3>
-                    <p>lisa.a@university.edu</p>
+                <p>
+                    <?php echo htmlspecialchars($mentor['bio'] ?? 'No bio available.'); ?>
+                </p>
+
+                <div class="mentor-skills">
+                    <span><?php echo htmlspecialchars($mentor['skills'] ?? 'No skills listed'); ?></span>
                 </div>
 
+                <form method="POST" action="admin.php">
+                    <input type="hidden" name="user_id" value="<?php echo $mentor['user_id']; ?>">
+                    <button type="submit" name="verify_mentor" class="approve-btn">
+                        Verify as Mentor
+                    </button>
+                </form>
+
             </div>
+        <?php endforeach; ?>
 
+    <?php else: ?>
 
-            <p>
-                Media Arts student passionate about visual storytelling.
-            </p>
+        <p>No mentor verification requests</p>
 
-            <div class="mentor-skills">
-                <span>Photography</span>
-                <span>Video Editing</span>
-                <span>Adobe Suite</span>
-            </div>
-
-            <button class="approve-btn">Verify as Mentor</button>
-
-        </div>
-
+    <?php endif; ?>
     </div>
-
 </section>
 
 

@@ -1,19 +1,15 @@
-
 <?php
 session_start();
 include '../includes/db.php';
-$userRole = 'student';
-
-if (isset($_SESSION['user_id'])) {
-    $stmt = $pdo->prepare("SELECT role FROM users WHERE user_id = ?");
-    $stmt->execute([$_SESSION['user_id']]);
-    $userRole = $stmt->fetchColumn();
-}
 
 if (isset($_POST['apply_mentor']) && isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
 
-    $stmt = $pdo->prepare("UPDATE users SET role = 'mentor_pending' WHERE user_id = ? AND role = 'student'");
+    $stmt = $pdo->prepare("
+        UPDATE users 
+        SET role = 'mentor_pending' 
+        WHERE user_id = ? AND role = 'student'
+    ");
     $stmt->execute([$userId]);
 
     $_SESSION['success'] = "Mentor verification request submitted successfully!";
@@ -22,17 +18,15 @@ if (isset($_POST['apply_mentor']) && isset($_SESSION['user_id'])) {
     exit;
 }
 
-if (isset($_POST['apply_mentor']) && isset($_SESSION['user_id'])) {
-    $userId = $_SESSION['user_id'];
+$userRole = 'student';
 
-    $stmt = $pdo->prepare("UPDATE users SET role = 'mentor_pending' WHERE user_id = ? AND role = 'student'");
-    $stmt->execute([$userId]);
-
-    header("Location: Dashboard.php");
-    exit;
+if (isset($_SESSION['user_id'])) {
+    $stmt = $pdo->prepare("SELECT role FROM users WHERE user_id = ?");
+    $stmt->execute([$_SESSION['user_id']]);
+    $userRole = $stmt->fetchColumn();
 }
-$userName = $_SESSION['user_name'] ?? "User";
 
+$userName = $_SESSION['user_name'] ?? "User";
 
 $totalHours = 0;
 $activeRequests = 0;
@@ -45,12 +39,11 @@ try {
 
     $stmt = $pdo->query("SELECT COUNT(*) FROM sessions");
     $mentoring = $stmt->fetchColumn();
-    $stmt = $pdo->query("SELECT COUNT(*) FROM sessions");
-    $mentoring = $stmt->fetchColumn();
 
     $stmt = $pdo->query("SELECT * FROM sessions LIMIT 3");
     $upcomingSessions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $stmt = $pdo->query("SELECT COALESCE(SUM(hours), 0) FROM volunteer_hours");
+
+    $stmt = $pdo->query("SELECT COALESCE(SUM(hours_completed), 0) FROM volunteer_hours");
     $totalHours = $stmt->fetchColumn();
 
     $stmt = $pdo->query("SELECT COUNT(*) FROM messages");

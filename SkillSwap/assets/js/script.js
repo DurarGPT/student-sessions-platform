@@ -283,8 +283,7 @@ const approveButtons = document.querySelectorAll(".approve-btn");
 approveButtons.forEach(button => {
 
     button.addEventListener("click", function () {
-
-        alert("Student approved successfully!");
+        //event.preventDefault();
 
     });
 

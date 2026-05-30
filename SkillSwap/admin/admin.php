@@ -1,11 +1,24 @@
 <?php
 session_start();
 include '../includes/db.php';
+
 if (isset($_POST['verify_mentor'])) {
     $userId = $_POST['user_id'];
 
     $stmt = $pdo->prepare("UPDATE users SET role = 'mentor' WHERE user_id = ?");
     $stmt->execute([$userId]);
+    $_SESSION['success'] = "Mentor approved successfully!";
+
+    header("Location: admin.php");
+    exit;
+}
+if (isset($_POST['reject_mentor'])) {
+    $userId = $_POST['user_id'];
+
+    $stmt = $pdo->prepare("UPDATE users SET role = 'student' WHERE user_id = ?");
+    $stmt->execute([$userId]);
+
+    $_SESSION['success'] = "Mentor request rejected successfully!";
 
     header("Location: admin.php");
     exit;
@@ -44,6 +57,14 @@ try {
 <body class="admin-page">
 
 <?php include '../includes/header.php'; ?>
+<?php if (isset($_SESSION['success'])): ?>
+    <div class="success-message">
+        <?php
+        echo $_SESSION['success'];
+        unset($_SESSION['success']);
+        ?>
+    </div>
+<?php endif; ?>
 
 <!--admin hero section-->
 <section class="admin-hero">
@@ -129,8 +150,13 @@ try {
 
                 <form method="POST" action="admin.php">
                     <input type="hidden" name="user_id" value="<?php echo $mentor['user_id']; ?>">
+
                     <button type="submit" name="verify_mentor" class="approve-btn">
                         Verify as Mentor
+                    </button>
+
+                    <button type="submit" name="reject_mentor" class="approve-btn">
+                        Reject
                     </button>
                 </form>
 

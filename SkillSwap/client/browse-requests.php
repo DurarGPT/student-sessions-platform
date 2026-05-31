@@ -180,7 +180,7 @@ $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
 
                     <a
-                            href="Dashboard.php"
+                            href="Dashboard.php?accept_request=<?php echo $request['request_id']; ?>"
                             class="accept-btn"
                     >
                         Accept Request

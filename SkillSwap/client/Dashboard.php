@@ -17,7 +17,41 @@ if (isset($_POST['apply_mentor']) && isset($_SESSION['user_id'])) {
     header("Location: Dashboard.php");
     exit;
 }
+if (isset($_GET['accept_request']) && isset($_SESSION['user_id'])) {
+    $requestId = $_GET['accept_request'];
+    $mentorId = $_SESSION['user_id'];
 
+    $stmt = $pdo->prepare("
+        SELECT user_id, preferred_date
+        FROM requests
+        WHERE request_id = ? AND status = 'open'
+    ");
+    $stmt->execute([$requestId]);
+    $request = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($request) {
+        $studentId = $request['user_id'];
+        $sessionDate = $request['preferred_date'];
+
+        $stmt = $pdo->prepare("
+            INSERT INTO sessions (mentor_id, student_id, request_id, session_date, status)
+            VALUES (?, ?, ?, ?, 'pending')
+        ");
+        $stmt->execute([$mentorId, $studentId, $requestId, $sessionDate]);
+
+        $stmt = $pdo->prepare("
+            UPDATE requests
+            SET status = 'accepted'
+            WHERE request_id = ?
+        ");
+        $stmt->execute([$requestId]);
+
+        $_SESSION['success'] = "Request accepted successfully!";
+    }
+
+    header("Location: Dashboard.php");
+    exit;
+}
 $userRole = 'student';
 
 if (isset($_SESSION['user_id'])) {
@@ -154,19 +188,31 @@ try {
 
             <h2>📅 Upcoming Sessions</h2>
 
-            <div class="upcoming-empty">
+            <?php if (!empty($upcomingSessions)) { ?>
 
-                <div class="upcoming-icon">📅</div>
+                <?php foreach ($upcomingSessions as $session) { ?>
+
+                    <div class="session-item">
+                        <p>
+                            Session #<?php echo htmlspecialchars($session['session_id']); ?>
+                        </p>
+
+                        <p>
+                            Date: <?php echo htmlspecialchars($session['session_date']); ?>
+                        </p>
+
+                        <p>
+                            Status: <?php echo htmlspecialchars($session['status']); ?>
+                        </p>
+                    </div>
+
+                <?php } ?>
+
+            <?php } else { ?>
 
                 <p>No upcoming sessions</p>
 
-                <a href="browse-requests.php" class="secondary-btn">
-                    Browse Requests
-                </a>
-
-            </div>
-
-        </div>
+            <?php } ?>
 
     </section>
 

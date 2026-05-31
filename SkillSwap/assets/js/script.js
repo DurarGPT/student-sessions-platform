@@ -1,75 +1,118 @@
-// ========= balqeess part==============
+// ========= BALQEES PART ==========
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // ================= BROWSE REQUESTS PAGE =================
+    //================= BROWSE REQUESTS =================
 
-    const searchInput = document.querySelector(".search-box input");
-    const requestCards = document.querySelectorAll(".request-card");
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const requestCount = document.querySelector(".request-count");
-    const noResults = document.querySelector(".no-results");
+    const searchInput =
+        document.querySelector(".search-box input");
+
+    const requestCards =
+        document.querySelectorAll(".request-card");
+
+    const filterButtons =
+        document.querySelectorAll(".filter-btn");
+
+    const requestCount =
+        document.querySelector(".request-count");
+
+    const noResults =
+        document.querySelector(".no-results");
 
     let selectedFilter = "all";
 
     function filterRequests() {
 
-        if (!searchInput || requestCards.length === 0) {
-            return;
-        }
-
-        const searchValue = searchInput.value.toLowerCase();
         let visibleCount = 0;
 
-        requestCards.forEach(function (card) {
+        requestCards.forEach(function(card) {
 
-            const cardText = card.innerText.toLowerCase();
-            const cardType = card.getAttribute("data-type");
+            const searchValue =
+                searchInput ?
+                    searchInput.value.toLowerCase() : "";
 
-            const matchesSearch = cardText.includes(searchValue);
+            const cardText =
+                card.innerText.toLowerCase();
+
+            const cardType =
+                card.getAttribute("data-type");
+
+            const matchesSearch =
+                cardText.includes(searchValue);
 
             const matchesFilter =
                 selectedFilter === "all" ||
                 cardType === selectedFilter;
 
-            if (matchesSearch && matchesFilter) {
+            if(matchesSearch && matchesFilter) {
+
                 card.style.display = "flex";
+
                 visibleCount++;
-            } else {
+
+            }
+
+            else {
+
                 card.style.display = "none";
+
             }
 
         });
 
-        if (requestCount) {
+        if(requestCount) {
+
             requestCount.innerText =
-                "Showing " + visibleCount + " of " + requestCards.length + " requests";
+                "Showing " +
+                visibleCount +
+                " of " +
+                requestCards.length +
+                " requests";
+
         }
 
-        if (noResults) {
-            if (visibleCount === 0) {
+        if(noResults) {
+
+            if(visibleCount === 0) {
+
                 noResults.style.display = "block";
-            } else {
-                noResults.style.display = "none";
+
             }
+
+            else {
+
+                noResults.style.display = "none";
+
+            }
+
         }
+
     }
 
-    if (searchInput) {
-        searchInput.addEventListener("keyup", filterRequests);
+    if(searchInput) {
+
+        searchInput.addEventListener(
+            "input",
+            filterRequests
+        );
+
     }
 
-    filterButtons.forEach(function (button) {
+    filterButtons.forEach(function(button) {
 
-        button.addEventListener("click", function () {
+        button.addEventListener("click", function() {
 
-            filterButtons.forEach(function (btn) {
+            filterButtons.forEach(function(btn) {
+
                 btn.classList.remove("active");
+
             });
 
             button.classList.add("active");
 
-            selectedFilter = button.getAttribute("data-filter");
+            selectedFilter =
+                button.getAttribute("data-filter");
 
             filterRequests();
 
@@ -81,62 +124,110 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    // ================= POST REQUEST PAGE =================
+    // ================= POST REQUEST =================
 
-    const requestForm = document.querySelector(".request-form");
+    const requestForm =
+        document.querySelector(".request-form");
 
-    if (requestForm) {
+    if(requestForm) {
 
-        requestForm.addEventListener("submit", function (event) {
+        requestForm.addEventListener(
+            "submit",
+            function(event) {
 
-            const title = document.querySelector('input[name="title"]');
-            const description = document.querySelector('textarea[name="description"]');
-            const preferredTime = document.querySelector('input[name="preferred_time"]');
+                const title =
+                    document.querySelector(
+                        'input[name="title"]'
+                    );
 
-            if (title && title.value.trim() === "") {
-                alert("Please enter a skill title.");
-                event.preventDefault();
-                return;
+                const description =
+                    document.querySelector(
+                        'textarea[name="description"]'
+                    );
+
+                const preferredTime =
+                    document.querySelector(
+                        'input[name="preferred_time"]'
+                    );
+
+                if(
+                    title &&
+                    title.value.trim() === ""
+                ) {
+
+                    alert(
+                        "Please enter a skill title."
+                    );
+
+                    event.preventDefault();
+
+                    return;
+
+                }
+
+                if(
+                    description &&
+                    description.value.trim().length < 10
+                ) {
+
+                    alert(
+                        "Description must be at least 10 characters."
+                    );
+
+                    event.preventDefault();
+
+                    return;
+
+                }
+
+                if(
+                    preferredTime &&
+                    preferredTime.value.trim() === ""
+                ) {
+
+                    alert(
+                        "Please enter your preferred time."
+                    );
+
+                    event.preventDefault();
+
+                    return;
+
+                }
+
             }
-
-            if (description && description.value.trim().length < 10) {
-                alert("Description must be at least 10 characters.");
-                event.preventDefault();
-                return;
-            }
-
-            if (preferredTime && preferredTime.value.trim() === "") {
-                alert("Please enter your preferred time.");
-                event.preventDefault();
-                return;
-            }
-
-            alert("Request posted successfully!");
-
-        });
+        );
 
     }
 
 
 
-    // ================= SESSION TYPE CARDS =================
+    // ================= SESSION CARDS =================
 
-    const sessionCards = document.querySelectorAll(".session-card");
+    const sessionCards =
+        document.querySelectorAll(".session-card");
 
-    sessionCards.forEach(function (card) {
+    sessionCards.forEach(function(card) {
 
-        card.addEventListener("click", function () {
+        card.addEventListener("click", function() {
 
-            sessionCards.forEach(function (item) {
+            sessionCards.forEach(function(item) {
+
                 item.classList.remove("active");
+
             });
 
             card.classList.add("active");
 
-            const radio = card.querySelector('input[type="radio"]');
+            const radio =
+                card.querySelector(
+                    'input[type="radio"]'
+                );
 
-            if (radio) {
+            if(radio) {
+
                 radio.checked = true;
+
             }
 
         });
@@ -147,15 +238,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ================= POPULAR TAGS =================
 
-    const tags = document.querySelectorAll(".popular-tags span");
-    const titleInput = document.querySelector('input[name="title"]');
+    const tags =
+        document.querySelectorAll(
+            ".popular-tags span"
+        );
 
-    tags.forEach(function (tag) {
+    const titleInput =
+        document.querySelector(
+            'input[name="title"]'
+        );
 
-        tag.addEventListener("click", function () {
+    tags.forEach(function(tag) {
 
-            if (titleInput) {
-                titleInput.value = tag.innerText;
+        tag.addEventListener("click", function() {
+
+            if(titleInput) {
+
+                titleInput.value =
+                    tag.innerText;
+
             }
 
         });
@@ -163,89 +264,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
-
-
-    // ================= POST REQUEST PAGE =================
-
-    const requestForm = document.querySelector(".request-form");
-
-    if (requestForm) {
-
-        requestForm.addEventListener("submit", function (event) {
-
-            const title = document.querySelector('input[name="title"]');
-            const description = document.querySelector('textarea[name="description"]');
-            const preferredTime = document.querySelector('input[name="preferred_time"]');
-
-            if (title && title.value.trim() === "") {
-                alert("Please enter a skill title.");
-                event.preventDefault();
-                return;
-            }
-
-            if (description && description.value.trim().length < 10) {
-                alert("Description must be at least 10 characters.");
-                event.preventDefault();
-                return;
-            }
-
-            if (preferredTime && preferredTime.value.trim() === "") {
-                alert("Please enter your preferred time.");
-                event.preventDefault();
-                return;
-            }
-
-            alert("Request posted successfully!");
-
-        });
-
-    }
-
-
-
-    // ================= SESSION TYPE CARDS =================
-
-    const sessionCards = document.querySelectorAll(".session-card");
-
-    sessionCards.forEach(function (card) {
-
-        card.addEventListener("click", function () {
-
-            sessionCards.forEach(function (item) {
-                item.classList.remove("active");
-            });
-
-            card.classList.add("active");
-
-            const radio = card.querySelector('input[type="radio"]');
-
-            if (radio) {
-                radio.checked = true;
-            }
-
-        });
-
-    });
-
-
-
-    // ================= POPULAR TAGS =================
-
-    const tags = document.querySelectorAll(".popular-tags span");
-    const titleInput = document.querySelector('input[name="title"]');
-
-    tags.forEach(function (tag) {
-
-        tag.addEventListener("click", function () {
-
-            if (titleInput) {
-                titleInput.value = tag.innerText;
-            }
-
-        });
-
-    });
-
 // ================= TALA PART =================
 
 function sendMessage() {
@@ -261,8 +279,7 @@ function scheduleSession() {
 }
 
 // =================  RIMASSS ALMUNTI  Part  =================
-
-// contact form
+// contact form validation
 
 const contactForm = document.querySelector(".contact-form form");
 
@@ -270,8 +287,27 @@ if (contactForm) {
 
     contactForm.addEventListener("submit", function (event) {
 
-        //event.preventDefault();
+        const name = contactForm.querySelector('input[name="name"]');
+        const email = contactForm.querySelector('input[name="email"]');
+        const message = contactForm.querySelector('textarea[name="message"]');
 
+        if (name && name.value.trim() === "") {
+            alert("Please enter your name.");
+            event.preventDefault();
+            return;
+        }
+
+        if (email && email.value.trim() === "") {
+            alert("Please enter your email.");
+            event.preventDefault();
+            return;
+        }
+
+        if (message && message.value.trim() === "") {
+            alert("Please enter your message.");
+            event.preventDefault();
+            return;
+        }
 
     });
 
@@ -326,31 +362,6 @@ navLinks.forEach(link => {
         link.style.fontWeight = "700";
 
     }
-
-});
-
-
-/* =========================================================
-   SMOOTH SCROLLING
-   ========================================================= */
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-    anchor.addEventListener("click", function (e) {
-
-        e.preventDefault();
-
-        const target = document.querySelector(this.getAttribute("href"));
-
-        if (target) {
-
-            target.scrollIntoView({
-                behavior: "smooth"
-            });
-
-        }
-
-    });
 
 });
 
@@ -428,359 +439,366 @@ document.addEventListener("DOMContentLoaded", function () {
 // ================= NADA PART =================
 // ================= LOGIN / REGISTER / PROFILE =================
 
+document.addEventListener("DOMContentLoaded", function () {
 
-/* ================= LOGIN PAGE ================= */
+    /* ================= LOGIN PAGE ================= */
 
-const loginForm = document.querySelector(".login-form");
+    const loginForm = document.querySelector(".login-form");
 
-if (loginForm) {
+    if (loginForm) {
 
-    loginForm.addEventListener("submit", function (event) {
+        loginForm.addEventListener("submit", function (event) {
 
-        const email = document.querySelector("#email");
+            const email = document.querySelector("#email");
+            const password = document.querySelector("#password");
+
+            if (email && email.value.trim() === "") {
+                alert("Please enter your email.");
+                event.preventDefault();
+                return;
+            }
+
+            if (password && password.value.trim() === "") {
+                alert("Please enter your password.");
+                event.preventDefault();
+                return;
+            }
+
+        });
+
+    }
+
+
+    /* ================= SKILLS TAG MANAGER ================= */
+
+    function createSkillManager(options) {
+
+        const input = document.querySelector(options.inputSelector);
+        const addButton = document.querySelector(options.buttonSelector);
+        const hiddenInput = document.querySelector(options.hiddenSelector);
+        const tagsContainer = document.querySelector(options.containerSelector);
+
+        if (!input || !addButton || !hiddenInput || !tagsContainer) {
+            return null;
+        }
+
+        let skills = [];
+
+        function cleanSkill(value) {
+            return value.trim().replace(/,/g, "");
+        }
+
+        function loadInitialSkills() {
+            const source = tagsContainer.getAttribute("data-skills") || hiddenInput.value || "";
+
+            skills = source
+                .split(",")
+                .map(function (skill) {
+                    return cleanSkill(skill);
+                })
+                .filter(function (skill) {
+                    return skill !== "";
+                });
+        }
+
+        function syncHiddenInput() {
+            hiddenInput.value = skills.join(", ");
+        }
+
+        function renderSkills() {
+            tagsContainer.innerHTML = "";
+
+            skills.forEach(function (skill, index) {
+                const tag = document.createElement("span");
+                tag.className = "skill-tag";
+
+                const text = document.createElement("span");
+                text.textContent = skill;
+
+                const removeButton = document.createElement("button");
+                removeButton.type = "button";
+                removeButton.textContent = "×";
+                removeButton.className = "remove-skill-btn";
+
+                removeButton.addEventListener("click", function () {
+                    skills.splice(index, 1);
+                    renderSkills();
+                });
+
+                tag.appendChild(text);
+                tag.appendChild(removeButton);
+                tagsContainer.appendChild(tag);
+            });
+
+            syncHiddenInput();
+        }
+
+        function addSkill() {
+            const value = cleanSkill(input.value);
+
+            if (value === "") {
+                return;
+            }
+
+            const exists = skills.some(function (skill) {
+                return skill.toLowerCase() === value.toLowerCase();
+            });
+
+            if (!exists) {
+                skills.push(value);
+                renderSkills();
+            }
+
+            input.value = "";
+            input.focus();
+        }
+
+        addButton.addEventListener("click", addSkill);
+
+        input.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                addSkill();
+            }
+        });
+
+        loadInitialSkills();
+        renderSkills();
+
+        return {
+            addSkill: addSkill,
+            renderSkills: renderSkills,
+            getSkills: function () {
+                return skills;
+            }
+        };
+    }
+
+
+    /* ================= REGISTER PAGE ================= */
+
+    const registerForm = document.querySelector(".register-form");
+
+    if (registerForm) {
+
+        const optionBoxes = document.querySelectorAll(".option-box");
+
+        optionBoxes.forEach(function (box) {
+
+            box.addEventListener("click", function () {
+
+                optionBoxes.forEach(function (item) {
+                    item.classList.remove("active");
+                });
+
+                box.classList.add("active");
+
+            });
+
+        });
+
         const password = document.querySelector("#password");
+        const confirm = document.querySelector("#confirm");
+        const errorText = document.querySelector(".password-error");
 
-        if (email.value.trim() === "") {
-            alert("Please enter your email.");
-            event.preventDefault();
-            return;
-        }
+        if (password && confirm && errorText) {
 
-        if (password.value.trim() === "") {
-            alert("Please enter your password.");
-            event.preventDefault();
-            return;
-        }
+            confirm.addEventListener("input", function () {
 
-    });
-
-}
-
-
-/* ================= REGISTER PAGE ================= */
-
-const registerForm = document.querySelector(".register-form");
-
-if (registerForm) {
-
-    const optionBoxes = document.querySelectorAll(".option-box");
-
-    optionBoxes.forEach(box => {
-
-        box.addEventListener("click", function () {
-
-            optionBoxes.forEach(item => {
-                item.classList.remove("active");
-            });
-
-            box.classList.add("active");
-
-        });
-
-    });
-
-
-    /* ===== ADD SKILLS WITH PLUS BUTTON ===== */
-
-    const skillInput = document.querySelector("#skill-input");
-    const addSkillBtn = document.querySelector(".add-skill-btn");
-    const selectedSkills = document.querySelector("#selected-skills");
-    const skillsHidden = document.querySelector("#skills");
-
-    let skillsList = [];
-
-    if (skillInput && addSkillBtn && selectedSkills && skillsHidden) {
-
-        addSkillBtn.addEventListener("click", function () {
-
-            const skill = skillInput.value.trim();
-
-            if (skill === "") {
-                alert("Please enter a skill.");
-                return;
-            }
-
-            if (skillsList.includes(skill)) {
-                alert("This skill is already added.");
-                return;
-            }
-
-            skillsList.push(skill);
-
-            skillsHidden.value = skillsList.join(", ");
-
-            const skillTag = document.createElement("span");
-            skillTag.className = "skill-tag";
-            skillTag.textContent = skill + " ×";
-
-            skillTag.addEventListener("click", function () {
-
-                skillsList = skillsList.filter(item => item !== skill);
-
-                skillsHidden.value = skillsList.join(", ");
-
-                skillTag.remove();
+                if (password.value !== confirm.value) {
+                    errorText.textContent = "Passwords do not match";
+                    errorText.style.color = "red";
+                } else {
+                    errorText.textContent = "Passwords match";
+                    errorText.style.color = "green";
+                }
 
             });
 
-            selectedSkills.appendChild(skillTag);
+        }
 
-            skillInput.value = "";
-
+        const registerSkillManager = createSkillManager({
+            inputSelector: "#skill-input",
+            buttonSelector: ".register-form .add-skill-btn",
+            hiddenSelector: "#skills",
+            containerSelector: "#selected-skills"
         });
 
-    }
+        registerForm.addEventListener("submit", function (event) {
 
+            const name = document.querySelector("#name");
+            const email = document.querySelector("#email");
 
-    /* ===== PASSWORD CHECK ===== */
-
-    const password = document.querySelector("#password");
-    const confirm = document.querySelector("#confirm");
-    const errorText = document.querySelector(".password-error");
-
-    if (password && confirm && errorText) {
-
-        confirm.addEventListener("input", function () {
-
-            if (password.value !== confirm.value) {
-
-                errorText.textContent = "Passwords do not match";
-                errorText.style.color = "red";
-
-            } else {
-
-                errorText.textContent = "Passwords match";
-                errorText.style.color = "green";
-
-            }
-
-        });
-
-    }
-
-
-    /* ===== REGISTER FORM VALIDATION ===== */
-
-    registerForm.addEventListener("submit", function (event) {
-
-        const name = document.querySelector("#name");
-        const email = document.querySelector("#email");
-
-        if (name.value.trim() === "") {
-            alert("Please enter your full name.");
-            event.preventDefault();
-            return;
-        }
-
-        if (email.value.trim() === "") {
-            alert("Please enter your university email.");
-            event.preventDefault();
-            return;
-        }
-
-        if (password.value.length < 6) {
-            alert("Password must be at least 6 characters.");
-            event.preventDefault();
-            return;
-        }
-
-        if (password.value !== confirm.value) {
-            alert("Passwords do not match.");
-            event.preventDefault();
-            return;
-        }
-
-        if (skillsHidden && skillsHidden.value.trim() === "") {
-            alert("Please add at least one skill.");
-            event.preventDefault();
-            return;
-        }
-
-    });
-
-}
-/* ================= PROFILE PAGE ================= */
-
-const profilePage = document.querySelector(".profile-page");
-
-if (profilePage) {
-
-    const editButton = document.querySelector(".edit-profile-btn");
-    const profileForm = document.querySelector(".profile-edit-form");
-    const profileInputs = document.querySelectorAll(".profile-field input, .profile-field textarea");
-    const photoInput = document.querySelector("#profile-photo-input");
-    const photoForm = document.querySelector("#profile-photo-form");
-    const profileImage = document.querySelector(".profile-image");
-    const bioTextarea = document.querySelector(".profile-field textarea");
-
-    const profileSkillInput = document.querySelector("#profile-skill-input");
-    const profileAddSkillBtn = document.querySelector(".profile-add-skill-btn");
-    const profileSelectedSkills = document.querySelector(".profile-selected-skills");
-    const profileSkillsHidden = document.querySelector(".profile-edit-form .skills-hidden");
-
-    let profileSkillsList = [];
-
-    if (profileSelectedSkills && profileSkillsHidden) {
-
-        const oldSkills = profileSkillsHidden.value.trim();
-
-        if (oldSkills !== "") {
-            profileSkillsList = oldSkills.split(",").map(skill => skill.trim()).filter(skill => skill !== "");
-
-            profileSkillsList.forEach(skill => {
-                createProfileSkillTag(skill);
-            });
-        }
-    }
-
-    function updateProfileSkillsHidden() {
-        if (profileSkillsHidden) {
-            profileSkillsHidden.value = profileSkillsList.join(", ");
-        }
-    }
-
-    function createProfileSkillTag(skill) {
-
-        const skillTag = document.createElement("span");
-        skillTag.className = "profile-skill";
-        skillTag.textContent = skill + " ×";
-
-        skillTag.addEventListener("click", function () {
-
-            profileSkillsList = profileSkillsList.filter(item => item !== skill);
-            updateProfileSkillsHidden();
-            skillTag.remove();
-
-        });
-
-        profileSelectedSkills.appendChild(skillTag);
-    }
-
-    if (editButton && profileForm) {
-
-        editButton.addEventListener("click", function () {
-
-            if (editButton.textContent.includes("Save")) {
-
-                profileForm.submit();
+            if (name && name.value.trim() === "") {
+                alert("Please enter your full name.");
+                event.preventDefault();
                 return;
-
             }
 
-            profileInputs.forEach(input => {
-                input.disabled = false;
+            if (email && email.value.trim() === "") {
+                alert("Please enter your university email.");
+                event.preventDefault();
+                return;
+            }
+
+            if (password && password.value.length < 6) {
+                alert("Password must be at least 6 characters.");
+                event.preventDefault();
+                return;
+            }
+
+            if (password && confirm && password.value !== confirm.value) {
+                alert("Passwords do not match.");
+                event.preventDefault();
+                return;
+            }
+
+            if (registerSkillManager && registerSkillManager.getSkills().length === 0) {
+                alert("Please add at least one skill using the + button.");
+                event.preventDefault();
+                return;
+            }
+
+        });
+
+    }
+
+
+    /* ================= PROFILE PAGE ================= */
+
+    const profilePage = document.querySelector(".profile-page");
+
+    if (profilePage) {
+
+        const editButton = document.querySelector(".edit-profile-btn");
+        const profileForm = document.querySelector(".profile-edit-form");
+        const editableFields = document.querySelectorAll(
+            ".profile-edit-form input[name='full_name'], .profile-edit-form textarea[name='bio'], .profile-skill-input"
+        );
+        const profileSkillButton = document.querySelector(".profile-add-skill-btn");
+
+        const photoInput = document.querySelector("#profile-photo-input");
+        const photoForm = document.querySelector("#profile-photo-form");
+        const profileImage = document.querySelector(".profile-image");
+        const bioTextarea = document.querySelector(".profile-edit-form textarea[name='bio']");
+
+        const profileSkillManager = createSkillManager({
+            inputSelector: "#profile-skill-input",
+            buttonSelector: ".profile-add-skill-btn",
+            hiddenSelector: ".profile-edit-form .skills-hidden",
+            containerSelector: ".profile-selected-skills"
+        });
+
+        if (editButton && profileForm) {
+
+            let isEditing = false;
+
+            editButton.addEventListener("click", function () {
+
+                if (!isEditing) {
+
+                    editableFields.forEach(function (field) {
+                        field.disabled = false;
+                    });
+
+                    if (profileSkillButton) {
+                        profileSkillButton.disabled = false;
+                    }
+
+                    editButton.textContent = "✓ Save Changes";
+                    editButton.style.backgroundColor = "#16a34a";
+
+                    isEditing = true;
+
+                } else {
+
+                    editableFields.forEach(function (field) {
+                        field.disabled = false;
+                    });
+
+                    if (profileSkillButton) {
+                        profileSkillButton.disabled = false;
+                    }
+
+                    profileForm.submit();
+
+                }
+
             });
 
-            if (profileSkillInput) {
-                profileSkillInput.disabled = false;
-            }
+        }
 
-            if (profileAddSkillBtn) {
-                profileAddSkillBtn.disabled = false;
-            }
+        if (photoInput && profileImage && photoForm) {
 
-            editButton.textContent = "✓ Save Changes";
-            editButton.style.backgroundColor = "#16a34a";
+            photoInput.addEventListener("change", function () {
 
-        });
+                const file = photoInput.files[0];
 
-    }
+                if (file) {
+                    profileImage.src = URL.createObjectURL(file);
+                    photoForm.submit();
+                }
 
-    if (profileAddSkillBtn && profileSkillInput && profileSelectedSkills && profileSkillsHidden) {
+            });
 
-        profileAddSkillBtn.addEventListener("click", function () {
+        }
 
-            const skill = profileSkillInput.value.trim();
+        if (bioTextarea) {
 
-            if (skill === "") {
-                alert("Please enter a skill.");
-                return;
-            }
-
-            if (profileSkillsList.includes(skill)) {
-                alert("This skill is already added.");
-                return;
-            }
-
-            profileSkillsList.push(skill);
-            updateProfileSkillsHidden();
-            createProfileSkillTag(skill);
-
-            profileSkillInput.value = "";
-
-        });
-
-    }
-
-    if (photoInput && profileImage && photoForm) {
-
-        photoInput.addEventListener("change", function () {
-
-            const file = photoInput.files[0];
-
-            if (file) {
-                profileImage.src = URL.createObjectURL(file);
-                photoForm.submit();
-            }
-
-        });
-
-    }
-
-    if (bioTextarea) {
-
-        const counter = document.createElement("small");
-
-        counter.textContent = bioTextarea.value.length + " / 250 characters";
-        bioTextarea.parentElement.appendChild(counter);
-
-        bioTextarea.addEventListener("input", function () {
-
+            const counter = document.createElement("small");
             counter.textContent = bioTextarea.value.length + " / 250 characters";
+            bioTextarea.parentElement.appendChild(counter);
 
-            if (bioTextarea.value.length > 250) {
-                counter.style.color = "red";
-            } else {
-                counter.style.color = "#94a3b8";
-            }
+            bioTextarea.addEventListener("input", function () {
 
-        });
+                counter.textContent = bioTextarea.value.length + " / 250 characters";
+
+                if (bioTextarea.value.length > 250) {
+                    counter.style.color = "red";
+                } else {
+                    counter.style.color = "#94a3b8";
+                }
+
+            });
+
+        }
+
+        const passwordToggle = document.querySelector(".change-password-toggle");
+        const passwordForm = document.querySelector(".change-password-form");
+
+        if (passwordToggle && passwordForm) {
+
+            passwordForm.style.display = "none";
+
+            passwordToggle.addEventListener("click", function () {
+
+                if (passwordForm.style.display === "block") {
+                    passwordForm.style.display = "none";
+                } else {
+                    passwordForm.style.display = "block";
+                }
+
+            });
+
+        }
+
+        const emailButton = document.querySelector(".email-toggle-btn");
+
+        if (emailButton) {
+
+            emailButton.addEventListener("click", function () {
+
+                if (emailButton.textContent.includes("ON")) {
+                    emailButton.textContent = "✉ Email Notifications: OFF";
+                    emailButton.classList.add("is-off");
+                } else {
+                    emailButton.textContent = "✉ Email Notifications: ON";
+                    emailButton.classList.remove("is-off");
+                }
+
+            });
+
+        }
 
     }
-
-    const passwordToggle = document.querySelector(".change-password-toggle");
-    const passwordForm = document.querySelector(".change-password-form");
-
-    if (passwordToggle && passwordForm) {
-
-        passwordToggle.addEventListener("click", function () {
-
-            if (passwordForm.style.display === "block") {
-                passwordForm.style.display = "none";
-            } else {
-                passwordForm.style.display = "block";
-            }
-
-        });
-
-    }
-
-    const emailButton = document.querySelector(".email-toggle-btn");
-
-    if (emailButton) {
-
-        emailButton.addEventListener("click", function () {
-
-            if (emailButton.textContent.includes("ON")) {
-                emailButton.textContent = "✉ Email Notifications: OFF";
-                emailButton.classList.add("is-off");
-            } else {
-                emailButton.textContent = "✉ Email Notifications: ON";
-                emailButton.classList.remove("is-off");
-            }
-
-        });
-
-    }
-
-}
+});

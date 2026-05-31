@@ -185,20 +185,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="form-group full-width">
-                <label for="skills">Your Skills *</label>
+                <label for="skill-input">Your Skills *</label>
 
-                <div class="input-wrapper">
-                    <i class="fa-regular fa-bookmark"></i>
+                <div class="skill-add-row">
+                    <div class="input-wrapper skill-input-wrapper">
+                        <i class="fa-regular fa-bookmark"></i>
 
-                    <input
-                            id="skills"
-                            name="skills"
-                            type="text"
-                            placeholder="e.g., Java, UI Design, English (comma-separated)">
+                        <input
+                                id="skill-input"
+                                class="skill-input"
+                                type="text"
+                                placeholder="e.g., Java">
+                    </div>
+
+                    <button
+                            type="button"
+                            class="add-skill-btn"
+                            aria-label="Add skill">
+                        +
+                    </button>
                 </div>
 
+                <input
+                        id="skills"
+                        class="skills-hidden"
+                        name="skills"
+                        type="hidden">
+
+                <div class="selected-skills" id="selected-skills"></div>
+
                 <small class="helper-text">
-                    Separate multiple skills with commas
+                    Add each skill separately using the + button
                 </small>
             </div>
 

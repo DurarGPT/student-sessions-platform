@@ -12,8 +12,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $userId = $_SESSION['user_id'];
 
-/* جلب بيانات المستخدم */
-
 $stmt = $pdo->prepare("
 SELECT *
 FROM users
@@ -23,16 +21,6 @@ WHERE user_id = ?
 $stmt->execute([$userId]);
 
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-/* صورة البروفايل */
-
-$profileImage =
-        !empty($user['profile_image'])
-                ?
-                "../uploads/profile/" . $user['profile_image']
-                :
-                "../assets/images/default.png";
 
 ?>
 
@@ -59,10 +47,7 @@ $profileImage =
 
 <?php include '../includes/header.php'; ?>
 
-
 <main>
-
-    <!-- HERO -->
 
     <section class="profile-hero">
 
@@ -74,18 +59,12 @@ $profileImage =
 
     </section>
 
-
-
-    <!-- MAIN LAYOUT -->
-
     <section class="profile-layout">
-
-
-        <!-- LEFT SIDEBAR -->
 
         <aside class="profile-sidebar">
 
             <div class="profile-sidebar-top">
+
                 <img
                         class="profile-image"
                         src="<?php
@@ -97,29 +76,17 @@ $profileImage =
                         ?>"
                         alt="Profile Photo">
 
-
                 <span class="verified-badge">
-
                     ✔ Verified Mentor
-
                 </span>
 
-
                 <h2>
-
                     <?php echo htmlspecialchars($user['full_name']); ?>
-
                 </h2>
 
-
                 <p class="profile-role">
-
                     <?php echo htmlspecialchars($user['role']); ?>
-
                 </p>
-
-
-                <!-- CHANGE PHOTO -->
 
                 <form
                         id="profile-photo-form"
@@ -144,10 +111,6 @@ $profileImage =
 
             </div>
 
-
-
-            <!-- STATS -->
-
             <div class="profile-stats">
 
                 <div class="profile-stat">
@@ -160,27 +123,21 @@ $profileImage =
 
                 </div>
 
-
                 <div class="profile-stat">
 
                     <span>Skills</span>
 
                     <strong>
-
                         <?php
-
                         echo !empty($user['skills'])
                                 ?
                                 count(array_filter(array_map('trim', explode(",", $user['skills']))))
                                 :
                                 0;
-
                         ?>
-
                     </strong>
 
                 </div>
-
 
                 <div class="profile-stat">
 
@@ -196,29 +153,24 @@ $profileImage =
 
         </aside>
 
-
-
-
-
-        <!-- RIGHT SIDE -->
-
         <section class="profile-right">
-
 
             <!-- BASIC INFO -->
 
-            <div class="profile-card">
+            <form
+                    class="profile-card profile-edit-form"
+                    action="../includes/update_profile.php"
+                    method="POST">
 
                 <div class="profile-card-header">
 
                     <h3>
-
                         👤 Basic Information
-
                     </h3>
 
-
-                    <button class="edit-profile-btn">
+                    <button
+                            type="button"
+                            class="edit-profile-btn">
 
                         ✏ Edit Profile
 
@@ -226,32 +178,24 @@ $profileImage =
 
                 </div>
 
-
-
                 <div class="profile-field">
 
                     <label>
-
                         Full Name
-
                     </label>
 
-                    <p>
-
-                        <?php echo htmlspecialchars($user['full_name']); ?>
-
-                    </p>
+                    <input
+                            type="text"
+                            name="full_name"
+                            value="<?php echo htmlspecialchars($user['full_name']); ?>"
+                            disabled>
 
                 </div>
 
-
-
                 <div class="profile-field">
 
                     <label>
-
                         University Email
-
                     </label>
 
                     <input
@@ -260,69 +204,96 @@ $profileImage =
                             disabled>
 
                     <small>
-
                         Email cannot be changed
-
                     </small>
 
                 </div>
 
-
-
                 <div class="profile-field">
 
                     <label>
-
                         Role
-
                     </label>
 
                     <span class="role-badge">
-
                         <?php echo htmlspecialchars($user['role']); ?>
-
                     </span>
 
                 </div>
 
-
-
                 <div class="profile-field">
 
                     <label>
-
                         Bio / About Me
-
                     </label>
 
-                    <textarea disabled><?php
-
+                    <textarea
+                            name="bio"
+                            disabled><?php
                         echo !empty($user['bio'])
                                 ?
                                 htmlspecialchars($user['bio'])
                                 :
                                 "No bio added yet.";
-
                         ?></textarea>
 
                 </div>
 
-            </div>
+                <div class="profile-field">
 
+                    <label>
+                        Skills
+                    </label>
 
+                    <div class="skill-add-row profile-skill-add-row">
 
+                        <input
+                                id="profile-skill-input"
+                                class="profile-skill-input"
+                                type="text"
+                                placeholder="e.g., Java"
+                                disabled>
 
+                        <button
+                                type="button"
+                                class="add-skill-btn profile-add-skill-btn"
+                                disabled>
+                            +
+                        </button>
+
+                    </div>
+
+                    <input
+                            type="hidden"
+                            name="skills"
+                            class="skills-hidden"
+                            value="<?php echo htmlspecialchars($user['skills'] ?? ''); ?>">
+
+                    <div
+                            class="selected-skills profile-selected-skills"
+                            data-skills="<?php echo htmlspecialchars($user['skills'] ?? ''); ?>">
+                    </div>
+
+                    <small>
+                        Add each skill separately using the + button
+                    </small>
+
+                </div>
+
+                <input
+                        type="hidden"
+                        name="update_profile"
+                        value="1">
+
+            </form>
 
             <!-- SKILLS -->
 
             <div class="profile-card">
 
                 <h3>
-
                     📘 My Skills
-
                 </h3>
-
 
                 <div class="skills-wrapper">
 
@@ -334,12 +305,16 @@ $profileImage =
 
                         foreach ($skills as $skill) {
 
-                            echo
-                                    "<span class='profile-skill'>"
-                                    .
-                                    trim($skill)
-                                    .
-                                    "</span>";
+                            if (trim($skill) !== '') {
+
+                                echo
+                                        "<span class='profile-skill'>"
+                                        .
+                                        htmlspecialchars(trim($skill))
+                                        .
+                                        "</span>";
+
+                            }
 
                         }
 
@@ -351,28 +326,18 @@ $profileImage =
 
             </div>
 
-
-
-
-
             <!-- SESSION -->
 
             <div class="profile-card">
 
                 <h3>
-
                     📅 Session Preferences
-
                 </h3>
-
-
 
                 <div class="profile-field">
 
                     <label>
-
                         Availability
-
                     </label>
 
                     <input
@@ -382,14 +347,10 @@ $profileImage =
 
                 </div>
 
-
-
                 <div class="profile-field">
 
                     <label>
-
                         Session Type Preference
-
                     </label>
 
                     <input
@@ -401,18 +362,12 @@ $profileImage =
 
             </div>
 
-
-
-
-
             <!-- SETTINGS -->
 
             <div class="profile-card">
 
                 <h3>
-
                     🔒 Security & Settings
-
                 </h3>
 
                 <button
@@ -461,10 +416,7 @@ $profileImage =
 
 </main>
 
-
 <?php include '../includes/footer.php'; ?>
-
-<!-- ================= JS ================= -->
 
 <script src="../assets/js/script.js"></script>
 

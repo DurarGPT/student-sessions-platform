@@ -1,16 +1,24 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$currentDir = str_replace('\\\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+$baseUrl = preg_replace('#/(client|admin)$#', '', $currentDir);
+$baseUrl = rtrim($baseUrl, '/');
+
+$isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+?>
+
 <link
         rel="stylesheet"
-        href="/student-sessions-platform/SkillSwap/assets/css/client_style.css"
+        href="<?php echo $baseUrl; ?>/assets/css/client_style.css"
 />
 
 <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 />
-
-<?php
-$isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
-?>
 
 <header class="site-header">
 
@@ -20,7 +28,7 @@ $isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
         <!-- LOGO -->
         <h1 class="header-logo">
 
-            <img src="/student-sessions-platform/SkillSwap/assets/images/skillswap-logo.png"
+            <img src="<?php echo $baseUrl; ?>/assets/images/skillswap-logo.png"
                  alt="SkillSwap Logo"
                  class="header-logo-img">
 
@@ -31,15 +39,15 @@ $isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
         <!-- NAVIGATION -->
         <nav>
 
-            <a href="/student-sessions-platform/SkillSwap/client/index.php">Home</a>
+            <a href="<?php echo $baseUrl; ?>/client/index.php">Home</a>
 
-            <a href="/student-sessions-platform/SkillSwap/client/about.php">About</a>
+            <a href="<?php echo $baseUrl; ?>/client/about.php">About</a>
 
-            <a href="/student-sessions-platform/SkillSwap/client/how-it-works.php">How It Works</a>
+            <a href="<?php echo $baseUrl; ?>/client/how-it-works.php">How It Works</a>
 
-            <a href="/student-sessions-platform/SkillSwap/client/browse-requests.php">Browse Requests</a>
+            <a href="<?php echo $baseUrl; ?>/client/browse-requests.php">Browse Requests</a>
 
-            <a href="/student-sessions-platform/SkillSwap/client/contact.php">Contact</a>
+            <a href="<?php echo $baseUrl; ?>/client/contact.php">Contact</a>
 
         </nav>
 
@@ -51,31 +59,31 @@ $isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
 
         <?php if(isset($_SESSION['user_id'])): ?>
 
-            <a href="/student-sessions-platform/SkillSwap/client/inbox.php" class="notification-link">
+            <a href="<?php echo $baseUrl; ?>/client/inbox.php" class="notification-link">
                 <i class="fa-regular fa-bell"></i>
             </a>
 
-            <a href="/student-sessions-platform/SkillSwap/client/profile.php">Profile</a>
+            <a href="<?php echo $baseUrl; ?>/client/profile.php">Profile</a>
 
             <?php if($isAdmin): ?>
 
-                <a href="/student-sessions-platform/SkillSwap/admin/admin.php">Dashboard</a>
+                <a href="<?php echo $baseUrl; ?>/admin/admin.php">Dashboard</a>
 
             <?php else: ?>
 
-                <a href="/student-sessions-platform/SkillSwap/client/Dashboard.php">Dashboard</a>
+                <a href="<?php echo $baseUrl; ?>/client/Dashboard.php">Dashboard</a>
 
             <?php endif; ?>
 
-            <a href="/student-sessions-platform/SkillSwap/client/post-request.php">Post Request</a>
+            <a href="<?php echo $baseUrl; ?>/client/post-request.php">Post Request</a>
 
-            <a href="/student-sessions-platform/SkillSwap/client/logout.php">Logout</a>
+            <a href="<?php echo $baseUrl; ?>/client/logout.php">Logout</a>
 
         <?php else: ?>
 
-            <a href="/student-sessions-platform/SkillSwap/client/login.php">Login</a>
+            <a href="<?php echo $baseUrl; ?>/client/login.php">Login</a>
 
-            <a href="/student-sessions-platform/SkillSwap/client/register.php">Sign Up</a>
+            <a href="<?php echo $baseUrl; ?>/client/register.php">Sign Up</a>
 
         <?php endif; ?>
 

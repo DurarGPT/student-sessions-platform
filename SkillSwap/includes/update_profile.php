@@ -11,6 +11,24 @@ if (!isset($_SESSION['user_id'])) {
 
 $userId = $_SESSION['user_id'];
 
+/* ================= UPDATE BASIC PROFILE ================= */
+if (isset($_POST['update_profile'])) {
+
+    $fullName = trim($_POST['full_name'] ?? '');
+    $bio = trim($_POST['bio'] ?? '');
+    $skills = trim($_POST['skills'] ?? '');
+
+    if ($fullName !== '') {
+        $stmt = $pdo->prepare("
+            UPDATE users
+            SET full_name = ?, bio = ?, skills = ?
+            WHERE user_id = ?
+        ");
+
+        $stmt->execute([$fullName, $bio, $skills, $userId]);
+    }
+}
+
 /* ================= UPDATE PASSWORD ================= */
 if (!empty($_POST['password'])) {
 

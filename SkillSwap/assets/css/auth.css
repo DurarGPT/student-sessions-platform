@@ -537,3 +537,62 @@ body {
     }
 
 }
+/* ================= SKILLS ADDER ================= */
+.skill-add-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.skill-input-wrapper {
+    flex: 1;
+}
+
+.add-skill-btn {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 14px;
+    background: #315efb;
+    color: white;
+    font-size: 26px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-skill-btn:hover {
+    background: #2348da;
+    transform: translateY(-2px);
+}
+
+.selected-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.skill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #e0e7ff;
+    color: #4338ca;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.remove-skill-btn {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    background: #c7d2fe;
+    color: #3730a3;
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+}

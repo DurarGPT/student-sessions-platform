@@ -1,9 +1,32 @@
-
 <?php
 session_start();
 include '../includes/db.php';
-$userName = $_SESSION['user_name'] ?? "User";
 
+if (isset($_POST['apply_mentor']) && isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+
+    $stmt = $pdo->prepare("
+        UPDATE users 
+        SET role = 'mentor_pending' 
+        WHERE user_id = ? AND role = 'student'
+    ");
+    $stmt->execute([$userId]);
+
+    $_SESSION['success'] = "Mentor verification request submitted successfully!";
+
+    header("Location: Dashboard.php");
+    exit;
+}
+
+$userRole = 'student';
+
+if (isset($_SESSION['user_id'])) {
+    $stmt = $pdo->prepare("SELECT role FROM users WHERE user_id = ?");
+    $stmt->execute([$_SESSION['user_id']]);
+    $userRole = $stmt->fetchColumn();
+}
+
+$userName = $_SESSION['user_name'] ?? "User";
 
 $totalHours = 0;
 $activeRequests = 0;
@@ -16,12 +39,11 @@ try {
 
     $stmt = $pdo->query("SELECT COUNT(*) FROM sessions");
     $mentoring = $stmt->fetchColumn();
-    $stmt = $pdo->query("SELECT COUNT(*) FROM sessions");
-    $mentoring = $stmt->fetchColumn();
 
     $stmt = $pdo->query("SELECT * FROM sessions LIMIT 3");
     $upcomingSessions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $stmt = $pdo->query("SELECT COALESCE(SUM(hours), 0) FROM volunteer_hours");
+
+    $stmt = $pdo->query("SELECT COALESCE(SUM(hours_completed), 0) FROM volunteer_hours");
     $totalHours = $stmt->fetchColumn();
 
     $stmt = $pdo->query("SELECT COUNT(*) FROM messages");
@@ -48,12 +70,22 @@ try {
 <?php include '../includes/header.php'; ?>
 
 <main>
+    <?php if(isset($_SESSION['success'])): ?>
+        <div class="success-message">
+            <?php
+            echo $_SESSION['success'];
+            unset($_SESSION['success']);
+            ?>
+        </div>
+    <?php endif; ?>
+
 
     <section class="dashboard-hero">
         <h1>
             Welcome back,
             <?php echo htmlspecialchars($_SESSION['name'] ?? 'User'); ?>
-        </h1>        <p>Here's your SkillSwap activity overview.</p>
+        </h1>
+        <p>Here's your SkillSwap activity overview.</p>
     </section>
 
     <section class="dashboard-stats">
@@ -174,6 +206,16 @@ try {
             <a href="post-request.php" class="dashboard-btn">Post Request</a>
             <a href="browse-requests.php" class="dashboard-btn">Browse Requests</a>
             <a href="profile.php" class="dashboard-btn">Edit Profile</a>
+            <!--apply button-->
+
+            <?php if ($userRole == 'student'): ?>
+                <form method="POST" action="Dashboard.php" style="margin: 0;">
+                    <button type="submit" name="apply_mentor" class="dashboard-btn">
+                        Apply for Mentor Verification
+                    </button>
+                </form>
+            <?php endif; ?>
+
             <a href="volunteer-hours.php" class="dashboard-btn">Track Hours</a>
         </div>
     </section>

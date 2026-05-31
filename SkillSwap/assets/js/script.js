@@ -2,8 +2,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // ================= BROWSE REQUESTS PAGE =================
-
     const searchInput = document.querySelector(".search-box input");
     const requestCards = document.querySelectorAll(".request-card");
     const filterButtons = document.querySelectorAll(".filter-btn");
@@ -14,15 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function filterRequests() {
 
-        if (!searchInput || requestCards.length === 0) {
-            return;
-        }
-
-        const searchValue = searchInput.value.toLowerCase();
         let visibleCount = 0;
 
         requestCards.forEach(function (card) {
 
+            const searchValue = searchInput ? searchInput.value.toLowerCase() : "";
             const cardText = card.innerText.toLowerCase();
             const cardType = card.getAttribute("data-type");
 
@@ -47,16 +41,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (noResults) {
-            if (visibleCount === 0) {
-                noResults.style.display = "block";
-            } else {
-                noResults.style.display = "none";
-            }
+            noResults.style.display =
+                visibleCount === 0 ? "block" : "none";
         }
     }
 
     if (searchInput) {
-        searchInput.addEventListener("keyup", filterRequests);
+        searchInput.addEventListener("input", filterRequests);
     }
 
     filterButtons.forEach(function (button) {
@@ -79,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     filterRequests();
 
-
+});
 
     // ================= POST REQUEST PAGE =================
 
@@ -162,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-});
+
 
 
     // ================= POST REQUEST PAGE =================
@@ -283,8 +274,7 @@ const approveButtons = document.querySelectorAll(".approve-btn");
 approveButtons.forEach(button => {
 
     button.addEventListener("click", function () {
-
-        alert("Student approved successfully!");
+        //event.preventDefault();
 
     });
 

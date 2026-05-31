@@ -1,241 +1,269 @@
-// ========= balqeess part==============
+// ========= BALQEES PART ==========
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const searchInput = document.querySelector(".search-box input");
-    const requestCards = document.querySelectorAll(".request-card");
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const requestCount = document.querySelector(".request-count");
-    const noResults = document.querySelector(".no-results");
+//================= BROWSE REQUESTS =================
 
-    let selectedFilter = "all";
+const searchInput =
+    document.querySelector(".search-box input");
 
-    function filterRequests() {
+const requestCards =
+    document.querySelectorAll(".request-card");
 
-        let visibleCount = 0;
+const filterButtons =
+    document.querySelectorAll(".filter-btn");
 
-        requestCards.forEach(function (card) {
+const requestCount =
+    document.querySelector(".request-count");
 
-            const searchValue = searchInput ? searchInput.value.toLowerCase() : "";
-            const cardText = card.innerText.toLowerCase();
-            const cardType = card.getAttribute("data-type");
+const noResults =
+    document.querySelector(".no-results");
 
-            const matchesSearch = cardText.includes(searchValue);
+let selectedFilter = "all";
 
-            const matchesFilter =
-                selectedFilter === "all" ||
-                cardType === selectedFilter;
+function filterRequests() {
 
-            if (matchesSearch && matchesFilter) {
-                card.style.display = "flex";
-                visibleCount++;
-            } else {
-                card.style.display = "none";
-            }
+    let visibleCount = 0;
 
-        });
+    requestCards.forEach(function(card) {
 
-        if (requestCount) {
-            requestCount.innerText =
-                "Showing " + visibleCount + " of " + requestCards.length + " requests";
+        const searchValue =
+            searchInput ?
+            searchInput.value.toLowerCase() : "";
+
+        const cardText =
+            card.innerText.toLowerCase();
+
+        const cardType =
+            card.getAttribute("data-type");
+
+        const matchesSearch =
+            cardText.includes(searchValue);
+
+        const matchesFilter =
+            selectedFilter === "all" ||
+            cardType === selectedFilter;
+
+        if(matchesSearch && matchesFilter) {
+
+            card.style.display = "flex";
+
+            visibleCount++;
+
         }
 
-        if (noResults) {
-            noResults.style.display =
-                visibleCount === 0 ? "block" : "none";
+        else {
+
+            card.style.display = "none";
+
         }
-    }
-
-    if (searchInput) {
-        searchInput.addEventListener("input", filterRequests);
-    }
-
-    filterButtons.forEach(function (button) {
-
-        button.addEventListener("click", function () {
-
-            filterButtons.forEach(function (btn) {
-                btn.classList.remove("active");
-            });
-
-            button.classList.add("active");
-
-            selectedFilter = button.getAttribute("data-filter");
-
-            filterRequests();
-
-        });
 
     });
 
-    filterRequests();
+    if(requestCount) {
+
+        requestCount.innerText =
+            "Showing " +
+            visibleCount +
+            " of " +
+            requestCards.length +
+            " requests";
+
+    }
+
+    if(noResults) {
+
+        if(visibleCount === 0) {
+
+            noResults.style.display = "block";
+
+        }
+
+        else {
+
+            noResults.style.display = "none";
+
+        }
+
+    }
+
+}
+
+if(searchInput) {
+
+    searchInput.addEventListener(
+        "input",
+        filterRequests
+    );
+
+}
+
+filterButtons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        filterButtons.forEach(function(btn) {
+
+            btn.classList.remove("active");
+
+        });
+
+        button.classList.add("active");
+
+        selectedFilter =
+            button.getAttribute("data-filter");
+
+        filterRequests();
+
+    });
 
 });
 
-    // ================= POST REQUEST PAGE =================
+filterRequests();
 
-    const requestForm = document.querySelector(".request-form");
 
-    if (requestForm) {
 
-        requestForm.addEventListener("submit", function (event) {
+// ================= POST REQUEST =================
 
-            const title = document.querySelector('input[name="title"]');
-            const description = document.querySelector('textarea[name="description"]');
-            const preferredTime = document.querySelector('input[name="preferred_time"]');
+const requestForm =
+    document.querySelector(".request-form");
 
-            if (title && title.value.trim() === "") {
-                alert("Please enter a skill title.");
+if(requestForm) {
+
+    requestForm.addEventListener(
+        "submit",
+        function(event) {
+
+            const title =
+                document.querySelector(
+                    'input[name="title"]'
+                );
+
+            const description =
+                document.querySelector(
+                    'textarea[name="description"]'
+                );
+
+            const preferredTime =
+                document.querySelector(
+                    'input[name="preferred_time"]'
+                );
+
+            if(
+                title &&
+                title.value.trim() === ""
+            ) {
+
+                alert(
+                    "Please enter a skill title."
+                );
+
                 event.preventDefault();
+
                 return;
+
             }
 
-            if (description && description.value.trim().length < 10) {
-                alert("Description must be at least 10 characters.");
+            if(
+                description &&
+                description.value.trim().length < 10
+            ) {
+
+                alert(
+                    "Description must be at least 10 characters."
+                );
+
                 event.preventDefault();
+
                 return;
+
             }
 
-            if (preferredTime && preferredTime.value.trim() === "") {
-                alert("Please enter your preferred time.");
+            if(
+                preferredTime &&
+                preferredTime.value.trim() === ""
+            ) {
+
+                alert(
+                    "Please enter your preferred time."
+                );
+
                 event.preventDefault();
+
                 return;
+
             }
 
-            alert("Request posted successfully!");
+        }
+    );
+
+}
+
+
+
+// ================= SESSION CARDS =================
+
+const sessionCards =
+    document.querySelectorAll(".session-card");
+
+sessionCards.forEach(function(card) {
+
+    card.addEventListener("click", function() {
+
+        sessionCards.forEach(function(item) {
+
+            item.classList.remove("active");
 
         });
 
-    }
+        card.classList.add("active");
 
+        const radio =
+            card.querySelector(
+                'input[type="radio"]'
+            );
 
+        if(radio) {
 
-    // ================= SESSION TYPE CARDS =================
+            radio.checked = true;
 
-    const sessionCards = document.querySelectorAll(".session-card");
-
-    sessionCards.forEach(function (card) {
-
-        card.addEventListener("click", function () {
-
-            sessionCards.forEach(function (item) {
-                item.classList.remove("active");
-            });
-
-            card.classList.add("active");
-
-            const radio = card.querySelector('input[type="radio"]');
-
-            if (radio) {
-                radio.checked = true;
-            }
-
-        });
+        }
 
     });
 
-
-
-    // ================= POPULAR TAGS =================
-
-    const tags = document.querySelectorAll(".popular-tags span");
-    const titleInput = document.querySelector('input[name="title"]');
-
-    tags.forEach(function (tag) {
-
-        tag.addEventListener("click", function () {
-
-            if (titleInput) {
-                titleInput.value = tag.innerText;
-            }
-
-        });
-
-    });
+});
 
 
 
+// ================= POPULAR TAGS =================
 
-    // ================= POST REQUEST PAGE =================
+const tags =
+    document.querySelectorAll(
+        ".popular-tags span"
+    );
 
-    const requestForm = document.querySelector(".request-form");
+const titleInput =
+    document.querySelector(
+        'input[name="title"]'
+    );
 
-    if (requestForm) {
+tags.forEach(function(tag) {
 
-        requestForm.addEventListener("submit", function (event) {
+    tag.addEventListener("click", function() {
 
-            const title = document.querySelector('input[name="title"]');
-            const description = document.querySelector('textarea[name="description"]');
-            const preferredTime = document.querySelector('input[name="preferred_time"]');
+        if(titleInput) {
 
-            if (title && title.value.trim() === "") {
-                alert("Please enter a skill title.");
-                event.preventDefault();
-                return;
-            }
+            titleInput.value =
+                tag.innerText;
 
-            if (description && description.value.trim().length < 10) {
-                alert("Description must be at least 10 characters.");
-                event.preventDefault();
-                return;
-            }
-
-            if (preferredTime && preferredTime.value.trim() === "") {
-                alert("Please enter your preferred time.");
-                event.preventDefault();
-                return;
-            }
-
-            alert("Request posted successfully!");
-
-        });
-
-    }
-
-
-
-    // ================= SESSION TYPE CARDS =================
-
-    const sessionCards = document.querySelectorAll(".session-card");
-
-    sessionCards.forEach(function (card) {
-
-        card.addEventListener("click", function () {
-
-            sessionCards.forEach(function (item) {
-                item.classList.remove("active");
-            });
-
-            card.classList.add("active");
-
-            const radio = card.querySelector('input[type="radio"]');
-
-            if (radio) {
-                radio.checked = true;
-            }
-
-        });
+        }
 
     });
 
+});
+```
 
-
-    // ================= POPULAR TAGS =================
-
-    const tags = document.querySelectorAll(".popular-tags span");
-    const titleInput = document.querySelector('input[name="title"]');
-
-    tags.forEach(function (tag) {
-
-        tag.addEventListener("click", function () {
-
-            if (titleInput) {
-                titleInput.value = tag.innerText;
-            }
-
-        });
-
-    });
+});
 
 // ================= TALA PART =================
 

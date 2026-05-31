@@ -480,28 +480,86 @@ if (registerForm) {
     });
 
 
+    /* ===== ADD SKILLS WITH PLUS BUTTON ===== */
+
+    const skillInput = document.querySelector("#skill-input");
+    const addSkillBtn = document.querySelector(".add-skill-btn");
+    const selectedSkills = document.querySelector("#selected-skills");
+    const skillsHidden = document.querySelector("#skills");
+
+    let skillsList = [];
+
+    if (skillInput && addSkillBtn && selectedSkills && skillsHidden) {
+
+        addSkillBtn.addEventListener("click", function () {
+
+            const skill = skillInput.value.trim();
+
+            if (skill === "") {
+                alert("Please enter a skill.");
+                return;
+            }
+
+            if (skillsList.includes(skill)) {
+                alert("This skill is already added.");
+                return;
+            }
+
+            skillsList.push(skill);
+
+            skillsHidden.value = skillsList.join(", ");
+
+            const skillTag = document.createElement("span");
+            skillTag.className = "skill-tag";
+            skillTag.textContent = skill + " ×";
+
+            skillTag.addEventListener("click", function () {
+
+                skillsList = skillsList.filter(item => item !== skill);
+
+                skillsHidden.value = skillsList.join(", ");
+
+                skillTag.remove();
+
+            });
+
+            selectedSkills.appendChild(skillTag);
+
+            skillInput.value = "";
+
+        });
+
+    }
+
+
+    /* ===== PASSWORD CHECK ===== */
+
     const password = document.querySelector("#password");
     const confirm = document.querySelector("#confirm");
     const errorText = document.querySelector(".password-error");
 
-    confirm.addEventListener("input", function () {
+    if (password && confirm && errorText) {
 
-        if (password.value !== confirm.value) {
+        confirm.addEventListener("input", function () {
 
-            errorText.textContent = "Passwords do not match";
-            errorText.style.color = "red";
+            if (password.value !== confirm.value) {
 
-        }
+                errorText.textContent = "Passwords do not match";
+                errorText.style.color = "red";
 
-        else {
+            } else {
 
-            errorText.textContent = "Passwords match";
-            errorText.style.color = "green";
+                errorText.textContent = "Passwords match";
+                errorText.style.color = "green";
 
-        }
+            }
 
-    });
+        });
 
+    }
+
+
+    /* ===== REGISTER FORM VALIDATION ===== */
 
     registerForm.addEventListener("submit", function (event) {
 
@@ -532,6 +590,12 @@ if (registerForm) {
             return;
         }
 
+        if (skillsHidden && skillsHidden.value.trim() === "") {
+            alert("Please add at least one skill.");
+            event.preventDefault();
+            return;
+        }
+
     });
 
 }
@@ -542,19 +606,78 @@ const profilePage = document.querySelector(".profile-page");
 if (profilePage) {
 
     const editButton = document.querySelector(".edit-profile-btn");
+    const profileForm = document.querySelector(".profile-edit-form");
     const profileInputs = document.querySelectorAll(".profile-field input, .profile-field textarea");
     const photoInput = document.querySelector("#profile-photo-input");
     const photoForm = document.querySelector("#profile-photo-form");
     const profileImage = document.querySelector(".profile-image");
     const bioTextarea = document.querySelector(".profile-field textarea");
 
-    if (editButton) {
+    const profileSkillInput = document.querySelector("#profile-skill-input");
+    const profileAddSkillBtn = document.querySelector(".profile-add-skill-btn");
+    const profileSelectedSkills = document.querySelector(".profile-selected-skills");
+    const profileSkillsHidden = document.querySelector(".profile-edit-form .skills-hidden");
+
+    let profileSkillsList = [];
+
+    if (profileSelectedSkills && profileSkillsHidden) {
+
+        const oldSkills = profileSkillsHidden.value.trim();
+
+        if (oldSkills !== "") {
+            profileSkillsList = oldSkills.split(",").map(skill => skill.trim()).filter(skill => skill !== "");
+
+            profileSkillsList.forEach(skill => {
+                createProfileSkillTag(skill);
+            });
+        }
+    }
+
+    function updateProfileSkillsHidden() {
+        if (profileSkillsHidden) {
+            profileSkillsHidden.value = profileSkillsList.join(", ");
+        }
+    }
+
+    function createProfileSkillTag(skill) {
+
+        const skillTag = document.createElement("span");
+        skillTag.className = "profile-skill";
+        skillTag.textContent = skill + " ×";
+
+        skillTag.addEventListener("click", function () {
+
+            profileSkillsList = profileSkillsList.filter(item => item !== skill);
+            updateProfileSkillsHidden();
+            skillTag.remove();
+
+        });
+
+        profileSelectedSkills.appendChild(skillTag);
+    }
+
+    if (editButton && profileForm) {
 
         editButton.addEventListener("click", function () {
+
+            if (editButton.textContent.includes("Save")) {
+
+                profileForm.submit();
+                return;
+
+            }
 
             profileInputs.forEach(input => {
                 input.disabled = false;
             });
+
+            if (profileSkillInput) {
+                profileSkillInput.disabled = false;
+            }
+
+            if (profileAddSkillBtn) {
+                profileAddSkillBtn.disabled = false;
+            }
 
             editButton.textContent = "✓ Save Changes";
             editButton.style.backgroundColor = "#16a34a";
@@ -563,6 +686,31 @@ if (profilePage) {
 
     }
 
+    if (profileAddSkillBtn && profileSkillInput && profileSelectedSkills && profileSkillsHidden) {
+
+        profileAddSkillBtn.addEventListener("click", function () {
+
+            const skill = profileSkillInput.value.trim();
+
+            if (skill === "") {
+                alert("Please enter a skill.");
+                return;
+            }
+
+            if (profileSkillsList.includes(skill)) {
+                alert("This skill is already added.");
+                return;
+            }
+
+            profileSkillsList.push(skill);
+            updateProfileSkillsHidden();
+            createProfileSkillTag(skill);
+
+            profileSkillInput.value = "";
+
+        });
+
+    }
 
     if (photoInput && profileImage && photoForm) {
 
@@ -571,24 +719,19 @@ if (profilePage) {
             const file = photoInput.files[0];
 
             if (file) {
-
                 profileImage.src = URL.createObjectURL(file);
-
                 photoForm.submit();
-
             }
 
         });
 
     }
 
-
     if (bioTextarea) {
 
         const counter = document.createElement("small");
 
         counter.textContent = bioTextarea.value.length + " / 250 characters";
-
         bioTextarea.parentElement.appendChild(counter);
 
         bioTextarea.addEventListener("input", function () {
@@ -604,7 +747,6 @@ if (profilePage) {
         });
 
     }
-
 
     const passwordToggle = document.querySelector(".change-password-toggle");
     const passwordForm = document.querySelector(".change-password-form");
@@ -622,7 +764,6 @@ if (profilePage) {
         });
 
     }
-
 
     const emailButton = document.querySelector(".email-toggle-btn");
 

@@ -291,6 +291,7 @@ if (contactForm) {
         const email = contactForm.querySelector('input[name="email"]');
         const message = contactForm.querySelector('textarea[name="message"]');
 
+
         if (name && name.value.trim() === "") {
             alert("Please enter your name.");
             event.preventDefault();

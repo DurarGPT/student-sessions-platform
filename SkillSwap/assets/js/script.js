@@ -1,270 +1,269 @@
 // ========= BALQEES PART ==========
 
+
 document.addEventListener("DOMContentLoaded", function () {
 
-//================= BROWSE REQUESTS =================
+    //================= BROWSE REQUESTS =================
 
-const searchInput =
-    document.querySelector(".search-box input");
+    const searchInput =
+        document.querySelector(".search-box input");
 
-const requestCards =
-    document.querySelectorAll(".request-card");
+    const requestCards =
+        document.querySelectorAll(".request-card");
 
-const filterButtons =
-    document.querySelectorAll(".filter-btn");
+    const filterButtons =
+        document.querySelectorAll(".filter-btn");
 
-const requestCount =
-    document.querySelector(".request-count");
+    const requestCount =
+        document.querySelector(".request-count");
 
-const noResults =
-    document.querySelector(".no-results");
+    const noResults =
+        document.querySelector(".no-results");
 
-let selectedFilter = "all";
+    let selectedFilter = "all";
 
-function filterRequests() {
+    function filterRequests() {
 
-    let visibleCount = 0;
+        let visibleCount = 0;
 
-    requestCards.forEach(function(card) {
+        requestCards.forEach(function(card) {
 
-        const searchValue =
-            searchInput ?
-            searchInput.value.toLowerCase() : "";
+            const searchValue =
+                searchInput ?
+                    searchInput.value.toLowerCase() : "";
 
-        const cardText =
-            card.innerText.toLowerCase();
+            const cardText =
+                card.innerText.toLowerCase();
 
-        const cardType =
-            card.getAttribute("data-type");
+            const cardType =
+                card.getAttribute("data-type");
 
-        const matchesSearch =
-            cardText.includes(searchValue);
+            const matchesSearch =
+                cardText.includes(searchValue);
 
-        const matchesFilter =
-            selectedFilter === "all" ||
-            cardType === selectedFilter;
+            const matchesFilter =
+                selectedFilter === "all" ||
+                cardType === selectedFilter;
 
-        if(matchesSearch && matchesFilter) {
+            if(matchesSearch && matchesFilter) {
 
-            card.style.display = "flex";
+                card.style.display = "flex";
 
-            visibleCount++;
+                visibleCount++;
 
-        }
+            }
 
-        else {
+            else {
 
-            card.style.display = "none";
+                card.style.display = "none";
 
-        }
-
-    });
-
-    if(requestCount) {
-
-        requestCount.innerText =
-            "Showing " +
-            visibleCount +
-            " of " +
-            requestCards.length +
-            " requests";
-
-    }
-
-    if(noResults) {
-
-        if(visibleCount === 0) {
-
-            noResults.style.display = "block";
-
-        }
-
-        else {
-
-            noResults.style.display = "none";
-
-        }
-
-    }
-
-}
-
-if(searchInput) {
-
-    searchInput.addEventListener(
-        "input",
-        filterRequests
-    );
-
-}
-
-filterButtons.forEach(function(button) {
-
-    button.addEventListener("click", function() {
-
-        filterButtons.forEach(function(btn) {
-
-            btn.classList.remove("active");
+            }
 
         });
 
-        button.classList.add("active");
+        if(requestCount) {
 
-        selectedFilter =
-            button.getAttribute("data-filter");
+            requestCount.innerText =
+                "Showing " +
+                visibleCount +
+                " of " +
+                requestCards.length +
+                " requests";
 
-        filterRequests();
+        }
 
-    });
+        if(noResults) {
 
-});
+            if(visibleCount === 0) {
 
-filterRequests();
-
-
-
-// ================= POST REQUEST =================
-
-const requestForm =
-    document.querySelector(".request-form");
-
-if(requestForm) {
-
-    requestForm.addEventListener(
-        "submit",
-        function(event) {
-
-            const title =
-                document.querySelector(
-                    'input[name="title"]'
-                );
-
-            const description =
-                document.querySelector(
-                    'textarea[name="description"]'
-                );
-
-            const preferredTime =
-                document.querySelector(
-                    'input[name="preferred_time"]'
-                );
-
-            if(
-                title &&
-                title.value.trim() === ""
-            ) {
-
-                alert(
-                    "Please enter a skill title."
-                );
-
-                event.preventDefault();
-
-                return;
+                noResults.style.display = "block";
 
             }
 
-            if(
-                description &&
-                description.value.trim().length < 10
-            ) {
+            else {
 
-                alert(
-                    "Description must be at least 10 characters."
-                );
-
-                event.preventDefault();
-
-                return;
-
-            }
-
-            if(
-                preferredTime &&
-                preferredTime.value.trim() === ""
-            ) {
-
-                alert(
-                    "Please enter your preferred time."
-                );
-
-                event.preventDefault();
-
-                return;
+                noResults.style.display = "none";
 
             }
 
         }
-    );
 
-}
+    }
 
+    if(searchInput) {
 
+        searchInput.addEventListener(
+            "input",
+            filterRequests
+        );
 
-// ================= SESSION CARDS =================
+    }
 
-const sessionCards =
-    document.querySelectorAll(".session-card");
+    filterButtons.forEach(function(button) {
 
-sessionCards.forEach(function(card) {
+        button.addEventListener("click", function() {
 
-    card.addEventListener("click", function() {
+            filterButtons.forEach(function(btn) {
 
-        sessionCards.forEach(function(item) {
+                btn.classList.remove("active");
 
-            item.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            selectedFilter =
+                button.getAttribute("data-filter");
+
+            filterRequests();
 
         });
 
-        card.classList.add("active");
+    });
 
-        const radio =
-            card.querySelector(
-                'input[type="radio"]'
-            );
+    filterRequests();
 
-        if(radio) {
 
-            radio.checked = true;
 
-        }
+    // ================= POST REQUEST =================
+
+    const requestForm =
+        document.querySelector(".request-form");
+
+    if(requestForm) {
+
+        requestForm.addEventListener(
+            "submit",
+            function(event) {
+
+                const title =
+                    document.querySelector(
+                        'input[name="title"]'
+                    );
+
+                const description =
+                    document.querySelector(
+                        'textarea[name="description"]'
+                    );
+
+                const preferredTime =
+                    document.querySelector(
+                        'input[name="preferred_time"]'
+                    );
+
+                if(
+                    title &&
+                    title.value.trim() === ""
+                ) {
+
+                    alert(
+                        "Please enter a skill title."
+                    );
+
+                    event.preventDefault();
+
+                    return;
+
+                }
+
+                if(
+                    description &&
+                    description.value.trim().length < 10
+                ) {
+
+                    alert(
+                        "Description must be at least 10 characters."
+                    );
+
+                    event.preventDefault();
+
+                    return;
+
+                }
+
+                if(
+                    preferredTime &&
+                    preferredTime.value.trim() === ""
+                ) {
+
+                    alert(
+                        "Please enter your preferred time."
+                    );
+
+                    event.preventDefault();
+
+                    return;
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    // ================= SESSION CARDS =================
+
+    const sessionCards =
+        document.querySelectorAll(".session-card");
+
+    sessionCards.forEach(function(card) {
+
+        card.addEventListener("click", function() {
+
+            sessionCards.forEach(function(item) {
+
+                item.classList.remove("active");
+
+            });
+
+            card.classList.add("active");
+
+            const radio =
+                card.querySelector(
+                    'input[type="radio"]'
+                );
+
+            if(radio) {
+
+                radio.checked = true;
+
+            }
+
+        });
+
+    });
+
+
+
+    // ================= POPULAR TAGS =================
+
+    const tags =
+        document.querySelectorAll(
+            ".popular-tags span"
+        );
+
+    const titleInput =
+        document.querySelector(
+            'input[name="title"]'
+        );
+
+    tags.forEach(function(tag) {
+
+        tag.addEventListener("click", function() {
+
+            if(titleInput) {
+
+                titleInput.value =
+                    tag.innerText;
+
+            }
+
+        });
 
     });
 
 });
-
-
-
-// ================= POPULAR TAGS =================
-
-const tags =
-    document.querySelectorAll(
-        ".popular-tags span"
-    );
-
-const titleInput =
-    document.querySelector(
-        'input[name="title"]'
-    );
-
-tags.forEach(function(tag) {
-
-    tag.addEventListener("click", function() {
-
-        if(titleInput) {
-
-            titleInput.value =
-                tag.innerText;
-
-        }
-
-    });
-
-});
-```
-
-});
-
 // ================= TALA PART =================
 
 function sendMessage() {
@@ -784,5 +783,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
-
 });

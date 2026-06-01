@@ -74,7 +74,14 @@ try {
     $stmt = $pdo->query("SELECT COUNT(*) FROM sessions");
     $mentoring = $stmt->fetchColumn();
 
-    $stmt = $pdo->query("SELECT * FROM sessions LIMIT 3");
+    $stmt = $pdo->query("
+    SELECT sessions.*, requests.title, requests.category, requests.preferred_time, users.full_name
+    FROM sessions
+    LEFT JOIN requests ON sessions.request_id = requests.request_id
+    LEFT JOIN users ON sessions.student_id = users.user_id
+    ORDER BY sessions.session_id DESC
+    LIMIT 3
+");
     $upcomingSessions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $stmt = $pdo->query("
@@ -204,16 +211,18 @@ try {
 
                         <div class="session-item">
 
-                            <h3>Mentoring Session</h3>
+                            <h3>
+                                <?php echo htmlspecialchars($session['title'] ?? $session['category'] ?? 'Mentoring Session'); ?>
+                            </h3>
 
                             <p>
-                                Date:
-                                <?php echo htmlspecialchars($session['session_date']); ?>
+                                Learner:
+                                <?php echo htmlspecialchars($session['full_name'] ?? 'Student'); ?>
                             </p>
 
                             <p>
-                                Status:
-                                <?php echo htmlspecialchars(ucfirst($session['status'])); ?>
+                                Preferred time:
+                                <?php echo htmlspecialchars($session['preferred_time'] ?? 'Flexible'); ?>
                             </p>
 
                             <div class="session-actions">
@@ -262,17 +271,23 @@ try {
                     <div class="request-item">
 
                         <div class="request-item-header">
+
                             <h3>
                                 <?php echo htmlspecialchars($request['category']); ?>
                             </h3>
 
                             <span class="status-badge">
-                        <?php echo htmlspecialchars($request['status']); ?>
-                    </span>
+            <?php echo htmlspecialchars($request['status']); ?>
+        </span>
+
                         </div>
 
                         <p>
-                            <?php echo htmlspecialchars($request['description']); ?>
+                            <?php echo htmlspecialchars(substr($request['description'],0,40)); ?>
+                        </p>
+
+                        <p class="mentor-name">
+                            Mentor: Assigned Mentor
                         </p>
 
                     </div>

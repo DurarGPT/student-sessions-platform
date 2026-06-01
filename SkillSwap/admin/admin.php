@@ -157,8 +157,7 @@ try {
                     </span>
                     </div>
 
-                    <p>Mentor ID: <?php echo htmlspecialchars($session['mentor_id']); ?></p>
-                    <p>Student ID: <?php echo htmlspecialchars($session['student_id']); ?></p>
+
                     <p>Date: <?php echo htmlspecialchars($session['session_date']); ?></p>
 
                     <form method="POST" action="admin.php" style="display:flex; gap:10px; margin-top:15px;">
@@ -248,11 +247,6 @@ try {
 
                 <h3>Session #<?php echo $session['session_id']; ?></h3>
 
-                <p>
-                    Mentor ID: <?php echo $session['mentor_id']; ?>
-                    →
-                    Student ID: <?php echo $session['student_id']; ?>
-                </p>
 
                 <p>Date: <?php echo $session['session_date']; ?></p>
 

@@ -23,22 +23,58 @@ if (isset($_POST['reject_mentor'])) {
     header("Location: admin.php");
     exit;
 }
+if (isset($_POST['approve_session'])) {
+    $sessionId = $_POST['session_id'];
+
+    $stmt = $pdo->prepare("UPDATE sessions SET status = 'approved' WHERE session_id = ?");
+    $stmt->execute([$sessionId]);
+
+    $_SESSION['success'] = "Session approved successfully!";
+    header("Location: admin.php");
+    exit;
+}
+
+if (isset($_POST['reject_session'])) {
+    $sessionId = $_POST['session_id'];
+
+    $stmt = $pdo->prepare("UPDATE sessions SET status = 'rejected' WHERE session_id = ?");
+    $stmt->execute([$sessionId]);
+
+    $_SESSION['success'] = "Session rejected successfully!";
+    header("Location: admin.php");
+    exit;
+}
 $pendingApprovals = 0;
 $pendingVerification = 0;
 $verifiedMentors = 0;
 $recentSessions = 0;
 
 try {
-    $pendingApprovals = $pdo->query("SELECT COUNT(*) FROM volunteer_hours")->fetchColumn();
+    $pendingApprovals = $pdo->query("SELECT COUNT(*) FROM sessions WHERE status = 'pending'")->fetchColumn();
+    $pendingSessions = $pdo->query("
+    SELECT *
+    FROM sessions
+    WHERE status = 'pending'
+    ORDER BY session_id DESC
+    LIMIT 3
+")->fetchAll(PDO::FETCH_ASSOC);
     $pendingVerification = $pdo->query("SELECT COUNT(*) FROM users WHERE role = 'mentor_pending'")->fetchColumn();
     $verifiedMentors = $pdo->query("SELECT COUNT(*) FROM users WHERE role = 'mentor'")->fetchColumn();
     $recentSessions = $pdo->query("SELECT COUNT(*) FROM sessions")->fetchColumn();
+    $recentSessionList = $pdo->query("
+    SELECT *
+    FROM sessions
+    ORDER BY session_id DESC
+    LIMIT 3
+")->fetchAll(PDO::FETCH_ASSOC);
     $pendingMentors = $pdo->query("SELECT * FROM users WHERE role = 'mentor_pending'")->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $pendingApprovals = 0;
+    $pendingSessions = [];
     $pendingVerification = 0;
     $verifiedMentors = 0;
     $recentSessions = 0;
+    $recentSessionList = [];
     $pendingMentors = [];
 }
 ?>
@@ -102,14 +138,44 @@ try {
 <!--admin content section-->
 <section class="admin-content">
 
-    <!--pending approvals-->
+
     <div class="admin-card">
 
         <h2>Pending Session Approvals</h2>
 
-        <?php if ($pendingApprovals > 0): ?>
+        <?php if (!empty($pendingSessions)): ?>
 
-            <p><?php echo $pendingApprovals; ?> pending approvals</p>
+            <?php foreach ($pendingSessions as $session): ?>
+
+                <div style="border:1px solid #e5e7eb; border-radius:16px; padding:18px; margin:14px 0; background:white;">
+
+                    <div class="admin-session-header">
+                        <h3>Session #<?php echo htmlspecialchars($session['session_id']); ?></h3>
+
+                        <span class="admin-status-badge">
+                        <?php echo htmlspecialchars($session['status']); ?>
+                    </span>
+                    </div>
+
+                    <p>Mentor ID: <?php echo htmlspecialchars($session['mentor_id']); ?></p>
+                    <p>Student ID: <?php echo htmlspecialchars($session['student_id']); ?></p>
+                    <p>Date: <?php echo htmlspecialchars($session['session_date']); ?></p>
+
+                    <form method="POST" action="admin.php" style="display:flex; gap:10px; margin-top:15px;">
+                        <input type="hidden" name="session_id" value="<?php echo $session['session_id']; ?>">
+
+                        <button type="submit" name="approve_session" style="flex:1; padding:10px; border-radius:10px; border:none; background:#16a34a; color:white; font-weight:700;">
+                            ✓ Approve
+                        </button>
+
+                        <button type="submit" name="reject_session" style="flex:1; padding:10px; border-radius:10px; border:1px solid #e5e7eb; background:white; font-weight:700;">
+                            ✕ Reject
+                        </button>
+                    </form>
+
+                </div>
+
+            <?php endforeach; ?>
 
         <?php else: ?>
 
@@ -118,70 +184,93 @@ try {
         <?php endif; ?>
 
     </div>
-
-
-
-    <!--mentor verification-->
     <div class="admin-card">
         <h2>Mentor Verification Requests</h2>
-    <?php if (count($pendingMentors) > 0): ?>
 
-        <?php foreach ($pendingMentors as $mentor): ?>
-            <div class="mentor-card">
+        <?php if (count($pendingMentors) > 0): ?>
 
-                <div class="mentor-header">
-                    <div class="mentor-avatar">
-                        <?php echo strtoupper(substr($mentor['full_name'], 0, 2)); ?>
+            <?php foreach ($pendingMentors as $mentor): ?>
+
+                <div class="mentor-card">
+
+                    <div class="mentor-header">
+                        <div class="mentor-avatar">
+                            <?php echo strtoupper(substr($mentor['full_name'], 0, 2)); ?>
+                        </div>
+
+                        <div>
+                            <h3><?php echo htmlspecialchars($mentor['full_name']); ?></h3>
+                            <p><?php echo htmlspecialchars($mentor['email']); ?></p>
+                        </div>
                     </div>
 
-                    <div>
-                        <h3><?php echo htmlspecialchars($mentor['full_name']); ?></h3>
-                        <p><?php echo htmlspecialchars($mentor['email']); ?></p>
+                    <p>
+                        <?php echo htmlspecialchars($mentor['bio'] ?? 'No bio available.'); ?>
+                    </p>
+
+                    <div class="mentor-skills">
+                        <span><?php echo htmlspecialchars($mentor['skills'] ?? 'No skills listed'); ?></span>
                     </div>
+
+                    <form method="POST" action="admin.php">
+                        <input type="hidden" name="user_id" value="<?php echo $mentor['user_id']; ?>">
+
+                        <button type="submit" name="verify_mentor" class="approve-btn">
+                            Verify as Mentor
+                        </button>
+
+                        <button type="submit" name="reject_mentor" class="approve-btn">
+                            Reject
+                        </button>
+                    </form>
+
                 </div>
 
-                <p>
-                    <?php echo htmlspecialchars($mentor['bio'] ?? 'No bio available.'); ?>
-                </p>
+            <?php endforeach; ?>
 
-                <div class="mentor-skills">
-                    <span><?php echo htmlspecialchars($mentor['skills'] ?? 'No skills listed'); ?></span>
-                </div>
+        <?php else: ?>
 
-                <form method="POST" action="admin.php">
-                    <input type="hidden" name="user_id" value="<?php echo $mentor['user_id']; ?>">
+            <p>No mentor verification requests</p>
 
-                    <button type="submit" name="verify_mentor" class="approve-btn">
-                        Verify as Mentor
-                    </button>
-
-                    <button type="submit" name="reject_mentor" class="approve-btn">
-                        Reject
-                    </button>
-                </form>
-
-            </div>
-        <?php endforeach; ?>
-
-    <?php else: ?>
-
-        <p>No mentor verification requests</p>
-
-    <?php endif; ?>
+        <?php endif; ?>
     </div>
+
 </section>
 
-
-
-<!--recent sessions section-->
 <section class="admin-card">
 
     <h2>Recent Session History</h2>
 
-    <p><?php echo $recentSessions; ?> sessions found</p>
+    <?php if (!empty($recentSessionList)): ?>
+
+        <?php foreach ($recentSessionList as $session): ?>
+            <div style="border:1px solid #e5e7eb; border-radius:16px; padding:18px; margin:14px 0; background:white;">
+
+                <h3>Session #<?php echo $session['session_id']; ?></h3>
+
+                <p>
+                    Mentor ID: <?php echo $session['mentor_id']; ?>
+                    →
+                    Student ID: <?php echo $session['student_id']; ?>
+                </p>
+
+                <p>Date: <?php echo $session['session_date']; ?></p>
+
+                <span style="background:#fef3c7; color:#b45309; padding:6px 12px; border-radius:20px; font-size:14px; font-weight:600;">
+        <?php echo ucfirst($session['status']); ?>
+    </span>
+
+            </div>
+
+        <?php endforeach; ?>
+
+    <?php else: ?>
+
+        <p>No sessions found</p>
+
+    <?php endif; ?>
 
 </section>
-
 <!--admin responsibilities section-->
 <section class="admin-responsibilities">
 

@@ -2849,6 +2849,27 @@ p {
     margin: 0 8px;
     cursor: pointer;
 }
+.help-buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:20px;
+}
+
+.help-btn{
+    display:inline-block;
+    padding:12px 24px;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.help-btn:hover{
+    transform:translateY(-2px);
+}
 /* =================RIMASSS ALMUNTI DASHBOARD PAGE  ================= */
 .dashboard-page {
     background-color: #f8fafc;
@@ -3081,6 +3102,93 @@ p {
     color: white;
 }
 
+.session-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.session-actions a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #111827;
+    font-weight: 600;
+    background: #ffffff;
+}
+
+.session-actions a:hover {
+    background: #f3f4f6;
+}
+
+.notification-item {
+    border: 1px solid #eadcff;
+    background: #faf7ff;
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 15px;
+}
+
+.notification-item strong {
+    color: #111827;
+}
+
+.notification-item p {
+    margin: 6px 0 0;
+    color: #64748b;
+}
+.view-notifications-btn {
+    display: block;
+    margin-top: 14px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #111827;
+    font-weight: 600;
+    background: #ffffff;
+}
+
+.view-notifications-btn:hover {
+    background: #f3f4f6;
+}
+.request-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    background: #ffffff;
+}
+
+.request-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.request-item h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #111827;
+}
+
+.request-item p {
+    margin: 8px 0 0;
+    color: #64748b;
+}
+
+.request-status {
+    background: #dcfce7;
+    color: #166534;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+}
 /* ================= NADA PROFILE SETTINGS INTERACTIONS ================= */
 
 .change-password-form {

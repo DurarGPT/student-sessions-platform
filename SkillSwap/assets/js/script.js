@@ -313,34 +313,44 @@ if (contactForm) {
     });
 
 }
-// admin approve button
+// admin approve confirmation
 
 const approveButtons = document.querySelectorAll(".approve-btn");
 
-approveButtons.forEach(button => {
+approveButtons.forEach(function (button) {
 
-    button.addEventListener("click", function () {
-        //event.preventDefault();
+    button.addEventListener("click", function (event) {
+
+        const confirmApprove = confirm("Are you sure you want to approve this request?");
+
+        if (!confirmApprove) {
+            event.preventDefault();
+        }
 
     });
 
 });
 
-// dashboard quick action
 
-const dashboardButton = document.querySelector(".dashboard-btn");
+// dashboard session action confirmation
 
-if (dashboardButton) {
+const sessionActionButtons = document.querySelectorAll(".session-actions a");
 
-    dashboardButton.addEventListener("click", function () {
+sessionActionButtons.forEach(function (button) {
 
-        alert("Dashboard action completed!");
+    button.addEventListener("click", function (event) {
+
+        const actionName = button.innerText.trim();
+
+        const confirmAction = confirm("Do you want to open " + actionName + "?");
+
+        if (!confirmAction) {
+            event.preventDefault();
+        }
 
     });
 
-}
-
-
+});
 
 // ==========Durar's part ==========
 

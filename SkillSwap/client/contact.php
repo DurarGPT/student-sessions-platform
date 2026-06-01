@@ -134,13 +134,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </main>
 
     <!--help section-->
-    <section class="help-section">
-        <h2>Need Immediate Help?</h2>
-        <p>Check out our FAQ section or browse our Help Center for quick answers to common questions.</p>
+<section class="help-section">
+    <h2>Need Immediate Help?</h2>
 
-        <button>Visit Help Center</button>
-        <button>View FAQ</button>
-    </section>
+    <p>
+        Check out our FAQ section or browse our Help Center for quick answers to common questions.
+    </p>
+
+    <a href="how-it-works.php" class="help-btn">
+        Help Center & FAQ
+    </a>
+</section>
 
     <hr>
 <?php include '../includes/footer.php'; ?>

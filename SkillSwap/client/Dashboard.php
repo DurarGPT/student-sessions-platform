@@ -77,6 +77,15 @@ try {
     $stmt = $pdo->query("SELECT * FROM sessions LIMIT 3");
     $upcomingSessions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    $stmt = $pdo->query("
+    SELECT sessions.*, requests.title, users.full_name
+    FROM sessions
+    LEFT JOIN requests ON sessions.request_id = requests.request_id
+    LEFT JOIN users ON sessions.student_id = users.user_id
+    ORDER BY sessions.session_id DESC
+    LIMIT 1
+");
+    $recentNotifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt = $pdo->query("SELECT COALESCE(SUM(hours_completed), 0) FROM volunteer_hours");
     $totalHours = $stmt->fetchColumn();
 
@@ -186,23 +195,124 @@ try {
         </div>
         <div class="dashboard-card upcoming-card">
 
-            <h2>📅 Upcoming Sessions</h2>
 
-            <?php if (!empty($upcomingSessions)) { ?>
+                <h2>📅 Upcoming Sessions</h2>
 
-                <?php foreach ($upcomingSessions as $session) { ?>
+                <?php if (!empty($upcomingSessions)) { ?>
 
-                    <div class="session-item">
+                    <?php foreach ($upcomingSessions as $session) { ?>
+
+                        <div class="session-item">
+
+                            <h3>Mentoring Session</h3>
+
+                            <p>
+                                Student ID:
+                                <?php echo htmlspecialchars($session['student_id']); ?>
+                            </p>
+
+                            <p>
+                                Date:
+                                <?php echo htmlspecialchars($session['session_date']); ?>
+                            </p>
+
+                            <p>
+                                Status:
+                                <?php echo htmlspecialchars(ucfirst($session['status'])); ?>
+                            </p>
+
+                            <div class="session-actions">
+                                <a href="chat.php">💬 Chat</a>
+                                <a href="schedule.php">📅 Schedule</a>
+
+                            </div>
+
+                        </div>
+
+                    <?php } ?>
+
+                <?php } else { ?>
+
+                    <p>No upcoming sessions</p>
+
+                    <a href="browse-requests.php" class="dashboard-btn">
+                        Browse Requests
+                    </a>
+
+                <?php } ?>
+
+            </div>
+    </section>
+
+    <section class="dashboard-grid">
+        <div class="dashboard-card recent-requests-card">
+
+            <h2>📖 My Recent Requests</h2>
+
+            <?php
+            $stmt = $pdo->query("
+        SELECT *
+        FROM requests
+        ORDER BY request_id DESC
+        LIMIT 3
+    ");
+
+            $recentRequests = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+
+            <?php if (!empty($recentRequests)) { ?>
+
+                <?php foreach ($recentRequests as $request) { ?>
+
+                    <div class="request-item">
+
+                        <div class="request-item-header">
+                            <h3>
+                                <?php echo htmlspecialchars($request['category']); ?>
+                            </h3>
+
+                            <span class="status-badge">
+                        <?php echo htmlspecialchars($request['status']); ?>
+                    </span>
+                        </div>
+
                         <p>
-                            Session #<?php echo htmlspecialchars($session['session_id']); ?>
+                            <?php echo htmlspecialchars($request['description']); ?>
+                        </p>
+
+                    </div>
+
+                <?php } ?>
+
+            <?php } else { ?>
+
+                <p>No requests yet</p>
+
+            <?php } ?>
+
+        </div>
+        <div class="dashboard-card notifications-card">
+            <h2>🔔 Recent Notifications</h2>
+
+            <?php if (!empty($recentNotifications)) { ?>
+
+                <span class="notification-badge">
+            <?php echo count($recentNotifications); ?> New
+        </span>
+
+                <?php foreach ($recentNotifications as $notification) { ?>
+
+                    <div class="notification-item">
+                        <strong>
+                            New <?php echo htmlspecialchars($notification['title'] ?? 'Session'); ?> Request
+                        </strong>
+
+                        <p>
+                            From: <?php echo htmlspecialchars($notification['full_name'] ?? 'Student'); ?>
                         </p>
 
                         <p>
-                            Date: <?php echo htmlspecialchars($session['session_date']); ?>
-                        </p>
-
-                        <p>
-                            Status: <?php echo htmlspecialchars($session['status']); ?>
+                            <?php echo htmlspecialchars($notification['session_date'] ?? 'No date'); ?>
                         </p>
                     </div>
 
@@ -210,39 +320,14 @@ try {
 
             <?php } else { ?>
 
-                <p>No upcoming sessions</p>
+                <p>No new notifications</p>
 
             <?php } ?>
 
-    </section>
-
-    <section class="dashboard-grid">
-        <div class="dashboard-card upcoming-card">
-
-            <h2>📖 My Recent Requests</h2>
-
-            <div class="upcoming-empty">
-
-                <div class="upcoming-icon">📖</div>
-
-                <p>No requests yet</p>
-
-                <a href="post-request.php" class="secondary-btn">
-                    Post a Request
-                </a>
-
-            </div>
-
+            <a href="inbox.php" class="view-notifications-btn">
+                View All Notifications →
+            </a>
         </div>
-        <div class="dashboard-card notifications-card">
-            <h2>🔔 Recent Notifications</h2>
-
-            <div class="empty-state">
-                <div class="empty-icon">🔔</div>
-                <p>No new notifications</p>
-            </div>
-        </div>
-
     </section>
 
     <section class="quick-actions">

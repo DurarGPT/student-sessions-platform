@@ -1,145 +1,152 @@
 <?php
+global $pdo;
 include '../includes/db.php';
 include '../includes/header.php';
-?>
 
-    <link rel="stylesheet" href="../assets/css/client_style.css">
-
-<?php
-/* رقم الطلب الحالي */
-$requestId = $_GET['requestId'] ?? 1;
-
-$message = "";
+$currentUserId = $_SESSION['user_id'] ?? 1;
 $error = "";
 
-/* إضافة عمود الوقت إذا لم يكن موجوداً */
 try {
-    $pdo->exec("
-        ALTER TABLE sessions
-        ADD session_time VARCHAR(20)
-    ");
+    $pdo->exec("ALTER TABLE sessions ADD session_time VARCHAR(20)");
 } catch (PDOException $e) {
-    // العمود موجود مسبقاً
+    // column already exists
 }
 
-/* حفظ أو تحديث الموعد المقترح */
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$requestId = $_GET['requestId'] ?? null;
 
+if ($requestId === null) {
+    $firstRequestStmt = $pdo->query("
+        SELECT request_id
+        FROM requests
+        ORDER BY request_id DESC
+        LIMIT 1
+    ");
+    $firstRequest = $firstRequestStmt->fetch(PDO::FETCH_ASSOC);
+    $requestId = $firstRequest['request_id'] ?? null;
+}
+
+$detailsStmt = $pdo->prepare("
+    SELECT 
+        r.request_id,
+        r.user_id AS learner_id,
+        r.title AS skill_title,
+        r.session_type,
+        learner.full_name AS learner_name
+    FROM requests r
+    LEFT JOIN users learner ON r.user_id = learner.user_id
+    WHERE r.request_id = ?
+    LIMIT 1
+");
+$detailsStmt->execute([$requestId]);
+$details = $detailsStmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$details) {
+    die("No request found. Please create a request first.");
+}
+
+$learnerId = $details['learner_id'];
+
+function getEndTimePHP($time) {
+    return date("h:i A", strtotime($time . " +1 hour"));
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['complete_session'])) {
+    $stmt = $pdo->prepare("
+        UPDATE sessions
+        SET status = 'completed'
+        WHERE request_id = ?
+    ");
+    $stmt->execute([$requestId]);
+
+    header("Location: dashboard.php");
+    exit;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['propose_time'])) {
     $sessionDate = $_POST['session_date'] ?? "";
     $sessionTime = $_POST['session_time'] ?? "";
 
-    /* التأكد من أن المستخدم اختار موعداً */
     if (!empty($sessionDate) && !empty($sessionTime)) {
 
-        /* البحث عن جلسة موجودة مسبقاً لنفس الطلب */
-        $checkStmt = $pdo->prepare("
-            SELECT session_id
-            FROM sessions
-            WHERE request_id = ?
-            ORDER BY session_id DESC
-            LIMIT 1
-        ");
-
-        $checkStmt->execute([$requestId]);
-        $existingSession = $checkStmt->fetch(PDO::FETCH_ASSOC);
-
-        /* إذا كانت الجلسة موجودة، يتم تحديث الموعد */
-        if ($existingSession) {
-            $stmt = $pdo->prepare("
-                UPDATE sessions
-                SET session_date = ?,
-                    session_time = ?,
-                    status = 'confirmed'
-                WHERE session_id = ?
-            ");
-
-            $stmt->execute([
-                    $sessionDate,
-                    $sessionTime,
-                    $existingSession['session_id']
-            ]);
+        if (date("D", strtotime($sessionDate)) == "Mon") {
+            $error = "Monday is a holiday. Please select another day.";
         } else {
 
-            /* إذا لم توجد جلسة، يتم إنشاء جلسة جديدة */
-            $stmt = $pdo->prepare("
-                INSERT INTO sessions
-                (mentor_id, student_id, request_id, session_date, session_time, status)
-                VALUES
-                (1, 1, ?, ?, ?, 'confirmed')
+            $checkStmt = $pdo->prepare("
+                SELECT session_id
+                FROM sessions
+                WHERE request_id = ?
+                ORDER BY session_id DESC
+                LIMIT 1
             ");
+            $checkStmt->execute([$requestId]);
+            $existingSession = $checkStmt->fetch(PDO::FETCH_ASSOC);
 
-            $stmt->execute([
-                    $requestId,
-                    $sessionDate,
-                    $sessionTime
-            ]);
+            if ($existingSession) {
+                $stmt = $pdo->prepare("
+                    UPDATE sessions
+                    SET session_date = ?,
+                        session_time = ?,
+                        mentor_id = ?,
+                        student_id = ?,
+                        status = 'confirmed'
+                    WHERE session_id = ?
+                ");
+                $stmt->execute([
+                        $sessionDate,
+                        $sessionTime,
+                        $currentUserId,
+                        $learnerId,
+                        $existingSession['session_id']
+                ]);
+            } else {
+                $stmt = $pdo->prepare("
+                    INSERT INTO sessions
+                    (mentor_id, student_id, request_id, session_date, session_time, status)
+                    VALUES
+                    (?, ?, ?, ?, ?, 'confirmed')
+                ");
+                $stmt->execute([
+                        $currentUserId,
+                        $learnerId,
+                        $requestId,
+                        $sessionDate,
+                        $sessionTime
+                ]);
+            }
+
+            header("Location: schedule.php?requestId=" . $requestId);
+            exit;
         }
-
-        $message = "Session time confirmed successfully!";
 
     } else {
         $error = "Please select a time first.";
     }
 }
 
-/* جلب آخر حالة للموعد */
 $stmt = $pdo->prepare("
-    SELECT session_date, session_time, status
-    FROM sessions
-    WHERE request_id = ?
-    ORDER BY session_id DESC
+    SELECT 
+        s.session_date,
+        s.session_time,
+        s.status,
+        mentor.full_name AS mentor_name
+    FROM sessions s
+    LEFT JOIN users mentor ON s.mentor_id = mentor.user_id
+    WHERE s.request_id = ?
+    ORDER BY s.session_id DESC
     LIMIT 1
 ");
-
 $stmt->execute([$requestId]);
 $session = $stmt->fetch(PDO::FETCH_ASSOC);
-?>
 
-    <main class="schedule-page">
-
-    <section class="schedule-hero">
-        <h2>Schedule Session</h2>
-        <p>Choose a suitable time for your mentoring session</p>
-
-        <?php if($message != "") { ?>
-            <div class="success-message">
-                <?php echo $message; ?>
-            </div>
-        <?php } ?>
-
-        <?php if($error != "") { ?>
-            <div class="error-message">
-                <?php echo $error; ?>
-            </div>
-        <?php } ?>
-    </section>
-
-    <section class="schedule-card">
-        <div class="schedule-header">
-            <h3>Select Date & Time</h3>
-            <p>May 10 - May 16, 2026</p>
-        </div>
-
-        <table class="schedule-table">
-            <tr>
-                <th>Sun<br>10</th>
-                <th>Mon<br>11</th>
-                <th>Tue<br>12</th>
-                <th>Wed<br>13</th>
-                <th>Thu<br>14</th>
-                <th>Fri<br>15</th>
-                <th>Sat<br>16</th>
-            </tr>
-
-<?php
 $dates = [
-        "2026-05-10",
-        "2026-05-11",
-        "2026-05-12",
-        "2026-05-13",
-        "2026-05-14",
-        "2026-05-15",
-        "2026-05-16"
+        "2026-05-31",
+        "2026-06-01",
+        "2026-06-02",
+        "2026-06-03",
+        "2026-06-04",
+        "2026-06-05",
+        "2026-06-06"
 ];
 
 $times = [
@@ -156,112 +163,243 @@ $times = [
         "07:00 PM",
         "08:00 PM"
 ];
-
-foreach($times as $time) {
-    echo "<tr>";foreach($dates as $date) {
-        echo "
-                        <td>
-                            <button
-                                type='button'
-                                class='time-slot-btn'
-                                onclick=\"selectTime('$date', '$time', this)\"
-                            >
-                                $time
-                            </button>
-                        </td>
-                    ";
-    }
-
-    echo "</tr>";
-}
 ?>
-        </table>
 
-        <form method="POST" class="propose-time-form">
-            <input type="hidden" id="selectedDate" name="session_date">
-            <input type="hidden" id="selectedTime" name="session_time">
+    <link rel="stylesheet" href="../assets/css/schedule.css">
 
-            <p class="selected-time-text">
-                Selected Time:
-                <strong id="selectedTimeText">No time selected</strong>
+    <main class="schedule-page">
+
+        <section class="schedule-title">
+            <h2>Schedule Session</h2>
+            <p>
+                Coordinate a time for your
+                <?php echo htmlspecialchars($details['skill_title']); ?>
+                session
             </p>
-
-            <button type="submit" class="blue-button">
-                Propose Time
-            </button>
-        </form>
-    </section>
-
-        <section class="session-details-card">
-            <h3>Session Details</h3>
-
-            <div class="details-grid">
-                <div>
-                    <p>Skill</p>
-                    <strong>Public Speaking</strong>
-                </div>
-
-                <div>
-                    <p>Learner</p>
-                    <strong>James Wilson</strong>
-                </div>
-
-                <div>
-                    <p>Mentor</p>
-                    <strong>Emma Johnson</strong>
-                </div>
-
-                <div>
-                    <p>Type</p>
-                    <strong>One-on-One</strong>
-                </div>
-            </div>
         </section>
 
-        <section class="session-status-card">
-            <h3>Session Status</h3>
+        <?php if ($error != "") { ?>
+            <div class="error-message"><?php echo htmlspecialchars($error); ?></div>
+        <?php } ?>
 
-            <?php if($session) { ?>
-                <div class="scheduled-session">
-                    <p>
-                        Confirmed session on
-                        <strong><?php echo htmlspecialchars($session['session_date']); ?></strong>
-                    </p>
+        <section class="schedule-layout">
 
-                    <p>
-                        Time:
-                        <strong><?php echo htmlspecialchars($session['session_time']); ?></strong>
-                    </p>
+            <div class="schedule-left-card">
 
-                    <span class="session-badge">
-                    <?php echo htmlspecialchars($session['status']); ?>
-                </span>
+                <div class="schedule-card-header">
+                    <h3>
+                    <span class="calendar-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 3V7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M8 3V7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M3 10H21" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </span>
+                        Select Date & Time
+                    </h3>
+
+                    <div class="week-control">
+                        <button type="button">‹</button>
+                        <span>May 31 - Jun 6, 2026</span>
+                        <button type="button">›</button>
+                    </div>
                 </div>
-            <?php } else { ?>
-                <p class="no-session">
-                    No sessions scheduled yet
-                </p>
-            <?php } ?>
+
+                <div class="calendar-scroll">
+
+                    <div class="calendar-grid calendar-days">
+                        <div class="time-column-head"></div>
+
+                        <?php foreach ($dates as $date) { ?>
+                            <div class="day-head">
+                                <span><?php echo date("D", strtotime($date)); ?></span>
+                                <strong><?php echo date("j", strtotime($date)); ?></strong>
+                            </div>
+                        <?php } ?>
+                    </div>
+
+                    <?php foreach ($times as $time) { ?>
+                        <div class="calendar-grid">
+
+                            <div class="time-label"><?php echo $time; ?></div>
+
+                            <?php foreach ($dates as $date) {
+                                $isMonday = date("D", strtotime($date)) == "Mon";
+
+                                $isBooked =
+                                        $session &&
+                                        $session['status'] != 'completed' &&
+                                        $session['session_date'] == $date &&
+                                        $session['session_time'] == $time;
+                                ?>
+
+                                <?php if ($isMonday) { ?>
+
+                                    <button
+                                            type="button"
+                                            class="time-slot holiday-slot"
+                                            disabled
+                                    ></button>
+
+                                <?php } else { ?>
+
+                                    <button
+                                            type="button"
+                                            class="time-slot <?php echo $isBooked ? 'booked-slot' : ''; ?>"
+                                            onclick="selectTime('<?php echo $date; ?>', '<?php echo $time; ?>', this)"
+                                    >
+                                        <?php echo $isBooked ? 'Booked' : ''; ?>
+                                    </button>
+
+                                <?php } ?>
+
+                            <?php } ?>
+
+                        </div>
+                    <?php } ?>
+
+                </div>
+
+                <form method="POST" class="selected-time-box" id="selectedTimeBox">
+
+                    <input type="hidden" id="selectedDate" name="session_date">
+                    <input type="hidden" id="selectedTime" name="session_time">
+                    <input type="hidden" name="propose_time" value="1">
+
+                    <div>
+                        <h4>Selected Time:</h4>
+                        <p id="selectedTimeText"></p>
+                    </div>
+
+                    <button type="submit" class="propose-btn">
+                        + Propose Time
+                    </button>
+
+                </form>
+
+            </div>
+
+            <aside class="schedule-sidebar">
+
+                <section class="side-card">
+                    <h3>Session Details</h3>
+
+                    <div class="detail-item">
+                        <span>Skill</span>
+                        <strong><?php echo htmlspecialchars($details['skill_title']); ?></strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Learner</span>
+                        <strong><?php echo htmlspecialchars($details['learner_name']); ?></strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Mentor</span>
+                        <strong><?php echo htmlspecialchars($session['mentor_name'] ?? 'Not assigned yet'); ?></strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Session Type</span>
+                        <strong class="type-pill">
+                            <?php echo htmlspecialchars($details['session_type'] ?? 'one-on-one'); ?>
+                        </strong>
+                    </div>
+                </section>
+
+                <section class="side-card">
+                    <h3>Session Status</h3>
+
+                    <?php if (!$session || $session['status'] == 'completed') { ?>
+
+                        <p class="empty-status">No sessions scheduled yet</p>
+
+                    <?php } else { ?>
+
+                        <div class="completed-question-box">
+
+                            <div class="session-info-line">
+                                <span>📅</span>
+                                <p><?php echo date("D, M j", strtotime($session['session_date'])); ?></p>
+                            </div>
+
+                            <div class="session-info-line">
+                                <span>🕘</span>
+                                <p>
+                                    <?php echo htmlspecialchars($session['session_time']); ?>
+                                    -
+                                    <?php echo htmlspecialchars(getEndTimePHP($session['session_time'])); ?>
+                                </p>
+                            </div>
+
+                            <div class="session-info-line">
+                                <span>📍</span>
+                                <p>Microsoft Teams (link will be shared)</p>
+                            </div>
+
+                            <h4>Have you completed your session?</h4>
+
+                            <form method="POST">
+                                <input type="hidden" name="complete_session" value="1">
+
+                                <button type="submit" class="completed-btn">
+                                    ✓ Completed
+                                </button>
+                            </form>
+
+                        </div>
+
+                    <?php } ?>
+                </section>
+
+            </aside>
+
         </section>
 
     </main>
 
     <script>
-        /* اختيار الوقت من الجدول */
         function selectTime(date, time, button) {
             document.getElementById("selectedDate").value = date;
             document.getElementById("selectedTime").value = time;
-            document.getElementById("selectedTimeText").innerText = date + " at " + time;
 
-            /* إزالة التحديد من جميع الأوقات */
-            const buttons = document.querySelectorAll(".time-slot-btn");
-            buttons.forEach(btn => btn.classList.remove("selected-slot"));
+            const formattedDate = new Date(date).toLocaleDateString("en-US", {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            });
 
-            /* تمييز الوقت المختار */
+            document.getElementById("selectedTimeText").innerText =
+                formattedDate + "\n" + time + " - " + getEndTime(time);
+
+            document.getElementById("selectedTimeBox").style.display = "flex";
+
+            document.querySelectorAll(".time-slot").forEach(btn => {
+                btn.classList.remove("selected-slot");
+            });
+
             button.classList.add("selected-slot");
         }
-    </script>
 
-    <script src="../assets/js/script.js"></script>
+        function getEndTime(time) {
+            const parts = time.split(" ");
+            let hour = parseInt(parts[0].split(":")[0]);
+            const period = parts[1];
+
+            hour++;
+
+            if (hour === 12) {
+                return "12:00 " + (period === "AM" ? "PM" : "AM");
+            }
+
+            if (hour > 12) {
+                hour = 1;
+            }
+
+            return String(hour).padStart(2, "0") + ":00 " + period;
+        }
+    </script>
 
 <?php include '../includes/footer.php'; ?>

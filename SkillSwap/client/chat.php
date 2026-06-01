@@ -1,223 +1,388 @@
 <?php
+global $pdo;
+session_start();
+
 include '../includes/db.php';
 include '../includes/header.php';
-?>
 
-    <link rel="stylesheet" href="../assets/css/client_style.css">
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
 
-<?php
+$currentUserId = $_SESSION['user_id'];
 
-$requestId = $_GET['requestId'] ?? 1;
-$message = "";
+$requestId = $_GET['requestId']
+        ?? $_GET['request_id']
+        ?? null;
 
-/* حفظ الرسالة */
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$sessionId = $_GET['sessionId']
+        ?? $_GET['session_id']
+        ?? null;
+
+
+/* ================= GET CHAT DATA ================= */
+
+if ($requestId) {
+
+    $stmt = $pdo->prepare("
+        SELECT
+            requests.*,
+            sessions.session_id,
+            sessions.mentor_id,
+            sessions.student_id,
+            sessions.session_date,
+            sessions.status AS session_status,
+            mentor.full_name AS mentor_name,
+            student.full_name AS student_name
+        FROM requests
+        LEFT JOIN sessions
+            ON sessions.request_id = requests.request_id
+        LEFT JOIN users AS mentor
+            ON sessions.mentor_id = mentor.user_id
+        LEFT JOIN users AS student
+            ON sessions.student_id = student.user_id
+        WHERE requests.request_id = ?
+        ORDER BY sessions.session_id DESC
+        LIMIT 1
+    ");
+
+    $stmt->execute([$requestId]);
+
+} elseif ($sessionId) {
+
+    $stmt = $pdo->prepare("
+        SELECT
+            requests.*,
+            sessions.session_id,
+            sessions.mentor_id,
+            sessions.student_id,
+            sessions.session_date,
+            sessions.status AS session_status,
+            mentor.full_name AS mentor_name,
+            student.full_name AS student_name
+        FROM sessions
+        JOIN requests
+            ON sessions.request_id = requests.request_id
+        LEFT JOIN users AS mentor
+            ON sessions.mentor_id = mentor.user_id
+        LEFT JOIN users AS student
+            ON sessions.student_id = student.user_id
+        WHERE sessions.session_id = ?
+        LIMIT 1
+    ");
+
+    $stmt->execute([$sessionId]);
+
+} else {
+
+    $stmt = $pdo->prepare("
+        SELECT
+            requests.*,
+            sessions.session_id,
+            sessions.mentor_id,
+            sessions.student_id,
+            sessions.session_date,
+            sessions.status AS session_status,
+            mentor.full_name AS mentor_name,
+            student.full_name AS student_name
+        FROM sessions
+        JOIN requests
+            ON sessions.request_id = requests.request_id
+        LEFT JOIN users AS mentor
+            ON sessions.mentor_id = mentor.user_id
+        LEFT JOIN users AS student
+            ON sessions.student_id = student.user_id
+        WHERE sessions.mentor_id = ? OR sessions.student_id = ?
+        ORDER BY sessions.session_id DESC
+        LIMIT 1
+    ");
+
+    $stmt->execute([$currentUserId, $currentUserId]);
+}
+
+$chatData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$chatData) {
+    echo "
+        <link rel='stylesheet' href='../assets/css/client_style.css'>
+
+        <main class='chat-page'>
+            <section class='chat-main-card' style='padding:30px;'>
+                <h2>No chat found</h2>
+                <p>You do not have an active chat yet.</p>
+                <a href='Dashboard.php' class='schedule-btn' style='max-width:220px; margin-top:20px;'>
+                    Back to Dashboard
+                </a>
+            </section>
+        </main>
+    ";
+
+    include '../includes/footer.php';
+    exit;
+}
+
+if (empty($requestId)) {
+    $requestId = $chatData['request_id'];
+}
+
+$mentorId = $chatData['mentor_id'] ?? null;
+$studentId = $chatData['student_id'] ?? null;
+
+
+/* ================= FIND OTHER USER ================= */
+
+if ($currentUserId == $mentorId) {
+    $otherUserId = $studentId;
+    $otherUserName = $chatData['student_name'];
+} elseif ($currentUserId == $studentId) {
+    $otherUserId = $mentorId;
+    $otherUserName = $chatData['mentor_name'];
+} else {
+    $otherUserId = $studentId ?: $mentorId;
+    $otherUserName = $chatData['student_name'] ?: $chatData['mentor_name'];
+}
+
+if (empty($otherUserName)) {
+    $otherUserName = "Student";
+}
+
+$initials = strtoupper(substr($otherUserName, 0, 1));
+
+
+/* ================= SAVE MESSAGE ================= */
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $messageText = trim($_POST['message_text']);
 
-    if(!empty($messageText)) {
+    if (!empty($messageText) && !empty($otherUserId)) {
 
         $stmt = $pdo->prepare("
             INSERT INTO messages
             (sender_id, receiver_id, message_text)
-            VALUES
-            (?, ?, ?)
+            VALUES (?, ?, ?)
         ");
 
         $stmt->execute([
-                1,
-                1,
+                $currentUserId,
+                $otherUserId,
                 $messageText
         ]);
 
-        $message = "Message sent successfully!";
+        header("Location: chat.php?requestId=" . $requestId);
+        exit;
     }
 }
 
-/* جلب الرسائل */
-$stmt = $pdo->prepare("
-    SELECT *
-    FROM messages
-    ORDER BY message_id ASC
-");
 
-$stmt->execute();
-$messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+/* ================= GET MESSAGES ================= */
 
-/* جلب آخر موعد من الجدولة */
-$stmt = $pdo->prepare("
-    SELECT session_date, session_time, status
-    FROM sessions
-    WHERE request_id = ?
-    ORDER BY session_id DESC
-    LIMIT 1
-");
+$messages = [];
 
-$stmt->execute([$requestId]);
-$session = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!empty($otherUserId)) {
+
+    $stmt = $pdo->prepare("
+        SELECT *
+        FROM messages
+        WHERE
+            (sender_id = ? AND receiver_id = ?)
+            OR
+            (sender_id = ? AND receiver_id = ?)
+        ORDER BY message_id ASC
+    ");
+
+    $stmt->execute([
+            $currentUserId,
+            $otherUserId,
+            $otherUserId,
+            $currentUserId
+    ]);
+
+    $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 ?>
 
+    <link rel="stylesheet" href="../assets/css/client_style.css">
+
     <main class="chat-page">
 
-        <section class="chat-hero">
-            <h2>Chat</h2>
-            <p>Communicate with your learner</p>
-        </section>
+        <section class="chat-layout">
 
-        <!-- صندوق المحادثة الكامل -->
-        <section class="chat-main-card">
+            <div class="chat-left">
 
-            <!-- رأس المحادثة -->
-            <div class="chat-info-card">
+                <section class="chat-hero">
+                    <h2>Chat</h2>
+                    <p>Communicate with your learner</p>
+                </section>
 
-                <div class="chat-user">
-                    <div class="chat-avatar">
-                        JW
-                    </div>
+                <section class="chat-main-card">
 
-                    <div>
-                        <h3>James Wilson</h3>
-                        <p>Public Speaking Session</p>
-                    </div>
-                </div>
+                    <div class="chat-info-card">
 
-                <span class="chat-status">
-                Active
-            </span>
+                        <div class="chat-user">
 
-            </div>
+                            <div class="chat-avatar">
+                                <?php echo htmlspecialchars($initials); ?>
+                            </div>
 
-            <!-- الرسائل -->
-            <div class="messages-card">
+                            <div>
+                                <h3><?php echo htmlspecialchars($otherUserName); ?></h3>
+                                <p><?php echo htmlspecialchars($chatData['title']); ?> Session</p>
+                            </div>
 
-                <?php if(count($messages) > 0) { ?>
-
-                    <?php foreach($messages as $msg) { ?>
-
-                        <div class="message-box">
-                            <?php echo htmlspecialchars($msg['message_text']); ?>
                         </div>
 
-                    <?php } ?>
+                        <span class="chat-status">
+                        Active
+                    </span>
 
-                <?php } else { ?>
-
-                    <div class="empty-message">
-                        <h3>No messages yet</h3>
-                        <p>Start the conversation!</p>
                     </div>
 
-                <?php } ?>
+                    <div class="messages-card">
+
+                        <?php if (count($messages) > 0): ?>
+
+                            <?php foreach ($messages as $msg): ?>
+
+                                <div class="message-box <?php echo ($msg['sender_id'] == $currentUserId) ? 'my-message' : 'their-message'; ?>">
+                                    <?php echo htmlspecialchars($msg['message_text']); ?>
+                                </div>
+
+                            <?php endforeach; ?>
+
+                        <?php else: ?>
+
+                            <div class="empty-message">
+                                <i class="fa-regular fa-user"></i>
+                                <h3>No messages yet</h3>
+                                <p>Start the conversation!</p>
+                            </div>
+
+                        <?php endif; ?>
+
+                    </div>
+
+                    <div class="send-message-card">
+
+                        <form method="POST" class="message-form">
+
+                            <input
+                                    class="message-input"
+                                    type="text"
+                                    name="message_text"
+                                    placeholder="Type your message..."
+                                    required
+                            >
+
+                            <button class="send-icon-button" type="submit">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </section>
 
             </div>
 
-            <!-- كتابة الرسالة -->
-            <div class="send-message-card">
+            <aside class="chat-sidebar">
 
-                <?php if($message != "") { ?>
-                    <div class="success-message">
-                        <?php echo $message; ?>
-                    </div>
-                <?php } ?>
+                <section class="chat-side-card">
 
-                <form method="POST" class="message-form">
+                    <h3>Session Info</h3>
 
-                    <input
-                            class="message-input"
-                            type="text"
-                            name="message_text"
-                            placeholder="Type your message..."
-                            required
-                    >
-
-                    <button
-                            class="blue-button"
-                            type="submit"
-                    >
-                        Send
-                    </button>
-
-                </form>
-
-            </div>
-
-        </section>
-
-        <!-- حالة الموعد بعد الجدولة -->
-        <section class="session-info-card">
-
-            <h3>Session Status</h3>
-
-            <?php if($session) { ?>
-
-                <div class="session-grid">
-
-                    <div>
-                        <p>Date</p>
-                        <strong><?php echo htmlspecialchars($session['session_date']); ?></strong>
+                    <div class="side-info-item">
+                        <span>Skill</span>
+                        <strong><?php echo htmlspecialchars($chatData['title']); ?></strong>
                     </div>
 
-                    <div>
-                        <p>Time</p>
-                        <strong><?php echo htmlspecialchars($session['session_time']); ?></strong>
+                    <div class="side-info-item">
+                        <span>Type</span>
+                        <strong class="mini-badge">
+                            <?php echo htmlspecialchars($chatData['session_type'] ?: 'one-on-one'); ?>
+                        </strong>
                     </div>
 
-                    <div>
-                        <p>Status</p>
-                        <strong><?php echo htmlspecialchars($session['status']); ?></strong>
+                    <div class="side-info-item">
+                        <span>Status</span>
+                        <strong class="accepted-badge">
+                            <?php echo htmlspecialchars($chatData['session_status'] ?: $chatData['status']); ?>
+                        </strong>
                     </div>
 
-                </div>
+                </section>
 
-            <?php } else { ?>
+                <section class="chat-side-card scheduling-card">
 
-                <p class="no-session">
-                    No sessions scheduled yet
-                </p>
+                    <h3>
+                        <i class="fa-regular fa-calendar"></i>
+                        Scheduling
+                    </h3>
 
-            <?php } ?>
+                    <?php if (!empty($chatData['session_date'])): ?>
 
-        </section>
+                        <div class="calendar-empty-icon">
+                            <i class="fa-regular fa-calendar-check"></i>
+                        </div>
 
-        <!-- تفاصيل الجلسة -->
-        <section class="session-info-card">
+                        <p>Session scheduled</p>
 
-            <h3>Session Info</h3>
+                    <?php else: ?>
 
-            <div class="session-grid">
+                        <div class="calendar-empty-icon">
+                            <i class="fa-regular fa-calendar"></i>
+                        </div>
 
-                <div>
-                    <p>Skill</p>
-                    <strong>Public Speaking</strong>
-                </div>
+                        <p>No session scheduled</p>
 
-                <div>
-                    <p>Type</p>
-                    <strong>One-on-One</strong>
-                </div>
+                    <?php endif; ?>
 
-                <div>
-                    <p>Status</p>
-                    <strong>Accepted</strong>
-                </div>
+                    <a href="schedule.php?requestId=<?php echo htmlspecialchars($requestId); ?>" class="schedule-btn">
+                        <i class="fa-regular fa-calendar-plus"></i>
+                        Schedule Session
+                    </a>
 
-            </div>
+                </section>
 
-        </section>
+                <section class="chat-side-card quick-calendar-card">
 
-        <!-- الانتقال للجدولة -->
-        <section class="schedule-link-card">
+                    <h3>Quick Calendar</h3>
 
-            <h3>Scheduling</h3>
+                    <div class="quick-calendar-box">
 
-            <p>
-                Choose a session time with your learner
-            </p>
+                        <strong>
+                            <?php echo !empty($chatData['session_date']) ? date('d', strtotime($chatData['session_date'])) : date('d'); ?>
+                        </strong>
 
-            <a href="schedule.php?requestId=<?php echo $requestId; ?>" class="schedule-btn">
-                Schedule Session
-            </a>
+                        <span>
+                        <?php echo !empty($chatData['session_date']) ? date('F Y', strtotime($chatData['session_date'])) : date('F Y'); ?>
+                    </span>
+
+                    </div>
+
+                    <a href="schedule.php?requestId=<?php echo htmlspecialchars($requestId); ?>" class="view-schedule-btn">
+                        View Full Schedule
+                    </a>
+
+                </section>
+
+                <section class="chat-tips-card">
+
+                    <h3>Tips for Great Sessions</h3>
+
+                    <ul>
+                        <li>Be respectful and professional</li>
+                        <li>Prepare questions in advance</li>
+                        <li>Test your setup before sessions</li>
+                        <li>Share resources via chat</li>
+                    </ul>
+
+                </section>
+
+            </aside>
 
         </section>
 

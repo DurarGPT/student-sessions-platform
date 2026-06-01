@@ -2362,8 +2362,8 @@ p {
     .post-hero h1 {
         font-size: 34px;
     }
-}
-/* ================= TALA CHAT / INBOX / SCHEDULE ================= */
+}/* ================= TALA CHAT / INBOX / SCHEDULE ================= */
+
 /* ================= TALA SCHEDULE PAGE ================= */
 
 .schedule-page {
@@ -2418,9 +2418,28 @@ p {
     font-weight: bold;
 }
 
-.time-slot-btn:hover {
+.time-slot-btn:hover,
+.time-slot-btn.selected-slot {
     background-color: #2563eb;
     color: white;
+}
+
+.propose-time-form {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #f8fafc;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.selected-time-text {
+    color: #64748b;
+    margin-bottom: 15px;
+}
+
+.selected-time-text strong {
+    color: #0f172a;
 }
 
 .details-grid {
@@ -2434,7 +2453,7 @@ p {
     color: #166534;
     padding: 14px;
     border-radius: 10px;
-    margin-top: 15px;
+    margin: 15px 0 18px;
 }
 
 .session-badge {
@@ -2471,6 +2490,48 @@ p {
     color: #64748b;
 }
 
+/* كارد واحد للشات كامل */
+.chat-main-card {
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+/* رأس المحادثة داخل نفس الكارد */
+.chat-main-card .chat-info-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px;
+    border: none;
+    border-bottom: 1px solid #e5e7eb;
+    border-radius: 0;
+    margin-bottom: 0;
+    background-color: white;
+}
+
+/* صندوق الرسائل متصل */
+.chat-main-card .messages-card {
+    padding: 28px;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 0;
+    min-height: 300px;
+    background-color: white;
+}
+
+/* مربع الكتابة متصل تحت */
+.chat-main-card .send-message-card {
+    padding: 22px 28px;
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    border-radius: 0;
+    margin-bottom: 0;
+    background-color: white;
+}
+
 .chat-info-card,
 .messages-card,
 .send-message-card,
@@ -2481,12 +2542,6 @@ p {
     border-radius: 20px;
     border: 1px solid #e5e7eb;
     margin-bottom: 25px;
-}
-
-.chat-info-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .chat-user {
@@ -2534,6 +2589,13 @@ p {
 
 .empty-message {
     color: #64748b;
+    text-align: center;
+    padding: 70px 20px;
+}
+
+.empty-message h3 {
+    color: #0f172a;
+    margin-bottom: 8px;
 }
 
 .message-form {
@@ -2577,30 +2639,6 @@ p {
     margin-bottom: 6px;
 }
 
-.success-message {
-    background-color: #dcfce7;
-    color: #166534;
-    padding: 14px;
-    border-radius: 10px;
-    margin-bottom: 18px;
-}
-
-@media (max-width: 900px) {
-
-    .chat-info-card,
-    .message-form {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .session-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .message-box {
-        max-width: 100%;
-    }
-}
 /* ================= TALA NOTIFICATION PAGE ================= */
 
 .notification-page {
@@ -2662,6 +2700,24 @@ p {
     margin-bottom: 10px;
 }
 
+@media (max-width: 900px) {
+
+    .chat-main-card .chat-info-card,
+    .chat-info-card,
+    .message-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .session-grid,
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .message-box {
+        max-width: 100%;
+    }
+}
 
 
 /* =================RIMASSS ALMUNTI CONTACT PAGE  ================= */

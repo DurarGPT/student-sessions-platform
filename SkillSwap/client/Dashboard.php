@@ -207,11 +207,6 @@ try {
                             <h3>Mentoring Session</h3>
 
                             <p>
-                                Student ID:
-                                <?php echo htmlspecialchars($session['student_id']); ?>
-                            </p>
-
-                            <p>
                                 Date:
                                 <?php echo htmlspecialchars($session['session_date']); ?>
                             </p>

@@ -79,6 +79,7 @@ try {
     FROM sessions
     LEFT JOIN requests ON sessions.request_id = requests.request_id
     LEFT JOIN users ON sessions.student_id = users.user_id
+    WHERE LOWER(TRIM(sessions.status)) NOT IN ('completed', 'rejected')
     ORDER BY sessions.session_id DESC
     LIMIT 3
 ");
@@ -225,10 +226,12 @@ try {
                                 <?php echo htmlspecialchars($session['preferred_time'] ?? 'Flexible'); ?>
                             </p>
 
-                            <div class="session-actions">
-                                <a href="chat.php">💬 Chat</a>
-                                <a href="schedule.php">📅 Schedule</a>
 
+                                <div class="session-actions">
+                                    <a href="chat.php">💬 Chat</a>
+                                    <a href="schedule.php?request_id=<?php echo $session['request_id']; ?>">📅 Schedule</a>
+                                </div>
+                                </div>
                             </div>
 
                         </div>

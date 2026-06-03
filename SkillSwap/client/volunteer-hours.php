@@ -164,8 +164,6 @@ $remainingHours = max($goal - $approvedHours, 0);
             <h1>Volunteer Hours Tracking</h1>
             <p>Official university volunteer hour tracking for SkillSwap</p>
         </div>
-
-        <a href="#" class="download-report">⬇️ Download Report</a>
     </section>
 
     <!-- SUMMARY CARDS -->
@@ -173,7 +171,6 @@ $remainingHours = max($goal - $approvedHours, 0);
 
         <div class="hours-card approved-card">
             <div class="card-top-line">
-                <span class="hours-icon">🏅</span>
                 <span class="status-mark">✓</span>
             </div>
             <h2><?php echo $approvedHours; ?></h2>
@@ -182,7 +179,6 @@ $remainingHours = max($goal - $approvedHours, 0);
 
         <div class="hours-card pending-card">
             <div class="card-top-line">
-                <span class="hours-icon">🕒</span>
                 <span class="status-pill">Pending</span>
             </div>
             <h2><?php echo $pendingHours; ?></h2>
@@ -190,13 +186,11 @@ $remainingHours = max($goal - $approvedHours, 0);
         </div>
 
         <div class="hours-card completed-card">
-            <span class="hours-icon">📈</span>
             <h2><?php echo $completedSessions; ?></h2>
             <p>Completed Sessions</p>
         </div>
 
         <div class="hours-card active-card">
-            <span class="hours-icon">📅</span>
             <h2><?php echo $activeCount; ?></h2>
             <p>Active Sessions</p>
         </div>
@@ -205,7 +199,7 @@ $remainingHours = max($goal - $approvedHours, 0);
 
     <!-- PROGRESS -->
     <section class="volunteer-panel progress-panel">
-        <h2><span class="panel-icon gold-text">🏅</span> Progress Towards Goal</h2>
+        <h2>Progress Towards Goal</h2>
 
         <div class="goal-row">
             <p>Volunteer Hours Goal: 100 hours</p>
@@ -223,7 +217,7 @@ $remainingHours = max($goal - $approvedHours, 0);
 
     <!-- MONTHLY HOURS -->
     <section class="volunteer-panel month-panel">
-        <h2><span class="panel-icon blue-text">📅</span> Hours Earned by Month</h2>
+        <h2>Hours Earned by Month</h2>
 
         <div class="month-grid">
             <div class="month-item"><strong><?php echo $months[1]; ?></strong><span>Jan</span></div>
@@ -238,7 +232,7 @@ $remainingHours = max($goal - $approvedHours, 0);
     <section class="approval-grid">
 
         <div class="small-panel">
-            <h2><span class="panel-icon orange-text">🕒</span> Pending Approval (<?php echo count($pendingList); ?>)</h2>
+            <h2>Pending Approval (<?php echo count($pendingList); ?>)</h2>
 
             <?php if (count($pendingList) > 0): ?>
                 <?php foreach ($pendingList as $hour): ?>
@@ -250,7 +244,7 @@ $remainingHours = max($goal - $approvedHours, 0);
         </div>
 
         <div class="small-panel">
-            <h2><span class="panel-icon green-text">✅</span> Approved Sessions (<?php echo count($approvedList); ?>)</h2>
+            <h2>Approved Sessions (<?php echo count($approvedList); ?>)</h2>
 
             <?php if (count($approvedList) > 0): ?>
                 <?php foreach ($approvedList as $hour): ?>
@@ -265,7 +259,7 @@ $remainingHours = max($goal - $approvedHours, 0);
 
     <!-- ACTIVE SESSIONS -->
     <section class="volunteer-panel active-panel">
-        <h2><span class="panel-icon purple-text">📅</span> Active Sessions - Ready to Submit</h2>
+        <h2>Active Sessions - Ready to Submit</h2>
 
         <?php if ($activeCount > 0): ?>
             <?php foreach ($activeSessions as $session): ?>
@@ -295,8 +289,7 @@ $remainingHours = max($goal - $approvedHours, 0);
     <!-- SESSION HISTORY -->
     <section class="volunteer-panel history-panel">
         <div class="history-top">
-            <h2><span class="panel-icon blue-text">📈</span> Session History</h2>
-            <button type="button" class="filter-button">🔎 Filter</button>
+            <h2>Session History</h2>
         </div>
 
         <?php if (count($pendingList) + count($approvedList) > 0): ?>
@@ -315,7 +308,6 @@ $remainingHours = max($goal - $approvedHours, 0);
         <?php else: ?>
 
             <div class="empty-history">
-                <div class="empty-icon">🕒</div>
                 <h3>No session history yet</h3>
                 <p>Complete mentoring sessions to start earning volunteer hours</p>
             </div>
@@ -325,7 +317,7 @@ $remainingHours = max($goal - $approvedHours, 0);
 
     <!-- ABOUT -->
     <section class="about-hours-card">
-        <h2><span>🏅</span> About Volunteer Hours</h2>
+        <h2>About Volunteer Hours</h2>
 
         <ul>
             <li>All volunteer hours are officially tracked and verified by university administrators</li>

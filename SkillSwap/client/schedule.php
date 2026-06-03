@@ -51,17 +51,39 @@ function getEndTimePHP($time) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['complete_session'])) {
-    $stmt = $pdo->prepare("
-        UPDATE sessions
-        SET status = 'completed'
-        WHERE request_id = ?
-    ");
-    $stmt->execute([$requestId]);
 
-    header("Location: dashboard.php");
+    // Get the session first so we know the mentor
+    $sessionStmt = $pdo->prepare("
+        SELECT session_id, mentor_id
+        FROM sessions
+        WHERE request_id = ?
+        ORDER BY session_id DESC
+        LIMIT 1
+    ");
+    $sessionStmt->execute([$requestId]);
+    $completedSession = $sessionStmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($completedSession) {
+
+        // Mark session as completed
+        $stmt = $pdo->prepare("
+            UPDATE sessions
+            SET status = 'completed'
+            WHERE session_id = ?
+        ");
+        $stmt->execute([$completedSession['session_id']]);
+
+        // Add 1 volunteer hour as approved
+        $insertHour = $pdo->prepare("
+            INSERT INTO volunteer_hours (mentor_id, hours_completed, approved)
+            VALUES (?, 1, 'approved')
+        ");
+        $insertHour->execute([$completedSession['mentor_id']]);
+    }
+
+    header("Location: volunteer-hours.php");
     exit;
 }
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['propose_time'])) {
     $sessionDate = $_POST['session_date'] ?? "";
     $sessionTime = $_POST['session_time'] ?? "";

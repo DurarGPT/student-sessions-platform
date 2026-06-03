@@ -94,7 +94,11 @@ try {
     LIMIT 1
 ");
     $recentNotifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $stmt = $pdo->query("SELECT COALESCE(SUM(hours_completed), 0) FROM volunteer_hours");
+    $stmt = $pdo->query("
+    SELECT COALESCE(SUM(hours_completed), 0)
+    FROM volunteer_hours
+    WHERE approved = 'approved'
+");
     $totalHours = $stmt->fetchColumn();
 
     $stmt = $pdo->query("SELECT COUNT(*) FROM messages");
@@ -229,8 +233,7 @@ try {
 
                                 <div class="session-actions">
                                     <a href="chat.php">💬 Chat</a>
-                                    <a href="schedule.php?request_id=<?php echo $session['request_id']; ?>">📅 Schedule</a>
-                                </div>
+                                    <a href="schedule.php?requestId=<?php echo $session['request_id']; ?>">📅 Schedule</a>                                </div>
                                 </div>
                             </div>
 

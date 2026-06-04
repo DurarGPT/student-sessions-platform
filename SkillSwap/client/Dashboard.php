@@ -97,7 +97,8 @@ try {
     FROM sessions
     LEFT JOIN requests ON sessions.request_id = requests.request_id
     LEFT JOIN users ON sessions.student_id = users.user_id
-    WHERE sessions.mentor_id = ? OR sessions.student_id = ?
+    WHERE (sessions.mentor_id = ? OR sessions.student_id = ?)
+    AND LOWER(TRIM(sessions.status)) NOT IN ('completed', 'rejected')
     ORDER BY sessions.session_id DESC
     LIMIT 3
 ");

@@ -11,13 +11,15 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $userId = $_SESSION['user_id'];
-
 $stmt = $pdo->prepare("
-SELECT *
+SELECT users.*,
+       COALESCE(SUM(volunteer_hours.hours_completed),0) AS total_hours
 FROM users
-WHERE user_id = ?
+LEFT JOIN volunteer_hours
+    ON users.user_id = volunteer_hours.mentor_id
+WHERE users.user_id = ?
+GROUP BY users.user_id
 ");
-
 $stmt->execute([$userId]);
 
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -118,7 +120,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                     <span>Volunteer Hours</span>
 
                     <strong>
-                        <?php echo htmlspecialchars($user['volunteer_hours'] ?? 0); ?>
+                        <?php echo htmlspecialchars($user['total_hours'] ?? 0); ?>
                     </strong>
 
                 </div>

@@ -23,41 +23,14 @@ if (isset($_POST['reject_mentor'])) {
     header("Location: admin.php");
     exit;
 }
-if (isset($_POST['approve_session'])) {
-    $sessionId = $_POST['session_id'];
 
-    $stmt = $pdo->prepare("UPDATE sessions SET status = 'approved' WHERE session_id = ?");
-    $stmt->execute([$sessionId]);
-
-    $_SESSION['success'] = "Session approved successfully!";
-    header("Location: admin.php");
-    exit;
-}
-
-if (isset($_POST['reject_session'])) {
-    $sessionId = $_POST['session_id'];
-
-    $stmt = $pdo->prepare("UPDATE sessions SET status = 'rejected' WHERE session_id = ?");
-    $stmt->execute([$sessionId]);
-
-    $_SESSION['success'] = "Session rejected successfully!";
-    header("Location: admin.php");
-    exit;
-}
 $pendingApprovals = 0;
 $pendingVerification = 0;
 $verifiedMentors = 0;
 $recentSessions = 0;
 
 try {
-    $pendingApprovals = $pdo->query("SELECT COUNT(*) FROM sessions WHERE status = 'pending'")->fetchColumn();
-    $pendingSessions = $pdo->query("
-    SELECT *
-    FROM sessions
-    WHERE status = 'pending'
-    ORDER BY session_id DESC
-    LIMIT 3
-")->fetchAll(PDO::FETCH_ASSOC);
+
     $pendingVerification = $pdo->query("SELECT COUNT(*) FROM users WHERE role = 'mentor_pending'")->fetchColumn();
     $verifiedMentors = $pdo->query("SELECT COUNT(*) FROM users WHERE role = 'mentor'")->fetchColumn();
     $recentSessions = $pdo->query("SELECT COUNT(*) FROM sessions")->fetchColumn();
@@ -137,52 +110,6 @@ try {
 
 <!--admin content section-->
 <section class="admin-content">
-
-
-    <div class="admin-card">
-
-        <h2>Pending Session Approvals</h2>
-
-        <?php if (!empty($pendingSessions)): ?>
-
-            <?php foreach ($pendingSessions as $session): ?>
-
-                <div style="border:1px solid #e5e7eb; border-radius:16px; padding:18px; margin:14px 0; background:white;">
-
-                    <div class="admin-session-header">
-                        <h3>Session #<?php echo htmlspecialchars($session['session_id']); ?></h3>
-
-                        <span class="admin-status-badge">
-                        <?php echo htmlspecialchars($session['status']); ?>
-                    </span>
-                    </div>
-
-
-                    <p>Date: <?php echo htmlspecialchars($session['session_date']); ?></p>
-
-                    <form method="POST" action="admin.php" style="display:flex; gap:10px; margin-top:15px;">
-                        <input type="hidden" name="session_id" value="<?php echo $session['session_id']; ?>">
-
-                        <button type="submit" name="approve_session" style="flex:1; padding:10px; border-radius:10px; border:none; background:#16a34a; color:white; font-weight:700;">
-                            ✓ Approve
-                        </button>
-
-                        <button type="submit" name="reject_session" style="flex:1; padding:10px; border-radius:10px; border:1px solid #e5e7eb; background:white; font-weight:700;">
-                            ✕ Reject
-                        </button>
-                    </form>
-
-                </div>
-
-            <?php endforeach; ?>
-
-        <?php else: ?>
-
-            <p>No pending approvals</p>
-
-        <?php endif; ?>
-
-    </div>
     <div class="admin-card">
         <h2>Mentor Verification Requests</h2>
 
@@ -294,6 +221,4 @@ try {
 <?php include '../includes/footer.php'; ?>
 <script src="../assets/js/script.js"></script>
 </body>
-
-
 </html>

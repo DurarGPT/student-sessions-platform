@@ -1,10 +1,17 @@
+
+
 <?php
 session_start();
 include '../includes/db.php';
 
-if (isset($_POST['apply_mentor']) && isset($_SESSION['user_id'])) {
-    $userId = $_SESSION['user_id'];
+$userId = $_SESSION['user_id'] ?? null;
 
+if (!$userId) {
+    header("Location: login.php");
+    exit;
+}
+
+if (isset($_POST['apply_mentor'])) {
     $stmt = $pdo->prepare("
         UPDATE users 
         SET role = 'mentor_pending' 
@@ -13,13 +20,13 @@ if (isset($_POST['apply_mentor']) && isset($_SESSION['user_id'])) {
     $stmt->execute([$userId]);
 
     $_SESSION['success'] = "Mentor verification request submitted successfully!";
-
     header("Location: Dashboard.php");
     exit;
 }
-if (isset($_GET['accept_request']) && isset($_SESSION['user_id'])) {
+
+if (isset($_GET['accept_request'])) {
     $requestId = $_GET['accept_request'];
-    $mentorId = $_SESSION['user_id'];
+    $mentorId = $userId;
 
     $stmt = $pdo->prepare("
         SELECT user_id, preferred_date
@@ -35,7 +42,7 @@ if (isset($_GET['accept_request']) && isset($_SESSION['user_id'])) {
 
         $stmt = $pdo->prepare("
             INSERT INTO sessions (mentor_id, student_id, request_id, session_date, status)
-            VALUES (?, ?, ?, ?, 'pending')
+            VALUES (?, ?, ?, ?, 'accepted')
         ");
         $stmt->execute([$mentorId, $studentId, $requestId, $sessionDate]);
 
@@ -52,13 +59,12 @@ if (isset($_GET['accept_request']) && isset($_SESSION['user_id'])) {
     header("Location: Dashboard.php");
     exit;
 }
+
 $userRole = 'student';
 
-if (isset($_SESSION['user_id'])) {
-    $stmt = $pdo->prepare("SELECT role FROM users WHERE user_id = ?");
-    $stmt->execute([$_SESSION['user_id']]);
-    $userRole = $stmt->fetchColumn();
-}
+$stmt = $pdo->prepare("SELECT role FROM users WHERE user_id = ?");
+$stmt->execute([$userId]);
+$userRole = $stmt->fetchColumn();
 
 $userName = $_SESSION['user_name'] ?? "User";
 
@@ -66,34 +72,50 @@ $totalHours = 0;
 $activeRequests = 0;
 $mentoring = 0;
 $notifications = 0;
+$upcomingSessions = [];
+$recentNotifications = [];
 
 try {
-    $stmt = $pdo->query("SELECT COUNT(*) FROM requests");
+    $stmt = $pdo->prepare("
+        SELECT COUNT(*) 
+        FROM requests 
+        WHERE user_id = ?
+    ");
+    $stmt->execute([$userId]);
     $activeRequests = $stmt->fetchColumn();
 
-    $stmt = $pdo->query("SELECT COUNT(*) FROM sessions");
+    $stmt = $pdo->prepare("
+        SELECT COUNT(*) 
+        FROM sessions 
+        WHERE mentor_id = ? OR student_id = ?
+    ");
+    $stmt->execute([$userId, $userId]);
     $mentoring = $stmt->fetchColumn();
 
-    $stmt = $pdo->query("
+    $stmt = $pdo->prepare("
     SELECT sessions.*, requests.title, requests.category, requests.preferred_time, users.full_name
     FROM sessions
     LEFT JOIN requests ON sessions.request_id = requests.request_id
     LEFT JOIN users ON sessions.student_id = users.user_id
-    WHERE LOWER(TRIM(sessions.status)) NOT IN ('completed', 'rejected')
+    WHERE sessions.mentor_id = ? OR sessions.student_id = ?
     ORDER BY sessions.session_id DESC
     LIMIT 3
 ");
+    $stmt->execute([$userId, $userId]);
     $upcomingSessions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt = $pdo->query("
-    SELECT sessions.*, requests.title, users.full_name
-    FROM sessions
-    LEFT JOIN requests ON sessions.request_id = requests.request_id
-    LEFT JOIN users ON sessions.student_id = users.user_id
-    ORDER BY sessions.session_id DESC
-    LIMIT 1
-");
+    $stmt = $pdo->prepare("
+        SELECT sessions.*, requests.title, users.full_name
+        FROM sessions
+        LEFT JOIN requests ON sessions.request_id = requests.request_id
+        LEFT JOIN users ON sessions.student_id = users.user_id
+        WHERE sessions.mentor_id = ? OR sessions.student_id = ?
+        ORDER BY sessions.session_id DESC
+        LIMIT 1
+    ");
+    $stmt->execute([$userId, $userId]);
     $recentNotifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     $stmt = $pdo->query("
     SELECT COALESCE(SUM(hours_completed), 0)
     FROM volunteer_hours
@@ -101,14 +123,15 @@ try {
 ");
     $totalHours = $stmt->fetchColumn();
 
-    $stmt = $pdo->query("SELECT COUNT(*) FROM messages");
-    $notifications = $stmt->fetchColumn();
+    $notifications = count($recentNotifications);
 
 } catch (PDOException $e) {
     $totalHours = 0;
     $activeRequests = 0;
     $mentoring = 0;
     $notifications = 0;
+    $upcomingSessions = [];
+    $recentNotifications = [];
 }
 ?>
 <!DOCTYPE html>
@@ -186,7 +209,7 @@ try {
 
             <div class="hours-main-box">
                 <h3>Approved Hours</h3>
-                <p>0</p>
+                <p><?php echo $totalHours; ?></p>
             </div>
 
             <div class="hours-small-grid">
@@ -207,51 +230,49 @@ try {
         </div>
         <div class="dashboard-card upcoming-card">
 
-
             <h2>📅 Upcoming Sessions</h2>
 
             <?php if (!empty($upcomingSessions)) { ?>
 
-            <?php foreach ($upcomingSessions as $session) { ?>
+                <?php foreach ($upcomingSessions as $session) { ?>
 
-            <div class="session-item">
+                    <div class="session-item">
 
-                <h3>
-                    <?php echo htmlspecialchars($session['title'] ?? $session['category'] ?? 'Mentoring Session'); ?>
-                </h3>
+                        <h3>
+                            <?php echo htmlspecialchars($session['title'] ?? $session['category'] ?? 'Mentoring Session'); ?>
+                        </h3>
 
-                <p>
-                    Learner:
-                    <?php echo htmlspecialchars($session['full_name'] ?? 'Student'); ?>
-                </p>
+                        <p>
+                            Learner:
+                            <?php echo htmlspecialchars($session['full_name'] ?? 'Student'); ?>
+                        </p>
 
-                <p>
-                    Preferred time:
-                    <?php echo htmlspecialchars($session['preferred_time'] ?? 'Flexible'); ?>
-                </p>
+                        <p>
+                            Preferred time:
+                            <?php echo htmlspecialchars($session['preferred_time'] ?? 'Flexible'); ?>
+                        </p>
 
+                        <div class="session-actions">
+                            <a href="chat.php">💬 Chat</a>
+                            <a href="schedule.php?requestId=<?php echo $session['request_id']; ?>">📅 Schedule</a>
+                        </div>
 
-                <div class="session-actions">
-                    <a href="chat.php">💬 Chat</a>
-                    <a href="schedule.php?requestId=<?php echo $session['request_id']; ?>">📅 Schedule</a>                                </div>
-            </div>
-        </div>
+                    </div>
 
-        </div>
+                <?php } ?>
 
-        <?php } ?>
+            <?php } else { ?>
 
-        <?php } else { ?>
+                <p>No upcoming sessions</p>
 
-            <p>No upcoming sessions</p>
+                <a href="browse-requests.php" class="dashboard-btn">
+                    Browse Requests
+                </a>
 
-            <a href="browse-requests.php" class="dashboard-btn">
-                Browse Requests
-            </a>
-
-        <?php } ?>
+            <?php } ?>
 
         </div>
+
     </section>
 
     <section class="dashboard-grid">
@@ -260,12 +281,14 @@ try {
             <h2>📖 My Recent Requests</h2>
 
             <?php
-            $stmt = $pdo->query("
-        SELECT *
-        FROM requests
-        ORDER BY request_id DESC
-        LIMIT 3
-    ");
+            $stmt = $pdo->prepare("
+    SELECT *
+    FROM requests
+    WHERE user_id = ?
+    ORDER BY request_id DESC
+    LIMIT 3
+");
+            $stmt->execute([$userId]);
 
             $recentRequests = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>

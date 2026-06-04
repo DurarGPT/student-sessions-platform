@@ -117,12 +117,15 @@ try {
     $stmt->execute([$userId, $userId]);
     $recentNotifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt = $pdo->query("
+    $stmt = $pdo->prepare("
     SELECT COALESCE(SUM(hours_completed), 0)
     FROM volunteer_hours
     WHERE approved = 'approved'
+    AND user_id = ?
 ");
+    $stmt->execute([$userId]);
     $totalHours = $stmt->fetchColumn();
+
     $stmt = $pdo->query("
     SELECT COALESCE(SUM(hours_completed), 0)
     FROM volunteer_hours

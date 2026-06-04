@@ -4,6 +4,7 @@ include '../includes/db.php';
 
 $userId = $_SESSION['user_id'] ?? null;
 
+
 if (!$userId) {
     header("Location: login.php");
     exit;
@@ -126,29 +127,33 @@ try {
     $stmt->execute([$userId]);
     $totalHours = $stmt->fetchColumn();
 
-    $stmt = $pdo->query("
+    $stmt = $pdo->prepare("
     SELECT COALESCE(SUM(hours_completed), 0)
     FROM volunteer_hours
     WHERE approved = 'pending'
+    AND user_id = ?
 ");
+    $stmt->execute([$userId]);
     $pendingHours = $stmt->fetchColumn();
 
-    $stmt = $pdo->query("
+    $stmt = $pdo->prepare("
     SELECT COALESCE(SUM(hours_completed), 0)
     FROM volunteer_hours
     WHERE approved = 'approved'
+    AND user_id = ?
 ");
+    $stmt->execute([$userId]);
     $completedHours = $stmt->fetchColumn();
 
     $notifications = count($recentNotifications);
 
 } catch (PDOException $e) {
     $totalHours = 0;
+    $pendingHours = 0;
+    $completedHours = 0;
     $activeRequests = 0;
     $mentoring = 0;
     $notifications = 0;
-    $upcomingSessions = [];
-    $recentNotifications = [];
 }
 ?>
 <!DOCTYPE html>

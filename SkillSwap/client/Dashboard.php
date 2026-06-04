@@ -122,28 +122,21 @@ try {
     SELECT COALESCE(SUM(hours_completed), 0)
     FROM volunteer_hours
     WHERE approved = 'approved'
-    AND user_id = ?
+    AND mentor_id = ?
 ");
     $stmt->execute([$userId]);
     $totalHours = $stmt->fetchColumn();
+
+    $completedHours = $totalHours;
 
     $stmt = $pdo->prepare("
     SELECT COALESCE(SUM(hours_completed), 0)
     FROM volunteer_hours
     WHERE approved = 'pending'
-    AND user_id = ?
+    AND mentor_id = ?
 ");
     $stmt->execute([$userId]);
     $pendingHours = $stmt->fetchColumn();
-
-    $stmt = $pdo->prepare("
-    SELECT COALESCE(SUM(hours_completed), 0)
-    FROM volunteer_hours
-    WHERE approved = 'approved'
-    AND user_id = ?
-");
-    $stmt->execute([$userId]);
-    $completedHours = $stmt->fetchColumn();
 
     $notifications = count($recentNotifications);
 

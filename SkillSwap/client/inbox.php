@@ -3,6 +3,8 @@ global $pdo;
 include '../includes/db.php';
 include '../includes/header.php';
 
+$user_id = $_SESSION['user_id'] ?? null;
+
 /* جلب الإشعارات */
 $stmt = $pdo->prepare("
     SELECT
@@ -11,11 +13,13 @@ $stmt = $pdo->prepare("
     FROM sessions
     JOIN requests
         ON sessions.request_id = requests.request_id
-    WHERE sessions.status != 'complete'
+    WHERE sessions.status NOT IN ('completed', 'complete')
+    AND (sessions.mentor_id = ? OR sessions.student_id = ?)
     ORDER BY sessions.session_id DESC
 ");
 
-$stmt->execute();
+$stmt->execute([$user_id, $user_id]);
+
 $notifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 

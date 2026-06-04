@@ -1295,7 +1295,14 @@ p {
     border-radius: 14px;
     padding: 28px;
     min-height: 165px;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .approved-card {
     background: linear-gradient(135deg, #00a63e, #047857);
@@ -1314,6 +1321,9 @@ p {
 }
 
 .card-top-line {
+    position: absolute;
+    top: 24px;
+    right: 24px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -1334,12 +1344,14 @@ p {
 .hours-card h2 {
     font-size: 34px;
     font-weight: 800;
-    margin: 20px 0 8px;
+    margin: 12px 0 8px;
+    text-align: center;
 }
 
 .hours-card p {
     font-size: 16px;
     margin: 0;
+    text-align: center;
 }
 
 .volunteer-panel,
@@ -3566,3 +3578,32 @@ body {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+/* just to insure something with the header
+
+ */
+.header-right a[href*="Dashboard"],
+.header-right a[href*="dashboard"],
+.header-right a[href*="admin.php"] {
+    border: 1px solid #e5e7eb !important;
+    background: white !important;
+    color: #111827 !important;
+    border-radius: 10px !important;
+}
+
+.header-right a[href*="Dashboard"]:hover,
+.header-right a[href*="dashboard"]:hover,
+.header-right a[href*="admin.php"]:hover {
+    background: #f8fafc !important;
+    color: #111827 !important;
+}

@@ -59,8 +59,8 @@ try {
 
 <head>
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="../assets/css/admin_style.css">
     <link rel="stylesheet" href="../assets/css/client_style.css">
+    <link rel="stylesheet" href="../assets/css/admin_style.css">
 </head>
 
 <body class="admin-page">

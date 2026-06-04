@@ -11,7 +11,7 @@ $stmt = $pdo->prepare("
     FROM sessions
     JOIN requests
         ON sessions.request_id = requests.request_id
-    WHERE sessions.status = 'scheduled'
+    WHERE sessions.status != 'complete'
     ORDER BY sessions.session_id DESC
 ");
 
@@ -58,9 +58,6 @@ $notifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </p>
                         <?php endif; ?>
 
-                        <span class="notification-badge">
-                        <?php echo htmlspecialchars($notification['status']); ?>
-                    </span>
                     </div>
 
                 <?php endforeach; ?>

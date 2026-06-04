@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 include '../includes/db.php';
@@ -69,6 +67,8 @@ $userRole = $stmt->fetchColumn();
 $userName = $_SESSION['user_name'] ?? "User";
 
 $totalHours = 0;
+$pendingHours = 0;
+$completedHours = 0;
 $activeRequests = 0;
 $mentoring = 0;
 $notifications = 0;
@@ -123,6 +123,19 @@ try {
     WHERE approved = 'approved'
 ");
     $totalHours = $stmt->fetchColumn();
+    $stmt = $pdo->query("
+    SELECT COALESCE(SUM(hours_completed), 0)
+    FROM volunteer_hours
+    WHERE approved = 'pending'
+");
+    $pendingHours = $stmt->fetchColumn();
+
+    $stmt = $pdo->query("
+    SELECT COALESCE(SUM(hours_completed), 0)
+    FROM volunteer_hours
+    WHERE approved = 'approved'
+");
+    $completedHours = $stmt->fetchColumn();
 
     $notifications = count($recentNotifications);
 
@@ -216,12 +229,12 @@ try {
             <div class="hours-small-grid">
                 <div>
                     <h3>Pending</h3>
-                    <p>0</p>
+                    <p><?php echo $pendingHours; ?></p>
                 </div>
 
                 <div>
                     <h3>Completed</h3>
-                    <p>0</p>
+                    <p><?php echo $completedHours; ?></p>
                 </div>
             </div>
 

@@ -208,50 +208,50 @@ try {
         <div class="dashboard-card upcoming-card">
 
 
-                <h2>📅 Upcoming Sessions</h2>
+            <h2>📅 Upcoming Sessions</h2>
 
-                <?php if (!empty($upcomingSessions)) { ?>
+            <?php if (!empty($upcomingSessions)) { ?>
 
-                    <?php foreach ($upcomingSessions as $session) { ?>
+            <?php foreach ($upcomingSessions as $session) { ?>
 
-                        <div class="session-item">
+            <div class="session-item">
 
-                            <h3>
-                                <?php echo htmlspecialchars($session['title'] ?? $session['category'] ?? 'Mentoring Session'); ?>
-                            </h3>
+                <h3>
+                    <?php echo htmlspecialchars($session['title'] ?? $session['category'] ?? 'Mentoring Session'); ?>
+                </h3>
 
-                            <p>
-                                Learner:
-                                <?php echo htmlspecialchars($session['full_name'] ?? 'Student'); ?>
-                            </p>
+                <p>
+                    Learner:
+                    <?php echo htmlspecialchars($session['full_name'] ?? 'Student'); ?>
+                </p>
 
-                            <p>
-                                Preferred time:
-                                <?php echo htmlspecialchars($session['preferred_time'] ?? 'Flexible'); ?>
-                            </p>
+                <p>
+                    Preferred time:
+                    <?php echo htmlspecialchars($session['preferred_time'] ?? 'Flexible'); ?>
+                </p>
 
 
-                                <div class="session-actions">
-                                    <a href="chat.php">💬 Chat</a>
-                                    <a href="schedule.php?requestId=<?php echo $session['request_id']; ?>">📅 Schedule</a>                                </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    <?php } ?>
-
-                <?php } else { ?>
-
-                    <p>No upcoming sessions</p>
-
-                    <a href="browse-requests.php" class="dashboard-btn">
-                        Browse Requests
-                    </a>
-
-                <?php } ?>
-
+                <div class="session-actions">
+                    <a href="chat.php">💬 Chat</a>
+                    <a href="schedule.php?requestId=<?php echo $session['request_id']; ?>">📅 Schedule</a>                                </div>
             </div>
+        </div>
+
+        </div>
+
+        <?php } ?>
+
+        <?php } else { ?>
+
+            <p>No upcoming sessions</p>
+
+            <a href="browse-requests.php" class="dashboard-btn">
+                Browse Requests
+            </a>
+
+        <?php } ?>
+
+        </div>
     </section>
 
     <section class="dashboard-grid">
